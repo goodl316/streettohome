@@ -8,8 +8,9 @@ public class BoardDTO {
 	private String b_dt;
 	private int b_hit;
 	private String b_img;
-	private int b_price;
-	private String b_loc;
+	private String b_price;
+	private String b_loc_sido;
+	private String b_loc_gugun;
 	private String b_age;
 	private String b_tt;
 	private String b_enddt;
@@ -18,6 +19,43 @@ public class BoardDTO {
 	private String b_type;
 	private String b_writer;
 	
+	
+	
+	public String getB_price() {
+		return b_price;
+	}
+	public void setB_price(String b_price) {
+		this.b_price = b_price;
+	}
+	public String getB_loc_sido() {
+		return b_loc_sido;
+	}
+	public void setB_loc_sido(String b_loc_sido) {
+		this.b_loc_sido = b_loc_sido;
+	}
+	public String getB_loc_gugun() {
+		return b_loc_gugun;
+	}
+	public void setB_loc_gugun(String b_loc_gugun) {
+		this.b_loc_gugun = b_loc_gugun;
+	}
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
+	private int b_state;
+	
+	private int m_no;
+	
+	
+	public int getB_state() {
+		return b_state;
+	}
+	public void setB_state(int b_state) {
+		this.b_state = b_state;
+	}
 	public String getB_writer() {
 		return b_writer;
 	}
@@ -59,18 +97,6 @@ public class BoardDTO {
 	}
 	public void setB_img(String b_img) {
 		this.b_img = b_img;
-	}
-	public int getB_price() {
-		return b_price;
-	}
-	public void setB_price(int b_price) {
-		this.b_price = b_price;
-	}
-	public String getB_loc() {
-		return b_loc;
-	}
-	public void setB_loc(String b_loc) {
-		this.b_loc = b_loc;
 	}
 	public String getB_age() {
 		return b_age;

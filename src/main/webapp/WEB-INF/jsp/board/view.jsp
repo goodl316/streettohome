@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
 <title>Street To Home - ${requestScope.data.b_title }</title>
 </head>
 <body>
@@ -12,7 +17,15 @@
 	
 	<!-- 메인 컨테이너 -->
 		<div class="view-main-container">
-			<div class="view-thumbnail"></div>
+			<div class="view-thumbnail">
+				<img alt="none" src="">
+				<div class="view-auth">
+					<c:choose>
+						<c:when test="${requestScope.data.b_auth eq 0 }">관리자에게 인증받지 않은 게시글 입니다.</c:when>
+						<c:otherwise>관리자에게 인증받은 게시글 입니다.</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
 			<div class="view-top-container">
 				<div class="view-subtitle-container">
 					<div class="view-type">${requestScope.data.b_type }</div>
@@ -41,30 +54,34 @@
 					</div>
 				</div>
 				<div class="view-subtitle-container">
-					<div class="view-nowprice">"" }</div>
+					<div class="view-nowprice">분양가</div>
 				</div>
 				<div class="view-price-container">
-					<div class="view-price">0원</div>
+					<div class="view-price">
+						<c:choose>
+							<c:when test="${requestScope.data.b_tt eq '무료' }">무료</c:when>
+							<c:when test="${requestScope.data.b_tt eq '유료' }">${requestScope.data.b_price }원</c:when>
+							<c:when test="${requestScope.data.b_tt eq '경매' }">${requestScope.data.ac_price }원</c:when>
+						</c:choose>
+					</div>
 					<div class="view-auction">
-						<div class="view-startprice">경매시작가 0원</div>
-						<div class="view-enddate">#일 #시간 #분 #초 (마감일 : yy-mm-dd hh:mm)</div>
+						<div class="view-startprice">경매시작가 ${requestScope.data.ac_startprice }원</div>
+						<div id="enddate" class="view-enddate" data-enddt="${requestScope.data.b_enddt }"></div>
 					</div>
 				</div>
 				<div class="view-info-container">
 					<div class=view-info-title>작성자</div>
-					<div class=view-info-content></div>
-					<div class=view-info-title>연락처</div>
-					<div class=view-info-content></div>
+					<div class=view-info-content>${requestScope.data.b_writer }</div>
 					<div class=view-info-title>지역</div>
-					<div class=view-info-content></div>
+					<div class=view-info-content>${requestScope.data.b_loc_sido } ${requestScope.data.b_loc_gugun }</div>
 					<div class=view-info-title>나이</div>
-					<div class=view-info-content></div>
+					<div class=view-info-content>${requestScope.data.b_age }</div>
 					<div class=view-info-title>중성화여부</div>
-					<div class=view-info-content></div>
+					<div class=view-info-content>${requestScope.data.b_ns }</div>
 					<div class=view-info-title>견종/묘종</div>
-					<div class=view-info-content></div>
+					<div class=view-info-content>${requestScope.data.b_type }</div>
 					<div class=view-info-title>성별</div>
-					<div class=view-info-content></div>
+					<div class=view-info-content>${requestScope.data.b_gender }</div>
 				</div>
 				<div class="view-button-container">
 					<input type="button" class="view-info-button favorite" value="찜하기">
@@ -84,9 +101,15 @@
 		
 		<!-- 댓글화면 -->
 		<div class="view-reply-container">
-			<div class="view-reply-write">
+			<div class="view-reply-text-container">
 				 <div>댓글쓰기</div>
-				 <div class="view-reply"></div>
+				 <div class="view-reply-write">
+				 	<form onsubmit="return false;">
+					 	<textarea class="view-reply-textarea" maxlength="600" placeholder="댓글을 입력하세요(최대 600자)"></textarea>
+				 		<input type="button" class="view-reply-button" value="작성">
+				 	</form>
+				 					 	
+				 </div>
 			</div>
 			<div class="view-reply-list">
 				<div class="view-reply-list-header">
@@ -95,8 +118,8 @@
 				</div>			
 				<div class="view-reply-list-body">content</div>			
 				<div class="view-reply-list-footer">
-					<div class="view-reply-rereply"></div>
-					<div class="view-reply-report"></div>
+					<div class="view-reply-rereply">답글달기</div>
+					<div class="view-reply-report">신고하기</div>
 				</div>
 			</div>
 		</div>
@@ -104,4 +127,8 @@
 	
 	</div>
 </body>
+
+<script defer type="text/javascript" src="/js/board/view.js"></script>
+<script defer type="text/javascript" src="/js/board/reply.js"></script>
+<script defer type="text/javascript" src="/js/board/fav.js"></script>
 </html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="egovframework.sth.domain.board.mapper.BoardFavMapper">
+
+	<resultMap type="egovframework.sth.domain.board.domain.BoardFavDTO" id="BoardFavDTO"/>
+	<resultMap type="egovframework.sth.domain.board.domain.BoardDTO" id="BoardDTO"/>
+	
+	<!-- 찜등록 -->
+	<insert id="insFav">
+		INSERT INTO fav
+		(m_no, b_no)
+		VALUES
+		(#{m_no}, #{b_no})
+	</insert>
+	
+	<!-- 찜여부 -->
+	<select id="selFav" resultType="int">
+		SELECT b_no, m_no
+		FROM fav
+		WHRER b_no = #{b_no}
+		AND m_no = #{m_no}
+	</select>
+	
+	<!-- 찜목록 -->
+	<select id="selFavList" resultMap="BoardDTO">
+		SELECT B.b_no, B.b_title, B.b_dt, B.b_state, B.b_price, B.b_tt, B.b_enddt, B.m_no
+		FROM board AS B
+		INNER JOIN fav AS F
+		ON B.b_no = F.b_no
+		WHERE F.m_no = #{m_no}
+	</select>
+	
+	<delete id="delFav">
+		DELETE FROM fav
+		WHERE b_no = #{b_no}
+		AND m_no = #{m_no}
+	</delete>
+
+</mapper>

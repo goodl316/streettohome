@@ -5,6 +5,7 @@
 	
 	<resultMap id="BoardDTO"
 		type="egovframework.sth.domain.board.domain.BoardDTO" />
+	<resultMap type="egovframework.sth.domain.board.domain.BoardViewVO" id="BoardViewVO"></resultMap>
 
 
 
@@ -21,7 +22,7 @@
 	<select id="selBoardList" >
 		SELECT B.b_no, B.b_title, B.b_dt, B.b_hit,
 		B.b_img,B.b_state,B.b_price,
-		B.b_loc, B.b_age, B.b_tt, B.b_enddt,
+		B.b_loc_sido, B.b_loc_gugun , B.b_age, B.b_tt, B.b_enddt,
 		B.m_no, B.b_type,B.b_auth,M.m_nickname AS writer
 		FROM board AS B
 		LEFT
@@ -32,20 +33,24 @@
 
 	</select>
 
-
-
-	<select id="selBoardView" resultMap="BoardDTO">
+	<select id="selBoardView" resultMap="BoardViewVO">
 		SELECT B.b_no, B.b_title,
-		B.b_ctnt, B.b_dt, B.b_hit,
-		B.b_img, B.b_state,B.b_price,
-		B.b_loc,B.b_age, B.b_tt,
-		B.b_enddt, B.b_ns, B.b_gender,B.m_no,
+		B.b_ctnt, B.b_hit,
+		B.b_img, B.b_state, FORMAT(B.b_price, 0) AS b_price,
+		B.b_loc_sido, B.b_loc_gugun, B.b_age, B.b_tt,
+		DATE_FORMAT(B.b_enddt, '%Y-%m-%d %H:%i:%s') AS b_enddt,
+		DATE_FORMAT(B.b_dt, '%Y-%m-%d %H:%i:%s') AS b_dt,
+		 B.b_ns, B.b_gender ,B.m_no,
 		B.b_type, B.b_auth,
-		M.m_nickname AS writer FROM board AS B
-		LEFT JOIN
-		member AS M ON B.b_no = M.m_no LEFT
-		JOIN WHERE B.b_no = #{b_no} AND
-		B.b_del = 0
+		M.m_nickname AS b_writer, 
+		FORMAT(AC.ac_startprice, 0) AS ac_startprice, AC.ac_cur_winner,
+		FORMAT(AC.ac_price, 0) AS ac_price
+		FROM board AS B
+		LEFT JOIN member AS M
+		ON B.m_no = M.m_no 
+		LEFT JOIN auction AS AC
+		ON B.b_no = AC.b_no
+		WHERE B.b_no = #{b_no} AND B.b_del = 0
 	</select>
 
 	<update id="updpatImg">

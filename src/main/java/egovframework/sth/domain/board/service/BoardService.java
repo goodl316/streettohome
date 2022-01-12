@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.sth.domain.board.domain.BoardDTO;
+import egovframework.sth.domain.board.domain.BoardViewVO;
 import egovframework.sth.domain.board.mapper.BoardMapper;
 import egovframework.sth.global.common.FileUtils;
 @Service
@@ -17,7 +18,7 @@ public class BoardService {
 	@Autowired
 	FileUtils futils;
 	
-	public BoardDTO selBoardView(BoardDTO param) {
+	public BoardViewVO selBoardView(BoardDTO param) {
 		return mapper.selBoardView(param);
 	}
 	
