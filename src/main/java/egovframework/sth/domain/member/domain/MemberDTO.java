@@ -1,6 +1,7 @@
-package egovframework.sth.domain.main.domain;
+package egovframework.sth.domain.member.domain;
 
 public class MemberDTO {
+	
 	private int m_no;
 	private String m_email;
 	private String m_pw;
@@ -80,4 +81,5 @@ public class MemberDTO {
 	}
 	
 	
+
 }
