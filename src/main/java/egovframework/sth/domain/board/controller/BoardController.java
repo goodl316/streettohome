@@ -24,7 +24,8 @@ public class BoardController {
 
 	@GetMapping("/board/dogList")
 	public void bard(Model model, BoardDTO dto) {
-		model.addAttribute("list", service.boardList(dto));
+		
+		//model.addAttribute("list", service.boardList(dto));
 
 	}
 
@@ -66,7 +67,7 @@ public class BoardController {
 	}
 
 	@ResponseBody
-	@PostMapping(value = "/updpatImg")
+	@PostMapping("/updpatImg")
 	public int patimgUpload(@RequestBody MultipartFile[] imgs, int b_no) {
 		System.out.println(b_no);
 		System.out.println(imgs.length);

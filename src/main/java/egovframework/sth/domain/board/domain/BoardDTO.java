@@ -8,7 +8,7 @@ public class BoardDTO {
 	private String b_dt;
 	private int b_hit;
 	private String b_img;
-	private String b_price;
+	private int b_price;
 	private String b_loc_sido;
 	private String b_loc_gugun;
 	private String b_age;
@@ -18,13 +18,18 @@ public class BoardDTO {
 	private String b_gender;
 	private String b_type;
 	private String b_writer;
+	private String searchTxt;
 	
-	
-	
-	public String getB_price() {
+	public String getSearchTxt() {
+		return searchTxt;
+	}
+	public void setSearchTxt(String searchTxt) {
+		this.searchTxt = searchTxt;
+	}
+	public int getB_price() {
 		return b_price;
 	}
-	public void setB_price(String b_price) {
+	public void setB_price(int b_price) {
 		this.b_price = b_price;
 	}
 	public String getB_loc_sido() {

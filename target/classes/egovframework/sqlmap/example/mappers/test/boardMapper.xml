@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="egovframework.sth.domain.board.mapper.BoardMapper">
+<mapper	namespace="egovframework.sth.domain.board.mapper.BoardMapper">
 	
-	<resultMap id="BoardDTO"
-		type="egovframework.sth.domain.board.domain.BoardDTO" />
+	<resultMap id="BoardDTO" type="egovframework.sth.domain.board.domain.BoardDTO" />
 	<resultMap type="egovframework.sth.domain.board.domain.BoardViewVO" id="BoardViewVO"></resultMap>
-
-
 
 	<insert id="insBoard" useGeneratedKeys="true" keyProperty="b_no">
 		INSERT INTO board (
@@ -17,21 +13,9 @@
 		,#{b_loc},#{b_age},#{b_tt},#{b_enddt},#{b_ns},#{b_type},#{b_auth},#{b_del})
 	</insert>
 
-
-
-	<select id="selBoardList" >
-		SELECT B.b_no, B.b_title, B.b_dt, B.b_hit,
-		B.b_img,B.b_state,B.b_price,
-		B.b_loc_sido, B.b_loc_gugun , B.b_age, B.b_tt, B.b_enddt,
-		B.m_no, B.b_type,B.b_auth,M.m_nickname AS writer
-		FROM board AS B
-		LEFT
-		JOIN member AS M ON B.b_no = M.m_no WHERE B.b_del = 0
-		ORDER BY B.b_no
-		DESC
-		<if test="searchType == " />
-
-	</select>
+	<select id="boardList" resultMap="BoardDTO">
+    select b_no, b_title,b_img,b_state,b_dt from board where b_type = #{b_type} order by b_no;
+    </select>
 
 	<select id="selBoardView" resultMap="BoardViewVO">
 		SELECT B.b_no, B.b_title,
