@@ -22,7 +22,7 @@ public class BoardController {
 	private BoardService service;
 	
 	@GetMapping("/board/dogList")
-	public void bard(Model model,BoardDTO dto) {
+	public void bard(Model model, BoardDTO dto) {
 		
 		//model.addAttribute("list", service.boardList(dto));
 		
@@ -34,6 +34,7 @@ public class BoardController {
 	}
 	@GetMapping("/board/boardreg")
 	public void regBoard() {
+		
 	}
 
 	@GetMapping("/board/view")
@@ -63,7 +64,7 @@ public class BoardController {
 		
 		return val;
 	}
-	
+
 	@ResponseBody
 	@PostMapping("/updpatImg")
 	public int patimgUpload(@RequestBody MultipartFile[] imgs, int b_no) {
