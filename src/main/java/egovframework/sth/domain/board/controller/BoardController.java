@@ -23,13 +23,7 @@ public class BoardController {
 	
 	@GetMapping("/board/dogList")
 	public void bard(Model model,BoardDTO dto) {
-		System.out.println(dto.getB_gender());
-		System.out.println(dto.getB_loc_sido());
-		System.out.println(dto.getB_loc_gugun());
-		System.out.println(dto.getSearchTxt());
-		System.out.println(dto.getB_tt());
-		System.out.println(dto.getB_type());
-		System.out.println(dto.getB_price());
+		
 		//model.addAttribute("list", service.boardList(dto));
 		
 	}
@@ -41,17 +35,12 @@ public class BoardController {
 	@GetMapping("/board/boardreg")
 	public void regBoard() {
 	}
-	
-	@ResponseBody
-	@GetMapping("/getList")
-	public void getList(@RequestBody BoardDTO dto) {
-		System.out.println(dto.getB_gender());
-		
-	}
-	
+
 	@GetMapping("/board/view")
-	public void view(Model model, BoardDTO param) {
-		model.addAttribute("data", service.selBoardView(param));
+	public Map<String, BoardViewVO> view(BoardDTO param) {
+		Map<String, BoardViewVO> map = new HashMap<>();
+		map.put("data", service.selBoardView(param));
+		return map;
 	}
 	
 	
