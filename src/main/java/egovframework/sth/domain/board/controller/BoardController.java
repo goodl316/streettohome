@@ -25,7 +25,7 @@ public class BoardController {
 	public void bard(Model model, BoardDTO dto) {
 		
 		//model.addAttribute("list", service.boardList(dto));
-		
+
 	}
 	
 	@GetMapping("/board/catList")
