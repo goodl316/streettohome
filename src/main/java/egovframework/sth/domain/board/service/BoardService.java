@@ -1,5 +1,6 @@
 package egovframework.sth.domain.board.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,5 +57,37 @@ public class BoardService {
 		
 		return 1;
 	}
+	
+	public List<String> tempimgUpload(MultipartFile[] imgs) {
+		List<String> list = new ArrayList<>();
+		if(imgs.length>5 || imgs.length ==0) {
+			return null;
+		}
+		String folder= "/img/board_temp/b_"+0;
+		try {
+			for(int i=0; i<imgs.length; i++) {
+				MultipartFile file = imgs[i];
+				String fileNm = futils.saveFile(file, folder);
+				if(file == null) {
+					return null;
+				}
+				
+				list.add(fileNm);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		return list;
+	}
+	
+	public int delSaleModImg(String path) {
+        if(futils.delFile(path)) {
+            return 1;
+        }
+        return 0;
+    }
 	
 }

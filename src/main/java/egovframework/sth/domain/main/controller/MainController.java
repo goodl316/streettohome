@@ -9,11 +9,8 @@ public class MainController {
 	
 
 
-	@GetMapping("/main")
-	public String main(Model model) {
-		System.out.println("fsad");
-		System.out.println("dd");
-		System.out.println("df");
-		return "main";
+	@GetMapping("/main/main")
+	public void main() {
+		
 	}
 }

@@ -74,4 +74,36 @@ public class BoardController {
 
 		return service.patimgUpload(imgs, b_no);
 	}
+	//임시 이미지
+	@ResponseBody
+    @PostMapping("/imgTempUpload")
+    public Map<String, Object> imgTempUpload(@RequestBody MultipartFile[] imgs) {
+        System.out.println("imgs.length:"+imgs.length);
+		Map<String, Object> val = new HashMap<>();
+        val.put("imgs", service.tempimgUpload(imgs));
+        return val;
+    }
+	
+	//이미지 삭제
+		@ResponseBody
+	    @GetMapping("/tempImgDelete")
+	    public Map<String, Object> tmpImgDelete(Integer b_no,String imgNm) {
+	        Map<String, Object> val = new HashMap<>();
+	        String path = "/img/board_temp/b_" + 0 + "/" + imgNm;
+	        val.put("result", service.delSaleModImg(path));
+	        return val;
+	    }
+	
+	//이미지 삭제
+	@ResponseBody
+    @GetMapping("/imgModDelete")
+    public Map<String, Object> imgModDelete(Integer b_no, String imgNm) {
+        Map<String, Object> val = new HashMap<>();
+        String path = "/img/sale/b_" + b_no + "/" + imgNm;
+        val.put("result", service.delSaleModImg(path));
+        return val;
+    }
+
+	
+	
 }
