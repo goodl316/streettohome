@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-TEST
+<%@ include file="../jsp/temp/header.jsp" %>
+
 <c:forEach var="list" items="${list}">
 <div>${list.test_name}</div>
 </c:forEach>

@@ -1,4 +1,4 @@
-package egovframework.sth.domain.main.domain;
+package egovframework.sth.domain.member.domain;
 
 public class MemberDTO {
 	private int m_no;

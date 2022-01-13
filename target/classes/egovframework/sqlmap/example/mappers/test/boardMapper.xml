@@ -39,13 +39,16 @@
 		B.b_ctnt, B.b_dt, B.b_hit,
 		B.b_img, B.b_state,B.b_price,
 		B.b_loc,B.b_age, B.b_tt,
-		B.b_enddt, B.b_ns, B.b_gender,B.m_no,
+		B.b_enddt, B.b_ns, B.b_gender ,B.m_no,
 		B.b_type, B.b_auth,
-		M.m_nickname AS writer FROM board AS B
-		LEFT JOIN
-		member AS M ON B.b_no = M.m_no LEFT
-		JOIN WHERE B.b_no = #{b_no} AND
-		B.b_del = 0
+		M.m_nickname AS writer
+		AC.ac_startprice, AC.ac_cur_winner
+		FROM board AS B
+		LEFT JOIN member AS M
+		ON B.m_no = M.m_no 
+		LEFT JOIN auction AS AC
+		ON B.b_no = AC.b_no
+		WHERE B.b_no = #{b_no} AND B.b_del = 0
 	</select>
 
 	<update id="updpatImg">

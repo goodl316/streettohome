@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.sth.domain.member.mapper.MemberMapper">
+		
+     <!--  로그인시 아이디와 비밀번호 확인 -->
+	<select id="selMember" resultType="egovframework.sth.domain.member.domain.MemberDTO">
+		select * from member where m_email=#{m_email} and m_pw=#{m_pw}
+	</select>
+	
+
+</mapper>
