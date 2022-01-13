@@ -179,6 +179,7 @@ function Ajax(params) {
 
 
 function regAjax(params) {
+	
 	$.ajax({
 		method: 'POST',
 		url: '/board/insboard',
