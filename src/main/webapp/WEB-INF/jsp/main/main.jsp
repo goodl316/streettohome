@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>타일즈 확인</h1>
+<h1>hellow World!</h1>
+<button onclick="moveList()">강아지를 안다</button>
+<button onclick="moveList()">고양이를 안다</button>
 </body>
 </html>
-<script defer type="text/javascript" src='/js/header/header.js'></script>

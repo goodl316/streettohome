@@ -19,6 +19,7 @@ public class BoardDTO {
 	private String b_type;
 	private String b_writer;
 	private int b_state;
+	private String searchTxt;
 	
 	public int getB_state() {
 		return b_state;
@@ -75,18 +76,6 @@ public class BoardDTO {
 		this.b_price = b_price;
 	}
 	
-	public String getb_loc_sido() {
-		return b_loc_sido;
-	}
-	public void setb_loc_sido(String b_loc_sido) {
-		this.b_loc_sido = b_loc_sido;
-	}
-	public String getb_loc_gugun() {
-		return b_loc_gugun;
-	}
-	public void setb_loc_gugun(String b_loc_gugun) {
-		this.b_loc_gugun = b_loc_gugun;
-	}
 	public String getB_age() {
 		return b_age;
 	}
@@ -137,6 +126,26 @@ public class BoardDTO {
 	}
 	private int b_auth;
 	private int b_del;
+
+	public String getB_loc_sido() {
+		return b_loc_sido;
+	}
+	public void setB_loc_sido(String b_loc_sido) {
+		this.b_loc_sido = b_loc_sido;
+	}
+	public String getB_loc_gugun() {
+		return b_loc_gugun;
+	}
+	public void setB_loc_gugun(String b_loc_gugun) {
+		this.b_loc_gugun = b_loc_gugun;
+	}
+	public String getSearchTxt() {
+		return searchTxt;
+	}
+	public void setSearchTxt(String searchTxt) {
+		this.searchTxt = searchTxt;
+	}
+	
 	
 	
 

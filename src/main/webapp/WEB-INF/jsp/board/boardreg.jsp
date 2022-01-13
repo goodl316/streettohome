@@ -41,7 +41,14 @@
 			<legend>성별</legend>
 			수컷 <input type="radio" id="gender" name="gender" value="수컷" checked />
 			암컷 <input type="radio" id="gender" name="gender" value="암컷" />
-
+		</fieldset>
+	</form>
+	<form name="ns">
+		<fieldset>
+			<legend>중성화 여부</legend>
+			예 <input type="radio" id="b_ns" name="b_ns" value="0" checked />
+			아니오 <input type="radio" id="b_ns" name="b_ns" value="1" />
+			모름 <input type="radio" id="b_ns" name="b_ns" value="2" />
 		</fieldset>
 	</form>
 
@@ -57,6 +64,6 @@
 
 </body>
 </html>
-<script defer type="text/javascript" src='/js/board/board.js?ver=2'>
+<script defer type="text/javascript" src='/js/board/boardreg.js?ver=2'>
 	
 </script>

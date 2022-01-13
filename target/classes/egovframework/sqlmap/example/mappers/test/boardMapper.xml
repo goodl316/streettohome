@@ -18,18 +18,8 @@
 
 
 
-	<select id="selBoardList" >
-		SELECT B.b_no, B.b_title, B.b_dt, B.b_hit,
-		B.b_img,B.b_state,B.b_price,
-		B.b_loc, B.b_age, B.b_tt, B.b_enddt,
-		B.m_no, B.b_type,B.b_auth,M.m_nickname AS writer
-		FROM board AS B
-		LEFT
-		JOIN member AS M ON B.b_no = M.m_no WHERE B.b_del = 0
-		ORDER BY B.b_no
-		DESC
-		<if test="searchType == " />
-
+	<select id="boardList" resultMap="BoardDTO">
+	select b_no, b_title,b_img,b_state,b_dt from board where b_type = #{b_type} order by b_no;
 	</select>
 
 

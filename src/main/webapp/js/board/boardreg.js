@@ -17,11 +17,13 @@ function clk() {
 	var btype = document.getElementsByName('btype')
 	var b_tt = document.getElementsByName('tradetype')
 	var gender = document.getElementsByName('gender')
+	var b_ns = document.getElementsByName('b_ns')
 	var sido = document.querySelector('#sido1').value
 	var gun = document.querySelector('#gugun1').value
 	var btype_value = 0;
 	var gender_value = "";
 	var b_tt_value = "";
+	var b_ns_value = 0;
 	if (price) {
 		price = document.querySelector('.input_price').value
 	} else {
@@ -46,6 +48,13 @@ function clk() {
 			console.log(b_tt_value)
 		}
 	}
+	
+	for (i = 0; i < b_ns.length; i++) {
+		if (b_ns[i].checked == true) {
+			b_ns_value = b_ns[i].value
+			console.log(b_ns_value)
+		}
+	}
 
 	params = {
 		b_title: title,
@@ -56,7 +65,8 @@ function clk() {
 		b_gender: gender_value,
 		b_loc1: sido,
 		b_loc2: gun,
-		b_tt: b_tt_value
+		b_tt: b_tt_value,
+		b_ns: b_ns_value
 
 	}
 
@@ -94,11 +104,13 @@ function boardReg() {
 	var btype = document.getElementsByName('btype')
 	var b_tt = document.getElementsByName('tradetype')
 	var gender = document.getElementsByName('gender')
+	var b_ns = document.getElementsByName('b_ns')
 	var sido = document.querySelector('#sido1').value
 	var gun = document.querySelector('#gugun1').value
 	var btype_value = 0;
 	var gender_value = "";
 	var b_tt_value = "";
+	var b_ns_value = 0;
 	if (price) {
 		price = document.querySelector('.input_price').value
 	} else {
@@ -123,6 +135,13 @@ function boardReg() {
 			console.log(b_tt_value)
 		}
 	}
+	
+	for (i = 0; i < b_ns.length; i++) {
+		if (b_ns[i].checked == true) {
+			b_ns_value = b_ns[i].value
+			console.log(b_ns_value)
+		}
+	}
 
 	params = {
 		b_title: title,
@@ -133,7 +152,8 @@ function boardReg() {
 		b_gender: gender_value,
 		b_loc_sido: sido,
 		b_loc_gugun: gun,
-		b_tt: b_tt_value
+		b_tt: b_tt_value,
+		b_ns: b_ns_value
 
 	}
 

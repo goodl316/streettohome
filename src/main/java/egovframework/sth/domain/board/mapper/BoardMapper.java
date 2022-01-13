@@ -13,4 +13,5 @@ public interface BoardMapper {
 	public List<BoardDTO> boardList(BoardDTO dto);
 	int insBoard(BoardDTO dto);
 	int updpatImg(BoardDTO dto);
+	
 }
