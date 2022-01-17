@@ -20,13 +20,12 @@
 		<div class="report-body">
 			<form action="/report">
 				<div class="report-selectbox">
-					<select class="report-select" name="rp_ctnt">
-						<option>부적절한 홍보 게시글</option>
-						<option>음란성 또는 청소년에게 부적합한 내용</option>
-						<option>명예훼손/사생활 침해 및 저작권침해등</option>
-						<option>허위 게시글</option>
-						<option class="report-etc">기타</option>
-					</select>
+					<label><input type="radio" name="r_ctnt" value="1">부적절한 홍보 게시글</label>
+					<label><input type="radio" name="r_ctnt" value="2">음란성 또는 청소년에게 부적합한 내용</label>
+					<label><input type="radio" name="r_ctnt" value="3">명예훼손/사생활 침해 및 저작권침해등</label>
+					<label><input type="radio" name="r_ctnt" value="4">허위 게시글</label>
+					<label><input type="radio" name="r_ctnt" value="5">기타</label>
+					<input type="text" name="r_ctnt" placeholder="기타" >
 				</div>
 				<div class="report-textbox">
 					<input class="report-text" type="text" name="rp_ctnt" placeholder="기타 : " maxlength="20">

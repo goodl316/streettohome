@@ -28,7 +28,7 @@
 			</div>
 			<div class="view-top-container">
 				<div class="view-subtitle-container">
-					<div class="view-type">${requestScope.data.b_type }</div>
+					<div class="view-type">${requestScope.data.an_type2 }</div>
 					<div class="view-hit">${requestScope.data.b_hit }</div>
 				</div>
 				<div class="view-title-container">${requestScope.data.b_title }</div>
@@ -79,7 +79,7 @@
 					<div class=view-info-title>중성화여부</div>
 					<div class=view-info-content>${requestScope.data.b_ns }</div>
 					<div class=view-info-title>견종/묘종</div>
-					<div class=view-info-content>${requestScope.data.b_type }</div>
+					<div class=view-info-content>${requestScope.data.an_type2 }</div>
 					<div class=view-info-title>성별</div>
 					<div class=view-info-content>${requestScope.data.b_gender }</div>
 				</div>
