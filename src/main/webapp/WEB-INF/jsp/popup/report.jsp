@@ -19,15 +19,22 @@
 		</div>
 		<div class="report-body">
 			<form action="/report">
-				<div class="report-checkbox">
-					
+				<div class="report-selectbox">
+					<select class="report-select" name="rp_ctnt">
+						<option>부적절한 홍보 게시글</option>
+						<option>음란성 또는 청소년에게 부적합한 내용</option>
+						<option>명예훼손/사생활 침해 및 저작권침해등</option>
+						<option>허위 게시글</option>
+						<option class="report-etc">기타</option>
+					</select>
 				</div>
 				<div class="report-textbox">
-					<input type="text" name="rp_ctnt" placeholder="기타 : ">
+					<input class="report-text" type="text" name="rp_ctnt" placeholder="기타 : " maxlength="20">
 				</div>
 			</form>
 		</div>
 		<div class="report-footer"></div>
 	</div>
 </body>
+<script defer type="text/javascript" src="/js/board/report.js"></script>
 </html>
