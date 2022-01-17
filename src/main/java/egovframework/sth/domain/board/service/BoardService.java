@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import egovframework.sth.domain.board.domain.AnimalDTO;
 import egovframework.sth.domain.board.domain.BoardDTO;
+import egovframework.sth.domain.board.domain.BoardVO;
 import egovframework.sth.domain.board.domain.BoardViewVO;
 import egovframework.sth.domain.board.mapper.BoardMapper;
 import egovframework.sth.global.common.FileUtils;
@@ -24,18 +26,40 @@ public class BoardService {
 	}
 	
 	
-	public List<BoardDTO> boardList(BoardDTO dto){
-		return mapper.boardList(dto);
+	public List<BoardVO> boardList(BoardVO vo){
+		if(vo.getB_price() == 0) {
+			vo.setB_price(1);
+		}
+		
+		return mapper.boardList(vo);
 	}
 	
+	public BoardVO countBoard(BoardVO vo) {
+		if(vo.getB_price() == 0) {
+			vo.setB_price(1);
+		}
+		return mapper.countBoard(vo);
+	}
+	
+	
 	public int insBoard(BoardDTO dto) {
+		
 		return mapper.insBoard(dto);
 	}
-	public int patimgUpload(MultipartFile[] imgs, int b_no) {
+	
+	public int insAnimal(AnimalDTO dto) {
+		System.out.println("service:"+dto.getAn_age()+","+dto.getAn_gender());
+		
+		return mapper.insAnimal(dto);
+	}
+	
+	
+	
+	public int patimgUpload(MultipartFile[] imgs, int an_no) {
 		if(imgs.length>5 || imgs.length ==0) {
 			return 0;
 		}
-		String folder= "/img/board/b_"+b_no;
+		String folder= "/img/board/an_"+an_no;
 		try {
 			for(int i=0; i<imgs.length; i++) {
 				MultipartFile file = imgs[i];
@@ -44,9 +68,9 @@ public class BoardService {
 					return 0;
 				}
 				if(i==0) {
-					BoardDTO dto = new BoardDTO();
-					dto.setB_img(fileNm);
-					dto.setB_no(b_no);
+					AnimalDTO dto = new AnimalDTO();
+					dto.setAn_img(fileNm);
+					dto.setAn_no(an_no);
 					mapper.updpatImg(dto);
 				}
 			}

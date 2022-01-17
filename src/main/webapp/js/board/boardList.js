@@ -1,14 +1,14 @@
 var b_type = document.querySelector('.getbtype')
-var sido1 = $('#sido1').value
-var gugun1 = $('#gugun').value
+var list_group = document.querySelector('.list_group');
+
 
 
 function clkvalue(){
 	var sido1 = document.querySelector('#sido1').value
 	var gugun1 = document.querySelector('#gugun1').value
-	var b_type = document.querySelector('#b_type').value
+	var an_type2 = document.querySelector('#an_type2').value
 	var b_tt = document.querySelector('#b_tt').value
-	var b_gender = document.querySelector('#b_gender').value
+	var an_gender = document.querySelector('#an_gender').value
 	var b_price = document.querySelector('#b_price').value
 	var search = document.querySelector('.searchText').value
 	
@@ -16,63 +16,17 @@ function clkvalue(){
 		b_price = 0;
 	}
 	
-	console.log(sido1,gugun1,b_type,b_tt,b_gender,b_price,search)
+	console.log(sido1,gugun1,an_type2,b_tt,an_gender,b_price,search)
 	
 	
 }
 
-function getList(){
-		
-	var sido1 = document.querySelector('#sido1').value
-	var gugun1 = document.querySelector('#gugun1').value
-	var b_type = document.querySelector('#b_type').value
-	var b_tt = document.querySelector('#b_tt').value
-	var b_gender = document.querySelector('#b_gender').value
-	var b_price = document.querySelector('#b_price').value
-	var search = document.querySelector('.searchText').value
-	
-	
-	
-	if(sido1 == "시/도 선택"){
-		alert("시/도를 선택해주세요")
-		return;
-	}
-	
-	if(gugun1 == "구/군 선택"){
-		alert("구/군을 선택해주세요")
-		return;
-	}
-	if(b_type == "품종 선택"){
-		alert("품종을 선택해주세요")
-		return;
-	}
-	
-	if(b_tt == ""){
-		alert("무료/유료를 선택해주세요")
-		return;
-	}
-	
-	if(b_tt == "무료"){
-		b_price = 0;
-	}
-	
-	if(b_gender == ""){
-		alert("성별을 선택해주세요")
-		return;
-	}
-	
-	if(b_price == ""){
-		alert("가격을 선택해 주세요")
-		return;
-	}
-	
-	
-	
-	
-	}
 //==========================select box arr==============================================================================
 
-var b_type0 = ["품종 선택","리트리버","말티즈","비숑프리제","삽살개","시바견","시츄","요크셔테리어","웰시코기","이탈리안그레이하운드","진돗개","치와와","퍼그","포메라니안","푸들","프렌치불독"];
+var an_type0 =["품종 선택","강아지","고양이"]
+	var an_type1 = ["리트리버","말티즈","비숑프리제","삽살개","시바견","시츄","요크셔테리어","웰시코기","이탈리안그레이하운드","진돗개","치와와","퍼그","포메라니안","푸들","프렌치불독"];
+	var an_type2 = ['러시아블루']
+ 
 
 var sido0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
   var sido1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
@@ -114,11 +68,35 @@ $("select[name^=sido]").change(function() {
   }
  });
 
-$("select[name^=b_type]").each(function() {
+$("select[name^=an_type1]").each(function() {
   $selsido = $(this);
-  $.each(eval(b_type0), function() {
+  $.each(eval(an_type0), function() {
    $selsido.append("<option value='"+this+"'>"+this+"</option>");
   });
+	$selsido.next().append("<option value=''>품종 선택</option>");
  });
+
+$("select[name^=an_type1]").change(function() {
+  var area = "an_type"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
+  var $gugun = $(this).next(); // 선택영역 군구 객체
+  $("option",$gugun).remove(); // 구군 초기화
+
+  if(area == "an_type0")
+   $gugun.append("<option value=''>품종 선택</option>");
+  else {
+   $.each(eval(area), function() {
+    $gugun.append("<option value='"+this+"'>"+this+"</option>");
+   });
+  }
+ });
+
+
+//=============================페이징 ===========================
+
+
+
+
+
+
 
   
