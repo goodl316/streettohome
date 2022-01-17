@@ -10,6 +10,14 @@ public class ReplyDTO {
 	private int r_ord;
 	private int b_no;
 	private int r_del;
+	private int m_no;
+	
+	public int getM_no() {
+		return m_no;
+	}
+	public void setM_no(int m_no) {
+		this.m_no = m_no;
+	}
 	public int getR_no() {
 		return r_no;
 	}

@@ -29,8 +29,10 @@ public class ReplyService {
 		return mapper.selReply(b_no);
 	}
 	
-	public int delReply(int r_no) {
-		return mapper.delReply(r_no);
+	public int delReply(ReplyDTO param) {
+//		TODO: session으로 확인하기
+		System.out.println(param.getR_no());
+		return mapper.delReply(param.getR_no());
 	}
 
 }

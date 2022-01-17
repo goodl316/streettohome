@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,7 +24,7 @@ public class ReplyController {
 	ReplyService service;
 	
 	@PostMapping("/reply/{check}")
-	public Map<String, String> insReply(ReplyDTO param, @PathVariable int check) {
+	public Map<String, String> insReply(@RequestBody ReplyDTO param, @PathVariable int check) {
 		Map<String, String> map = new HashMap<>();
 		int result = 0;
 		String msg = "fail";
@@ -49,11 +50,11 @@ public class ReplyController {
 		return map;
 	}
 	
-	@DeleteMapping("/reply/{r_no}")
-	public Map<String, String> delReply(@PathVariable int r_no) {
+	@DeleteMapping("/reply")
+	public Map<String, String> delReply(@RequestBody ReplyDTO param) {
 		Map<String, String> map = new HashMap<String, String>();
 		String msg = "fail";
-		if(service.delReply(r_no) != 0) {
+		if(service.delReply(param) != 0) {
 			msg = "success";
 		}
 		map.put("result", msg);

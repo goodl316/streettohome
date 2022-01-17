@@ -15,17 +15,17 @@ public class BoardFavService {
 	@Autowired
 	BoardFavMapper mapper;
 	
-	public String insFav(BoardFavDTO param) {
+	public int insFav(BoardFavDTO param) {
 		try {
 			mapper.insFav(param);
-			return "Success";
+			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "잠시 후 시도해 주세요.";
+			return 0;
 		}
 	}
 	
-	public int selFav(BoardFavDTO param) {
+	public BoardFavDTO selFav(BoardFavDTO param) {
 		return mapper.selFav(param);
 	}
 	
@@ -33,13 +33,13 @@ public class BoardFavService {
 		return mapper.selFavList(param);
 	}
 	
-	public String delFav(BoardFavDTO param) {
+	public int delFav(BoardFavDTO param) {
 		try {
 			mapper.delFav(param);
-			return "Success";
+			return 1;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "잠시 후 시도해 주세요.";
+			return 0;
 		}
 	}
 }
