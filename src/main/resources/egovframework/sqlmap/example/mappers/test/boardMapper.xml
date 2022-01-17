@@ -84,14 +84,9 @@
 				WHERE a.an_type2 = #{an_type2} AND a.an_gender = #{an_gender} AND b.b_price <![CDATA[<]]> #{b_price} AND 
 				b.b_loc_sido = #{b_loc_sido} AND b.b_loc_gugun = #{b_loc_gugun}
 				AND b.b_tt = #{b_tt}
-			
 			</when>
-
-
 		</choose>
 	</select>
-
-
 
 	<select id="selBoardView" resultMap="BoardViewVO">
         SELECT B.b_no, B.b_title,
