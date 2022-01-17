@@ -5,10 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="../assets/jquery-3.6.0.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
 <title>로그인</title>
 </head>
 <body>
+
+<%@ include file="../temp/header.jsp" %>
 
 	<div class="contents">
 		<h2>로그인</h2>
@@ -30,9 +35,7 @@
 							name="m_pw" id="m_pw" class="placeholder"
 							autocomplete='new-password' placeholder="비밀번호를 입력해주세요.">
 						</li>
-						<c:if test = "${result == 0 }">
-                			<div class = "login_warn">이메일 또는 비밀번호를 잘못 입력하셨습니다.</div>
-            			</c:if>
+                			<div class = "login_warn">${requestScope.Msg }</div>
 					</ul>
 
 					<ul class="option">
@@ -40,8 +43,7 @@
 							for="save">이메일 저장</label></li>
 					</ul>
 
-					<button class="login1 btn-1-black" id="loginBtn" type="submit"
-						onclick="login()">로그인</button>
+					<div class="login1" id="loginBtn" class="btn-1-black" onclick='login()'>로그인</div>
 
 					<ul class="link-box">
 						<li><a href="#">이메일찾기</a></li>
