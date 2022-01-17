@@ -33,7 +33,7 @@
                         <p class="dropdown-menu dropdown-menu-end"
                             aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="../member/logout">로그아웃</a> <a
-                                class="dropdown-item" href="#">마이페이지</a>
+                                class="dropdown-item" href="../member/mypage">마이페이지</a>
                         </p>
                     </c:otherwise>
                 </c:choose>
@@ -55,4 +55,3 @@
 </body>
 </head>
 </html>
-<script type="text/javascript" src="/js/header/header.js?ver=1"></script>

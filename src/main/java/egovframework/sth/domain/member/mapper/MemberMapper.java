@@ -9,4 +9,14 @@ public interface MemberMapper {
 
 	MemberDTO selMember(MemberDTO param);
 	
+	int insMember(MemberDTO param);
+	
+	int emailChk(MemberDTO param);
+	
+	int nameChk(MemberDTO param);
+
+	MemberDTO chckM_auth(MemberDTO param);
+
+	int upM_authstate(MemberDTO param);
+	
 }

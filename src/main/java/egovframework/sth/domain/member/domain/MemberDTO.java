@@ -9,10 +9,17 @@ public class MemberDTO {
 	private String m_nickname;
 	private String m_address;
 	private String m_phone;
-	private int m_auth;
+	private String m_auth;
 	private String m_state;
 	private String m_dt;
 	private int m_pay;
+	private int m_authstate;
+	
+	
+	@Override
+	public String toString() {
+		return m_email+m_name+m_nickname+m_phone.toString();
+	}
 	public int getM_no() {
 		return m_no;
 	}
@@ -55,12 +62,6 @@ public class MemberDTO {
 	public void setM_phone(String m_phone) {
 		this.m_phone = m_phone;
 	}
-	public int getM_auth() {
-		return m_auth;
-	}
-	public void setM_auth(int m_auth) {
-		this.m_auth = m_auth;
-	}
 	public String getM_state() {
 		return m_state;
 	}
@@ -79,6 +80,21 @@ public class MemberDTO {
 	public void setM_pay(int m_pay) {
 		this.m_pay = m_pay;
 	}
+	public String getM_auth() {
+		return m_auth;
+	}
+	public void setM_auth(String m_auth) {
+		this.m_auth = m_auth;
+	}
+	public int getM_authstate() {
+		return m_authstate;
+	}
+	public void setM_authstate(int m_authstate) {
+		this.m_authstate = m_authstate;
+	}
+	
+	
+	
 	
 	
 
