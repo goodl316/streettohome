@@ -8,7 +8,7 @@
 
 	<insert id="insReply">
 		INSERT INTO reply
-		(r_no, r_ctnt, r_idx, b_no, m_no)s
+		(r_no, r_ctnt, r_idx, b_no, m_no)
 		VALUES
 		((SELECT NEXTVAL(reply_seq))
 		, #{r_ctnt}
@@ -40,7 +40,12 @@
 	</update>
 
 	<select id="selReply" resultMap="ReplyDTO">
-		SELECT * FROM reply
+		SELECT R.r_no, R.r_ctnt, R.r_dt, R.r_idx, 
+		R.r_dept, R.r_ord, R.b_no, R.r_del, R.m_no,
+		M.m_nickname AS r_writer
+		FROM reply AS R
+		LEFT JOIN member AS M
+		ON R.m_no = M.m_no
 		where b_no = #{b_no}
 		ORDER BY r_idx DESC, r_ord ASC
 	</select>

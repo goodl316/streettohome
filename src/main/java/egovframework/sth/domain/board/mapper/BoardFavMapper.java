@@ -11,7 +11,7 @@ import egovframework.sth.domain.board.domain.BoardFavDTO;
 public interface BoardFavMapper {
 	
 	int insFav(BoardFavDTO param);
-	int selFav(BoardFavDTO param);
+	BoardFavDTO selFav(BoardFavDTO param);
 	List<BoardDTO> selFavList(BoardFavDTO param);
 	int delFav(BoardFavDTO param);
 	

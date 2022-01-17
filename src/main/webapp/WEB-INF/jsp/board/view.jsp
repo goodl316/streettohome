@@ -9,12 +9,12 @@
 <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> 
 <title>Street To Home - ${requestScope.data.b_title }</title>
 </head>
 <body>
 	<div class="view-container">
-	
+	<input id="view-member-pk" type="hidden" data-member-pk="${sessionScope.loginMember.m_no }">
 	<!-- 메인 컨테이너 -->
 		<div class="view-main-container">
 			<div class="view-thumbnail">
@@ -103,16 +103,16 @@
 		<div class="view-reply-container">
 			<div class="view-reply-text-container">
 				 <div>댓글쓰기</div>
-				 <div class="view-reply-write">
+				 <div id="view-reply-write">
 				 	<form onsubmit="return false;">
-					 	<textarea class="view-reply-textarea" maxlength="600" placeholder="댓글을 입력하세요(최대 600자)"></textarea>
+					 	<textarea id="reply-txtarea" class="view-reply-textarea" maxlength="600" placeholder="댓글을 입력하세요(최대 600자)"></textarea>
 				 		<input type="button" class="view-reply-button" value="작성">
 				 	</form>
 				 					 	
 				 </div>
 			</div>
-			<div class="view-reply-list">
-				<div class="view-reply-list-header">
+			<div class="view-reply-list-container">
+				<!-- <div class="view-reply-list-header">
 					<div class="view-reply-writer"># 님</div>
 					<div class="view-reply-date">yyyy.mm.dd hh:mm</div>
 				</div>			
@@ -120,7 +120,8 @@
 				<div class="view-reply-list-footer">
 					<div class="view-reply-rereply">답글달기</div>
 					<div class="view-reply-report">신고하기</div>
-				</div>
+				</div> -->
+				<ul class="view-reply-list"></ul>
 			</div>
 		</div>
 		<div class="view-detail-footer"><a href="">목록보기</a></div>

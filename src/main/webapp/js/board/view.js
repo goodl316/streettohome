@@ -1,3 +1,17 @@
+// --------------------------------------------
+function get_query() {
+    var url = document.location.href;
+    var qs = url.substring(url.indexOf('?') + 1).split('&');
+    for (var i = 0, result = {}; i < qs.length; i++) {
+        qs[i] = qs[i].split('=');
+        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+    }
+    return result;
+}
+
+const memberPK = $('#view-member-pk').data('member-pk');
+const b_no = get_query().b_no;
+
 // ----------------------- 마감일 계산기 ------------------------------------
 
 const enddt = document.querySelector("#enddate");
@@ -27,8 +41,8 @@ const getDDay = () => {
 	const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 	const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-	if(setDate.getTime() == now.getTime()) {
-		enddt.innerText = '마감 (마감일 : ${enddt.dataset.enddt})'
+	if(setDate.getTime() <= now.getTime()) {
+		enddt.innerText = '마감 (마감일 : ' + enddt.dataset.enddt + ')'
 		return;
 	}
 
@@ -48,48 +62,109 @@ const init = () => {
 init();
 
 
+// ---------------------찜기능----------------------------------------
+const favBtn = $('.favorite');
 
-// ------------------------------ 댓글 ---------------------
-const b_no = params.get('b_no');
-
-
-// 댓글작성
-$('.view-reply-textarea').addEventListener('click', ()=> {
+favBtn.on('click', () => {
+    const param = {
+        m_no: 1, // TODO: session 받으면 memberPK로 변경
+        b_no: b_no
+    }
+    if (favBtn.hasClass('clicked')) {
+        delFav(param);
+    } else {
+        regFav(param);
+    }
 });
-$('.view-reply-button').addEventListener('click', ()=> {
-	if($('.view-reply-textarea') == '') {
-		alert('댓글을 입력해 주세요.');
-		return;
-	}
-});
 
-const param = {
-	b_no: params.get('b_no'),
-	r_ctnt: $('')
-	// TODO: login session 부분 마무리되면 m_no 값 추가하기
+function selFav() { // memberpk로변경
+    fetch('/board/fav?b_no=' + b_no + '&m_no=' + 1)
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            if (data.result == null) {
+                favBtn.removeClass('clicked');
+            } else {
+                favBtn.addClass('clicked');
+            }
+        });
 }
+selFav();
 
-function insReply(param, idx) {
-	
-	const init = {
-		method: 'POST',
-		body: JSON.stringify(param),
-		headers: {
+function regFav(param) {
+    const init = {
+        method: 'POST',
+        body: JSON.stringify(param),
+        headers: {
             'accept': 'application/json',
             'content-type': 'application/json;charset=UTF-8'
         }
-	};
-	
-	fetch('reply/' + idx, init)
-	.then((res) => {
-		return res.json();
-	})
-	.then((data) => {
-		if(data.result == 'fail') {
-			alert('잠시 후 시도해 주세요.');
-		}
-	});
+    };
+
+    fetch('/board/fav', init)
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            if (data.result == 1) {
+                // TODO: 찜목록으로 이동할지 물어보기
+            } else {
+                alert('잠시 뒤 다시 시도해 주세요');
+                location.reload();
+            }
+            selFav();
+        });
 }
 
+function delFav(param) {
+    const init = {
+        method: 'DELETE',
+        body: JSON.stringify(param),
+        headers: {
+            'accept': 'application/json',
+            'content-type': 'application/json;charset=UTF-8'
+        }
+    };
+
+    fetch('/board/fav', init)
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            console.log(data);
+            if (data.result == 1) {
+                
+            } else {
+                alert('잠시 뒤 다시 시도해 주세요');
+                location.reload();
+            }
+            selFav();
+        });
+}
+
+// ------------------연락하기------------------------------
+
+$('.contact').on('click', ()=> {
+	alert('준비중입니다.');
+})
+
+// ---------------------구매하기 --------------------------
+
+// --------------------신고하기-----------------------------
 
 
+$('.view-detail-report').on('click', ()=> {
+	openPopup();
+})
+
+function openPopup() {
+	const popUrl = '/report?b_no=' + b_no + '&m_no=' + memberPK;
+	const _width = '650';
+    const _height = '380';
+    const _left = Math.ceil(( window.screen.width - _width )/2);
+    const _top = Math.ceil(( window.screen.height - _height )/2); 
+	const popOption = 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top;
+
+	window.open(popUrl, '신고하기', popOption);
+}

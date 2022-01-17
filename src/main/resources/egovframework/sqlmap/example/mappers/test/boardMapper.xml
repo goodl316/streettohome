@@ -19,21 +19,23 @@
 
 	<select id="selBoardView" resultMap="BoardViewVO">
 		SELECT B.b_no, B.b_title,
-		B.b_ctnt, B.b_hit,
-		B.b_img, B.b_state, FORMAT(B.b_price, 0) AS b_price,
-		B.b_loc_sido, B.b_loc_gugun, B.b_age, B.b_tt,
+		B.b_ctnt, B.b_hit, B.b_state, FORMAT(B.b_price, 0) AS b_price,
+		B.b_loc_sido, B.b_loc_gugun, B.b_tt,
 		DATE_FORMAT(B.b_enddt, '%Y-%m-%d %H:%i:%s') AS b_enddt,
 		DATE_FORMAT(B.b_dt, '%Y-%m-%d %H:%i:%s') AS b_dt,
-		 B.b_ns, B.b_gender ,B.m_no,
-		B.b_type, B.b_auth,
+		B.m_no, B.b_auth,
 		M.m_nickname AS b_writer, 
 		FORMAT(AC.ac_startprice, 0) AS ac_startprice, AC.ac_cur_winner,
-		FORMAT(AC.ac_price, 0) AS ac_price
+		FORMAT(AC.ac_price, 0) AS ac_price,
+		AI.an_no AS an_no, AI.an_name AS an_name, AI.an_age AS an_age, AI.an_type1 AS an_type1,
+		AI.an_type2 AS an_type2, AI.an_img AS an_img, AI.an_ns AS an_ns, AI.an_gender AS an_gender
 		FROM board AS B
 		LEFT JOIN member AS M
 		ON B.m_no = M.m_no 
 		LEFT JOIN auction AS AC
 		ON B.b_no = AC.b_no
+		LEFT JOIN animal_info AS AI
+		ON B.b_no = AI.b_no
 		WHERE B.b_no = #{b_no} AND B.b_del = 0
 	</select>
 

@@ -7,21 +7,79 @@ public class BoardViewVO {
 	private String b_ctnt;
 	private String b_dt;
 	private int b_hit;
-	private String b_img;
 	private String b_price;
 	private String b_loc_sido;
 	private String b_loc_gugun;
-	private String b_age; 
 	private String b_tt;
 	private String b_enddt;
-	private int b_ns;
-	private String b_gender;
-	private String b_type;
 	private String b_writer;
 	private int b_state;
 	private int b_auth;
 	private int b_del;
 	
+	private int an_no;
+	private String an_name;
+	private int an_age;
+	private String an_type1;
+	private String an_type2;
+	private String an_img;
+	private int an_ns;
+	private String gender;
+	
+	private int m_no;
+	
+	private int ac_price;
+	private int ac_startprice;
+	private int ac_cur_winner;
+	
+	public int getAn_no() {
+		return an_no;
+	}
+	public void setAn_no(int an_no) {
+		this.an_no = an_no;
+	}
+	public String getAn_name() {
+		return an_name;
+	}
+	public void setAn_name(String an_name) {
+		this.an_name = an_name;
+	}
+	public int getAn_age() {
+		return an_age;
+	}
+	public void setAn_age(int an_age) {
+		this.an_age = an_age;
+	}
+	public String getAn_type1() {
+		return an_type1;
+	}
+	public void setAn_type1(String an_type1) {
+		this.an_type1 = an_type1;
+	}
+	public String getAn_type2() {
+		return an_type2;
+	}
+	public void setAn_type2(String an_type2) {
+		this.an_type2 = an_type2;
+	}
+	public String getAn_img() {
+		return an_img;
+	}
+	public void setAn_img(String an_img) {
+		this.an_img = an_img;
+	}
+	public int getAn_ns() {
+		return an_ns;
+	}
+	public void setAn_ns(int an_ns) {
+		this.an_ns = an_ns;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public String getB_enddt() {
 		return b_enddt;
 	}
@@ -58,8 +116,6 @@ public class BoardViewVO {
 	public void setB_del(int b_del) {
 		this.b_del = b_del;
 	}
-	private int m_no;
-	
 	public int getB_no() {
 		return b_no;
 	}
@@ -90,41 +146,11 @@ public class BoardViewVO {
 	public void setB_hit(int b_hit) {
 		this.b_hit = b_hit;
 	}
-	public String getB_img() {
-		return b_img;
-	}
-	public void setB_img(String b_img) {
-		this.b_img = b_img;
-	}
-	public String getB_age() {
-		return b_age;
-	}
-	public void setB_age(String b_age) {
-		this.b_age = b_age;
-	}
 	public String getB_tt() {
 		return b_tt;
 	}
 	public void setB_tt(String b_tt) {
 		this.b_tt = b_tt;
-	}
-	public int getB_ns() {
-		return b_ns;
-	}
-	public void setB_ns(int b_ns) {
-		this.b_ns = b_ns;
-	}
-	public String getB_gender() {
-		return b_gender;
-	}
-	public void setB_gender(String b_gender) {
-		this.b_gender = b_gender;
-	}
-	public String getB_type() {
-		return b_type;
-	}
-	public void setB_type(String b_type) {
-		this.b_type = b_type;
 	}
 	public String getB_writer() {
 		return b_writer;
@@ -162,7 +188,5 @@ public class BoardViewVO {
 	public void setAc_cur_winner(int ac_cur_winner) {
 		this.ac_cur_winner = ac_cur_winner;
 	}
-	private int ac_price;
-	private int ac_startprice;
-	private int ac_cur_winner;
+
 }
