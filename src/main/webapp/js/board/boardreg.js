@@ -14,13 +14,14 @@ function clk() {
 	var ctnt = document.querySelector('.input_ctnt').value
 	var price = document.querySelector('.input_price')
 	var age = document.querySelector('.input_age').value
-	var btype = document.getElementsByName('btype')
+	var an_type1 = document.querySelector('#an_type1').value
+	var an_type2 = document.querySelector('#an_type2').value
 	var b_tt = document.getElementsByName('tradetype')
 	var gender = document.getElementsByName('gender')
-	var b_ns = document.getElementsByName('b_ns')
+	var an_ns = document.getElementsByName('b_ns')
 	var sido = document.querySelector('#sido1').value
 	var gun = document.querySelector('#gugun1').value
-	var btype_value = 0;
+	var an_name = document.querySelector('#an_name').value
 	var gender_value = "";
 	var b_tt_value = "";
 	var b_ns_value = 0;
@@ -30,12 +31,7 @@ function clk() {
 		price = 0;
 	}
 	console.log(gender.length)
-	for (i = 0; i < btype.length; i++) {
-		if (btype[i].checked == true) {
-			btype_value = btype[i].value
-			console.log(btype_value)
-		}
-	}
+	
 	for (i = 0; i < gender.length; i++) {
 		if (gender[i].checked == true) {
 			gender_value = gender[i].value
@@ -50,8 +46,8 @@ function clk() {
 	}
 	
 	for (i = 0; i < b_ns.length; i++) {
-		if (b_ns[i].checked == true) {
-			b_ns_value = b_ns[i].value
+		if (an_ns[i].checked == true) {
+			b_ns_value = an_ns[i].value
 			console.log(b_ns_value)
 		}
 	}
@@ -60,13 +56,15 @@ function clk() {
 		b_title: title,
 		b_ctnt: ctnt,
 		b_price: price,
-		b_age: age,
-		b_btype: btype_value,
-		b_gender: gender_value,
-		b_loc1: sido,
-		b_loc2: gun,
+		an_age: age,
+		an_gender: gender_value,
+		b_loc_sido: sido,
+		b_loc_gugun: gun,
 		b_tt: b_tt_value,
-		b_ns: b_ns_value
+		an_ns: b_ns_value,
+		an_type1: an_type1,
+		an_type2: an_type2,
+		an_name: an_name
 
 	}
 
@@ -76,11 +74,11 @@ function clk() {
 
 
 
-function product_img_upload(b_no) {
+function product_img_upload(an_no) {
 	
 	console.log(formData.getAll("imgs"))
 	
-	formData.append('b_no', b_no) // 추가
+	formData.append('an_no', an_no) // 추가
 	$.ajax({
 		method: "POST",
 		url: '/updpatImg',
@@ -96,39 +94,66 @@ function product_img_upload(b_no) {
 
 
 
+function animalReg(b_no){
+	var age = document.querySelector('.input_age').value
+	var an_gender = document.getElementsByName('gender')
+	var an_type1 = document.querySelector('#an_type1').value
+	var an_type2 = document.querySelector('#an_type2').value
+	var an_name = document.querySelector('#an_name').value
+	var an_ns = document.getElementsByName('b_ns')
+	var gender_value = "";
+	var an_ns_value = 0;
+	
+	for (i = 0; i < an_gender.length; i++) {
+		if (an_gender[i].checked == true) {
+			gender_value = an_gender[i].value
+			console.log(gender_value)
+		}
+	}
+	
+	for (i = 0; i < b_ns.length; i++) {
+		if (an_ns[i].checked == true) {
+			an_ns_value = an_ns[i].value
+			console.log(an_ns_value)
+		}
+	}
+	
+	
+	params ={
+		an_age: age,
+		an_gender: gender_value,
+		an_ns: an_ns_value,
+		an_type1: an_type1,
+		an_type2: an_type2,
+		an_name: an_name,
+		b_no:b_no
+		
+	}
+	
+	animalregAjax(params)
+}
+
 function boardReg() {
 	var title = document.querySelector(".input_title").value
 	var ctnt = document.querySelector('.input_ctnt').value
 	var price = document.querySelector('.input_price')
-	var age = document.querySelector('.input_age').value
-	var btype = document.getElementsByName('btype')
 	var b_tt = document.getElementsByName('tradetype')
-	var gender = document.getElementsByName('gender')
-	var b_ns = document.getElementsByName('b_ns')
+	
 	var sido = document.querySelector('#sido1').value
 	var gun = document.querySelector('#gugun1').value
-	var btype_value = 0;
-	var gender_value = "";
+	
+	
 	var b_tt_value = "";
-	var b_ns_value = 0;
+	
+	
 	if (price) {
 		price = document.querySelector('.input_price').value
 	} else {
 		price = 0;
 	}
 	console.log(gender.length)
-	for (i = 0; i < btype.length; i++) {
-		if (btype[i].checked == true) {
-			btype_value = btype[i].value
-			console.log(btype_value)
-		}
-	}
-	for (i = 0; i < gender.length; i++) {
-		if (gender[i].checked == true) {
-			gender_value = gender[i].value
-			console.log(gender_value)
-		}
-	}
+	
+	
 	for (i = 0; i < b_tt.length; i++) {
 		if (b_tt[i].checked == true) {
 			b_tt_value = b_tt[i].value
@@ -136,49 +161,23 @@ function boardReg() {
 		}
 	}
 	
-	for (i = 0; i < b_ns.length; i++) {
-		if (b_ns[i].checked == true) {
-			b_ns_value = b_ns[i].value
-			console.log(b_ns_value)
-		}
-	}
+	
 
 	params = {
 		b_title: title,
 		b_ctnt: ctnt,
 		b_price: price,
-		b_age: age,
-		b_type: btype_value,
-		b_gender: gender_value,
 		b_loc_sido: sido,
 		b_loc_gugun: gun,
 		b_tt: b_tt_value,
-		b_ns: b_ns_value
-
 	}
 
-	regAjax(params)
+	boardregAjax(params)
 
 }
 
-function Ajax(params) {
-	$.ajax({
-		type: "POST",
-		data: JSON.stringify(params),
-		url: "/board/test/",
-		contentType: "application/json",
-		success: function(data) {
-			console.log(data)
-		},
-		error: alert("fail")
-	}
 
-	)
-}
-
-
-
-function regAjax(params) {
+function boardregAjax(params) {
 	
 	$.ajax({
 		method: 'POST',
@@ -188,8 +187,25 @@ function regAjax(params) {
 		contentType: "application/json",
 		success: function(data) {
 			console.log(data)
-			console.log(data.b_no)
-			product_img_upload(data.b_no)
+			animalReg(data.b_no)
+			
+		}
+	})
+
+}
+
+function animalregAjax(params) {
+	
+	$.ajax({
+		method: 'POST',
+		url: '/board/insAnimal',
+		data: JSON.stringify(params),
+		dataType: "json",
+		contentType: "application/json",
+		success: function(data) {
+			console.log(data)
+			console.log(data.an_no)
+			product_img_upload(data.an_no)
 		}
 	})
 
@@ -243,7 +259,10 @@ $(document).ready(function() {
    var area14 = ["경산시","경주시","구미시","김천시","문경시","상주시","안동시","영주시","영천시","포항시","고령군","군위군","봉화군","성주군","영덕군","영양군","예천군","울릉군","울진군","의성군","청도군","청송군","칠곡군"];
    var area15 = ["거제시","김해시","마산시","밀양시","사천시","양산시","진주시","진해시","창원시","통영시","거창군","고성군","남해군","산청군","의령군","창녕군","하동군","함안군","함양군","합천군"];
    var area16 = ["서귀포시","제주시","남제주군","북제주군"];
-
+	
+	var an_type0 =["품종 선택","강아지","고양이"]
+	var an_type1 = ["리트리버","말티즈","비숑프리제","삽살개","시바견","시츄","요크셔테리어","웰시코기","이탈리안그레이하운드","진돗개","치와와","퍼그","포메라니안","푸들","프렌치불독"];
+	var an_type2 = ['러시아블루']
  
 
  // 시/도 선택 박스 초기화
@@ -274,6 +293,29 @@ $(document).ready(function() {
   }
  });
 
+
+
+$("select[name^=an_type1]").each(function() {
+  $selsido = $(this);
+  $.each(eval(an_type0), function() {
+   $selsido.append("<option value='"+this+"'>"+this+"</option>");
+  });
+	$selsido.next().append("<option value=''>품종 선택</option>");
+ });
+
+$("select[name^=an_type1]").change(function() {
+  var area = "an_type"+$("option",$(this)).index($("option:selected",$(this))); // 선택지역의 구군 Array
+  var $gugun = $(this).next(); // 선택영역 군구 객체
+  $("option",$gugun).remove(); // 구군 초기화
+
+  if(area == "an_type0")
+   $gugun.append("<option value=''>품종 선택</option>");
+  else {
+   $.each(eval(area), function() {
+    $gugun.append("<option value='"+this+"'>"+this+"</option>");
+   });
+  }
+ });
 	
 
 

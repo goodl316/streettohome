@@ -1,45 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper	namespace="egovframework.sth.domain.board.mapper.BoardMapper">
-	
-	<resultMap id="BoardDTO" type="egovframework.sth.domain.board.domain.BoardDTO" />
-	<resultMap type="egovframework.sth.domain.board.domain.BoardViewVO" id="BoardViewVO"></resultMap>
+<mapper
+	namespace="egovframework.sth.domain.board.mapper.BoardMapper">
+
+	<resultMap id="BoardDTO"
+		type="egovframework.sth.domain.board.domain.BoardDTO" />
+	<resultMap id="AnimalDTO"
+		type="egovframework.sth.domain.board.domain.AnimalDTO" />
+	<resultMap
+		type="egovframework.sth.domain.board.domain.BoardViewVO"
+		id="BoardViewVO"></resultMap>
+	<resultMap
+		type="egovframework.sth.domain.board.domain.BoardVO" id="BoardVO"></resultMap>
 
 	<insert id="insBoard" useGeneratedKeys="true" keyProperty="b_no">
 		INSERT INTO board (
-		b_title,b_ctnt,b_hit,b_gender,b_img,b_price,b_loc,b_age,b_tt,b_enddt,b_ns,b_type,b_auth,b_del
+		b_title,b_ctnt,b_hit,b_price,b_loc_sido,b_loc_gugun,b_tt,b_enddt,b_auth,b_del
 		)values
-		(#{b_title},#{b_ctnt},#{b_hit},#{b_gender},"test.jpg",#{b_price}
-		,#{b_loc},#{b_age},#{b_tt},#{b_enddt},#{b_ns},#{b_type},#{b_auth},#{b_del})
+		(#{b_title},#{b_ctnt},#{b_hit},#{b_price}
+		,#{b_loc_sido},#{b_loc_gugun},#{b_tt},#{b_enddt},#{b_auth},#{b_del})
 	</insert>
 
-	<select id="boardList" resultMap="BoardDTO">
-    select b_no, b_title,b_img,b_state,b_dt from board where b_type = #{b_type} order by b_no;
-    </select>
+	<insert id="insAnimal" useGeneratedKeys="true"
+		keyProperty="an_no">
+		INSERT INTO animal_info(
+		b_no,an_name,an_age,an_type1,an_type2,an_img,an_ns,an_gender
+		)
+		values(
+		#{b_no},#{an_name},#{an_age,},#{an_type1},#{an_type2},"test.jpg",#{an_ns},#{an_gender}
+		)
+
+	</insert>
+
+	<select id="boardList"
+		resultType="egovframework.sth.domain.board.domain.AnimalDTO"
+		resultMap="BoardVO">
+		<choose>
+			<when test=" an_type1 != null">
+				SELECT
+				a.b_title,a.b_no,a.b_dt,a.b_tt,a.b_loc_sido,
+				a.b_loc_gugun,a.b_price,
+				b.an_type2,b.an_img,b.an_no
+				FROM board a
+				LEFT
+				JOIN
+				animal_info b
+				ON a.b_no = b.b_no
+				WHERE b.an_type1=#{an_type1}
+				order by a.b_no
+			</when>
+			<when test="an_type1 == null">
+				SELECT a.b_title,a.b_no,a.b_dt,a.b_tt,a.b_loc_sido,
+				a.b_loc_gugun,a.b_price,
+				b.an_type2,b.an_img,b.an_no
+				FROM board a
+				LEFT
+				JOIN
+				animal_info b
+				ON a.b_no = b.b_no
+				WHERE a.b_loc_sido=#{b_loc_sido}
+				and a.b_loc_gugun=#{b_loc_gugun}
+				and a.b_tt =#{b_tt}
+				and b.an_type2=#{an_type2}
+				and b.an_gender =#{an_gender}
+				and a.b_price <![CDATA[<]]>#{b_price}
+				order by a.b_no
+			</when>
+		</choose>
+	</select>
+
+	<select id="countBoard" resultMap="BoardVO">
+		<choose>
+			<when test="an_type1 != null">
+				select count(*) as countBoard from animal_info a
+				left join board b
+				on a.b_no = b.b_no
+				WHERE a.an_type1=#{an_type1}
+			</when>
+			<when test="an_type1 == null">
+				select count(*) as countBoard from animal_info a
+				left join board b
+				on a.b_no = b.b_no
+				WHERE a.an_type2 = #{an_type2} AND a.an_gender = #{an_gender} AND b.b_price <![CDATA[<]]> #{b_price} AND 
+				b.b_loc_sido = #{b_loc_sido} AND b.b_loc_gugun = #{b_loc_gugun}
+				AND b.b_tt = #{b_tt}
+			
+			</when>
+
+
+		</choose>
+	</select>
+
+
 
 	<select id="selBoardView" resultMap="BoardViewVO">
 		SELECT B.b_no, B.b_title,
 		B.b_ctnt, B.b_hit,
 		B.b_img, B.b_state, FORMAT(B.b_price, 0) AS b_price,
 		B.b_loc_sido, B.b_loc_gugun, B.b_age, B.b_tt,
-		DATE_FORMAT(B.b_enddt, '%Y-%m-%d %H:%i:%s') AS b_enddt,
-		DATE_FORMAT(B.b_dt, '%Y-%m-%d %H:%i:%s') AS b_dt,
-		 B.b_ns, B.b_gender ,B.m_no,
+		DATE_FORMAT(B.b_enddt,
+		'%Y-%m-%d %H:%i:%s') AS b_enddt,
+		DATE_FORMAT(B.b_dt, '%Y-%m-%d
+		%H:%i:%s') AS b_dt,
+		B.b_ns, B.b_gender ,B.m_no,
 		B.b_type, B.b_auth,
-		M.m_nickname AS b_writer, 
-		FORMAT(AC.ac_startprice, 0) AS ac_startprice, AC.ac_cur_winner,
+		M.m_nickname AS b_writer,
+		FORMAT(AC.ac_startprice, 0) AS ac_startprice,
+		AC.ac_cur_winner,
 		FORMAT(AC.ac_price, 0) AS ac_price
 		FROM board AS B
 		LEFT JOIN member AS M
-		ON B.m_no = M.m_no 
+		ON B.m_no = M.m_no
 		LEFT JOIN auction AS AC
-		ON B.b_no = AC.b_no
-		WHERE B.b_no = #{b_no} AND B.b_del = 0
+		ON
+		B.b_no = AC.b_no
+		WHERE B.b_no = #{b_no} AND
+		B.b_del = 0
 	</select>
 
 	<update id="updpatImg">
-		update board
-		set b_img = #{b_img}
-		where b_no = #{b_no}
+		update animal_info
+		set an_img = #{an_img}
+		where an_no =
+		#{an_no}
 	</update>
 </mapper>

@@ -173,11 +173,7 @@
 			<version>2.8.6</version>
 		</dependency>
 
-
-
-
-
-
+		
 		<!-- mysql이나 oracle DB 사용시 아래 설정 추가 -->
 		<dependency>
 			<groupId>com.googlecode.log4jdbc</groupId>

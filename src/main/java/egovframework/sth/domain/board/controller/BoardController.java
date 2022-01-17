@@ -1,6 +1,7 @@
 package egovframework.sth.domain.board.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,20 +13,77 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import egovframework.sth.domain.board.domain.AnimalDTO;
 import egovframework.sth.domain.board.domain.BoardDTO;
+import egovframework.sth.domain.board.domain.BoardVO;
 import egovframework.sth.domain.board.domain.BoardViewVO;
 import egovframework.sth.domain.board.service.BoardService;
+import egovframework.sth.domain.main.controller.MainController;
 
 @Controller
 public class BoardController {
 
 	@Autowired
 	private BoardService service;
-
-	@GetMapping("/board/dogList")
-	public void bard(Model model, BoardDTO dto) {
+	
+	
+	@GetMapping("/board/boardList")
+	public void boardList(Model model, BoardVO vo) {
+		System.out.println(vo.getB_loc_sido());
+		System.out.println(vo.getB_loc_gugun());
+		System.out.println(vo.getAn_type2());
+		System.out.println(vo.getAn_gender());
+		System.out.println(vo.getB_tt());
 		
-		//model.addAttribute("list", service.boardList(dto));
+		BoardVO vo2 = new BoardVO();
+		System.out.println(vo.getAn_type1());
+		String an_type1 = null;
+		if(vo.getAn_type1() != null) {
+			 an_type1 = vo.getAn_type1();
+		}
+		System.out.println(an_type1);
+		vo2 = service.countBoard(vo);
+		int nowPage = vo.getNowPage();
+    	int cntPerPage = vo.getCntPerPage();
+    	int total = vo2.getCountBoard();
+    	
+    	System.out.println(nowPage);
+    	System.out.println(cntPerPage);
+    	if (nowPage == 0 && cntPerPage == 0) {
+    		nowPage = 1;
+    		cntPerPage = 12;
+    	} else if (nowPage == 0) {
+    		nowPage = 1;
+    	} else if (cntPerPage == 0) { 
+    		cntPerPage = 12;
+    	}
+    	
+    	System.out.println("total2:"+total);
+    	System.out.println("2:"+nowPage);
+    	System.out.println("2:"+cntPerPage);
+    	
+    	
+		
+    	vo = new BoardVO(total, nowPage,an_type1, cntPerPage,vo.getB_loc_sido(),vo.getB_loc_gugun(),vo.getB_tt(),vo.getAn_gender(),vo.getB_price(),vo.getAn_type2());
+		model.addAttribute("list", service.boardList(vo));
+		model.addAttribute("paging", vo);
+		
+
+	}
+	
+	
+	
+	@ResponseBody
+	@GetMapping("/board/dogList")
+	public List<BoardVO> board(Model model, BoardVO vo) {
+		MainController main = new MainController();
+		System.out.println("////////////////////////////////////");
+		System.out.println(vo.getAn_type1());
+		if(vo.getAn_type1() == "null") {
+			System.out.println("메인이로 보내버렷");
+			main.main();
+		}
+		return service.boardList(vo);
 
 	}
 
@@ -49,7 +107,6 @@ public class BoardController {
 	@ResponseBody
 	@PostMapping("/board/test")
 	public String test(@RequestBody BoardDTO dto) {
-		System.out.println("나이: " + dto.getB_age());
 		System.out.println("제목:" + dto.getB_title());
 
 		return "success";
@@ -60,39 +117,33 @@ public class BoardController {
 	public Map<String, Object> insboard(@RequestBody BoardDTO dto) {
 		Map<String, Object> val = new HashMap<>();
 		val.put("data", service.insBoard(dto));
-		System.out.println("b_no:" + dto.getB_no()); // 0일수 밖에 없는데
-		val.put("b_no", dto.getB_no());
+		System.out.println("b_no:" + dto.getB_no()); 
+		val.put("b_no",dto.getB_no());
+		return val;
+	}
+	
+	@ResponseBody
+	@PostMapping("/board/insAnimal")
+	public Map<String, Object> insAnimal(@RequestBody AnimalDTO dto) {
+		Map<String, Object> val = new HashMap<>();
+		val.put("data", service.insAnimal(dto));
+		System.out.println(dto.getB_no());
+		System.out.println(dto.getAn_no());
+		
+		val.put("an_no", dto.getAn_no());
 
 		return val;
 	}
 
 	@ResponseBody
 	@PostMapping("/updpatImg")
-	public int patimgUpload(@RequestBody MultipartFile[] imgs, int b_no) {
-		System.out.println(b_no);
+	public int patimgUpload(@RequestBody MultipartFile[] imgs, int an_no) {
+		System.out.println(an_no);
 		System.out.println(imgs.length);
 
-		return service.patimgUpload(imgs, b_no);
+		return service.patimgUpload(imgs, an_no);
 	}
-	//임시 이미지
-	@ResponseBody
-    @PostMapping("/imgTempUpload")
-    public Map<String, Object> imgTempUpload(@RequestBody MultipartFile[] imgs) {
-        System.out.println("imgs.length:"+imgs.length);
-		Map<String, Object> val = new HashMap<>();
-        val.put("imgs", service.tempimgUpload(imgs));
-        return val;
-    }
 	
-	//이미지 삭제
-		@ResponseBody
-	    @GetMapping("/tempImgDelete")
-	    public Map<String, Object> tmpImgDelete(Integer b_no,String imgNm) {
-	        Map<String, Object> val = new HashMap<>();
-	        String path = "/img/board_temp/b_" + 0 + "/" + imgNm;
-	        val.put("result", service.delSaleModImg(path));
-	        return val;
-	    }
 	
 	//이미지 삭제
 	@ResponseBody

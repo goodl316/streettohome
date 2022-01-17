@@ -15,6 +15,11 @@
 	<input type="text" class="input_title" placeholder="제목을 입력해 주세요">
 	<br> 내용 :
 	<input type="text" class="input_ctnt" placeholder="내용을 입력해 주세요">
+	<br> 이름 :
+	<input type="text" id="an_name" placeholder="이름을 입력해 주세요">
+	<br> 품종 : 
+	<select name="an_type1" id="an_type1"></select>
+	<select name="an_type2" id="an_type2"></select><br>
 	<div class="price_contain"></div>
 	<br>
 	<input id="input_img" name="input_img" type="file" multiple accept="image/*"
@@ -25,6 +30,7 @@
 	<input type="button" onclick="product_img_upload(0)" value="확인작업">
 	<select name="sido1" id="sido1"></select>
 	<select name="gugun1" id="gugun1"></select><br>
+	
 	<div id="image_container"></div><br>
 	
 	<input type="text" class="input_age" placeholder="반려동물 나이를 입력해 주세요">
@@ -52,13 +58,7 @@
 		</fieldset>
 	</form>
 
-	<form name="btype">
-		<fieldset>
-			<legend>종류</legend>
-			강아지 <input type="radio" name="btype" id="btype" value="강아지" checked />
-			고양이 <input type="radio" name="btype" id="btype" value="고양이" />
-		</fieldset>
-	</form>
+	
 	<input type="button" value="확인" onclick="clk()">
 	<input type="button" value="글등록" onclick="boardReg()">
 
