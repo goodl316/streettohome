@@ -337,10 +337,13 @@ function fileRemove(index,fileNm) {
 	console.log("index: "+index);
 	console.log("fileNm: "+fileNm)
 	
+	
 	fileInfoArr.splice(fileNm, 1);
 	
 
-	var imgId = "#img_id_"+index;
+	var imgId = "#img_id_"+fileNm;
+	var test = document.querySelector(''+imgId)
+	console.log(test)
 	console.log(imgId)
 	console.log(">>>>>>>>>>>>>>>>>>>>>>>")
 	$(imgId).remove();
@@ -389,7 +392,11 @@ function previewImage(targetObj, View_area) {
 		// }
 
 		var span = document.createElement('span');
-		span.id = "img_id_" + i;
+		const fileNm= file.name
+		const search = fileNm.indexOf('.')
+		const orginNm = fileNm.substr(0,search)
+		
+		span.id = "img_id_" + orginNm;
 		span.style.width = '100px';
 		span.style.height = '100px';
 		preview.appendChild(span);
@@ -402,10 +409,8 @@ function previewImage(targetObj, View_area) {
 		img.style.height = 'inherit';
 		img.style.cursor = 'pointer';
 		const idx = i;
-		const fileNm= file.name
-		img.onclick = () => fileRemove(idx,fileNm);   //이미지를 클릭했을 때.
+		img.onclick = ()=>fileRemove(idx,orginNm);   //이미지를 클릭했을 때.
 		span.appendChild(img);
-
 		if (window.FileReader) { // FireFox, Chrome, Opera 확인.
 			var reader = new FileReader();
 			reader.onloadend = (function(aImg) {
@@ -424,6 +429,8 @@ function previewImage(targetObj, View_area) {
 				preview.insertBefore(info, null);
 			}
 		}
+		
+		
 	}
 	
 	
@@ -431,7 +438,7 @@ function previewImage(targetObj, View_area) {
 		if(input_img.files.length>0){
 			
 		formData.append('imgs', input_img.files[i])
-		console.log(input_img.files[i].name)
+		//console.log(input_img.files[i].name)
 		}
 	}
 	console.log(formData.getAll('imgs'))
