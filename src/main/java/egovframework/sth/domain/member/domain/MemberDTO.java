@@ -14,7 +14,7 @@ public class MemberDTO {
 	private String m_dt;
 	private int m_pay;
 	private int m_authstate;
-	
+	private String m_zipcode;
 	
 	@Override
 	public String toString() {
@@ -92,10 +92,11 @@ public class MemberDTO {
 	public void setM_authstate(int m_authstate) {
 		this.m_authstate = m_authstate;
 	}
-	
-	
-	
-	
-	
+	public String getM_zipcode() {
+		return m_zipcode;
+	}
+	public void setM_zipcode(String m_zipcode) {
+		this.m_zipcode = m_zipcode;
+	}
 
 }

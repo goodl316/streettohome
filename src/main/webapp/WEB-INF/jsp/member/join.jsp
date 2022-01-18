@@ -72,7 +72,7 @@
 					<li>
 						<p class="tit">연락처</p>
 						<p class="form-1">
-							<input type="text" maxlength="3" id="tel1" name="m_phone"
+							<input type="text" maxlength="11" id="tel1" name="m_phone"
 								size="11">
 						</p>
 					</li>
@@ -92,14 +92,6 @@
 						<p class="form">
 							<input type="text" id="m_address" name="m_address"
 								placeholder="주소를 입력해주세요.">
-						</p>
-					</li>
-
-					<li>
-						<p class="tit">상세주소</p>
-						<p class="form">
-							<input type="text" id="m_address2" name="m_address2"
-								placeholder="상세주소를 입력해주세요.">
 						</p>
 					</li>
 

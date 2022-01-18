@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,6 +58,7 @@ public class MemberController {
 	// 3. 회원가입 기능
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(MemberDTO param, Model model) throws MessagingException, UnsupportedEncodingException {
+		model.addAttribute("Msg", "가입시 사용한 이메일로 인증해 주세요.");
 		System.out.println(param.toString());
 		memberService.join(param);
 		return "/member/login";
@@ -101,14 +101,36 @@ public class MemberController {
             model.addAttribute("Msg", "회원가입한 정보로 로그인 해주세요!");
             break;
     }
-		return "member/loginErr";
+		model.addAttribute("Msg", "재로그인 해주세요.");
+		return "member/login";
 
 	}
 	
-	// 5. 마이페이지 화면
-	@RequestMapping(value="/mypage")
-	public String mypage(){
-		return "/member/mypage";
+	// 회원 정보 수정 화면
+		@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
+		public String updateMember() {
+			return "/member/updateMember";
+		}
+		
+	// 회원 정보 수정
+	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
+	public String updateMember(MemberDTO param, Model model) {
+		model.addAttribute("Msg", "수정된 정보로 로그인 해주세요.");
+		memberService.updateMember(param);
+		return "/member/login";
 	}
+	
+	 @RequestMapping("/mypage")
+	    public String mypage() {
+	        return "/member/mypage";
+	    }
+	 
+	 @RequestMapping(value = "/mypage", method = RequestMethod.POST)
+	    public String myPageMod(MemberDTO param, Model model) {
 
+	        memberService.updateMember(param);
+	        return "/member/mypage";
+	    }
+
+	
 }
