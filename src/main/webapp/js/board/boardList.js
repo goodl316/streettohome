@@ -1,4 +1,3 @@
-var b_type = document.querySelector('.getbtype')
 var list_group = document.querySelector('.list_group');
 
 

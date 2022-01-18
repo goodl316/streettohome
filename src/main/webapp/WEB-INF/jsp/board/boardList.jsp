@@ -43,6 +43,8 @@
 			<div class="list_group">
 				<c:forEach var="list" items="${list}">
 					<div class="list_item">
+					<a href="/board/view?b_no=${list.b_no}">이동</a>
+					<a href="/board/boardmod?b_no=${list.b_no}">수정</a>
 						<div class="item_img">
 							<img src="/img/board/an_${list.an_no}/${list.an_img}">
 						</div>

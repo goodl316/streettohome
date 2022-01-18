@@ -18,5 +18,8 @@ public interface BoardMapper {
 	int insAnimal(AnimalDTO dto);
 	int updpatImg(AnimalDTO dto);
 	BoardVO countBoard(BoardVO vo);
-	
+	AnimalDTO selinfo(AnimalDTO dto);
+	BoardVO modselboard(BoardVO vo);
+	int updateBoard(BoardVO vo);
+	int updateAnimal(BoardVO vo);
 }
