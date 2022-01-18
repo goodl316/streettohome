@@ -86,16 +86,24 @@
 				<div class="view-button-container">
 					<input type="button" class="view-info-button favorite" value="찜하기">
 					<input type="button" class="view-info-button contact" value="연락하기">
-					<input type="button" class="view-info-button buy" value="분양신청">
+					<c:choose>
+						<c:when test="${requestScope.data.b_state eq '분양완료' }">
+							<input type="button" class="view-info-button none" value="분양완료">
+						</c:when>
+						<c:otherwise>
+							<input type="button" class="view-info-button buy" value="분양신청">
+						</c:otherwise>
+					</c:choose>
+					
 				</div> 
 				
 			</div>
 		</div>
 		
 		<!-- 상세설명 -->
-		<button>상세설명</button>  <!-- onclick view-detail-container display none 풀기 -->
+		<button class="view-detail">상세설명</button>  <!-- onclick view-detail-container display none 풀기 -->
 		<div class="view-detail-container">
-			<div class="view-detail-content"></div>
+			<div class="view-detail-content">${requestScope.data.b_ctnt }</div>
 			<div class="view-detail-report">신고하기</div>
 		</div>
 		

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="egovframework.sth.domain.pay.mapper.PayMapper">
+	<resultMap type="egovframework.sth.domain.pay.domain.PayDTO" id="PayDTO"></resultMap>
+
+	<select id="selPayInfo" resultMap="PayDTO">
+		SELECT b_no, b_title, b_price, b_tt, b_auth, m_no, b_state
+		FROM board
+		WHERE b_no = #{b_no}
+	</select>
+	
+	<select id="selMyMoney" resultType="int">
+		SELECT m_pay FROM member WHERE m_no = #{m_no}
+	</select>
+	
+	<update id="buy">
+		UPDATE member
+		SET m_pay = m_pay - (SELECT b_price FROM board WHERE b_no = #{b_no})
+		WHERE m_no = #{buyer}
+	</update>
+
+	<update id="sell">
+		UPDATE member
+		SET m_pay = m_pay + ((SELECT b_price FROM board WHERE b_no = #{b_no}) - ((SELECT b_price FROM board WHERE b_no = #{b_no}) * #{fee}) / 100) 
+		WHERE m_no = (SELECT m_no FROM board WHERE b_no = #{b_no})
+	</update>
+	
+	<update id="boardState">
+		UPDATE board
+		SET b_state = '분양완료'
+	</update>
+	
+	<insert id="insHistory">
+		INSERT INTO transaction_history
+		(b_no, th_buyer, th_seller, th_fee, th_price)
+		VALUES
+		(#{b_no}, #{buyer}, (SELECT m_no FROM board WHERE b_no = #{b_no}), 
+		((SELECT b_price FROM board WHERE b_no = #{b_no}) * #{fee}) / 100
+		, (SELECT b_price FROM board WHERE b_no = #{b_no}))
+	</insert>
+	
+	<update id="insMoney">
+		UPDATE member
+		SET m_pay = m_pay + #{m_pay}
+		WHERE m_no = #{m_no}
+	</update>
+</mapper>

@@ -20,16 +20,14 @@
 		<div class="report-body">
 			<form action="/report">
 				<div class="report-selectbox">
-					<label><input type="radio" name="r_ctnt" value="1">부적절한 홍보 게시글</label>
-					<label><input type="radio" name="r_ctnt" value="2">음란성 또는 청소년에게 부적합한 내용</label>
-					<label><input type="radio" name="r_ctnt" value="3">명예훼손/사생활 침해 및 저작권침해등</label>
-					<label><input type="radio" name="r_ctnt" value="4">허위 게시글</label>
-					<label><input type="radio" name="r_ctnt" value="5">기타</label>
-					<input type="text" name="r_ctnt" placeholder="기타" >
+					<label><input type="radio" name="radio" value="1">부적절한 홍보 게시글</label>
+					<label><input type="radio" name="radio" value="2">음란성 또는 청소년에게 부적합한 내용</label>
+					<label><input type="radio" name="radio" value="3">명예훼손/사생활 침해 및 저작권침해등</label>
+					<label><input type="radio" name="radio" value="4">허위 게시글</label>
+					<label><input type="radio" name="radio" value="5" class="report-etc-radio">기타
+					<input class="report-etc-text" type="text" name="r_ctnt" placeholder="기타"  readOnly></label>
 				</div>
-				<div class="report-textbox">
-					<input class="report-text" type="text" name="rp_ctnt" placeholder="기타 : " maxlength="20">
-				</div>
+				<div><input type="submit" value="신고하기" class="report-button"><input type="button" class="report-button" value="취소" onclick="closePopup();"></div>
 			</form>
 		</div>
 		<div class="report-footer"></div>
