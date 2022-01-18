@@ -87,10 +87,27 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/boardmod")
-	public void modBoard(Model model,int b_no) {
+	public void modBoard(Model model,BoardVO vo) {
 		System.out.println("................................");
-		System.out.println(service.selImgList(b_no).get(0).isEmpty());
-		model.addAttribute("img_list",service.selImgList(b_no));
+		model.addAttribute("data",service.modselboard(vo));
+		
+	}
+	@ResponseBody
+	@PostMapping("/board/updboard")
+	public Map<String,Object> updBoard(@RequestBody BoardVO vo){
+		Map<String,Object> val = new HashMap<>();
+		val.put("data", service.updBoard(vo));
+		val.put("b_no", vo.getB_no());
+		return val;
+		
+	}
+	@ResponseBody
+	@PostMapping("/board/updanimal")
+	public Map<String,Object> updAnimal(@RequestBody BoardVO vo){
+		Map<String,Object> val = new HashMap<>();
+		val.put("result", service.updAnimal(vo));
+		
+		return val;
 		
 	}
 	
@@ -105,12 +122,8 @@ public class BoardController {
 	@ResponseBody
 	@PostMapping("/delete/img")
 	public Map<String,Object> delimg(@RequestBody AnimalDTO dto){
-		AnimalDTO vo = service.selinfo(dto);
-		System.out.println(dto.getChkImg());
-		vo.setAn_img(dto.getAn_img());
-		System.out.println(vo.getAn_img());
 		Map<String,Object> val = new HashMap<>();
-		val.put("data", vo);
+		val.put("data", service.selinfo(dto));
 		return val;
 		
 	}

@@ -12,7 +12,7 @@
 </head>
 <body>
 	제목 :
-	<input type="text" class="input_title" placeholder="제목을 입력해 주세요">
+	<input type="text" class="input_title" placeholder="제목을 입력해 주세요" >
 	<br> 내용 :
 	<input type="text" class="input_ctnt" placeholder="내용을 입력해 주세요">
 	<br> 이름 :
