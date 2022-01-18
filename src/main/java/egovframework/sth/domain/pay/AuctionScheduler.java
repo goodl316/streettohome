@@ -19,7 +19,7 @@ public class AuctionScheduler {
 	
 	public void closeAuction() {
 		Timer timer = new Timer();
-		timer.s
+		timer.schedule(mapper.toString(), );
 	}
 	
 }
