@@ -4,12 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.ws.rs.POST;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -93,9 +96,22 @@ public class BoardController {
 	
 	@ResponseBody
 	@GetMapping("/board/boardmodImg")
-	public void modBoardImg(int b_no) {
+	public List<String> modBoardImg(int b_no) {
 		System.out.println("b_no:"+b_no);
-		service.selImgList(b_no);
+		return service.selImgList(b_no);
+		
+	}
+	
+	@ResponseBody
+	@PostMapping("/delete/img")
+	public Map<String,Object> delimg(@RequestBody AnimalDTO dto){
+		AnimalDTO vo = service.selinfo(dto);
+		System.out.println(dto.getChkImg());
+		vo.setAn_img(dto.getAn_img());
+		System.out.println(vo.getAn_img());
+		Map<String,Object> val = new HashMap<>();
+		val.put("data", vo);
+		return val;
 		
 	}
 

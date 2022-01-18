@@ -11,7 +11,14 @@ public class AnimalDTO {
 	private String an_img;
 	private String an_ns;
 	private String an_gender;
+	private String chkImg;
 	
+	public String getChkImg() {
+		return chkImg;
+	}
+	public void setChkImg(String chkImg) {
+		this.chkImg = chkImg;
+	}
 	public String getAn_gender() {
 		return an_gender;
 	}

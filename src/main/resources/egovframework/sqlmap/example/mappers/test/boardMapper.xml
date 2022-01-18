@@ -87,6 +87,10 @@
 			</when>
 		</choose>
 	</select>
+	
+	<select id="selinfo" resultMap="AnimalDTO">
+	select an_no, an_img from animal_info where b_no = #{b_no}
+	</select>
 
 	<select id="selBoardView" resultMap="BoardViewVO">
         SELECT B.b_no, B.b_title,

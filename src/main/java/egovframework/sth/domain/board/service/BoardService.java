@@ -48,6 +48,11 @@ public class BoardService {
 		return futils.getFileNameList(path);
 	}
 	
+	public AnimalDTO selinfo(AnimalDTO dto) {
+		
+		return mapper.selinfo(dto);
+	}
+	
 	
 	public int insBoard(BoardDTO dto) {
 		
