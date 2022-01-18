@@ -51,15 +51,17 @@ public class MemberService {
 	}
 
 	public int login(MemberDTO param) {
-
+				
 		MemberDTO result = mapper.selMember(param);
 
+		
 		if (result == null) {
 			// 이메일 없음
 			return 0;
 		} else if (BCrypt.checkpw(param.getM_pw(), result.getM_pw())) {
 			// 로그인 성공
 			result.setM_pw(null);
+			System.out.println("성공");
 			session.setAttribute("loginMember", result);
 
 			return 1;
@@ -100,6 +102,14 @@ public class MemberService {
 		return mapper.upM_authstate(param);
 	}
 	
+	// 회원정보 수정
+	public String updateMember(MemberDTO param){
+		
+		String hashPw = BCrypt.hashpw(param.getM_pw(), BCrypt.gensalt());
+		param.setM_pw(hashPw);
+		mapper.updateMember(param);
+		return "/member/login";
+	}
 	
 
 }

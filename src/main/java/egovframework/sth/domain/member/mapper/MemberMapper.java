@@ -18,5 +18,7 @@ public interface MemberMapper {
 	MemberDTO chckM_auth(MemberDTO param);
 
 	int upM_authstate(MemberDTO param);
+
+	void updateMember(MemberDTO param);
 	
 }

@@ -5,13 +5,14 @@
 
 	<select id="selMember"
 		resultType="egovframework.sth.domain.member.domain.MemberDTO">
-		select * from member where m_email=#{m_email} and
-		m_pw=#{m_pw}
+		select * from member where m_email=#{m_email}
 	</select>
 
 	<insert id="insMember">
-		insert into member (m_email, m_pw, m_name, m_nickname, m_phone, m_address, m_state)
-		values (#{m_email}, #{m_pw}, #{m_name}, #{m_nickname}, #{m_phone},
+		insert into member (m_email, m_pw, m_name,
+		m_nickname, m_phone, m_address, m_state)
+		values (#{m_email}, #{m_pw},
+		#{m_name}, #{m_nickname}, #{m_phone},
 		#{m_address}, #{m_state})
 	</insert>
 
@@ -26,26 +27,30 @@
 		SELECT COUNT(*) FROM member
 		WHERE m_nickname = #{m_nickname}
 	</select>
-	
-	<select id="chckM_auth" resultType="egovframework.sth.domain.member.domain.MemberDTO">
-        select *
-        from member
-        where m_email = #{m_email}
-          and m_auth = #{m_auth};
-    </select>
-    
-     <update id="upM_authstate">
-        update member
-        set m_authstate = 3
-        where m_auth = #{m_auth}
-          and m_email = #{m_email}
-    </update>
-    
-    <!-- 회원정보 수정 -->
-	<update id="upMember" parameterType="egovframework.sth.domain.member.domain.MemberDTO">
-		update member S
-		set m_pw =#{m_pw}, m_nickname = #{m_nickname}, m_phone = #{m_phone}, m_address = #{m_address} where m_email= #{m_email}
+
+	<select id="chckM_auth"
+		resultType="egovframework.sth.domain.member.domain.MemberDTO">
+		select *
+		from member
+		where m_email = #{m_email}
+		and m_auth = #{m_auth};
+	</select>
+
+	<update id="upM_authstate">
+		update member
+		set m_authstate = 3
+		where m_auth = #{m_auth}
+		and m_email = #{m_email}
 	</update>
 
-    
+	<update id="updateMember"> 
+	UPDATE member 
+	SET m_pw=#{m_pw}, m_phone=#{m_phone}, m_nickname=#{m_nickname}, m_zipcode=#{m_zipcode}, m_address=#{m_address} WHERE m_email=#{m_email} </update>
+
+
+
+
+
+
+
 </mapper>
