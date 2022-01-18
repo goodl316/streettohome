@@ -67,7 +67,7 @@ const favBtn = $('.favorite');
 
 favBtn.on('click', () => {
     const param = {
-        m_no: 1, // TODO: session 받으면 memberPK로 변경
+        m_no: memberPK, 
         b_no: b_no
     }
     if (favBtn.hasClass('clicked')) {
@@ -108,7 +108,9 @@ function regFav(param) {
         })
         .then((data) => {
             if (data.result == 1) {
-                // TODO: 찜목록으로 이동할지 물어보기
+                if(confirm('찜묵록으로 이동하시겠습니까?')) {
+					location.href = '';  //TODO:찜목록 url이동	
+				}
             } else {
                 alert('잠시 뒤 다시 시도해 주세요');
                 location.reload();
@@ -132,7 +134,6 @@ function delFav(param) {
             return res.json();
         })
         .then((data) => {
-            console.log(data);
             if (data.result == 1) {
                 
             } else {
@@ -149,22 +150,41 @@ $('.contact').on('click', ()=> {
 	alert('준비중입니다.');
 })
 
-// ---------------------구매하기 --------------------------
+// ---------------------구매하기 ---------------------------
+
+$('.buy').on('click', ()=> {
+	const url = '/pay?b_no=' + b_no;
+	const title = "결제하기";
+	openPopup(url, 1000, 700, title);
+})
+
+$('.none').on('click', ()=> {
+	alert('이미 분양완료된 게시글 입니다.');
+})
 
 // --------------------신고하기-----------------------------
 
 
 $('.view-detail-report').on('click', ()=> {
-	openPopup();
+	const url = '/report?b_no=' + b_no + '&m_no=' + memberPK;
+	const title = '신고하기';
+	openPopup(url, 650, 380, title);
 })
 
-function openPopup() {
-	const popUrl = '/report?b_no=' + b_no + '&m_no=' + memberPK;
-	const _width = '650';
-    const _height = '380';
+// ----------------------------------------------------------
+
+// 팝업창
+function openPopup(url, _width, _height, title) {
     const _left = Math.ceil(( window.screen.width - _width )/2);
     const _top = Math.ceil(( window.screen.height - _height )/2); 
 	const popOption = 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top;
 
-	window.open(popUrl, '신고하기', popOption);
+	window.open(url, title, popOption);
 }
+
+// 상세보기
+
+$('.view-detail').on('click', ()=> {
+	$('.view-detail-container').toggle();
+});
+

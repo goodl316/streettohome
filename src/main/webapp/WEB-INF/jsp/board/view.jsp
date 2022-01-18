@@ -38,17 +38,17 @@
 						<div class="view-state state">
 							<c:set var="b_state" value="${requestScope.data.b_state }"/>
 							<c:choose>
-								<c:when test="${b_state eq 0 }">분양대기</c:when>
-								<c:when test="${b_state eq 1 }">분양중</c:when>
-								<c:when test="${b_state eq 2 }">분양완료</c:when>
+								<c:when test="${b_state eq '분양대기' }">분양대기</c:when>
+								<c:when test="${b_state eq '분양중' }">분양중</c:when>
+								<c:when test="${b_state eq '분양완료' }">분양완료</c:when>
 							</c:choose>
 						</div>
 						<div class="view-state trade">
 							<c:set var="b_tt" value="${requestScope.data.b_tt }"/>
 							<c:choose>
-								<c:when test="${b_tt eq 0 }">무료</c:when>
-								<c:when test="${b_tt eq 1 }">유료</c:when>
-								<c:when test="${b_tt eq 2 }">경매</c:when>
+								<c:when test="${b_tt eq '무료' }">무료</c:when>
+								<c:when test="${b_tt eq '유료' }">유료</c:when>
+								<c:when test="${b_tt eq '경매' }">경매</c:when>
 							</c:choose>
 						</div>
 					</div>
@@ -75,27 +75,35 @@
 					<div class=view-info-title>지역</div>
 					<div class=view-info-content>${requestScope.data.b_loc_sido } ${requestScope.data.b_loc_gugun }</div>
 					<div class=view-info-title>나이</div>
-					<div class=view-info-content>${requestScope.data.b_age }</div>
+					<div class=view-info-content>${requestScope.data.an_age }</div>
 					<div class=view-info-title>중성화여부</div>
-					<div class=view-info-content>${requestScope.data.b_ns }</div>
+					<div class=view-info-content>${requestScope.data.an_ns }</div>
 					<div class=view-info-title>견종/묘종</div>
 					<div class=view-info-content>${requestScope.data.an_type2 }</div>
 					<div class=view-info-title>성별</div>
-					<div class=view-info-content>${requestScope.data.b_gender }</div>
+					<div class=view-info-content>${requestScope.data.an_gender }</div>
 				</div>
 				<div class="view-button-container">
 					<input type="button" class="view-info-button favorite" value="찜하기">
 					<input type="button" class="view-info-button contact" value="연락하기">
-					<input type="button" class="view-info-button buy" value="분양신청">
+					<c:choose>
+						<c:when test="${requestScope.data.b_state eq '분양완료' }">
+							<input type="button" class="view-info-button none" value="분양완료">
+						</c:when>
+						<c:otherwise>
+							<input type="button" class="view-info-button buy" value="분양신청">
+						</c:otherwise>
+					</c:choose>
+					
 				</div> 
 				
 			</div>
 		</div>
 		
 		<!-- 상세설명 -->
-		<button>상세설명</button>  <!-- onclick view-detail-container display none 풀기 -->
+		<button class="view-detail">상세설명</button>  <!-- onclick view-detail-container display none 풀기 -->
 		<div class="view-detail-container">
-			<div class="view-detail-content"></div>
+			<div class="view-detail-content">${requestScope.data.b_ctnt }</div>
 			<div class="view-detail-report">신고하기</div>
 		</div>
 		
