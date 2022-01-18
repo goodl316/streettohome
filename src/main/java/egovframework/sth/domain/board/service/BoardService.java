@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.sth.domain.board.domain.AnimalDTO;
@@ -48,9 +49,42 @@ public class BoardService {
 		return futils.getFileNameList(path);
 	}
 	
+	public BoardVO modselboard(BoardVO vo) {
+		return mapper.modselboard(vo);
+	};
+	@Transactional
+	public int updBoard(BoardVO vo) {
+		mapper.updateAnimal(vo);
+		return mapper.updateBoard(vo);
+	}
+	
+	public int updAnimal(BoardVO vo) {
+		return mapper.updateAnimal(vo);
+	}
+	
 	public AnimalDTO selinfo(AnimalDTO dto) {
+		System.out.println("111111111111111111");
+		AnimalDTO vo = mapper.selinfo(dto);
+		System.out.println("222222222222222222222");
+		System.out.println(vo.getAn_img());
+		String path = "/img/board/an_"+dto.getB_no()+"/"+dto.getChkImg();
+		System.out.println(path);
+		if(futils.delFile(path)) {
+			System.out.println("성공");
+		}else {
+			System.out.println("실패");
+		}
+		System.out.println("3333333333333333333");
 		
-		return mapper.selinfo(dto);
+		if(vo.getAn_img() == dto.getChkImg()) {
+			System.out.println("4444444444444444444444");
+			dto.setAn_img("");
+			dto.setAn_no(dto.getB_no());
+			mapper.updpatImg(dto);
+		}
+		System.out.println("55555555555555555555555");
+		
+		return vo;
 	}
 	
 	
