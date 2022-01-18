@@ -72,20 +72,6 @@ public class BoardController {
 	}
 	
 	
-	
-	@ResponseBody
-	@GetMapping("/board/dogList")
-	public List<BoardVO> board(Model model, BoardVO vo) {
-		MainController main = new MainController();
-		System.out.println("////////////////////////////////////");
-		System.out.println(vo.getAn_type1());
-		if(vo.getAn_type1() == "null") {
-			System.out.println("메인이로 보내버렷");
-			main.main();
-		}
-		return service.boardList(vo);
-
-	}
 
 	@GetMapping("/board/catList")
 	public void catboard(Model model) {
@@ -95,6 +81,22 @@ public class BoardController {
 	@GetMapping("/board/boardreg")
 	public void regBoard() {
 
+	}
+	
+	@GetMapping("/board/boardmod")
+	public void modBoard(Model model,int b_no) {
+		System.out.println("................................");
+		System.out.println(service.selImgList(b_no).get(0).isEmpty());
+		model.addAttribute("img_list",service.selImgList(b_no));
+		
+	}
+	
+	@ResponseBody
+	@GetMapping("/board/boardmodImg")
+	public void modBoardImg(int b_no) {
+		System.out.println("b_no:"+b_no);
+		service.selImgList(b_no);
+		
 	}
 
 	@GetMapping("/board/view")
@@ -121,6 +123,8 @@ public class BoardController {
 		val.put("b_no",dto.getB_no());
 		return val;
 	}
+	
+	
 	
 	@ResponseBody
 	@PostMapping("/board/insAnimal")
