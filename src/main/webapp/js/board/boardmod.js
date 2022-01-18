@@ -75,6 +75,7 @@ function fileRemove2(name,item){
 	var params = {
 		b_no : b_no,
 		chkImg: item
+		
 	}
 	console.log(params)
 	
