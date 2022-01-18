@@ -63,27 +63,20 @@ public class BoardService {
 	}
 	
 	public AnimalDTO selinfo(AnimalDTO dto) {
-		System.out.println("111111111111111111");
 		AnimalDTO vo = mapper.selinfo(dto);
-		System.out.println("222222222222222222222");
-		System.out.println(vo.getAn_img());
 		String path = "/img/board/an_"+dto.getB_no()+"/"+dto.getChkImg();
-		System.out.println(path);
 		if(futils.delFile(path)) {
 			System.out.println("성공");
 		}else {
 			System.out.println("실패");
 		}
-		System.out.println("3333333333333333333");
 		
 		if(vo.getAn_img() == dto.getChkImg()) {
-			System.out.println("4444444444444444444444");
 			dto.setAn_img("");
 			dto.setAn_no(dto.getB_no());
 			mapper.updpatImg(dto);
 		}
-		System.out.println("55555555555555555555555");
-		
+
 		return vo;
 	}
 	
