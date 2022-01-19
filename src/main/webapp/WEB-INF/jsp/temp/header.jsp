@@ -50,9 +50,7 @@
         </header>
         <div class="container"></div>
         <footer></footer>
-           
     </div>
 </body>
-</head>
 </html>
 <script type="text/javascript" src="/js/header/header.js"></script>

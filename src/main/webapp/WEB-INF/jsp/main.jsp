@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="../temp/header.jsp" %>
 <h1>hello World!</h1>
 <button onclick="moveList('강아지')">강아지를 집으로</button>
 <button onclick="moveList('고양이')">고양이를 집으로</button>

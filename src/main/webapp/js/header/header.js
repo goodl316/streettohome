@@ -136,3 +136,7 @@ function movePage1(nowPage, cntPerPage, an_type1) {
 function movePage2(endPage, cntPerPage, an_type1) {
 	locaiont.href = "/board/boardList?=" + (endPage + 1) + "&cntPerPage=" + cntPerPage + '&an_type1=' + an_type1
 }
+
+function moveAdmin(m_state){
+	location.href="/admin/MemberAdmin?m_state="+m_state
+}

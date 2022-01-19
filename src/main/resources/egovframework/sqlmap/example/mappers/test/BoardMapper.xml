@@ -47,6 +47,7 @@
 				animal_info b
 				ON a.b_no = b.b_no
 				WHERE b.an_type1=#{an_type1}
+				and a.b_del =0
 				order by a.b_no
 			</when>
 			<when test="an_type1 == null">
@@ -64,6 +65,7 @@
 				and b.an_type2=#{an_type2}
 				and b.an_gender =#{an_gender}
 				and a.b_price <![CDATA[<]]>#{b_price}
+				and a.b_del = 0
 				order by a.b_no
 			</when>
 		</choose>
@@ -76,6 +78,7 @@
 				left join board b
 				on a.b_no = b.b_no
 				WHERE a.an_type1=#{an_type1}
+				and b.b_del = 0
 			</when>
 			<when test="an_type1 == null">
 				select count(*) as countBoard from animal_info a
@@ -83,7 +86,7 @@
 				on a.b_no = b.b_no
 				WHERE a.an_type2 = #{an_type2} AND a.an_gender = #{an_gender} AND b.b_price <![CDATA[<]]> #{b_price} AND 
 				b.b_loc_sido = #{b_loc_sido} AND b.b_loc_gugun = #{b_loc_gugun}
-				AND b.b_tt = #{b_tt}
+				AND b.b_tt = #{b_tt} and b.b_del = 0
 			</when>
 		</choose>
 	</select>

@@ -14,7 +14,7 @@
 	제목 :
 	<input type="text" class="input_title" placeholder="제목을 입력해 주세요" >
 	<br> 내용 :
-	<input type="text" class="input_ctnt" placeholder="내용을 입력해 주세요">
+	<textarea class="input_ctnt" placeholder="내용을 입력해 주세요"></textarea>
 	<br> 이름 :
 	<input type="text" id="an_name" placeholder="이름을 입력해 주세요">
 	<br> 품종 : 

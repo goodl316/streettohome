@@ -14,7 +14,7 @@
 제목 :
 	<input type="text" class="input_title" placeholder="제목을 입력해 주세요" value="${data.b_title}">
 	<br> 내용 :
-	<input type="text" class="input_ctnt" placeholder="내용을 입력해 주세요" value="${data.b_ctnt }">
+	<textarea class="input_ctnt" placeholder="내용을 입력해 주세요" value = "${data.b_ctnt }"></textarea>
 	<br> 이름 :
 	<input type="text" id="an_name" placeholder="이름을 입력해 주세요" value = "${data.an_name }">
 	<br> 품종 : 
