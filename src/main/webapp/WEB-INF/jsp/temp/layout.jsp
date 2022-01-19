@@ -7,12 +7,11 @@
 
 </head>
 <body>
-	<div id="container">
 		<tiles:insertAttribute name="header" />
 		<section>
-			<tiles:insertAttribute name="content" />		
+			<tiles:insertAttribute name="body" />		
 		</section>		
-	</div>
+	
 </body>
 </html>
 

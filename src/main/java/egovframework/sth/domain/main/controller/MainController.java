@@ -9,7 +9,7 @@ public class MainController {
 	
 
 
-	@GetMapping("/main/main")
+	@GetMapping("/main")
 	public void main() {
 		
 	}

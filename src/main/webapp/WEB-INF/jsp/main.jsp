@@ -8,8 +8,9 @@
 </head>
 <body>
 <h1>hello World!</h1>
-<button onclick="moveList('강아지')">강아지를 안다</button>
-<button onclick="moveList('고양이')">고양이를 안다</button>
+<button onclick="moveList('강아지')">강아지를 집으로</button>
+<button onclick="moveList('고양이')">고양이를 집으로</button>
 <button onclick="regBoard()">글등록</button>
+<button onclick="moveAdmin(1)">관리자페이지</button>
 </body>
 </html>
