@@ -43,7 +43,7 @@ public class MemberController {
 			model.addAttribute("Msg", "이메일 또는 비밀번호를 확인해주세요.");
 			return "/member/login";
 		} else {
-			return "/main/main";
+			return "redirect:/";
 		}
 	}
 
@@ -140,12 +140,25 @@ public class MemberController {
 
 	/* 비밀번호 찾기 */
 	@RequestMapping(value = "/findpw", method = RequestMethod.GET)
-	public void findPwGET() throws Exception{
+	public String findPwGET() throws Exception{
+		return "/member/findpw";
 	}
 
-//	@RequestMapping(value = "/findpw", method = RequestMethod.POST)
-//	public void findPwPOST(@ModelAttribute MemberDTO param, HttpServletResponse response) throws Exception{
-//		memberService.findPw(response, param);
-//	}
+	@RequestMapping(value = "/findpw", method = RequestMethod.POST)
+	public void findPwPOST(@ModelAttribute MemberDTO param, HttpServletResponse response, Model model) throws Exception{
+		memberService.findPw(response, param);
+	}
+	
+	/* 이메일 찾기 */
+	@RequestMapping(value = "/findemail", method = RequestMethod.GET)
+	public String findemailGET() throws Exception{
+		return "/member/findemail";
+	}
+
+	@RequestMapping(value = "/findemail", method = RequestMethod.POST)
+	@ResponseBody
+	public void findemailPOST(HttpServletResponse response,@ModelAttribute MemberDTO param, Model model) throws Exception {
+		memberService.findemail(response, param);
+	}
 
 }

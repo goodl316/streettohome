@@ -72,7 +72,7 @@
 					<li>
 						<p class="tit">연락처</p>
 						<p class="form-1">
-							<input type="text" maxlength="11" id="tel1" name="m_phone"
+							<input type="text" maxlength="11" id="m_phone" name="m_phone"
 								size="11">
 						</p>
 					</li>
