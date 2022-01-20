@@ -11,6 +11,7 @@
 
 </head>
 <body>
+<input type="hidden" value="${loginMember.m_no}" class="member_no">
 	제목 :
 	<input type="text" class="input_title" placeholder="제목을 입력해 주세요" >
 	<br> 내용 :

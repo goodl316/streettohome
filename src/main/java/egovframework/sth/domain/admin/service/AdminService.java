@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import egovframework.sth.domain.admin.domain.BoardDTO;
 import egovframework.sth.domain.admin.domain.MemberDTO;
+import egovframework.sth.domain.admin.domain.ReportDTO;
+import egovframework.sth.domain.admin.domain.ReportVO;
 import egovframework.sth.domain.admin.mapper.AdminMapper;
 
 @Service
@@ -30,6 +32,13 @@ public class AdminService {
 	
 	public int delMember(MemberDTO dto) {
 		return mapper.delMember(dto);
+	}
+	
+	public int insReport(ReportDTO dto){
+		return mapper.insReport(dto);
+	}
+	public List<ReportVO> selReport(ReportDTO dto){
+		return mapper.selReport(dto);
 	}
 
 }

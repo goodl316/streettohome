@@ -15,6 +15,7 @@
 <body>
     <div>
         <header>
+        <input type="hidden" value="${sessionScope.loginMember.m_authstate}" id="loginData">
             <h1>Street to home</h1>
             <div class="login clearfix">
                 <c:choose>

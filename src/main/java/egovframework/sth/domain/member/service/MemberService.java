@@ -1,13 +1,8 @@
 package egovframework.sth.domain.member.service;
 
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.mail.HtmlEmail;
@@ -15,12 +10,10 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
+import egovframework.sth.domain.member.Utils.MyUtils;
 import egovframework.sth.domain.member.domain.MemberDTO;
 import egovframework.sth.domain.member.mapper.MemberMapper;
-import egovframework.sth.domain.member.Utils.MyUtils;
 
 @Service
 public class MemberService {
@@ -35,7 +28,6 @@ public class MemberService {
 	private MyUtils myUtils;
 
 	// 회원 가입
-	@Async("threadPoolTaskExecutor")
 	public void join(MemberDTO param) throws MessagingException, UnsupportedEncodingException {
 
 		if (param.getM_pw() != null) {

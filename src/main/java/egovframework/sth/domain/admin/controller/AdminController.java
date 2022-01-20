@@ -3,8 +3,6 @@ package egovframework.sth.domain.admin.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import egovframework.sth.domain.admin.domain.BoardDTO;
 import egovframework.sth.domain.admin.domain.MemberDTO;
+import egovframework.sth.domain.admin.domain.ReportDTO;
 import egovframework.sth.domain.admin.service.AdminService;
 
 @Controller
@@ -33,6 +32,13 @@ public class AdminController {
 	public void boardAdmin(Model model,BoardDTO dto) {
 		model.addAttribute("list", service.selBoard(dto));
 	}
+	
+	@GetMapping("/admin/ReportAdmin")
+	public void reportAdmin(Model model,ReportDTO dto) {
+		model.addAttribute("list", service.selReport(dto));
+	}
+	
+	
 	@ResponseBody
 	@PostMapping("/admin/delBoard")
 	public Map<String,Object> delBoard(@RequestBody BoardDTO dto){
@@ -49,5 +55,12 @@ public class AdminController {
 		return val;
 	}
 	
+	@ResponseBody
+	@PostMapping("/admin/insReport")
+	public Map<String,Object> insReport(ReportDTO dto){
+		Map<String,Object> val = new HashMap<>();
+		val.put("data",service.insReport(dto));
+		return val;
+	}
 
 }
