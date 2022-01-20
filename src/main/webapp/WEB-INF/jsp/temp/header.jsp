@@ -24,12 +24,16 @@
                         </p>
                     </c:when>
                     <c:otherwise>
+				    	<input id="header-session-id" type="hidden" value="${sessionScope.loginMember.m_no }">
                         <p class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">${sessionScope.loginMember.m_name} 님,
                                 반갑습니다.</a>
                         </p>
+                        <div class="nav-item message">
+                        	<div class="nav-link message"><i class="item-message-icon"></i></div>
+                        </div>
                         <p class="dropdown-menu dropdown-menu-end"
                             aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="../member/logout">로그아웃</a> <a
@@ -53,4 +57,7 @@
     </div>
 </body>
 </html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> 
+<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 <script type="text/javascript" src="/js/header/header.js"></script>
+<script type="text/javascript" src="/js/header/message.js"></script>

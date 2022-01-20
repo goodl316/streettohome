@@ -16,7 +16,6 @@ const b_no = get_query().b_no;
 
 const enddt = document.querySelector("#enddate");
 const dday = new Date(enddt.dataset.enddt);
-console.log(enddt.dataset.enddt, dday)
 const getDDay = () => {
 	// D-Day 날짜 지정
 	const setDate = new Date(dday);

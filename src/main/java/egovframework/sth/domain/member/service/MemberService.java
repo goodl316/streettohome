@@ -35,7 +35,7 @@ public class MemberService {
 	private MyUtils myUtils;
 
 	// 회원 가입
-	@Async("threadPoolTaskExecutor")
+//	@Async("threadPoolTaskExecutor")
 	public void join(MemberDTO param) throws MessagingException, UnsupportedEncodingException {
 
 		if (param.getM_pw() != null) {
@@ -48,7 +48,7 @@ public class MemberService {
 
 			// 사용자에게 보내지는 메일 작성
 			String text = String.format(
-					"<a href='http://localhost:8088/member/emailConfirm?m_email=%S&m_auth=%s'target='_blank'>이메일 인증 확인</a>,",
+					"<a href='http://localhost:8080/member/emailConfirm?m_email=%S&m_auth=%s'target='_blank'>이메일 인증 확인</a>,",
 					param.getM_email(), key);
 			String subject = "STREET TO HOME 이메일 인증";
 			myUtils.mailSender(param.getM_email(), subject, text);

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="egovframework.sth.global.common.message.mapper.MessageMapper">
+	<resultMap type="egovframework.sth.global.common.message.domain.MessageDTO" id="MessageDTO"></resultMap>
+
+	<select id="selCountMessage" resultType="int">
+		SELECT COUNT(*) FROM message WHERE ms_receiver = #{ms_receiver} AND ms_read = 0
+	</select>
+	
+	<update id="readMesaage">
+		UPDATE message
+		SET ms_read
+		WHERE ms_no = #{ms_no}
+	</update>
+	
+	<select id="selMessageList" resultMap="MessageDTO">
+		SELECT * FROM message 
+		WHERE ms_receiver = #{ms_receiver} AND ms_del = 0
+	</select>
+	
+	<insert id="insMessage">
+		INSERT INTO message
+		(ms_title, ms_receiver, ms_sender, ms_ctnt)
+		VALUES
+		(#{ms_title}, #{ms_receiver}, #{ms_sender}, #{ms_ctnt})
+	</insert>
+	
+	<update id="delMessage">
+		UPDATE message
+		SET ms_del = 1
+		WHERE ms_no = #{ms_no}
+	</update>
+	
+</mapper>

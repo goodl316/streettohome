@@ -45,7 +45,6 @@ function getReplyList() {
         })
         .then((data) => {
             makeReplyList(data.data);
-            console.log(data);
         });
 }
 // 댓글 리스트 생성
