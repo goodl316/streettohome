@@ -23,7 +23,49 @@ $('input[name=radio]').on('click', () => {
 	}
 });
 
-
 function closePopup() {
 	window.close();
 }
+
+function getParameter(param) {
+	return new URLSearchParams(location.search).get(param);
+}
+
+const b_no = getParameter('b_no');
+const m_no = getParameter('m_no');
+
+$('.report-button').on('click', ()=> {
+	const param = {
+		b_no: b_no,
+		m_no: m_no,
+		rp_ctnt: $('#rp_ctnt').val()
+	}
+	
+	const init = {
+        method: 'POST',
+        body: JSON.stringify(param),
+        headers: {
+            'accept': 'application/json',
+            'content-type': 'application/json;charset=UTF-8'
+        }
+    }
+	
+	if(param.rp_ctnt == '') {
+		alert('신고이유를 선택해주세요.')
+	} else {
+		fetch('/report', init)
+			.then((res) => {
+				if (!res.ok) {
+					alert('잘못된 접근입니다. 관리자에게 문의해주세요.');
+					window.close();
+				}
+				return res.json();
+			})
+			.then((data) => {
+				if(data.result == 1) {
+					alert('신고되었습니다.');
+					window.close();
+				}
+			});
+	}
+})

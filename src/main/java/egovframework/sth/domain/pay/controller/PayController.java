@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import egovframework.sth.domain.member.domain.MemberDTO;
+import egovframework.sth.domain.pay.domain.AuctionDTO;
 import egovframework.sth.domain.pay.domain.PayDTO;
 import egovframework.sth.domain.pay.service.PayService;
 
@@ -56,6 +57,27 @@ public class PayController {
 	public Map<String, Integer> payment(@RequestBody PayDTO param) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("result", service.payment(param));
+		return map;
+	}
+	
+	@GetMapping("/auction")
+	public String auction() {
+		return "/popup/auction";
+	}
+	
+	@ResponseBody
+	@GetMapping("/auction/info/{b_no}")
+	public Map<String, AuctionDTO> getAuctionInfo(@PathVariable int b_no) {
+		Map<String, AuctionDTO> map = new HashMap<>();
+		map.put("data", service.selAuctionInfo(b_no));
+		return map;
+	}
+	
+	@ResponseBody
+	@PostMapping("/auction")
+	public Map<String, Integer> auctionBid(@RequestBody AuctionDTO param) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("result", service.auctionBid(param));
 		return map;
 	}
 }

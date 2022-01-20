@@ -1,12 +1,14 @@
 package egovframework.sth.domain.pay.service;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import egovframework.sth.domain.member.domain.MemberDTO;
+import egovframework.sth.domain.pay.domain.AuctionDTO;
 import egovframework.sth.domain.pay.domain.PayDTO;
 import egovframework.sth.domain.pay.mapper.PayMapper;
 
@@ -15,6 +17,9 @@ public class PayService {
 
 	@Autowired
 	PayMapper mapper;
+	
+	@Autowired
+	HttpSession session;
 	
 	public PayDTO selPayInfo(int b_no) {
 		return mapper.selPayInfo(b_no);
@@ -26,9 +31,21 @@ public class PayService {
 	
 	@Transactional(rollbackFor = {Exception.class})
 	public int payment(PayDTO param) {
-			mapper.insHistory(param);
-			mapper.buy(param);
-			mapper.sell(param);
-			return mapper.boardState();
+		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
+		if(member.getM_no() != param.getBuyer()) { return 0; }
+		mapper.insHistory(param);
+		mapper.buy(param);
+		mapper.sell(param);
+		return mapper.boardState(param.getB_no());
+	}
+	
+	public AuctionDTO selAuctionInfo(int b_no) {
+		return mapper.selAuctionInfo(b_no);
+	}
+	
+	public int auctionBid(AuctionDTO param) {
+		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
+		if(member.getM_no() != param.getAc_cur_winner()) { return 0; }
+		return mapper.auctionBid(param);
 	}
 }

@@ -3,21 +3,21 @@ package egovframework.sth.domain.board.domain;
 public class BoardAuctionDTO {
 	private int m_no;
 	private int b_no;
-	private String ac_price;
-	private String ac_startprice;
+	private int ac_price;
+	private int ac_startprice;
 	private int ac_cur_winner;
 	
 	
-	public String getAc_price() {
+	public int getAc_price() {
 		return ac_price;
 	}
-	public void setAc_price(String ac_price) {
+	public void setAc_price(int ac_price) {
 		this.ac_price = ac_price;
 	}
-	public String getAc_startprice() {
+	public int getAc_startprice() {
 		return ac_startprice;
 	}
-	public void setAc_startprice(String ac_startprice) {
+	public void setAc_startprice(int ac_startprice) {
 		this.ac_startprice = ac_startprice;
 	}
 	public int getM_no() {

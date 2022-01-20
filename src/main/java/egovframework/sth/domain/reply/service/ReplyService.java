@@ -38,8 +38,8 @@ public class ReplyService {
 	public int delReply(ReplyDTO param) {
 		MemberDTO login = (MemberDTO) session.getAttribute("loginMember");
 		
-		if(login.getM_no() == param.getM_no()) {
-			return mapper.delReply(param.getR_no());
+		if(login.getM_no() == param.getM_no() || login.getM_authstate() == 999) {
+			return mapper.delReply(param);
 		}
 		return 0;
 	}

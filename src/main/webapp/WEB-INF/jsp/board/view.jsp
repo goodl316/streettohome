@@ -90,9 +90,12 @@
 						<c:when test="${requestScope.data.b_state eq '분양완료' }">
 							<input type="button" class="view-info-button none" value="분양완료">
 						</c:when>
-						<c:otherwise>
+						<c:when test="${requestScope.data.b_tt eq '경매' }">
+							<input type="button" class="view-info-button auction" value="분양신청">
+						</c:when>
+						<c:when test="${requestScope.data.b_tt eq '유료' }">
 							<input type="button" class="view-info-button buy" value="분양신청">
-						</c:otherwise>
+						</c:when>
 					</c:choose>
 					
 				</div> 

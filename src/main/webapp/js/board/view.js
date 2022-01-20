@@ -16,7 +16,7 @@ const b_no = get_query().b_no;
 
 const enddt = document.querySelector("#enddate");
 const dday = new Date(enddt.dataset.enddt);
-
+console.log(enddt.dataset.enddt, dday)
 const getDDay = () => {
 	// D-Day 날짜 지정
 	const setDate = new Date(dday);
@@ -160,7 +160,14 @@ $('.buy').on('click', ()=> {
 
 $('.none').on('click', ()=> {
 	alert('이미 분양완료된 게시글 입니다.');
-})
+});
+// --------------------- 경매 ---------------------------
+
+$('.auction').on('click', ()=> {
+	const url = '/auction?b_no=' + b_no;
+	const title = "경매참가";
+	openPopup(url, 1000, 700, title);
+});
 
 // --------------------신고하기-----------------------------
 
@@ -169,7 +176,7 @@ $('.view-detail-report').on('click', ()=> {
 	const url = '/report?b_no=' + b_no + '&m_no=' + memberPK;
 	const title = '신고하기';
 	openPopup(url, 650, 380, title);
-})
+});
 
 // ----------------------------------------------------------
 
