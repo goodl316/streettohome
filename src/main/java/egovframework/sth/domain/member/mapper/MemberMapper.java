@@ -20,5 +20,4 @@ public interface MemberMapper {
 	int upM_authstate(MemberDTO param);
 
 	void updateMember(MemberDTO param);
-	
 }

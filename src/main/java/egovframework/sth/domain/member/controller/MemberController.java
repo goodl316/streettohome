@@ -1,14 +1,20 @@
 package egovframework.sth.domain.member.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +43,7 @@ public class MemberController {
 			model.addAttribute("Msg", "이메일 또는 비밀번호를 확인해주세요.");
 			return "/member/login";
 		} else {
-			return "/main";
+			return "/main/main";
 		}
 	}
 
@@ -82,36 +88,36 @@ public class MemberController {
 
 	// 4. 이메일 인증
 	@RequestMapping(value = "/emailConfirm", method = RequestMethod.GET)
-	public String emailConfirm(@RequestParam("m_email") String m_email, @RequestParam("m_auth") String m_auth,
-			Model model) {
-		
+	public String emailConfirm(@RequestParam("m_email") String m_email,
+			@RequestParam(value = "m_auth", required = false) String m_auth, Model model) {
+
 		MemberDTO param = new MemberDTO();
 		param.setM_auth(m_auth);
 		param.setM_email(m_email);
-		
-		int result = memberService.chckM_auth(param);
-		
-		switch (result) {
-        case 0:
-            model.addAttribute("Msg", "인증이 옳바르지 않습니다.");
-            break;
 
-        case 1:
-            memberService.upM_authstate(param);
-            model.addAttribute("Msg", "회원가입한 정보로 로그인 해주세요!");
-            break;
-    }
+		int result = memberService.chckM_auth(param);
+
+		switch (result) {
+		case 0:
+			model.addAttribute("Msg", "인증이 옳바르지 않습니다.");
+			return "member/login";
+
+		case 1:
+			memberService.upM_authstate(param);
+			model.addAttribute("Msg", "회원가입한 정보로 로그인 해주세요!");
+			return "member/login";
+		}
 		model.addAttribute("Msg", "재로그인 해주세요.");
 		return "member/login";
 
 	}
-	
+
 	// 회원 정보 수정 화면
-		@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
-		public String updateMember() {
-			return "/member/updateMember";
-		}
-		
+	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
+	public String updateMember() {
+		return "/member/updateMember";
+	}
+
 	// 회원 정보 수정
 	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
 	public String updateMember(MemberDTO param, Model model) {
@@ -119,18 +125,27 @@ public class MemberController {
 		memberService.updateMember(param);
 		return "/member/login";
 	}
-	
-	 @RequestMapping("/mypage")
-	    public String mypage() {
-	        return "/member/mypage";
-	    }
-	 
-	 @RequestMapping(value = "/mypage", method = RequestMethod.POST)
-	    public String myPageMod(MemberDTO param, Model model) {
 
-	        memberService.updateMember(param);
-	        return "/member/mypage";
-	    }
+	@RequestMapping("/mypage")
+	public String mypage() {
+		return "/member/mypage";
+	}
 
-	
+//	@RequestMapping(value = "/mypage", method = RequestMethod.POST)
+//	public String myPageMod(MemberDTO param, Model model) {
+//
+//		memberService.updateMember(param);
+//		return "/member/mypage";
+//	}
+
+	/* 비밀번호 찾기 */
+	@RequestMapping(value = "/findpw", method = RequestMethod.GET)
+	public void findPwGET() throws Exception{
+	}
+
+//	@RequestMapping(value = "/findpw", method = RequestMethod.POST)
+//	public void findPwPOST(@ModelAttribute MemberDTO param, HttpServletResponse response) throws Exception{
+//		memberService.findPw(response, param);
+//	}
+
 }
