@@ -10,10 +10,10 @@
 
 	<insert id="insMember">
 		insert into member (m_email, m_pw, m_name,
-		m_nickname, m_phone, m_address, m_state)
+		m_nickname, m_phone, m_address, m_state, m_auth)
 		values (#{m_email}, #{m_pw},
 		#{m_name}, #{m_nickname}, #{m_phone},
-		#{m_address}, #{m_state})
+		#{m_address}, #{m_state}, #{m_auth})
 	</insert>
 
 	<!-- 이메일 중복 체크 -->
@@ -27,6 +27,8 @@
 		SELECT COUNT(*) FROM member
 		WHERE m_nickname = #{m_nickname}
 	</select>
+	
+	
 
 	<select id="chckM_auth"
 		resultType="egovframework.sth.domain.member.domain.MemberDTO">
@@ -38,7 +40,7 @@
 
 	<update id="upM_authstate">
 		update member
-		set m_authstate = 3
+		set m_authstate = 1
 		where m_auth = #{m_auth}
 		and m_email = #{m_email}
 	</update>
@@ -46,11 +48,9 @@
 	<update id="updateMember"> 
 	UPDATE member 
 	SET m_pw=#{m_pw}, m_phone=#{m_phone}, m_nickname=#{m_nickname}, m_zipcode=#{m_zipcode}, m_address=#{m_address} WHERE m_email=#{m_email} </update>
-
-
-
-
-
-
+	
+	<select id="findEmail" parameterType="String" resultType="String">
+		select id from member where m_name=#{m_name}, m_phone=#{m_phone}
+	</select>
 
 </mapper>

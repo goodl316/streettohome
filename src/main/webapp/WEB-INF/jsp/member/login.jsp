@@ -47,7 +47,7 @@
 
 					<ul class="link-box">
 						<li><a href="#">이메일찾기</a></li>
-						<li><a href="#">비밀번호찾기</a></li>
+						<li><a href="../member/findPw">비밀번호찾기</a></li>
 					</ul>
 				</fieldset>
 			</form>
