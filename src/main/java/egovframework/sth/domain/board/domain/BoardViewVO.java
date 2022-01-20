@@ -7,7 +7,7 @@ public class BoardViewVO {
 	private String b_ctnt;
 	private String b_dt;
 	private int b_hit;
-	private String b_price;
+	private int b_price;
 	private String b_loc_sido;
 	private String b_loc_gugun;
 	private String b_tt;
@@ -86,10 +86,10 @@ public class BoardViewVO {
 	public void setB_enddt(String b_enddt) {
 		this.b_enddt = b_enddt;
 	}
-	public String getB_price() {
+	public int getB_price() {
 		return b_price;
 	}
-	public void setB_price(String b_price) {
+	public void setB_price(int b_price) {
 		this.b_price = b_price;
 	}
 	public String getB_loc_sido() {

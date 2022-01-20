@@ -14,11 +14,6 @@ public class PayDTO {
 	
 	private final int fee = 5;
 	
-	
-	@Override
-	public String toString() {
-		return "b_no"+b_no+"/b_price"+b_price+"/m_no"+m_no+"/buyer"+buyer;
-	}
 	public void setB_state(String b_state) {
 		this.b_state = b_state;
 	}

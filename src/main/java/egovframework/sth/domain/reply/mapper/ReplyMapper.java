@@ -14,6 +14,6 @@ public interface ReplyMapper {
 	int insReReply(ReplyDTO param);
 	int updReReply(ReplyDTO param);
 	List<ReplyDTO> selReply(int b_no);
-	int delReply(int r_no);
+	int delReply(ReplyDTO param);
 	
 }

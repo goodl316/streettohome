@@ -71,6 +71,9 @@ function payment() {
 			if(data.result == 1) {
 				alert('결제가 완료되었습니다.');
 				window.close();
+			} else {
+				alert('잘못된 접근입니다. 관리자에게 문의해주세요.');
+				window.close();
 			}
 		});
 }

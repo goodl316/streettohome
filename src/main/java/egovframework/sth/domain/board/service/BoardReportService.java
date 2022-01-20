@@ -13,11 +13,6 @@ public class BoardReportService {
 	BoardReportMapper mapper;
 	
 	public int insReport(BoardReportDTO param) {
-		try {
-			return mapper.insReport(param);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 0;
-		}
+		return mapper.insReport(param);
 	}
 }
