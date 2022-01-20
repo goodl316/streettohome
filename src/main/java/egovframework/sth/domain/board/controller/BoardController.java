@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.sth.domain.board.domain.AnimalDTO;
+import egovframework.sth.domain.board.domain.AuctionDTO;
 import egovframework.sth.domain.board.domain.BoardDTO;
 import egovframework.sth.domain.board.domain.BoardVO;
 import egovframework.sth.domain.board.domain.BoardViewVO;
@@ -183,6 +184,14 @@ public class BoardController {
         val.put("result", service.delSaleModImg(path));
         return val;
     }
+	
+	@ResponseBody
+	@PostMapping("/board/insAuction")
+	public Map<String,Object> insAuction(@RequestBody AuctionDTO dto){
+		Map<String,Object> val = new HashMap<>(); 
+		val.put("data", service.insAuction(dto));
+		return val;
+	}
 
 	
 	

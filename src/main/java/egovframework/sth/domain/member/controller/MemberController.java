@@ -43,7 +43,7 @@ public class MemberController {
 			model.addAttribute("Msg", "이메일 또는 비밀번호를 확인해주세요.");
 			return "/member/login";
 		} else {
-			return "/main/main";
+			return "redirect:/";
 		}
 	}
 

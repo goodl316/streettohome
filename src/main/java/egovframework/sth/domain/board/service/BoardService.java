@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.sth.domain.board.domain.AnimalDTO;
+import egovframework.sth.domain.board.domain.AuctionDTO;
 import egovframework.sth.domain.board.domain.BoardDTO;
 import egovframework.sth.domain.board.domain.BoardVO;
 import egovframework.sth.domain.board.domain.BoardViewVO;
@@ -152,5 +153,8 @@ public class BoardService {
         }
         return 0;
     }
+	public int insAuction(AuctionDTO dto) {
+		return mapper.insAuction(dto);
+	}
 	
 }

@@ -134,6 +134,15 @@ function animalReg(b_no){
 }
 
 function boardReg() {
+	
+	var m_no = $('.member_no').val()
+	
+	if(m_no == null || m_no == 0){
+		alert('로그인후 이용해 주세요')
+		location.href = `/member/login`
+		return;
+	}
+	
 	var title = document.querySelector(".input_title").value
 	var ctnt = document.querySelector('.input_ctnt').value
 	var price = document.querySelector('.input_price')
@@ -170,6 +179,7 @@ function boardReg() {
 		b_loc_sido: sido,
 		b_loc_gugun: gun,
 		b_tt: b_tt_value,
+		m_no : m_no
 	}
 
 	boardregAjax(params)
@@ -188,6 +198,9 @@ function boardregAjax(params) {
 		success: function(data) {
 			console.log(data)
 			animalReg(data.b_no)
+			if(params.b_tt == "경매"){
+				insAuction(data.b_no)
+			}
 			
 		}
 	})
@@ -212,6 +225,44 @@ function animalregAjax(params) {
 }
 
 
+function insAuction(b_no){
+	
+	var price = document.querySelector('.input_price')
+	
+	if (price) {
+		price = document.querySelector('.input_price').value
+	} else {
+		price = 0;
+	}
+	
+	var m_no = $('.member_no').val()
+	
+	var params = {
+		ac_startprice : price,
+		ac_price : price,
+		m_no : m_no,
+		b_no : b_no
+		
+	}
+	
+	console.log(params
+	)
+	
+	fetch(`/board/insAuction`,{
+		method: 'post',
+		headers : {
+			'Content-Type' : 'application/json'
+		},
+		body : JSON.stringify(params)
+	}).then(function(res){
+		return res.json()
+	}).then(function(data){
+			if(data == 1){
+				console.log("Aaa")
+			}	
+	})
+	
+}
 
 
 

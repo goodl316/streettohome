@@ -1,5 +1,13 @@
+var loginData = document.querySelector('#loginData').value
+console.log(loginData)
+var chkauth = document.querySelector('.chkauth').value
+console.log("dddd",chkauth)
+
 
 function regBoard() {
+console.log(loginData)	
+	
+	
 	location.href = `/board/boardreg`
 }
 
