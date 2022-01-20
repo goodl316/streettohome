@@ -164,7 +164,7 @@ public class MemberService {
 
 	// 비밀번호 찾기
 //	@Override
-//	public void findPw(HttpServletResponse response, MemberDTO vo) throws Exception {
+//	public void findPw(HttpServletResponse response, MemberDTO param) throws Exception {
 //		response.setContentType("text/html;charset=utf-8");
 //		MemberDTO ck = mdao.readMember(vo.getId());
 //		PrintWriter out = response.getWriter();

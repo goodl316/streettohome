@@ -28,6 +28,11 @@
 		WHERE m_nickname = #{m_nickname}
 	</select>
 	
+	<select id="readMember" resultType="int">
+	select m_email from member
+	where m_name={#m_name}, m_email={#m_email}
+	</select>
+	
 	
 
 	<select id="chckM_auth"
