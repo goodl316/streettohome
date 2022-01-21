@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="egovframework.sth.domain.ask.mapper.AskMapper">
+
+	<resultMap
+		type="egovframework.sth.domain.ask.domain.AskDTO" id="AskDTO" />
+		
+	<insert id="insAsk">
+	insert into ask
+	(ak_title,ak_ctnt,m_no)
+	values(
+	#{ak_title},#{ak_ctnt},#{m_no})
+	</insert>
+	
+	
+	
+	
+	
+
+		
+
+
+</mapper>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
+import egovframework.sth.domain.admin.domain.AskDTO;
 import egovframework.sth.domain.admin.domain.BoardDTO;
 import egovframework.sth.domain.admin.domain.MemberDTO;
 import egovframework.sth.domain.admin.domain.ReportDTO;
@@ -15,7 +16,10 @@ public interface AdminMapper {
 	List<MemberDTO> selMember(MemberDTO dto);
 	List<BoardDTO> selBoard(BoardDTO dto);
 	List<ReportVO> selReport(ReportDTO dto);
+	List<AskDTO> selAskList(AskDTO dto);
+	AskDTO selAsk(AskDTO dto);
 	int delBoard(BoardDTO dto);
 	int delMember(MemberDTO dto);
 	int insReport(ReportDTO dto);
+	int delAsk(AskDTO dto);
 }
