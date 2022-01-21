@@ -21,6 +21,7 @@
 	<br> 품종 : 
 	<select name="an_type1" id="an_type1"></select>
 	<select name="an_type2" id="an_type2"></select><br>
+	<div class="enddt_contain"></div>
 	<div class="price_contain"></div>
 	<br>
 	<input id="input_img" name="input_img" type="file" multiple accept="image/*"

@@ -3,6 +3,8 @@ package egovframework.sth.domain.admin.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.ws.rs.POST;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +49,17 @@ public class AdminController {
 	@GetMapping("/admin/detailAsk")
 	public void detailAsk(Model model,AskDTO dto) {
 		model.addAttribute("data", service.selAsk(dto));
+	}
+	
+	@GetMapping("/admin/bannerAdmin")
+	public void adminBanner() {
+		
+	}
+	
+	@PostMapping("/admin/insbanner")
+	public Map<String,Object> insbanner(){
+		Map<String,Object> val = new HashMap<>();
+		return val;
 	}
 	
 	@ResponseBody
