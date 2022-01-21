@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import egovframework.sth.domain.admin.domain.AskDTO;
 import egovframework.sth.domain.admin.domain.BoardDTO;
 import egovframework.sth.domain.admin.domain.MemberDTO;
 import egovframework.sth.domain.admin.domain.ReportDTO;
@@ -38,6 +39,15 @@ public class AdminController {
 		model.addAttribute("list", service.selReport(dto));
 	}
 	
+	@GetMapping("/admin/AskAdmin")
+	public void askAdmin(Model model,AskDTO dto) {
+		model.addAttribute("list", service.selAskList(dto));
+	}
+	
+	@GetMapping("/admin/detailAsk")
+	public void detailAsk(Model model,AskDTO dto) {
+		model.addAttribute("data", service.selAsk(dto));
+	}
 	
 	@ResponseBody
 	@PostMapping("/admin/delBoard")
@@ -60,6 +70,14 @@ public class AdminController {
 	public Map<String,Object> insReport(ReportDTO dto){
 		Map<String,Object> val = new HashMap<>();
 		val.put("data",service.insReport(dto));
+		return val;
+	}
+	
+	@ResponseBody
+	@PostMapping("/admin/delAsk")
+	public Map<String,Object> delAsk(@RequestBody AskDTO dto){
+		Map<String,Object> val = new HashMap<>();
+		val.put("data", service.delAsk(dto));
 		return val;
 	}
 

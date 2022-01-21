@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import egovframework.sth.domain.admin.domain.AskDTO;
 import egovframework.sth.domain.admin.domain.BoardDTO;
 import egovframework.sth.domain.admin.domain.MemberDTO;
 import egovframework.sth.domain.admin.domain.ReportDTO;
@@ -40,5 +41,14 @@ public class AdminService {
 	public List<ReportVO> selReport(ReportDTO dto){
 		return mapper.selReport(dto);
 	}
-
+	
+	public List<AskDTO> selAskList(AskDTO dto){
+		return mapper.selAskList(dto);
+	}
+	public int delAsk(AskDTO dto) {
+		return mapper.delAsk(dto);
+	}
+	public AskDTO selAsk(AskDTO dto) {
+		return mapper.selAsk(dto);
+	}
 }

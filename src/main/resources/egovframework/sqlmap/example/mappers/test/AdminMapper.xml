@@ -8,6 +8,8 @@
 	<resultMap
 		type="egovframework.sth.domain.admin.domain.MemberDTO" id="MemberDTO" />
 	<resultMap
+		type="egovframework.sth.domain.admin.domain.AskDTO" id="AskDTO" />
+	<resultMap
 		type="egovframework.sth.domain.admin.domain.BoardDTO" id="BoardDTO" />
 	<resultMap
 		type="egovframework.sth.domain.admin.domain.BoardVO" id="BoardVO" />
@@ -43,35 +45,56 @@
 	<select id="selReport" resultMap="ReportVO">
 		<if test="an_type1 == null">
 			select a.rp_no,a.b_no,
-			(select d.m_name from member where d.m_no = a.m_no) as wr_no,
+			(select d.m_name from member where
+			d.m_no = a.m_no) as wr_no,
 			a.rp_ctnt,b.b_title,
-			(select d.m_name from member where d.m_no = b.m_no) as name,
+			(select d.m_name from
+			member where d.m_no = b.m_no) as name,
 			c.an_type1 from
 			report a
-			left join board b
+			left
+			join board b
 			on a.b_no = b.b_no
 			left join animal_info c
-			on a.b_no = c.b_no
+			on a.b_no =
+			c.b_no
 			left join member d
 			on a.m_no = d.m_no;
 		</if>
 		<if test="an_type1 != null ">
 			select a.rp_no,a.b_no,
-			(select d.m_name from member where d.m_no = a.m_no) as wr_no,
+			(select d.m_name from member where
+			d.m_no = a.m_no) as wr_no,
 			a.rp_ctnt,b.b_title,
-			(select d.m_name from member where d.m_no = b.m_no) as name,
+			(select d.m_name from
+			member where d.m_no = b.m_no) as name,
 			c.an_type1,d.m_name from
-			report a
+			report
+			a
 			left join board b
 			on a.b_no = b.b_no
 			left join animal_info c
-			on a.b_no = c.b_no
+			on a.b_no
+			= c.b_no
 			left join member d
 			on a.m_no = d.m_no;
-			where c.an_type1 = #{an_type1}
+			where c.an_type1 =
+			#{an_type1}
 		</if>
 	</select>
-
+	<select id="selAskList" resultMap="AskDTO">
+	select a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,a.m_no,b.m_name from ask a
+	left join member b
+	on a.m_no = b.m_no
+	where a.ak_del = 0
+	</select>
+	
+	<select id="selAsk" resultMap="AskDTO">
+	select a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,b.m_name,b.m_email from ask a 
+	left join member b
+	on a.m_no = b.m_no
+	where ak_no = #{ak_no}
+	</select>
 
 	<update id="delBoard">
 		update board
@@ -83,5 +106,12 @@
 		set m_state = 3
 		where m_no = #{m_no}
 	</update>
-
+	
+	<update id="delAsk">
+	update ask
+	set ak_del =1
+	where ak_no = #{ak_no}
+	</update>
+		
+	
 </mapper>
