@@ -147,6 +147,7 @@ public class BoardController {
 		val.put("data", service.insBoard(dto));
 		System.out.println("b_no:" + dto.getB_no()); 
 		val.put("b_no",dto.getB_no());
+		val.put("b_enddt", dto.getB_enddt());
 		return val;
 	}
 	
