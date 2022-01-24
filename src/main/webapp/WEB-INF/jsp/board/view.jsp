@@ -80,8 +80,8 @@
 					<div class=view-info-content>${requestScope.data.an_gender }</div>
 				</div>
 				<div class="view-button-container">
-					<input type="button" class="view-info-button favorite" value="찜하기">
-					<input type="button" class="view-info-button contact" value="연락하기">
+					<input type="button" class="view-info-button favorite" value="찜">
+					<input type="button" class="view-info-button message" value="쪽지" onclick="openWriteMessage(${requestScope.data.m_no})">
 					<c:choose>
 						<c:when test="${requestScope.data.b_state eq '분양완료' }">
 							<input type="button" class="view-info-button none" value="분양완료">
@@ -111,23 +111,14 @@
 			<div class="view-reply-text-container">
 				 <div>댓글쓰기</div>
 				 <div id="view-reply-write">
-				 	<form onsubmit="return false;">
+				 	<form onsubmit="return false;" class="reply-form">
 					 	<textarea id="reply-txtarea" class="view-reply-textarea" maxlength="600" placeholder="댓글을 입력하세요(최대 600자)"></textarea>
-				 		<input type="button" class="view-reply-button" value="작성">
+				 		<input id="reply-submit" type="button" class="view-reply-button" value="작성">
 				 	</form>
 				 					 	
 				 </div>
 			</div>
 			<div class="view-reply-list-container">
-				<!-- <div class="view-reply-list-header">
-					<div class="view-reply-writer"># 님</div>
-					<div class="view-reply-date">yyyy.mm.dd hh:mm</div>
-				</div>			
-				<div class="view-reply-list-body">content</div>			
-				<div class="view-reply-list-footer">
-					<div class="view-reply-rereply">답글달기</div>
-					<div class="view-reply-report">신고하기</div>
-				</div> -->
 				<ul class="view-reply-list"></ul>
 			</div>
 		</div>
@@ -136,7 +127,7 @@
 	</div>
 </body>
 
+<script defer type="text/javascript" src="/js/member/message.js"></script>
 <script defer type="text/javascript" src="/js/board/view.js"></script>
 <script defer type="text/javascript" src="/js/board/reply.js"></script>
-<script defer type="text/javascript" src="/js/board/fav.js"></script>
 </html>

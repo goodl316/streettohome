@@ -1,4 +1,4 @@
-package egovframework.sth.global.common.message.domain;
+package egovframework.sth.domain.message.domain;
 
 public class MessageDTO {
 	private String ms_title;
@@ -8,7 +8,37 @@ public class MessageDTO {
 	private int ms_read;
 	private String ms_dt;
 	private int ms_chk;
+	private int ms_no;
 	
+	private String receiver;
+	private String sender;
+	
+	private int[] checkVal;
+	
+	public int[] getCheckVal() {
+		return checkVal;
+	}
+	public void setCheckVal(int[] checkVal) {
+		this.checkVal = checkVal;
+	}
+	public int getMs_no() {
+		return ms_no;
+	}
+	public void setMs_no(int ms_no) {
+		this.ms_no = ms_no;
+	}
+	public String getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
+	public String getSender() {
+		return sender;
+	}
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
 	public String getMs_title() {
 		return ms_title;
 	}

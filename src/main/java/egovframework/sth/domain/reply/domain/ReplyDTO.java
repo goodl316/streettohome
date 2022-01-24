@@ -11,7 +11,14 @@ public class ReplyDTO {
 	private int b_no;
 	private int r_del;
 	private int m_no;
+	private String r_writer;
 	
+	public String getR_writer() {
+		return r_writer;
+	}
+	public void setR_writer(String r_writer) {
+		this.r_writer = r_writer;
+	}
 	public int getM_no() {
 		return m_no;
 	}

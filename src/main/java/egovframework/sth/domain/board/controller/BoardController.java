@@ -127,6 +127,7 @@ public class BoardController {
 	@GetMapping("/board/view")
 	public Map<String, BoardViewVO> view(BoardDTO param) {
 		Map<String, BoardViewVO> map = new HashMap<>();
+		service.boardHit(param.getB_no());
 		map.put("data", service.selBoardView(param));
 		return map;
 	}

@@ -1,21 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="egovframework.sth.global.common.message.mapper.MessageMapper">
-	<resultMap type="egovframework.sth.global.common.message.domain.MessageDTO" id="MessageDTO"></resultMap>
+<mapper namespace="egovframework.sth.domain.message.mapper.MessageMapper">
+	<resultMap type="egovframework.sth.domain.message.domain.MessageDTO" id="MessageDTO"></resultMap>
 
 	<select id="selCountMessage" resultType="int">
 		SELECT COUNT(*) FROM message WHERE ms_receiver = #{ms_receiver} AND ms_read = 0
 	</select>
 	
-	<update id="readMesaage">
+	<select id="selCountTotalMessage" resultType="int">
+		SELECT COUNT(*) FROM message WHERE 
+		<choose>
+			<when test="ms_receiver == 0">
+				ms_sender = #{ms_sender}
+			</when>
+			<otherwise>
+				 ms_receiver = #{ms_receiver}
+			</otherwise>
+		</choose>
+		AND ms_del = 0
+	</select>
+	
+	<update id="readMessage">
 		UPDATE message
-		SET ms_read
-		WHERE ms_no = #{ms_no}
+		SET ms_read = 1
+		WHERE
+		<foreach collection="checkVal" index="index" item="checkVal" separator="or">
+            ms_no = #{checkVal}
+        </foreach>
 	</update>
 	
 	<select id="selMessageList" resultMap="MessageDTO">
-		SELECT * FROM message 
-		WHERE ms_receiver = #{ms_receiver} AND ms_del = 0
+		SELECT *, 
+		(SELECT m_nickname FROM member WHERE m_no = ms_sender) AS sender, 
+		(SELECT m_nickname FROM member WHERE m_no = ms_receiver) AS receiver
+		FROM message 
+		WHERE
+		<choose>
+			<when test="ms_receiver == 0">
+				ms_sender = #{ms_sender}
+			</when>
+			<otherwise>
+				 ms_receiver = #{ms_receiver}
+			</otherwise>
+		</choose>
+		  AND ms_del = 0
+		  LIMIT #{firstIndex}, #{recordCountPerPage}
+	</select>
+	
+	<select id="selMessage" resultMap="MessageDTO">
+		SELECT *,
+		(SELECT m_nickname FROM member WHERE m_no = #{ms_receiver}) AS receiver, 
+		(SELECT m_nickname FROM member WHERE m_no = #{ms_sender}) AS sender
+		FROM message
+		WHERE ms_no = #{ms_no}
 	</select>
 	
 	<insert id="insMessage">
@@ -27,8 +64,16 @@
 	
 	<update id="delMessage">
 		UPDATE message
-		SET ms_del = 1
-		WHERE ms_no = #{ms_no}
+        SET ms_del = 1
+        WHERE
+        <foreach collection="checkVal" index="index" item="checkVal" separator="or">
+            ms_no = #{checkVal}
+        </foreach>
 	</update>
+	
+	<select id="getNickname" resultType="String">
+		SELECT m_nickname FROM member
+		WHERE m_no = #{ms_receiver}
+	</select>
 	
 </mapper>

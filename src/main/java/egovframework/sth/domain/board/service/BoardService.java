@@ -153,4 +153,8 @@ public class BoardService {
         return 0;
     }
 	
+	public int boardHit(int b_no) {
+		return mapper.boardHit(b_no);
+	}
+	
 }

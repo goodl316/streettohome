@@ -5,18 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import egovframework.sth.domain.member.domain.MemberDTO;
-import egovframework.sth.global.common.message.mapper.MessageMapper;
+import egovframework.sth.domain.message.mapper.MessageMapper;
 
 @Component
 public class WebSocketHandler extends TextWebSocketHandler{

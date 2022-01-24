@@ -91,7 +91,7 @@ $('.payment').on('click', ()=> {
 
 // 충전하기
 $('.pay-charge-button').on('click', ()=>{
-	location.herf = ""; 
+	location.herf = "/member/pay?m_no=" + m_no; 
 	//TODO: 충전페이지 이동
 });
 

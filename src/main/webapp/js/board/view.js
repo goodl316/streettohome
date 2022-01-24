@@ -76,8 +76,8 @@ favBtn.on('click', () => {
     }
 });
 
-function selFav() { // memberpk로변경
-    fetch('/board/fav?b_no=' + b_no + '&m_no=' + 1)
+function selFav() { 
+    fetch('/board/fav?b_no=' + b_no + '&m_no=' + memberPK)
         .then((res) => {
             return res.json();
         })
@@ -107,8 +107,8 @@ function regFav(param) {
         })
         .then((data) => {
             if (data.result == 1) {
-                if(confirm('찜묵록으로 이동하시겠습니까?')) {
-					location.href = '';  //TODO:찜목록 url이동	
+                if(confirm('찜목록으로 이동하시겠습니까?')) {
+					location.href = '/member/favlist';
 				}
             } else {
                 alert('잠시 뒤 다시 시도해 주세요');
@@ -143,12 +143,6 @@ function delFav(param) {
         });
 }
 
-// ------------------연락하기------------------------------
-
-$('.contact').on('click', ()=> {
-	alert('준비중입니다.');
-})
-
 // ---------------------구매하기 ---------------------------
 
 $('.buy').on('click', ()=> {
@@ -176,17 +170,6 @@ $('.view-detail-report').on('click', ()=> {
 	const title = '신고하기';
 	openPopup(url, 650, 380, title);
 });
-
-// ----------------------------------------------------------
-
-// 팝업창
-function openPopup(url, _width, _height, title) {
-    const _left = Math.ceil(( window.screen.width - _width )/2);
-    const _top = Math.ceil(( window.screen.height - _height )/2); 
-	const popOption = 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top;
-
-	window.open(url, title, popOption);
-}
 
 // 상세보기
 

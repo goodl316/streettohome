@@ -22,4 +22,5 @@ public interface BoardMapper {
 	BoardVO modselboard(BoardVO vo);
 	int updateBoard(BoardVO vo);
 	int updateAnimal(BoardVO vo);
+	int boardHit(int b_no);
 }

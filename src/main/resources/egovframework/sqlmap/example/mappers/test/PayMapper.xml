@@ -3,6 +3,7 @@
 <mapper namespace="egovframework.sth.domain.pay.mapper.PayMapper">
 	<resultMap type="egovframework.sth.domain.pay.domain.PayDTO" id="PayDTO"></resultMap>
 	<resultMap type="egovframework.sth.domain.pay.domain.AuctionDTO" id="AuctionDTO"></resultMap>
+	<resultMap type="egovframework.sth.domain.pay.domain.TranHistoryDTO" id="TranHistoryDTO"></resultMap>
 
 	<!-- 결제 -->
 	<select id="selPayInfo" resultMap="PayDTO">
@@ -42,6 +43,36 @@
 		((SELECT b_price FROM board WHERE b_no = #{b_no}) * #{fee}) / 100
 		, (SELECT b_price FROM board WHERE b_no = #{b_no}))
 	</insert>
+	
+	<select id="selCountList" resultType="int">
+		SELECT COUNT(*) FROM transaction_history WHERE
+		<choose>
+			<when test="idx == 0">
+				th_buyer = #{ms_no}
+			</when>
+			<otherwise>
+				th_seller = #{ms_no}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="sellHistoryList" resultMap="TranHistoryDTO">
+		SELECT T.*, B.b_title, 
+		(SELECT m_nickname FROM member WHERE m_no = T.th_buyer) AS nickname
+		FROM transaction_history AS T
+		INNER JOIN board AS B
+		ON T.b_no = B.b_no
+		WHERE T.th_seller = #{m_no}
+	</select>
+	
+	<select id="buyHistoryList" resultMap="TranHistoryDTO">
+		SELECT T.*, B.b_title, 
+		(SELECT m_nickname FROM member WHERE m_no = T.th_seller) AS nickname
+		FROM transaction_history AS T
+		INNER JOIN board AS B
+		ON T.b_no = B.b_no
+		WHERE T.th_buyer = #{m_no}
+	</select>
 	
 	<update id="chargeMoney">
 		UPDATE member
