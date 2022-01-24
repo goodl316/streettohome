@@ -42,8 +42,8 @@
             <nav>
                 <ul class="navList clearfix">
                     <li><a href="javascript:;">스트릿투홈 소개</a></li>
-                    <li><a href="javascript:;">강아지를 집으로</a></li>
-                    <li><a href="javascript:;">고양이를 집으로</a></li>
+                    <li><a href="/board/boardList?an_type1=강아지">강아지를 집으로</a></li>
+                    <li><a href="board/boardList?an_type1=고양이">고양이를 집으로</a></li>
                     <li><a href="javascript:;">후원</a></li>
                     <li><a href="javascript:;">입양후기</a></li>
                 </ul>

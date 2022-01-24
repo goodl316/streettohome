@@ -57,11 +57,11 @@ public class AdminService {
 		return mapper.selAsk(dto);
 	}
 	
-	public int bannerimgUpload(MultipartFile[] imgs, int an_no) {
+	public int bannerimgUpload(MultipartFile[] imgs, int ba_no) {
 		if(imgs.length>5 || imgs.length ==0) {
 			return 0;
 		}
-		String folder= "/img/admin/banner"+an_no;
+		String folder= "/img/admin/banner"+ba_no;
 		try {
 			for(int i=0; i<imgs.length; i++) {
 				MultipartFile file = imgs[i];
