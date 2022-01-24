@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.item_img img{
+	width: 250px;
+	height: 250px;
+}
+.list_group{
+	width:1200px;	
+	display: flex;
+	flex-wrap: wrap;
+}
+.list_item{
+	margin-left:10px;
+}

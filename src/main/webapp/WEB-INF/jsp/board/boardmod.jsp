@@ -31,7 +31,6 @@
 	<input id="input_img" name="input_img" type="file" multiple accept="image/*"
 		onchange="previewImage(this,'View_area');" onclick="deleteImg();" >
 	<br>
-	<div class="get_img_list"></div>
 	<input type="hidden" value="${param.b_no }" class="hidden_b_no">
 	
 	<span id='View_area' style='position:relative; color: black; border: 0px solid black;'> </span>

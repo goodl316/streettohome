@@ -1,4 +1,5 @@
 var img_list = document.querySelector('.get_img_list')
+var View_area = document.querySelector('#View_area')
 var b_no = document.querySelector('.hidden_b_no').value
 var formData = new FormData();
 var fileArr;
@@ -68,7 +69,7 @@ function clk() {
 }
 
 
-if(img_list){
+if(View_area){
 	console.log("asdasd")
 	console.log(b_no)
 	getImgList(b_no)
@@ -80,7 +81,7 @@ function getImgList(b_no){
 		return res.json()
 	}).then((list)=>{
 		console.log(list)
-		img_list.innerHTML = ""
+		View_area.innerHTML = ""
 		proc(b_no,list)
 	})
 	
@@ -91,12 +92,10 @@ function proc(b_no,list){
 		return
 	}
 	
-	var div = document.createElement('div')
 	for( var i=0; i<list.length; i++){
 		var recode = createRecode(b_no,list[i],i)
-		div.append(recode)
+		View_area.append(recode)
 	}
-	img_list.append(div)
 	
 	
 }
@@ -227,6 +226,7 @@ function createRecode(b_no,item,i){
 }
 
 function deleteImg(){
+	
 	$('#input_img').val("");
 	console.log("///")
 }
@@ -353,7 +353,11 @@ function previewImage(targetObj, View_area) {
 		
 	}
 	
+	if(document.querySelector('#input_img') == input_img){
+		console.log("tree")
+	}
 	
+		
 	for (var i = 0; i < input_img.files.length; i++) {
 		if(input_img.files.length>0){
 			
