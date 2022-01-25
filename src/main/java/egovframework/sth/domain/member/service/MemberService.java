@@ -28,7 +28,7 @@ public class MemberService {
 	private MyUtils myUtils;
 
 	// 회원 가입
-	public void join(MemberDTO param) throws MessagingException, UnsupportedEncodingException {
+	public int join(MemberDTO param) throws MessagingException, UnsupportedEncodingException {
 
 		if (param.getM_pw() != null) {
 			String crypPw = BCrypt.hashpw(param.getM_pw(), BCrypt.gensalt());
