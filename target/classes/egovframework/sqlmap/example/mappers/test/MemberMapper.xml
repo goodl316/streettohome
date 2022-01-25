@@ -10,10 +10,12 @@
 
 	<insert id="insMember">
 		insert into member (m_email, m_pw, m_name,
-		m_nickname, m_phone, m_address, m_state, m_auth)
-		values (#{m_email},
+		m_nickname, m_phone, m_zipcode, m_address, m_state, m_auth)
+		values
+		(#{m_email},
 		#{m_pw},
 		#{m_name}, #{m_nickname}, #{m_phone},
+		#{m_zipcode},
 		#{m_address}, #{m_state},
 		#{m_auth})
 	</insert>
@@ -30,19 +32,24 @@
 		WHERE m_nickname = #{m_nickname}
 	</select>
 
-	<select id="readMember" resultType="egovframework.sth.domain.member.domain.MemberDTO">
+	<select id="readMember"
+		resultType="egovframework.sth.domain.member.domain.MemberDTO">
 		select m_email from member
-		where m_name=#{m_name} and m_email=#{m_email}
+		where m_name=#{m_name} and
+		m_email=#{m_email}
 	</select>
-	
-	<select id="findemail" resultType="egovframework.sth.domain.member.domain.MemberDTO">
+
+	<select id="findemail"
+		resultType="egovframework.sth.domain.member.domain.MemberDTO">
 		SELECT m_email FROM member
-		WHERE m_name = #{m_name} and m_phone = #{m_phone}
+		WHERE m_name = #{m_name} and
+		m_phone = #{m_phone}
 	</select>
 
 	<!-- 비밀번호 변경 -->
 	<update id="updatePw">
-		update member set m_pw = #{m_pw} where m_email = #{m_email}
+		update member set m_pw = #{m_pw} where m_email =
+		#{m_email}
 	</update>
 
 	<select id="chckM_auth"
@@ -64,8 +71,25 @@
 
 	<update id="updateMember">
 		UPDATE member
-		SET m_pw=#{m_pw}, m_phone=#{m_phone}, m_nickname=#{m_nickname},
-		m_zipcode=#{m_zipcode}, m_address=#{m_address} WHERE
+		SET m_phone=#{m_phone},
+		m_zipcode=#{m_zipcode},
+		m_address=#{m_address}
+		<choose>
+			<when test="m_nickname != null">
+				,m_nickname = #{m_nickname}
+			</when>
+		</choose>
+		<choose>
+			<when test="m_pw != null">
+				,m_pw = #{m_pw}
+			</when>
+		</choose>
+		WHERE
 		m_email=#{m_email}
 	</update>
+	
+	<delete id="memberDelete">
+		DELETE FROM member
+		WHERE m_email = #{m_email}
+	</delete>
 </mapper>

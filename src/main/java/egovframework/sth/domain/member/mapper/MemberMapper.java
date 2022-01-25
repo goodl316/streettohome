@@ -19,11 +19,13 @@ public interface MemberMapper {
 
 	int upM_authstate(MemberDTO param);
 
-	void updateMember(MemberDTO param);
+	int updateMember(MemberDTO param);
 
 	MemberDTO readMember(MemberDTO param);
 
 	int updatePw(MemberDTO param);
 
 	MemberDTO findemail(MemberDTO param);
+	
+	int memberDelete(MemberDTO param);
 }

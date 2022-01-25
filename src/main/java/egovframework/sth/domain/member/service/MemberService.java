@@ -29,7 +29,7 @@ public class MemberService {
 
 	// 회원 가입
 	
-	public void join(MemberDTO param) throws MessagingException, UnsupportedEncodingException {
+	public int join(MemberDTO param) throws MessagingException, UnsupportedEncodingException {
 
 		if (param.getM_pw() != null) {
 			String crypPw = BCrypt.hashpw(param.getM_pw(), BCrypt.gensalt());
@@ -46,7 +46,9 @@ public class MemberService {
 			String subject = "STREET TO HOME 이메일 인증";
 			myUtils.mailSender(param.getM_email(), subject, text);
 
-			mapper.insMember(param);
+			return mapper.insMember(param);
+		}else {
+			return 0;
 		}
 	}
 
@@ -102,13 +104,15 @@ public class MemberService {
 	}
 
 	// 회원정보 수정
-	public String updateMember(MemberDTO param) {
-
+	public int updateMember(MemberDTO param) {
+		System.out.println(param.getM_pw());
+		if (param.getM_pw() != null) {
 		String hashPw = BCrypt.hashpw(param.getM_pw(), BCrypt.gensalt());
 		param.setM_pw(hashPw);
-		mapper.updateMember(param);
-		return "/member/login";
-	}
+		}
+		System.out.println(param.getM_pw());
+		return mapper.updateMember(param);
+		}
 
 	//비밀번호 찾기 이메일발송
 	public void sendEmail(MemberDTO param, String div) throws Exception {
@@ -199,4 +203,15 @@ public class MemberService {
 			out.close();
 		}
 	}
+	
+	public int memberDelete(MemberDTO param) throws Exception {
+		MemberDTO member = mapper.selMember(param);
+		System.out.println(member.getM_pw());
+		if (param.getM_pw() != null && BCrypt.checkpw(param.getM_pw(), member.getM_pw())) {
+			return mapper.memberDelete(param);
+		}
+		System.out.println(param.getM_pw());
+		return 0;		
+	}
 }
+	
