@@ -42,8 +42,8 @@ public class BoardService {
 		return mapper.countBoard(vo);
 	}
 	
-	public List<String> selImgList(int an_no){
-		String folder = "/img/board/an_"+an_no;
+	public List<String> selImgList(int b_no){
+		String folder = "/img/board/an_"+b_no;
 		String path = futils.getBasePath(folder);
 		
 		return futils.getFileNameList(path);

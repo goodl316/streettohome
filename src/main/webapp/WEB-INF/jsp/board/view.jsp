@@ -102,7 +102,11 @@
 		<!-- 상세설명 -->
 		<button class="view-detail">상세설명</button>  <!-- onclick view-detail-container display none 풀기 -->
 		<div class="view-detail-container">
-			<div class="view-detail-content">${requestScope.data.b_ctnt }</div>
+			<div class="view-detail-content">
+			<div class="view-detail-img">
+			</div>
+			${requestScope.data.b_ctnt }
+			</div>
 			<div class="view-detail-report">신고하기</div>
 		</div>
 		

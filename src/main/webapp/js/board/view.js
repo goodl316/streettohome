@@ -171,9 +171,40 @@ $('.view-detail-report').on('click', ()=> {
 	openPopup(url, 650, 380, title);
 });
 
-// 상세보기
+// ----------상세보기----------------
 
 $('.view-detail').on('click', ()=> {
 	$('.view-detail-container').toggle();
 });
 
+
+// ----------------이미지 가져오기-------------
+function getImgList(){
+	fetch(`/board/boardmodImg?b_no=${b_no}`)
+	.then((res) =>{
+		return res.json()
+	}).then((list) =>{
+		$('.view-detail-img').html('');
+		if(list.length == 0) {
+			return;
+		}
+		var div = document.createElement('div')
+		const item = $('<div class="view-img-item"><div>');
+		for( var i=0; i<list.length; i++){
+			let recode = createRecode(b_no,list[i]);
+			item.append(recode);
+		}
+		$('.view-detail-img').append(div);
+	})
+}
+
+function createRecode(b_no, item){
+	const search = item.indexOf('.');
+	const name = item.substr(0,search);
+	
+	const imgItem = document.createElement('div');
+	imgItem.id='img_id_'+name
+	imgItem.innerHTML = `<img src="/img/board/an_${b_no}/${item}" onclick="fileRemove2('${name}','${item}')">`
+	
+	return imgItem;
+}
