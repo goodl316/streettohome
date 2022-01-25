@@ -18,10 +18,13 @@ public interface AdminMapper {
 	List<BoardDTO> selBoard(BoardDTO dto);
 	List<ReportVO> selReport(ReportDTO dto);
 	List<AskDTO> selAskList(AskDTO dto);
+	List<BannerDTO> bannerList(BannerDTO dto);
+	BannerDTO selinfo(BannerDTO dto);
 	AskDTO selAsk(AskDTO dto);
 	int delBoard(BoardDTO dto);
 	int delMember(MemberDTO dto);
 	int insReport(ReportDTO dto);
 	int delAsk(AskDTO dto);
-	int updbannerImg(BannerDTO dto);
+	int updBannerImg(BannerDTO dto);
+	int insBannerImg(BannerDTO dto);
 }

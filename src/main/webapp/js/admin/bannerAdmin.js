@@ -1,106 +1,34 @@
-
 var fileArr;
 var fileInfoArr = [];
 var fullName = [];
-var viewcontainer = document.querySelector('.viewcontainer')
-var View_area1 = $('#View_are1')
-var formData1 = new FormData();
-var View_area2 = $('#View_are2')
-var formData2 = new FormData();
-var View_area3 = $('#View_area3')
-var formData3 = new FormData();
-var View_area4 = $('#View_area4')
-var formData4 = new FormData();
-var View_area5 = $('#View_area5')
-var formData5 = new FormData();
 var formData = new FormData();
 
-
+function fileRemove2(name,item,ba_no){
 	
+	var imgId = "#img_id_"+name
+	$(imgId).remove()
 	
-
-	
-	
-
-
-
-
-
-function getImgList(b_no){
-	fetch(`/board/boardmodImg?b_no=${b_no}`)
-	.then(function(res){
-		return res.json()
-	}).then((list)=>{
-		console.log(list)
-		View_area1.innerHTML = ""
-		proc(b_no,list)
-	})
-	
-}
-
-function proc(b_no,list){
-	if(list.length ==0){
-		return
-	}
-	
-	var div = document.createElement('div')
-	for( var i=0; i<list.length; i++){
-		var recode = createRecode(b_no,list[i],i)
-		div.append(recode)
-	}
-	View_Area.append(div)
-	
-	
-}
-
-function createRecode(b_no,item){
-	console.log("re:",b_no)
-	console.log("itme",item)
-	const search = item.indexOf('.')
-	const name = item.substr(0,search)
-	console.log(name)
-	
-	var span = document.createElement('span')
-	span.id='img_id_'+name
-	span.innerHTML=
-	`
-	
-	<img src="/img/board/an_${b_no}/${item}" onclick="fileRemove2('${name}','${item}')">
-	
-	`
-	fileInfoArr.push(item)
-	console.log(span)
-	console.log(fileInfoArr)
-	fullName.push(item)
-	
-	return span
-	
-}
-
-
-
-
-
-
-function deleteImg(num){
-	switch(num){
-		case 1 :
-		$('#input_img1').val("");
-		break;
-		case 2 :
-		$('#input_img2').val("");
-		break;
-		case 3 :
-		$('#input_img3').val("");
-		break;
-		case 4 :
-		$('#input_img4').val("");
-		break;
-		case 5 :
-		$('#input_img5').val("");
-		break;
+	var params = {
+		ba_no : ba_no,
+		chkImg: item
 		
 	}
+	console.log(params)
+	
+	fetch(`/admin/delimg`,{
+		method:'post',
+		headers : {
+			"Content-Type" : "application/json"
+		},
+		body:JSON.stringify(params)
+	}).then(function(res){
+		return res.json()
+	}).then(function(data){
+		if(data == 1){
+			console.log("sucess")
+		}
+	})
+	
 }
 
 function fileRemove(fileNm) {
@@ -134,34 +62,10 @@ function fileRemove(fileNm) {
 function previewImage(targetObj, View_area) {
 	var files = targetObj.files;
 	fileArr=Array.prototype.slice.call(files);
-		console.log(View_area1)
-		
-	switch(View_area){
-		case 'View_area1':
-		var preview = document.querySelector('#View_area1')
-		var input_img = document.querySelector('#input_img1')
-			break;
-		case 'View_area2':
-			var preview = document.querySelector('#View_area2')
-		var input_img = document.querySelector('#input_img2')
-		break;
-		case 'View_area3':
-			var preview = document.querySelector('#View_area3')
-		var input_img = document.querySelector('#input_img3')
-		break;
-		case 'View_area4':
-			var preview = document.querySelector('#View_area4')
-		var input_img = document.querySelector('#input_img4')
-		break;
-		case 'View_area5':
-			var preview = document.querySelector('#View_area5')
-		var input_img = document.querySelector('#input_img5')
-		break;
-	}
-	console.log(preview)
-//	var preview = document.getElementById(View_area1); //div id
-	var ua = window.navigator.userAgent;
 
+
+	var preview = document.getElementById(View_area); //div id
+	var ua = window.navigator.userAgent;
 
 
 
@@ -221,16 +125,93 @@ function previewImage(targetObj, View_area) {
 	}
 	
 	
-	for (var i = 1; i < 6; i++) {
-		if(input_img.files.length>0){
-		if(input_img == document.querySelector('#input_img'+i)){
-			let from = 'fromData'+i
-			from.append('imgs', input_img.files[i])	
-		}
 		
+	for (var i = 0; i < input_img.files.length; i++) {
+		if(input_img.files.length>0){
+			
+		formData.append('imgs', input_img.files[i])
 		//console.log(input_img.files[i].name)
 		}
 	}
-	console.log(formData1.getAll('imgs'))
+	
 
 }
+
+
+function updimg() {
+	console.log(formData.getAll('imgs'))
+	
+	$.ajax({
+		method: "POST",
+		url: "/admin/insbanner",
+		data: formData,
+		processData: false,
+		contentType: false,
+		cache: false,
+		success: function(){
+			console.log("success")
+		}
+	}
+	)
+}
+
+if(View_area){
+	console.log("asdasd")
+	getImgList()
+}
+
+function getImgList(){
+	fetch(`/bannerModImg`)
+	.then(function(res){
+		return res.json()
+	}).then((list)=>{
+		console.log(list)
+		View_area.innerHTML = ""
+		proc(list)
+	})
+	
+}
+
+
+function proc(list){
+	if(list.length ==0){
+		return
+	}
+	
+	for( var i=0; i<list.length; i++){
+		var recode = createRecode(list[i],i)
+		if(recode != null){
+				View_area.append(recode)	
+		}
+			
+		
+	}
+	
+	
+}
+function createRecode(item,i){
+
+	
+	if(item.ba_img1 !=null && item.ba_img1 != ""){
+		const search = item.ba_img1.indexOf('.')
+	const name1 = item.ba_img1.substr(0,search)
+	var span = document.createElement('span')
+	span.id='img_id_'+name1
+	span.innerHTML=
+	`
+	
+	<img src="/img/banner/banner/${item.ba_img1}" onclick="fileRemove2('${name1}','${item.ba_img1}','${item.ba_no}')" width="450px" height="450px">
+	
+	`
+	fileInfoArr.push(item.ba_img1)
+	fullName.push(item.ba_img1)
+	}
+	if(span == "undefined"){
+		span.innerHTML = ``
+	}
+	
+	return span
+	
+}
+
+

@@ -13,6 +13,7 @@ import egovframework.sth.domain.admin.domain.MemberDTO;
 import egovframework.sth.domain.admin.domain.ReportDTO;
 import egovframework.sth.domain.admin.domain.ReportVO;
 import egovframework.sth.domain.admin.mapper.AdminMapper;
+import egovframework.sth.domain.board.domain.AnimalDTO;
 import egovframework.sth.global.common.FileUtils;
 
 @Service
@@ -57,11 +58,12 @@ public class AdminService {
 		return mapper.selAsk(dto);
 	}
 	
-	public int bannerimgUpload(MultipartFile[] imgs, int ba_no) {
+	public int bannerimgUpload(MultipartFile[] imgs) {
+		BannerDTO dto = new BannerDTO();
 		if(imgs.length>5 || imgs.length ==0) {
 			return 0;
 		}
-		String folder= "/img/admin/banner"+ba_no;
+		String folder= "/img/banner/banner";
 		try {
 			for(int i=0; i<imgs.length; i++) {
 				MultipartFile file = imgs[i];
@@ -69,11 +71,30 @@ public class AdminService {
 				if(file == null) {
 					return 0;
 				}
-				if(i==0) {
-					BannerDTO dto = new BannerDTO();
-					mapper.updbannerImg(dto);
+				
+					if(i==0) {
+						dto.setBa_no(1);
+						dto.setBa_img1(fileNm);
+						mapper.updBannerImg(dto);
+					}else if(i==1) {
+						dto.setBa_no(2);
+						dto.setBa_img1(fileNm);
+						mapper.updBannerImg(dto);
+					}else if(i==2) {
+						dto.setBa_no(3);
+						dto.setBa_img1(fileNm);
+						mapper.updBannerImg(dto);
+					}else if(i==3) {
+						dto.setBa_no(4);
+						dto.setBa_img1(fileNm);
+						mapper.updBannerImg(dto);
+					}else if(i==4) {
+						dto.setBa_no(5);
+						dto.setBa_img1(fileNm);
+						mapper.updBannerImg(dto);
 				}
 			}
+				
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 0;
@@ -81,4 +102,32 @@ public class AdminService {
 		
 		return 1;
 	}
+	
+	public List<BannerDTO> bannerList(BannerDTO dto){
+		return mapper.bannerList(dto);
+	}
+	
+	public BannerDTO selinfo(BannerDTO dto) {
+		BannerDTO vo = mapper.selinfo(dto);
+		String path = "/img/banner/banner/"+dto.getChkImg();
+		if(futils.delFile(path)) {
+			System.out.println("성공");
+		}else {
+			System.out.println("실패");
+		}
+		System.out.println(dto.getChkImg());
+		System.out.println(vo.getBa_img1());
+		System.out.println(vo.getBa_no());
+		
+		if(vo.getBa_img1().equals(dto.getChkImg())) {
+			System.out.println("treu");
+			dto.setBa_img1("");
+			mapper.updBannerImg(dto);
+		}
+		
+		return vo;
+	}
+	
+	
+	
 }

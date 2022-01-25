@@ -81,6 +81,10 @@ public class FileUtils {
 		List<String> list = new ArrayList();
 		File files = new File(path);
 		File[] listofFiles = files.listFiles();
+		if(listofFiles == null) {
+			return null;
+		}
+		
 		for(int i=0; i<listofFiles.length; i++) {
 			if(listofFiles[i].isFile()) {
 				list.add(listofFiles[i].getName());

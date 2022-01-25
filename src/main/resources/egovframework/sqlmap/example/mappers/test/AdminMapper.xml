@@ -15,6 +15,9 @@
 		type="egovframework.sth.domain.admin.domain.BoardVO" id="BoardVO" />
 	<resultMap
 		type="egovframework.sth.domain.admin.domain.ReportVO" id="ReportVO" />
+		<resultMap
+		type="egovframework.sth.domain.admin.domain.BannerDTO" id="BannerDTO"/>
+		
 
 	<insert id="insreport">
 		insert into report
@@ -30,6 +33,12 @@
 		m_no = a.m_no) as warning
 		from member a where a.m_state = #{m_state}
 		and m_auth = 1;
+	</select>
+	<select id="bannerList" resultMap="BannerDTO">
+	select* from banner;
+	</select>
+	<select id="selinfo" resultMap="BannerDTO">
+	select ba_no, ba_img1 from banner where ba_no = #{ba_no}
 	</select>
 
 	<select id="selBoard" resultMap="BoardDTO">
@@ -112,6 +121,11 @@
 	set ak_del =1
 	where ak_no = #{ak_no}
 	</update>
-		
+	
+	<update id="updBannerImg">
+	update banner
+	set ba_img1 = #{ba_img1}
+	where ba_no = #{ba_no};
+	</update>
 	
 </mapper>
