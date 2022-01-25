@@ -165,21 +165,14 @@ $('.auction').on('click', ()=> {
 // --------------------신고하기-----------------------------
 
 
-$('.view-detail-report').on('click', ()=> {
+$('.view-button-report').on('click', ()=> {
 	const url = '/report?b_no=' + b_no + '&m_no=' + memberPK;
 	const title = '신고하기';
 	openPopup(url, 650, 380, title);
 });
 
-// ----------상세보기----------------
-
-$('.view-detail').on('click', ()=> {
-	$('.view-detail-container').toggle();
-});
-
-
 // ----------------이미지 가져오기-------------
-function getImgList(){
+/*function getImgList(){
 	fetch(`/board/boardmodImg?b_no=${b_no}`)
 	.then((res) =>{
 		return res.json()
@@ -207,4 +200,28 @@ function createRecode(b_no, item){
 	imgItem.innerHTML = `<img src="/img/board/an_${b_no}/${item}" onclick="fileRemove2('${name}','${item}')">`
 	
 	return imgItem;
+}
+*/
+getImgList();
+
+function getImgList(){
+	fetch(`/board/boardmodImg?b_no=${b_no}`)
+	.then(function(res){
+		return res.json()
+	}).then((list)=>{
+		if(list.length ==0){ return; }
+		
+		for(let i=0; i<list.length; i++){
+			const recode = createRecode(b_no,list[i])
+			$('.view-img-container').append(recode)
+		}
+	});
+}
+
+function createRecode(b_no,item){
+	const div = $('<div></div>');
+	div.addClass('view-img');
+	div.html(`<img class="view-img-item" src="/img/board/an_${b_no}/${item}">`);
+	return div;
+	
 }

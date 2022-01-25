@@ -3,15 +3,22 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="/css/temp/layout.css">
 <head>
 
 </head>
 <body>
+	<div class="page-header">
 		<tiles:insertAttribute name="header" />
-		<section>
+	</div>
+	<section>
+		<div class="page-body">
 			<tiles:insertAttribute name="body" />		
-		</section>		
-	
+		</div>
+	</section>
+	<div class="page-footer">
+		
+	</div>
 </body>
 </html>
 

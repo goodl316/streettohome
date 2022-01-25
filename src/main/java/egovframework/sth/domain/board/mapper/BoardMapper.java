@@ -24,5 +24,6 @@ public interface BoardMapper {
 	int updateBoard(BoardVO vo);
 	int updateAnimal(BoardVO vo);
 	int insAuction(AuctionDTO dto);
+	int boardHit(int b_no);
 }
 	

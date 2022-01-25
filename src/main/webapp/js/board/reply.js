@@ -35,6 +35,7 @@ function regReply(param, check) {
             if (data.result == 'fail') {
                 alert('잠시 후 시도해 주세요.');
             }
+			$('.view-reply-textarea').val('');
         });
 }
 // 댓글 리스트 가져오기
@@ -66,7 +67,7 @@ function makeReplyList(data) {
         replyPiece.append(replyHeader, replyBody, reReplyContainer);
         replyHeader.append(replyWriter, replyDate);
         replyWriter.text(item.r_writer);
-        replyDate.text(item.r_dt);
+        replyDate.text(item.r_dt.substr(0,19));
         replyBody.append(replyContent, replyDelete);
 
         if (item.r_del == 0) {
