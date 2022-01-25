@@ -59,7 +59,7 @@
 		<input type="text" id="m_zipcode" name="m_zipcode" placeholder="우편번호" readonly="readonly">
 		<input type="button" id="ckZip" onclick="addrSearch();" value="우편번호 찾기"><br>
 		<input type="text" id="m_address" name="m_address" placeholder="주소를 입력해주세요.">
-		</div> <!--  -->
+		</div>
 		
 		<div><input class="joinBtn" type="button" id="joinBtn" value="회원가입" onclick="join();"></div>
 		
