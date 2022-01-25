@@ -213,7 +213,7 @@ function createRecode(b_no,item,i){
 	span.innerHTML=
 	`
 	
-	<img src="/img/board/an_${b_no}/${item}" onclick="fileRemove2('${name}','${item}')">
+	<img src="/img/board/an_${b_no}/${item}" onclick="fileRemove2('${name}','${item}')" width="450px" height="450px">
 	
 	`
 	fileInfoArr.push(item)

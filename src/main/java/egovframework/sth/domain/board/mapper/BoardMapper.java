@@ -14,7 +14,7 @@ import egovframework.sth.domain.board.domain.BoardViewVO;
 public interface BoardMapper {
 	
 	BoardViewVO selBoardView(BoardDTO param);
-	public List<BoardVO> boardList(BoardVO vo);
+	List<BoardVO> boardList(BoardVO vo);
 	int insBoard(BoardDTO dto);
 	int insAnimal(AnimalDTO dto);
 	int updpatImg(AnimalDTO dto);
@@ -24,5 +24,6 @@ public interface BoardMapper {
 	int updateBoard(BoardVO vo);
 	int updateAnimal(BoardVO vo);
 	int insAuction(AuctionDTO dto);
+	int boardHit(int b_no);
 }
 	

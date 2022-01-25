@@ -2,23 +2,27 @@ package egovframework.sth.domain.admin.domain;
 
 public class BannerDTO {
 	
-	private int bn_no;
-	private int bn_name;
+	private int ba_no;
+	private String ba_img1;
+	private String chkImg;
 	
-	
-	public int getBn_no() {
-		return bn_no;
+	public int getBa_no() {
+		return ba_no;
 	}
-	public void setBn_no(int bn_no) {
-		this.bn_no = bn_no;
+	public void setBa_no(int ba_no) {
+		this.ba_no = ba_no;
 	}
-	public int getBn_name() {
-		return bn_name;
+	public String getBa_img1() {
+		return ba_img1;
 	}
-	public void setBn_name(int bn_name) {
-		this.bn_name = bn_name;
+	public void setBa_img1(String ba_img1) {
+		this.ba_img1 = ba_img1;
 	}
-	
-	
+	public String getChkImg() {
+		return chkImg;
+	}
+	public void setChkImg(String chkImg) {
+		this.chkImg = chkImg;
+	}
 
 }
