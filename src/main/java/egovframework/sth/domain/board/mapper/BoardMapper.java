@@ -14,15 +14,15 @@ import egovframework.sth.domain.pay.domain.AuctionDTO;
 public interface BoardMapper {
 	
 	BoardViewVO selBoardView(BoardDTO param);
-	public List<BoardVO> boardList(BoardVO vo);
-	int insBoard(BoardDTO dto);
-	int insAnimal(AnimalDTO dto);
-	int updpatImg(AnimalDTO dto);
-	BoardVO countBoard(BoardVO vo);
-	AnimalDTO selinfo(AnimalDTO dto);
-	BoardVO modselboard(BoardVO vo);
-	int updateBoard(BoardVO vo);
-	int updateAnimal(BoardVO vo);
-	int insAuction(AuctionDTO dto);
-	int boardHit(int b_no);
+    public List<BoardVO> boardList(BoardVO vo);
+    int insBoard(BoardDTO dto);
+    int insAnimal(AnimalDTO dto);
+    int updpatImg(AnimalDTO dto);
+    BoardVO countBoard(BoardVO vo);
+    AnimalDTO selinfo(AnimalDTO dto);
+    BoardVO modselboard(BoardVO vo);
+    int updateBoard(BoardVO vo);
+    int updateAnimal(BoardVO vo);
+    int insAuction(AuctionDTO dto);
+    int boardHit(int b_no);
 }
