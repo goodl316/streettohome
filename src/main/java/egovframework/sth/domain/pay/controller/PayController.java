@@ -3,14 +3,18 @@ package egovframework.sth.domain.pay.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import egovframework.sth.domain.member.domain.MemberDTO;
@@ -34,6 +38,25 @@ public class PayController {
 		dto.setM_no(1);
 		session.setAttribute("loginMember", dto);
 		return "/popup/pay";
+	}
+	
+	@GetMapping("/member/sthpay/{idx}")
+	public String openMemberPay(@PathVariable int idx, Model model, HttpServletRequest req) {
+		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
+		Map<String, Object> map = new HashMap<String, Object>();
+		PaginationInfo pagination = new PaginationInfo();
+		
+		pagination.setCurrentPageNo(Integer.parseInt(req.getParameter("page")));
+		pagination.setPageSize(8);
+		pagination.setRecordCountPerPage(10);
+		
+		map.put("recordCountPerPage", pagination.getRecordCountPerPage());
+		map.put("firstIndex", pagination.getFirstRecordIndex());
+		map.put("idx", idx);
+		pagination.setTotalRecordCount(service.selCountList(map));
+		model.addAttribute("paginationInfo", pagination);
+		model.addAttribute("history", service.getHistory(idx, member.getM_no()));
+		return "/member/sthpay";
 	}
 	
 	@ResponseBody
@@ -78,6 +101,14 @@ public class PayController {
 	public Map<String, Integer> auctionBid(@RequestBody AuctionDTO param) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("result", service.auctionBid(param));
+		return map;
+	}
+	
+	@ResponseBody
+	@PostMapping("/pay/charge")
+	public Map<String, Integer> chargeMoney(@RequestBody PayDTO param) {
+		Map<String, Integer> map = new HashMap<>();
+		map.put("result", service.chargeMoney(param));
 		return map;
 	}
 }

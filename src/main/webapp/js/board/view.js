@@ -16,7 +16,6 @@ const b_no = get_query().b_no;
 
 const enddt = document.querySelector("#enddate");
 const dday = new Date(enddt.dataset.enddt);
-console.log(enddt.dataset.enddt, dday)
 const getDDay = () => {
 	// D-Day 날짜 지정
 	const setDate = new Date(dday);
@@ -77,8 +76,8 @@ favBtn.on('click', () => {
     }
 });
 
-function selFav() { // memberpk로변경
-    fetch('/board/fav?b_no=' + b_no + '&m_no=' + 1)
+function selFav() { 
+    fetch('/board/fav?b_no=' + b_no + '&m_no=' + memberPK)
         .then((res) => {
             return res.json();
         })
@@ -108,8 +107,8 @@ function regFav(param) {
         })
         .then((data) => {
             if (data.result == 1) {
-                if(confirm('찜묵록으로 이동하시겠습니까?')) {
-					location.href = '';  //TODO:찜목록 url이동	
+                if(confirm('찜목록으로 이동하시겠습니까?')) {
+					location.href = '/member/favlist';
 				}
             } else {
                 alert('잠시 뒤 다시 시도해 주세요');
@@ -144,12 +143,6 @@ function delFav(param) {
         });
 }
 
-// ------------------연락하기------------------------------
-
-$('.contact').on('click', ()=> {
-	alert('준비중입니다.');
-})
-
 // ---------------------구매하기 ---------------------------
 
 $('.buy').on('click', ()=> {
@@ -178,20 +171,40 @@ $('.view-detail-report').on('click', ()=> {
 	openPopup(url, 650, 380, title);
 });
 
-// ----------------------------------------------------------
-
-// 팝업창
-function openPopup(url, _width, _height, title) {
-    const _left = Math.ceil(( window.screen.width - _width )/2);
-    const _top = Math.ceil(( window.screen.height - _height )/2); 
-	const popOption = 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top;
-
-	window.open(url, title, popOption);
-}
-
-// 상세보기
+// ----------상세보기----------------
 
 $('.view-detail').on('click', ()=> {
 	$('.view-detail-container').toggle();
 });
 
+
+// ----------------이미지 가져오기-------------
+function getImgList(){
+	fetch(`/board/boardmodImg?b_no=${b_no}`)
+	.then((res) =>{
+		return res.json()
+	}).then((list) =>{
+		$('.view-detail-img').html('');
+		if(list.length == 0) {
+			return;
+		}
+		var div = document.createElement('div')
+		const item = $('<div class="view-img-item"><div>');
+		for( var i=0; i<list.length; i++){
+			let recode = createRecode(b_no,list[i]);
+			item.append(recode);
+		}
+		$('.view-detail-img').append(div);
+	})
+}
+
+function createRecode(b_no, item){
+	const search = item.indexOf('.');
+	const name = item.substr(0,search);
+	
+	const imgItem = document.createElement('div');
+	imgItem.id='img_id_'+name
+	imgItem.innerHTML = `<img src="/img/board/an_${b_no}/${item}" onclick="fileRemove2('${name}','${item}')">`
+	
+	return imgItem;
+}

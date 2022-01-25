@@ -8,12 +8,19 @@ public class PayDTO {
 	private String b_title;
 	private String b_state;
 	
+	private int m_pay;
 	private int m_no;
 	private int buyer;
 	private int seller;
 	
 	private final int fee = 5;
 	
+	public int getM_pay() {
+		return m_pay;
+	}
+	public void setM_pay(int m_pay) {
+		this.m_pay = m_pay;
+	}
 	public void setB_state(String b_state) {
 		this.b_state = b_state;
 	}

@@ -23,10 +23,13 @@
 	
 	<!-- 찜목록 -->
 	<select id="selFavList" resultMap="BoardDTO">
-		SELECT B.b_no, B.b_title, B.b_dt, B.b_state, B.b_price, B.b_tt, B.b_enddt, B.m_no
+		SELECT B.b_no, B.b_title, B.b_dt, B.b_price, B.b_tt, B.b_enddt, B.m_no, 
+		M.m_nickname AS b_writer
 		FROM board AS B
 		INNER JOIN fav AS F
 		ON B.b_no = F.b_no
+		LEFT JOIN member AS M
+		ON B.m_no = M.m_no
 		WHERE F.m_no = #{m_no}
 	</select>
 	

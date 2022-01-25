@@ -160,4 +160,10 @@
 		where b_no = #{b_no}
 	</update>
 	
+	<update id="boardHit">
+		UPDATE board
+		SET b_hit = b_hit+1
+		WHERE b_no = #{b_no}
+	</update>
+	
 </mapper>

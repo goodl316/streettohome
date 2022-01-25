@@ -1,11 +1,13 @@
 package egovframework.sth.domain.pay.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
 import egovframework.sth.domain.pay.domain.AuctionDTO;
 import egovframework.sth.domain.pay.domain.PayDTO;
+import egovframework.sth.domain.pay.domain.TranHistoryDTO;
 
 @Mapper
 public interface PayMapper {
@@ -18,6 +20,10 @@ public interface PayMapper {
 	int sell(PayDTO param);
 	int boardState(int b_no);
 	int insHistory(PayDTO param);
+	List<TranHistoryDTO> sellHistoryList(int m_no);
+	List<TranHistoryDTO> buyHistoryList(int m_no);
+	int chargeMoney(PayDTO param);
+	int selCountList(Map<String, Object> param);
 	
 	//경매
 	List<AuctionDTO> selAuctionList();

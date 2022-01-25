@@ -1,10 +1,10 @@
 // ------------------------------ 댓글 ---------------------
 
 // 댓글작성
-$('.view-reply-button').on('click.regReply', () => {
+$('.reply-form').find('#reply-submit').on('click', () => {
     const param = {
         b_no: b_no,
-        r_ctnt: $('.view-reply-textarea').val(),
+        r_ctnt: $('.reply-form').children("#reply-txtarea").val(),
         m_no: memberPK
     }
     if (param.r_ctnt == '') {
@@ -45,7 +45,6 @@ function getReplyList() {
         })
         .then((data) => {
             makeReplyList(data.data);
-            console.log(data);
         });
 }
 // 댓글 리스트 생성
@@ -96,16 +95,20 @@ function makeReplyList(data) {
                     return;
                 }
                 const rereplyElem = $('#view-reply-write').clone();
+				rereplyElem.find('#reply-form').removeClass('reply-form');
+				rereplyElem.find('#reply-form').addClass('reply-form'+item.r_no);
+				rereplyElem.find('#reply-txtarea').val('');
+				
                 reReplyContainer.addClass('rereply-on');
                 reReplyContainer.append(rereplyElem);
-                reReplyContainer.find('textarea').val('');
-                $('.view-reply-button').on('click', () => {
+                rereplyElem.find('#reply-submit').on('click', () => {
                     const param = {
                         b_no: b_no,
-                        r_ctnt: reReplyContainer.find('textarea').val(),
+                        r_ctnt: $('.reply-form'+item.r_no + ' #reply-txtarea' ).val(),
                         r_idx: item.r_idx,
                         r_ord: item.r_ord,
-                        r_detp: item.r_dept
+                        r_detp: item.r_dept,
+						m_no: memberPK
                     };
                     if(param.r_ctnt == '') {
                         alert('댓글을 입력해주세요.');

@@ -1,6 +1,9 @@
 package egovframework.sth.domain.pay.service;
 
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import egovframework.sth.domain.member.domain.MemberDTO;
 import egovframework.sth.domain.pay.domain.AuctionDTO;
 import egovframework.sth.domain.pay.domain.PayDTO;
+import egovframework.sth.domain.pay.domain.TranHistoryDTO;
 import egovframework.sth.domain.pay.mapper.PayMapper;
 
 @Service
@@ -48,4 +52,23 @@ public class PayService {
 		if(member.getM_no() != param.getAc_cur_winner()) { return 0; }
 		return mapper.auctionBid(param);
 	}
+	
+	public List<TranHistoryDTO> getHistory(int idx, int m_no) {
+		if(idx == 0) {
+			return mapper.buyHistoryList(m_no);
+		} else {
+			return mapper.sellHistoryList(m_no);
+		}
+	}
+	
+	public int selCountList(Map<String, Object> param) {
+		return mapper.selCountList(param);
+	}
+	
+	public int chargeMoney(PayDTO param) {
+		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
+		param.setM_no(member.getM_no());
+		return mapper.chargeMoney(param);
+	}
+	
 }
