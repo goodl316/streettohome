@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper
+	namespace="egovframework.sth.domain.main.mapper.MainMapper">
+	<resultMap type="egovframework.sth.domain.main.domain.MainVO"
+		id="MainVO" />
+
+	<select id="selMainList" resultMap="MainVO">
+		SELECT
+		a.b_title,a.b_no,a.b_dt,a.b_tt,a.b_loc_sido,
+		a.b_loc_gugun,a.b_price,
+		b.an_type1,b.an_type2,b.an_img,b.an_no
+		FROM board a
+		LEFT
+		JOIN
+		animal_info b
+		ON a.b_no = b.b_no
+		WHERE a.b_del =0
+		order by a.b_no
+	</select>
+
+
+</mapper>

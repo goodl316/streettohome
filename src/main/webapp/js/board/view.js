@@ -16,7 +16,6 @@ const b_no = get_query().b_no;
 
 const enddt = document.querySelector("#enddate");
 const dday = new Date(enddt.dataset.enddt);
-
 const getDDay = () => {
 	// D-Day 날짜 지정
 	const setDate = new Date(dday);
@@ -67,7 +66,7 @@ const favBtn = $('.favorite');
 
 favBtn.on('click', () => {
     const param = {
-        m_no: 1, // TODO: session 받으면 memberPK로 변경
+        m_no: memberPK, 
         b_no: b_no
     }
     if (favBtn.hasClass('clicked')) {
@@ -77,8 +76,8 @@ favBtn.on('click', () => {
     }
 });
 
-function selFav() { // memberpk로변경
-    fetch('/board/fav?b_no=' + b_no + '&m_no=' + 1)
+function selFav() { 
+    fetch('/board/fav?b_no=' + b_no + '&m_no=' + memberPK)
         .then((res) => {
             return res.json();
         })
@@ -108,7 +107,9 @@ function regFav(param) {
         })
         .then((data) => {
             if (data.result == 1) {
-                // TODO: 찜목록으로 이동할지 물어보기
+                if(confirm('찜목록으로 이동하시겠습니까?')) {
+					location.href = '/member/favlist';
+				}
             } else {
                 alert('잠시 뒤 다시 시도해 주세요');
                 location.reload();
@@ -132,7 +133,6 @@ function delFav(param) {
             return res.json();
         })
         .then((data) => {
-            console.log(data);
             if (data.result == 1) {
                 
             } else {
@@ -143,28 +143,85 @@ function delFav(param) {
         });
 }
 
-// ------------------연락하기------------------------------
+// ---------------------구매하기 ---------------------------
 
-$('.contact').on('click', ()=> {
-	alert('준비중입니다.');
+$('.buy').on('click', ()=> {
+	const url = '/pay?b_no=' + b_no;
+	const title = "결제하기";
+	openPopup(url, 1000, 700, title);
 })
 
-// ---------------------구매하기 --------------------------
+$('.none').on('click', ()=> {
+	alert('이미 분양완료된 게시글 입니다.');
+});
+// --------------------- 경매 ---------------------------
+
+$('.auction').on('click', ()=> {
+	const url = '/auction?b_no=' + b_no;
+	const title = "경매참가";
+	openPopup(url, 1000, 700, title);
+});
 
 // --------------------신고하기-----------------------------
 
 
-$('.view-detail-report').on('click', ()=> {
-	openPopup();
-})
+$('.view-button-report').on('click', ()=> {
+	const url = '/report?b_no=' + b_no + '&m_no=' + memberPK;
+	const title = '신고하기';
+	openPopup(url, 650, 380, title);
+});
 
-function openPopup() {
-	const popUrl = '/report?b_no=' + b_no + '&m_no=' + memberPK;
-	const _width = '650';
-    const _height = '380';
-    const _left = Math.ceil(( window.screen.width - _width )/2);
-    const _top = Math.ceil(( window.screen.height - _height )/2); 
-	const popOption = 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top;
+// ----------------이미지 가져오기-------------
+/*function getImgList(){
+	fetch(`/board/boardmodImg?b_no=${b_no}`)
+	.then((res) =>{
+		return res.json()
+	}).then((list) =>{
+		$('.view-detail-img').html('');
+		if(list.length == 0) {
+			return;
+		}
+		var div = document.createElement('div')
+		const item = $('<div class="view-img-item"><div>');
+		for( var i=0; i<list.length; i++){
+			let recode = createRecode(b_no,list[i]);
+			item.append(recode);
+		}
+		$('.view-detail-img').append(div);
+	})
+}
 
-	window.open(popUrl, '신고하기', popOption);
+function createRecode(b_no, item){
+	const search = item.indexOf('.');
+	const name = item.substr(0,search);
+	
+	const imgItem = document.createElement('div');
+	imgItem.id='img_id_'+name
+	imgItem.innerHTML = `<img src="/img/board/an_${b_no}/${item}" onclick="fileRemove2('${name}','${item}')">`
+	
+	return imgItem;
+}
+*/
+getImgList();
+
+function getImgList(){
+	fetch(`/board/boardmodImg?b_no=${b_no}`)
+	.then(function(res){
+		return res.json()
+	}).then((list)=>{
+		if(list.length ==0){ return; }
+		
+		for(let i=0; i<list.length; i++){
+			const recode = createRecode(b_no,list[i])
+			$('.view-img-container').append(recode)
+		}
+	});
+}
+
+function createRecode(b_no,item){
+	const div = $('<div></div>');
+	div.addClass('view-img');
+	div.html(`<img class="view-img-item" src="/img/board/an_${b_no}/${item}">`);
+	return div;
+	
 }

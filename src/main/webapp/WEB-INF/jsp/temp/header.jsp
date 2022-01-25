@@ -15,6 +15,7 @@
 <body>
     <div>
         <header>
+        <input type="hidden" value="${sessionScope.loginMember.m_authstate}" id="loginData">
             <h1>Street to home</h1>
             <div class="login clearfix">
                 <c:choose>
@@ -24,12 +25,16 @@
                         </p>
                     </c:when>
                     <c:otherwise>
+				    	<input id="header-session-id" type="hidden" value="${sessionScope.loginMember.m_no }">
                         <p class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">${sessionScope.loginMember.m_name} 님,
                                 반갑습니다.</a>
                         </p>
+                        <div class="nav-item message">
+                        	<div class="nav-link message"><i class="item-message-icon"></i></div>
+                        </div>
                         <p class="dropdown-menu dropdown-menu-end"
                             aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="../member/logout">로그아웃</a> <a
@@ -41,8 +46,8 @@
             <nav>
                 <ul class="navList clearfix">
                     <li><a href="javascript:;">스트릿투홈 소개</a></li>
-                    <li><a href="javascript:;">강아지를 집으로</a></li>
-                    <li><a href="javascript:;">고양이를 집으로</a></li>
+                    <li><a href="/board/boardList?an_type1=강아지">강아지를 집으로</a></li>
+                    <li><a href="board/boardList?an_type1=고양이">고양이를 집으로</a></li>
                     <li><a href="javascript:;">후원</a></li>
                     <li><a href="javascript:;">입양후기</a></li>
                 </ul>
@@ -50,7 +55,6 @@
         </header>
         <div class="container"></div>
         <footer></footer>
-           
     </div>
 </body>
 </html>

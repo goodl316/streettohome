@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.sth.domain.board.domain.AnimalDTO;
+import egovframework.sth.domain.board.domain.AuctionDTO;
 import egovframework.sth.domain.board.domain.BoardDTO;
 import egovframework.sth.domain.board.domain.BoardVO;
 import egovframework.sth.domain.board.domain.BoardViewVO;
@@ -39,6 +41,44 @@ public class BoardService {
 			vo.setB_price(1);
 		}
 		return mapper.countBoard(vo);
+	}
+	
+	public List<String> selImgList(int b_no){
+		String folder = "/img/board/an_"+b_no;
+		String path = futils.getBasePath(folder);
+		
+		return futils.getFileNameList(path);
+	}
+	
+	public BoardVO modselboard(BoardVO vo) {
+		return mapper.modselboard(vo);
+	};
+	@Transactional
+	public int updBoard(BoardVO vo) {
+		mapper.updateAnimal(vo);
+		return mapper.updateBoard(vo);
+	}
+	
+	public int updAnimal(BoardVO vo) {
+		return mapper.updateAnimal(vo);
+	}
+	
+	public AnimalDTO selinfo(AnimalDTO dto) {
+		AnimalDTO vo = mapper.selinfo(dto);
+		String path = "/img/board/an_"+dto.getB_no()+"/"+dto.getChkImg();
+		if(futils.delFile(path)) {
+			System.out.println("성공");
+		}else {
+			System.out.println("실패");
+		}
+		
+		if(vo.getAn_img() == dto.getChkImg()) {
+			dto.setAn_img("");
+			dto.setAn_no(dto.getB_no());
+			mapper.updpatImg(dto);
+		}
+
+		return vo;
 	}
 	
 	
@@ -113,5 +153,12 @@ public class BoardService {
         }
         return 0;
     }
+	public int insAuction(AuctionDTO dto) {
+		return mapper.insAuction(dto);
+	}
+	
+	public int boardHit(int b_no) {
+		return mapper.boardHit(b_no);
+	}
 	
 }

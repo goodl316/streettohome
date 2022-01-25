@@ -22,6 +22,7 @@ function clk() {
 	var sido = document.querySelector('#sido1').value
 	var gun = document.querySelector('#gugun1').value
 	var an_name = document.querySelector('#an_name').value
+	var enddt = document.querySelector('.enddt').value
 	var gender_value = "";
 	var b_tt_value = "";
 	var b_ns_value = 0;
@@ -51,6 +52,15 @@ function clk() {
 			console.log(b_ns_value)
 		}
 	}
+	
+		var date = new Date()
+
+	enddt = parseInt(enddt,10)
+	if(enddt != null){
+		
+	var b_enddt = date.getFullYear() +"-"+(date.getMonth()+1)+"-"+(date.getDate()+enddt)+" "+date.getHours()+":"+date.getMinutes()	
+	}
+
 
 	params = {
 		b_title: title,
@@ -64,7 +74,8 @@ function clk() {
 		an_ns: b_ns_value,
 		an_type1: an_type1,
 		an_type2: an_type2,
-		an_name: an_name
+		an_name: an_name,
+		b_enddt: b_enddt
 
 	}
 
@@ -88,6 +99,7 @@ function product_img_upload(an_no) {
 		cache: false,
 		success: function() {
 			console.log("success")
+			location.href="/main"
 		}
 	})
 }
@@ -134,11 +146,20 @@ function animalReg(b_no){
 }
 
 function boardReg() {
+	
+	var m_no = $('.member_no').val()
+	
+	if(m_no == null || m_no == 0){
+		alert('로그인후 이용해 주세요')
+		location.href = `/member/login`
+		return;
+	}
+	
 	var title = document.querySelector(".input_title").value
 	var ctnt = document.querySelector('.input_ctnt').value
 	var price = document.querySelector('.input_price')
 	var b_tt = document.getElementsByName('tradetype')
-	
+	var enddt = document.querySelector('.enddt').value
 	var sido = document.querySelector('#sido1').value
 	var gun = document.querySelector('#gugun1').value
 	
@@ -160,7 +181,13 @@ function boardReg() {
 			console.log(b_tt_value)
 		}
 	}
-	
+		enddt = parseInt(enddt,10)
+		
+	var date = new Date()	
+	if(enddt != null){
+		
+	var b_enddt = date.getFullYear() +"-"+(date.getMonth()+1)+"-"+(date.getDate()+enddt)+" "+date.getHours()+":"+date.getMinutes()	
+	}
 	
 
 	params = {
@@ -170,6 +197,8 @@ function boardReg() {
 		b_loc_sido: sido,
 		b_loc_gugun: gun,
 		b_tt: b_tt_value,
+		m_no : m_no,
+		b_enddt : b_enddt
 	}
 
 	boardregAjax(params)
@@ -188,6 +217,9 @@ function boardregAjax(params) {
 		success: function(data) {
 			console.log(data)
 			animalReg(data.b_no)
+			if(params.b_tt == "경매"){
+				insAuction(data.b_no,data.b_enddt)
+			}
 			
 		}
 	})
@@ -212,6 +244,45 @@ function animalregAjax(params) {
 }
 
 
+function insAuction(b_no,ac_enddt){
+	
+	var price = document.querySelector('.input_price')
+	
+	if (price) {
+		price = document.querySelector('.input_price').value
+	} else {
+		price = 0;
+	}
+	
+	var m_no = $('.member_no').val()
+	
+	var params = {
+		ac_startprice : price,
+		ac_price : price,
+		m_no : m_no,
+		b_no : b_no,
+		ac_enddt: ac_enddt
+		
+	}
+	
+	console.log(params
+	)
+	
+	fetch(`/board/insAuction`,{
+		method: 'post',
+		headers : {
+			'Content-Type' : 'application/json'
+		},
+		body : JSON.stringify(params)
+	}).then(function(res){
+		return res.json()
+	}).then(function(data){
+			if(data == 1){
+				console.log("Aaa")
+			}	
+	})
+	
+}
 
 
 
@@ -220,14 +291,17 @@ function animalregAjax(params) {
 
 $(document).ready(function() {
 	console.log("ready!");
+	
 
 	$('input[type=radio][name=tradetype]').click(function() {
 
 		var price_contain = document.querySelector('.price_contain')
-
+		var enddt_contain = document.querySelector('.enddt_contain')
+		
 		val = $(this).val()
 		if (val == "무료") {
 			price_contain.innerHTML = ""
+			enddt_contain.innerHTML = ""
 		} else if (val == "유료") {
 			price_contain.style.display = "block"
 			price_contain.innerHTML = `
@@ -235,9 +309,18 @@ $(document).ready(function() {
 		`
 		} else if (val == "경매") {
 			price_contain.style.display = "block"
+			enddt_contain.style.display = "block"
 			price_contain.innerHTML = `
 		시작 가격 : <input type="text" class="input_price" placeholder="시작 가격을 입력해 주세요"><br>
+			
 		`
+			enddt_contain.innerHTML=`
+			마감 날짜 : <select class="enddt" name="enddt">
+						<option value=1>1일</option>
+						<option value=2>2일</option>
+						<option value=3>3일</option>
+					  </select>
+			`
 		}
 
 	})
@@ -337,10 +420,13 @@ function fileRemove(index,fileNm) {
 	console.log("index: "+index);
 	console.log("fileNm: "+fileNm)
 	
+	
 	fileInfoArr.splice(fileNm, 1);
 	
 
-	var imgId = "#img_id_"+index;
+	var imgId = "#img_id_"+fileNm;
+	var test = document.querySelector(''+imgId)
+	console.log(test)
 	console.log(imgId)
 	console.log(">>>>>>>>>>>>>>>>>>>>>>>")
 	$(imgId).remove();
@@ -389,7 +475,11 @@ function previewImage(targetObj, View_area) {
 		// }
 
 		var span = document.createElement('span');
-		span.id = "img_id_" + i;
+		const fileNm= file.name
+		const search = fileNm.indexOf('.')
+		const orginNm = fileNm.substr(0,search)
+		
+		span.id = "img_id_" + orginNm;
 		span.style.width = '100px';
 		span.style.height = '100px';
 		preview.appendChild(span);
@@ -402,10 +492,8 @@ function previewImage(targetObj, View_area) {
 		img.style.height = 'inherit';
 		img.style.cursor = 'pointer';
 		const idx = i;
-		const fileNm= file.name
-		img.onclick = () => fileRemove(idx,fileNm);   //이미지를 클릭했을 때.
+		img.onclick = ()=>fileRemove(idx,orginNm);   //이미지를 클릭했을 때.
 		span.appendChild(img);
-
 		if (window.FileReader) { // FireFox, Chrome, Opera 확인.
 			var reader = new FileReader();
 			reader.onloadend = (function(aImg) {
@@ -424,6 +512,8 @@ function previewImage(targetObj, View_area) {
 				preview.insertBefore(info, null);
 			}
 		}
+		
+		
 	}
 	
 	
@@ -431,12 +521,14 @@ function previewImage(targetObj, View_area) {
 		if(input_img.files.length>0){
 			
 		formData.append('imgs', input_img.files[i])
-		console.log(input_img.files[i].name)
+		//console.log(input_img.files[i].name)
 		}
 	}
 	console.log(formData.getAll('imgs'))
 
 }
+
+//========================================날짜포맷==================================================
 
 
 

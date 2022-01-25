@@ -1,0 +1,30 @@
+package egovframework.sth.domain.admin.mapper;
+
+import java.util.List;
+
+import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
+
+import egovframework.sth.domain.admin.domain.AskDTO;
+import egovframework.sth.domain.admin.domain.BannerDTO;
+import egovframework.sth.domain.admin.domain.BoardDTO;
+import egovframework.sth.domain.admin.domain.MemberDTO;
+import egovframework.sth.domain.admin.domain.ReportDTO;
+import egovframework.sth.domain.admin.domain.ReportVO;
+
+@Mapper
+public interface AdminMapper {
+
+	List<MemberDTO> selMember(MemberDTO dto);
+	List<BoardDTO> selBoard(BoardDTO dto);
+	List<ReportVO> selReport(ReportDTO dto);
+	List<AskDTO> selAskList(AskDTO dto);
+	List<BannerDTO> bannerList(BannerDTO dto);
+	BannerDTO selinfo(BannerDTO dto);
+	AskDTO selAsk(AskDTO dto);
+	int delBoard(BoardDTO dto);
+	int delMember(MemberDTO dto);
+	int insReport(ReportDTO dto);
+	int delAsk(AskDTO dto);
+	int updBannerImg(BannerDTO dto);
+	int insBannerImg(BannerDTO dto);
+}

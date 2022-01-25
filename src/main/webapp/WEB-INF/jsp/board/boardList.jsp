@@ -8,10 +8,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/board/boardList.css">
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
+	<div class="container">
 		<div class="type_title">강아지를 안다</div>
 		<div>
 			검색 지역<select name="sido1" id="sido1"></select> <select name="gugun1"
@@ -43,6 +44,8 @@
 			<div class="list_group">
 				<c:forEach var="list" items="${list}">
 					<div class="list_item">
+					<a href="/board/view?b_no=${list.b_no}">이동</a>
+					<a href="/board/boardmod?b_no=${list.b_no}">수정</a>
 						<div class="item_img">
 							<img src="/img/board/an_${list.an_no}/${list.an_img}">
 						</div>

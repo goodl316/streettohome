@@ -4,22 +4,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
 <title>Insert title here</title>
 
 </head>
 <body>
+<input type="hidden" value="${loginMember.m_no}" class="member_no">
 	제목 :
-	<input type="text" class="input_title" placeholder="제목을 입력해 주세요">
+	<input type="text" class="input_title" placeholder="제목을 입력해 주세요" >
 	<br> 내용 :
-	<input type="text" class="input_ctnt" placeholder="내용을 입력해 주세요">
+	<textarea class="input_ctnt" placeholder="내용을 입력해 주세요"></textarea>
 	<br> 이름 :
 	<input type="text" id="an_name" placeholder="이름을 입력해 주세요">
 	<br> 품종 : 
 	<select name="an_type1" id="an_type1"></select>
 	<select name="an_type2" id="an_type2"></select><br>
+	<div class="enddt_contain"></div>
 	<div class="price_contain"></div>
 	<br>
 	<input id="input_img" name="input_img" type="file" multiple accept="image/*"

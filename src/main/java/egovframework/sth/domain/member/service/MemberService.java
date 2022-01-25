@@ -1,9 +1,7 @@
 package egovframework.sth.domain.member.service;
 
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import javax.mail.MessagingException;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.mail.HtmlEmail;
@@ -11,9 +9,9 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import egovframework.sth.domain.member.Utils.MyUtils;
 import egovframework.sth.domain.member.domain.MemberDTO;
 import egovframework.sth.domain.member.mapper.MemberMapper;
-import egovframework.sth.domain.member.Utils.MyUtils;
 
 @Service
 public class MemberService {
@@ -40,7 +38,7 @@ public class MemberService {
 
 			// 사용자에게 보내지는 메일 작성
 			String text = String.format(
-					"<a href='http://localhost:8088/member/emailConfirm?m_email=%S&m_auth=%s'target='_blank'>이메일 인증 확인</a>,",
+					"<a href='http://localhost:8080/member/emailConfirm?m_email=%S&m_auth=%s'target='_blank'>이메일 인증 확인</a>,",
 					param.getM_email(), key);
 			String subject = "STREET TO HOME 이메일 인증";
 			myUtils.mailSender(param.getM_email(), subject, text);

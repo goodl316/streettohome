@@ -53,7 +53,7 @@
 	<update id="delReply">
 		UPDATE reply
 		SET r_del = 1
-		WHERE r_no = #{r_no}
+		WHERE r_no = #{r_no} OR (SELECT m_authstate FROM member WHERE m_no = #{m_no}) = 999
 	</update>
 
 </mapper>

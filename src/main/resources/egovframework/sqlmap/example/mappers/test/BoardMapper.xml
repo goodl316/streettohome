@@ -31,6 +31,14 @@
 		)
 
 	</insert>
+	
+	<insert id="insAuction">
+	insert into auction(
+	ac_enddt,ac_startprice,ac_price,m_no,b_no,ac_cur_winner,ac_closed
+	)values(
+	#{ac_enddt},#{ac_startprice},#{ac_price},#{m_no},#{b_no},#{ac_cur_winner},#{ac_closed}
+	)
+	</insert>
 
 	<select id="boardList"
 		resultType="egovframework.sth.domain.board.domain.AnimalDTO"
@@ -47,6 +55,7 @@
 				animal_info b
 				ON a.b_no = b.b_no
 				WHERE b.an_type1=#{an_type1}
+				and a.b_del =0
 				order by a.b_no
 			</when>
 			<when test="an_type1 == null">
@@ -64,6 +73,7 @@
 				and b.an_type2=#{an_type2}
 				and b.an_gender =#{an_gender}
 				and a.b_price <![CDATA[<]]>#{b_price}
+				and a.b_del = 0
 				order by a.b_no
 			</when>
 		</choose>
@@ -76,6 +86,7 @@
 				left join board b
 				on a.b_no = b.b_no
 				WHERE a.an_type1=#{an_type1}
+				and b.b_del = 0
 			</when>
 			<when test="an_type1 == null">
 				select count(*) as countBoard from animal_info a
@@ -83,21 +94,31 @@
 				on a.b_no = b.b_no
 				WHERE a.an_type2 = #{an_type2} AND a.an_gender = #{an_gender} AND b.b_price <![CDATA[<]]> #{b_price} AND 
 				b.b_loc_sido = #{b_loc_sido} AND b.b_loc_gugun = #{b_loc_gugun}
-				AND b.b_tt = #{b_tt}
+				AND b.b_tt = #{b_tt} and b.b_del = 0
 			</when>
 		</choose>
+	</select>
+	
+	<select id="selinfo" resultMap="AnimalDTO">
+	select an_no, an_img from animal_info where b_no = #{b_no}
+	</select>
+	<select id="modselboard" resultMap="BoardVO">
+		SELECT * FROM board a
+		LEFT JOIN animal_info b
+		ON a.b_no = b.b_no
+		WHERE a.b_no =#{b_no};
 	</select>
 
 	<select id="selBoardView" resultMap="BoardViewVO">
         SELECT B.b_no, B.b_title,
-        B.b_ctnt, B.b_hit, B.b_state, FORMAT(B.b_price, 0) AS b_price,
+        B.b_ctnt, B.b_hit, B.b_state, B.b_price,
         B.b_loc_sido, B.b_loc_gugun, B.b_tt,
         DATE_FORMAT(B.b_enddt, '%Y-%m-%d %H:%i:%s') AS b_enddt,
         DATE_FORMAT(B.b_dt, '%Y-%m-%d %H:%i:%s') AS b_dt,
         B.m_no, B.b_auth,
         M.m_nickname AS b_writer, 
-        FORMAT(AC.ac_startprice, 0) AS ac_startprice, AC.ac_cur_winner,
-        FORMAT(AC.ac_price, 0) AS ac_price,
+        AC.ac_startprice AS ac_startprice, AC.ac_cur_winner,
+        AC.ac_price AS ac_price,
         AI.an_no AS an_no, AI.an_name AS an_name, AI.an_age AS an_age, AI.an_type1 AS an_type1,
         AI.an_type2 AS an_type2, AI.an_img AS an_img, AI.an_ns AS an_ns, AI.an_gender AS an_gender
         FROM board AS B
@@ -116,4 +137,33 @@
 		where an_no =
 		#{an_no}
 	</update>
+	
+	<update id="updateBoard">
+		update board
+		set b_title = #{b_title}
+		, b_ctnt = #{b_ctnt}
+		, b_loc_sido = #{b_loc_sido}
+		, b_loc_gugun = #{b_loc_gugun}
+		, b_tt = #{b_tt}
+		, b_price = #{b_price}
+		where b_no = #{b_no}
+	</update>
+	
+	<update id="updateAnimal">
+		update animal_info
+		set an_name = #{an_name}
+		, an_gender = #{an_gender}
+		, an_age = #{an_age}
+		, an_type1 = #{an_type1}
+		, an_type2 = #{an_type2}
+		, an_ns = #{an_ns}
+		where b_no = #{b_no}
+	</update>
+	
+	<update id="boardHit">
+		UPDATE board
+		SET b_hit = b_hit+1
+		WHERE b_no = #{b_no}
+	</update>
+	
 </mapper>

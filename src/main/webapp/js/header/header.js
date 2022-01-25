@@ -1,5 +1,11 @@
+var loginData = document.querySelector('#loginData').value
+console.log(loginData)
+
 
 function regBoard() {
+console.log(loginData)	
+	
+	
 	location.href = `/board/boardreg`
 }
 
@@ -136,3 +142,40 @@ function movePage1(nowPage, cntPerPage, an_type1) {
 function movePage2(endPage, cntPerPage, an_type1) {
 	locaiont.href = "/board/boardList?=" + (endPage + 1) + "&cntPerPage=" + cntPerPage + '&an_type1=' + an_type1
 }
+
+function moveAdmin(m_state){
+	location.href="/admin/MemberAdmin?m_state="+m_state
+}
+
+let socket = null;
+let sock = new SockJS("/echo");
+socket = sock;
+$(document).ready(function(){
+    if($("#header-session-id").val() != '') {
+            connectWS();	
+}
+});
+
+function connectWS() {
+	sock.onopen = ()=> {
+		console.log('connection opened');
+	};
+	sock.onmessage = (e)=> {
+		let splitdata = e.data.split(":");
+		if(splitdata[0].indexOf("ms") > -1) {
+			console.log(splitdata[1] + '개의 쪽지');
+			$('.nav-link.message').append(splitdata[1]+"");
+		} else {
+			console.log(e.data);
+		}
+		sock.onclose = ()=> {
+		}
+		sock.onerror = function (err) { 
+			alert(err, ' : 관리자에게 문의하세요.');
+		}
+	}
+}
+
+$('.nav-item.message').on('click', ()=> {
+	location.href = '/member/message?page=1&ms_receiver=' + $("#header-session-id").val();
+})

@@ -7,13 +7,13 @@ public class BoardViewVO {
 	private String b_ctnt;
 	private String b_dt;
 	private int b_hit;
-	private String b_price;
+	private int b_price;
 	private String b_loc_sido;
 	private String b_loc_gugun;
 	private String b_tt;
 	private String b_enddt;
 	private String b_writer;
-	private int b_state;
+	private String b_state;
 	private int b_auth;
 	private int b_del;
 	
@@ -24,7 +24,7 @@ public class BoardViewVO {
 	private String an_type2;
 	private String an_img;
 	private int an_ns;
-	private String gender;
+	private String an_gender;
 	
 	private int m_no;
 	
@@ -74,11 +74,11 @@ public class BoardViewVO {
 	public void setAn_ns(int an_ns) {
 		this.an_ns = an_ns;
 	}
-	public String getGender() {
-		return gender;
+	public String getAn_gender() {
+		return an_gender;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setAn_gender(String an_gender) {
+		this.an_gender = an_gender;
 	}
 	public String getB_enddt() {
 		return b_enddt;
@@ -86,10 +86,10 @@ public class BoardViewVO {
 	public void setB_enddt(String b_enddt) {
 		this.b_enddt = b_enddt;
 	}
-	public String getB_price() {
+	public int getB_price() {
 		return b_price;
 	}
-	public void setB_price(String b_price) {
+	public void setB_price(int b_price) {
 		this.b_price = b_price;
 	}
 	public String getB_loc_sido() {
@@ -158,10 +158,10 @@ public class BoardViewVO {
 	public void setB_writer(String b_writer) {
 		this.b_writer = b_writer;
 	}
-	public int getB_state() {
+	public String getB_state() {
 		return b_state;
 	}
-	public void setB_state(int b_state) {
+	public void setB_state(String b_state) {
 		this.b_state = b_state;
 	}
 	public int getM_no() {

@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.sth.domain.board.domain.AnimalDTO;
+import egovframework.sth.domain.board.domain.AuctionDTO;
 import egovframework.sth.domain.board.domain.BoardDTO;
 import egovframework.sth.domain.board.domain.BoardVO;
 import egovframework.sth.domain.board.domain.BoardViewVO;
 import egovframework.sth.domain.board.service.BoardService;
-import egovframework.sth.domain.main.controller.MainController;
 
 @Controller
 public class BoardController {
@@ -72,20 +72,6 @@ public class BoardController {
 	}
 	
 	
-	
-	@ResponseBody
-	@GetMapping("/board/dogList")
-	public List<BoardVO> board(Model model, BoardVO vo) {
-		MainController main = new MainController();
-		System.out.println("////////////////////////////////////");
-		System.out.println(vo.getAn_type1());
-		if(vo.getAn_type1() == "null") {
-			System.out.println("메인이로 보내버렷");
-			main.main();
-		}
-		return service.boardList(vo);
-
-	}
 
 	@GetMapping("/board/catList")
 	public void catboard(Model model) {
@@ -96,11 +82,55 @@ public class BoardController {
 	public void regBoard() {
 
 	}
+	
+	@GetMapping("/board/boardmod")
+	public void modBoard(Model model,BoardVO vo) {
+		System.out.println("................................");
+		model.addAttribute("data",service.modselboard(vo));
+		
+	}
+	@ResponseBody
+	@PostMapping("/board/updboard")
+	public Map<String,Object> updBoard(@RequestBody BoardVO vo){
+		Map<String,Object> val = new HashMap<>();
+		val.put("data", service.updBoard(vo));
+		val.put("b_no", vo.getB_no());
+		return val;
+		
+	}
+	@ResponseBody
+	@PostMapping("/board/updanimal")
+	public Map<String,Object> updAnimal(@RequestBody BoardVO vo){
+		Map<String,Object> val = new HashMap<>();
+		val.put("result", service.updAnimal(vo));
+		
+		return val;
+		
+	}
+	
+	@ResponseBody
+	@GetMapping("/board/boardmodImg")
+	public List<String> modBoardImg(int b_no) {
+		System.out.println("b_no:"+b_no);
+		return service.selImgList(b_no);
+		
+	}
+	
+	@ResponseBody
+	@PostMapping("/delete/img")
+	public Map<String,Object> delimg(@RequestBody AnimalDTO dto){
+		Map<String,Object> val = new HashMap<>();
+		val.put("data", service.selinfo(dto));
+		return val;
+		
+	}
 
 	@GetMapping("/board/view")
-	public Map<String, BoardViewVO> view(BoardDTO param) {
-		Map<String, BoardViewVO> map = new HashMap<>();
+	public Map<String, Object> view(BoardDTO param) {
+		Map<String, Object> map = new HashMap<>();
+		service.boardHit(param.getB_no());
 		map.put("data", service.selBoardView(param));
+		map.put("img", service.selImgList(param.getB_no()));
 		return map;
 	}
 
@@ -119,8 +149,11 @@ public class BoardController {
 		val.put("data", service.insBoard(dto));
 		System.out.println("b_no:" + dto.getB_no()); 
 		val.put("b_no",dto.getB_no());
+		val.put("b_enddt", dto.getB_enddt());
 		return val;
 	}
+	
+	
 	
 	@ResponseBody
 	@PostMapping("/board/insAnimal")
@@ -154,6 +187,14 @@ public class BoardController {
         val.put("result", service.delSaleModImg(path));
         return val;
     }
+	
+	@ResponseBody
+	@PostMapping("/board/insAuction")
+	public Map<String,Object> insAuction(@RequestBody AuctionDTO dto){
+		Map<String,Object> val = new HashMap<>(); 
+		val.put("data", service.insAuction(dto));
+		return val;
+	}
 
 	
 	

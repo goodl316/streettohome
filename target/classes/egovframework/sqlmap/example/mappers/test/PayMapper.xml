@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="egovframework.sth.domain.pay.mapper.PayMapper">
+	<resultMap type="egovframework.sth.domain.pay.domain.PayDTO" id="PayDTO"></resultMap>
+	<resultMap type="egovframework.sth.domain.pay.domain.AuctionDTO" id="AuctionDTO"></resultMap>
+	<resultMap type="egovframework.sth.domain.pay.domain.TranHistoryDTO" id="TranHistoryDTO"></resultMap>
+
+	<!-- 결제 -->
+	<select id="selPayInfo" resultMap="PayDTO">
+		SELECT b_no, b_title, b_price, b_tt, b_auth, m_no, b_state
+		FROM board
+		WHERE b_no = #{b_no}
+	</select>
+	
+	<select id="selMyMoney" resultType="int">
+		SELECT m_pay FROM member WHERE m_no = #{m_no}
+	</select>
+	
+	<update id="buy">
+		UPDATE member
+		SET m_pay = m_pay - (SELECT b_price FROM board WHERE b_no = #{b_no})
+		WHERE m_no = #{buyer}
+	</update>
+
+	<update id="sell">
+		UPDATE member
+		SET m_pay = m_pay + ((SELECT b_price FROM board WHERE b_no = #{b_no}) - ((SELECT b_price FROM board WHERE b_no = #{b_no}) * #{fee}) / 100) 
+		WHERE m_no = (SELECT m_no FROM board WHERE b_no = #{b_no})
+	</update>
+	
+	<update id="boardState">
+		UPDATE board
+		SET b_state = '분양완료'
+		WHERE b_no = #{b_no}
+	</update>
+	
+	<insert id="insHistory">
+		INSERT INTO transaction_history
+		(b_no, th_buyer, th_seller, th_fee, th_price)
+		VALUES
+		(#{b_no}, #{buyer}
+		, (SELECT m_no FROM board WHERE b_no = #{b_no}), 
+		((SELECT b_price FROM board WHERE b_no = #{b_no}) * #{fee}) / 100
+		, (SELECT b_price FROM board WHERE b_no = #{b_no}))
+	</insert>
+	
+	<select id="selCountList" resultType="int">
+		SELECT COUNT(*) FROM transaction_history WHERE
+		<choose>
+			<when test="idx == 0">
+				th_buyer = #{ms_no}
+			</when>
+			<otherwise>
+				th_seller = #{ms_no}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="sellHistoryList" resultMap="TranHistoryDTO">
+		SELECT T.*, B.b_title, 
+		(SELECT m_nickname FROM member WHERE m_no = T.th_buyer) AS nickname
+		FROM transaction_history AS T
+		INNER JOIN board AS B
+		ON T.b_no = B.b_no
+		WHERE T.th_seller = #{m_no}
+	</select>
+	
+	<select id="buyHistoryList" resultMap="TranHistoryDTO">
+		SELECT T.*, B.b_title, 
+		(SELECT m_nickname FROM member WHERE m_no = T.th_seller) AS nickname
+		FROM transaction_history AS T
+		INNER JOIN board AS B
+		ON T.b_no = B.b_no
+		WHERE T.th_buyer = #{m_no}
+	</select>
+	
+	<update id="chargeMoney">
+		UPDATE member
+		SET m_pay = m_pay + #{m_pay}
+		WHERE m_no = #{m_no}
+	</update>
+	
+	<!-- 경매 -->
+	<update id="auctionBid">
+		UPDATE auction
+		SET ac_cur_winner = #{ac_cur_winner}
+		, ac_price = #{ac_price}
+		WHERE b_no = #{b_no}
+	</update>
+	
+	<select id="selAuctionList" resultMap="AuctionDTO">
+		SELECT * FROM auction WHERE ac_closed = 0
+	</select>
+	
+	<select id="selAuctionInfo" resultMap="AuctionDTO">
+		SELECT B.b_no, B.b_title, B.b_price, B.b_tt, B.b_auth, B.m_no, B.b_state, 
+		DATE_FORMAT(A.ac_enddt, '%Y-%m-%d %H:%i:%s') AS ac_enddt, 
+		 A.ac_startprice, A.ac_price, A.ac_cur_winner,
+		M.m_nickname AS writer, 
+		(SELECT m_nickname FROM member WHERE m_no = A.ac_cur_winner) AS winner
+		FROM board AS B
+		LEFT JOIN auction AS A
+		ON B.b_no = A.b_no
+		LEFT JOIN member AS M
+		ON B.m_no = M.m_no
+		WHERE B.b_no = #{b_no}
+	</select>
+	
+	<update id="closeAuction">
+		UPDATE auction
+		SET ac_closed = 1
+		WHERE b_no = #{b_no}
+	</update>
+	
+	<update id="buyAuction">
+		UPDATE member
+		SET m_pay = m_pay - #{ac_price}
+		WHERE m_no = #{ac_cur_winner}
+	</update>
+	
+	<update id="sellAuction">
+		UPDATE member
+		SET m_pay = m_pay + (#{ac_price} * #{fee} / 100)
+		WHERE m_no = #{m_no}
+	</update>
+	
+</mapper>
