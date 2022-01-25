@@ -8,6 +8,7 @@ import egovframework.sth.domain.board.domain.AnimalDTO;
 import egovframework.sth.domain.board.domain.BoardDTO;
 import egovframework.sth.domain.board.domain.BoardVO;
 import egovframework.sth.domain.board.domain.BoardViewVO;
+import egovframework.sth.domain.pay.domain.AuctionDTO;
 
 @Mapper
 public interface BoardMapper {
@@ -22,5 +23,6 @@ public interface BoardMapper {
 	BoardVO modselboard(BoardVO vo);
 	int updateBoard(BoardVO vo);
 	int updateAnimal(BoardVO vo);
+	int insAuction(AuctionDTO dto);
 	int boardHit(int b_no);
 }

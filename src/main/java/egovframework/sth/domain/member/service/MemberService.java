@@ -35,7 +35,6 @@ public class MemberService {
 	private MyUtils myUtils;
 
 	// 회원 가입
-//	@Async("threadPoolTaskExecutor")
 	public void join(MemberDTO param) throws MessagingException, UnsupportedEncodingException {
 
 		if (param.getM_pw() != null) {
