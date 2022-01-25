@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.mail.HtmlEmail;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import egovframework.sth.domain.member.Utils.MyUtils;
@@ -44,7 +43,9 @@ public class MemberService {
 			String subject = "STREET TO HOME 이메일 인증";
 			myUtils.mailSender(param.getM_email(), subject, text);
 
-			mapper.insMember(param);
+			return mapper.insMember(param);
+		}else {
+			return 0;
 		}
 	}
 
@@ -100,13 +101,15 @@ public class MemberService {
 	}
 
 	// 회원정보 수정
-	public String updateMember(MemberDTO param) {
-
+	public int updateMember(MemberDTO param) {
+		System.out.println(param.getM_pw());
+		if (param.getM_pw() != null) {
 		String hashPw = BCrypt.hashpw(param.getM_pw(), BCrypt.gensalt());
 		param.setM_pw(hashPw);
-		mapper.updateMember(param);
-		return "/member/login";
-	}
+		}
+		System.out.println(param.getM_pw());
+		return mapper.updateMember(param);
+		}
 
 	//비밀번호 찾기 이메일발송
 	public void sendEmail(MemberDTO param, String div) throws Exception {
@@ -155,33 +158,57 @@ public class MemberService {
 
 	// 비밀번호 찾기
 //	@Override
-//	public void findPw(HttpServletResponse response, MemberDTO param) throws Exception {
-//		response.setContentType("text/html;charset=utf-8");
-//		MemberDTO ck = mdao.readMember(vo.getId());
-//		PrintWriter out = response.getWriter();
-//		// 가입된 아이디가 없으면
-//		if(mdao.idCheck(vo.getId()) == null) {
-//			out.print("등록되지 않은 아이디입니다.");
-//			out.close();
-//		}
-//		// 가입된 이메일이 아니면
-//		else if(!vo.getEmail().equals(ck.getEmail())) {
-//			out.print("등록되지 않은 이메일입니다.");
-//			out.close();
-//		}else {
-//			// 임시 비밀번호 생성
-//			String pw = "";
-//			for (int i = 0; i < 12; i++) {
-//				pw += (char) ((Math.random() * 26) + 97);
-//			}
-//			vo.setPw(pw);
-//			// 비밀번호 변경
-//			mdao.updatePw(vo);
-//			// 비밀번호 변경 메일 발송
-//			sendEmail(vo, "findpw");
-//
-//			out.print("이메일로 임시 비밀번호를 발송하였습니다.");
-//			out.close();
-//		}
-//	}
+	public void findPw(HttpServletResponse response, MemberDTO param) throws Exception {
+		response.setContentType("text/html;charset=utf-8");
+		MemberDTO ck = mapper.readMember(param);
+		PrintWriter out = response.getWriter();
+		// 가입된 아이디가 없으면
+		if(ck == null) {
+			out.print("등록되지 않은 사용자입니다.");
+			out.close();
+		} else {
+			// 임시 비밀번호 생성
+			String pw = "";
+			for (int i = 0; i < 12; i++) {
+				pw += (char) ((Math.random() * 26) + 97);
+			}
+
+			param.setM_pw(pw);
+			
+			sendEmail(param, "findpw");
+		
+			String hashPw = BCrypt.hashpw(param.getM_pw(), BCrypt.gensalt());
+			param.setM_pw(hashPw);
+			mapper.updatePw(param);
+			
+
+			out.print("이메일로 임시 비밀번호를 발송하였습니다.");
+			out.close();
+		}
+	}
+
+	public void findemail(HttpServletResponse response, MemberDTO param) throws Exception  {
+		response.setContentType("text/html;charset=utf-8");
+		MemberDTO chk = mapper.findemail(param);
+		PrintWriter out = response.getWriter();
+		// 가입된 아이디가 없으면
+		if(chk == null) {
+			out.print("등록되지 않은 사용자입니다.");
+			out.close();
+		} else {
+			out.print("이메일은 " + chk.getM_email() + "입니다.");
+			out.close();
+		}
+	}
+	
+	public int memberDelete(MemberDTO param) throws Exception {
+		MemberDTO member = mapper.selMember(param);
+		System.out.println(member.getM_pw());
+		if (param.getM_pw() != null && BCrypt.checkpw(param.getM_pw(), member.getM_pw())) {
+			return mapper.memberDelete(param);
+		}
+		System.out.println(param.getM_pw());
+		return 0;		
+	}
 }
+	

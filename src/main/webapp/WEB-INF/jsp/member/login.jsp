@@ -1,67 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="./jquery.cookie.js"></script>
+<link rel="stylesheet" href="/css/member/login.css">
 <title>로그인</title>
+<style>
+div#loginPage {
+	width:200px;
+	display: block;
+	color : red;
+}
+</style>
+
 </head>
 <body>
 
-<%@ include file="../temp/header.jsp" %>
+	<%@ include file="../temp/header.jsp"%>
 
-	<div class="contents">
-		<h2>로그인</h2>
+	<div id="loginPage">
+	
+		<form id="loginForm" action="/member/login" method="post" autocomplete="off">
+		
+			<div>이메일 : <input class="m_email" type="text" id="m_email" name="m_email"></div>
+			<div>비밀번호 : <input class="m_pw" type="password"  id="m_pw" name="m_pw"></div>
+			<div class="login_warn">${requestScope.Msg}</div>
+			<div><input type="checkbox" id="idSaveCheck">이메일 저장</div>
+			<div><input class="loginBtn" type="button" id="loginBtn" value="로그인" onclick="login();"></div>
+			<div class="logindiv">
+			<a class="logindiv_a" href="../member/findemail">이메일찾기</a>
+			<a class="logindiv_a" href="../member/findpw">비밀번호찾기</a>
+			<a class="logindiv_a" href="../member/join">회원가입</a>
+			</div>
+		
+		</form>
+		
 	</div>
 
-	<section class="signinMain">
-		<div class="login">
-
-			<form action="/member/login" method="post" id="loginForm"
-				autocomplete="off">
-
-				<fieldset>
-					<ul class="inform">
-						<li><label for="m_email">이메일</label> <input type="text"
-							name="m_email" id="m_email" value="" class="placeholder"
-							autocomplete='new-password' placeholder="이메일을 입력해주세요."></li>
-
-						<li><label for="m_pw">비밀번호</label> <input type="password"
-							name="m_pw" id="m_pw" class="placeholder"
-							autocomplete='new-password' placeholder="비밀번호를 입력해주세요.">
-						</li>
-                			<div class = "login_warn">${requestScope.Msg }</div>
-					</ul>
-
-					<ul class="option">
-						<li><input type="checkbox" id="save" name="save"> <label
-							for="save">이메일 저장</label></li>
-					</ul>
-
-					<div class="login1" id="loginBtn" class="btn-1-black" onclick='login()'>로그인</div>
-
-					<ul class="link-box">
-						<li><a href="#">이메일찾기</a></li>
-						<li><a href="../member/findPw">비밀번호찾기</a></li>
-					</ul>
-				</fieldset>
-			</form>
-		</div>
-	</section>
 </body>
-<script>
-	function login() {
-		if ($("#m_email").val() == "")
-			alert("이메일을 입력해주세요.");
-		else if ($("#m_pw").val() == "")
-			alert("비밀번호를 입력해주세요.");
-		else
-			$('#loginForm').submit();
-	}
-</script>
+
+<script defer type="text/javascript" src="/js/member/login.js"></script>
+
 </html>

@@ -9,16 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.sth.domain.member.domain.MemberDTO;
 import egovframework.sth.domain.member.service.MemberService;
@@ -51,8 +54,8 @@ public class MemberController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession hs, HttpServletRequest req) {
 		hs.invalidate(); // 세션 종료
-		String referer = req.getHeader("REFERER");
-		return "redirect:" + referer;
+//		String referer = req.getHeader("REFERER");
+		return "redirect:/member/login";
 	}
 
 	// 2. 회원가입 화면
@@ -62,12 +65,14 @@ public class MemberController {
 	}
 
 	// 3. 회원가입 기능
+	@ResponseBody
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String join(MemberDTO param, Model model) throws MessagingException, UnsupportedEncodingException {
-		model.addAttribute("Msg", "가입시 사용한 이메일로 인증해 주세요.");
-		System.out.println(param.toString());
-		memberService.join(param);
-		return "/member/login";
+	public Map<String,Object> join(@RequestBody MemberDTO param, Model model) throws MessagingException, UnsupportedEncodingException {
+		
+		Map<String,Object> val = new HashMap<>();
+		val.put("data", memberService.join(param));
+//		System.out.println(param.toString());
+		return val;
 	}
 
 	// 이메일 중복 체크
@@ -75,6 +80,7 @@ public class MemberController {
 	@RequestMapping(value = "emailChk", method = RequestMethod.POST)
 	public int emailChk(MemberDTO param) throws Exception {
 		int result = memberService.emailChk(param);
+		System.out.println(result);
 		return result;
 	}
 
@@ -114,16 +120,24 @@ public class MemberController {
 
 	// 회원 정보 수정 화면
 	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
-	public String updateMember() {
+	public String updateMember(HttpServletRequest req, Model model, MemberDTO param) throws Exception {
 		return "/member/updateMember";
 	}
 
 	// 회원 정보 수정
+	@ResponseBody
 	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
-	public String updateMember(MemberDTO param, Model model) {
+	public Map<String,Object> updateMember(@RequestBody MemberDTO param, Model model, HttpSession session) {
 		model.addAttribute("Msg", "수정된 정보로 로그인 해주세요.");
-		memberService.updateMember(param);
-		return "/member/login";
+		Map<String, Object> map = new HashMap<String, Object>();
+		MemberDTO member = (MemberDTO)session.getAttribute("loginMember");
+        String m_pw = param.getM_pw();
+        member.setM_pw(m_pw);
+        session.setAttribute("loginMember", member);
+        System.out.println(param.toString());
+        System.out.println(member.toString());
+		map.put("result", memberService.updateMember(param));
+		return map;
 	}
 
 	@RequestMapping("/mypage")
@@ -140,12 +154,38 @@ public class MemberController {
 
 	/* 비밀번호 찾기 */
 	@RequestMapping(value = "/findpw", method = RequestMethod.GET)
-	public void findPwGET() throws Exception{
+	public String findPwGET() throws Exception{
+		return "/member/findpw";
 	}
 
-//	@RequestMapping(value = "/findpw", method = RequestMethod.POST)
-//	public void findPwPOST(@ModelAttribute MemberDTO param, HttpServletResponse response) throws Exception{
-//		memberService.findPw(response, param);
-//	}
+	@RequestMapping(value = "/findpw", method = RequestMethod.POST)
+	public void findPwPOST(@ModelAttribute MemberDTO param, HttpServletResponse response, Model model) throws Exception{
+		memberService.findPw(response, param);
+	}
+	
+	/* 이메일 찾기 */
+	@RequestMapping(value = "/findemail", method = RequestMethod.GET)
+	public String findemailGET() throws Exception{
+		return "/member/findemail";
+	}
 
+	@RequestMapping(value = "/findemail", method = RequestMethod.POST)
+	@ResponseBody
+	public void findemailPOST(HttpServletResponse response,@ModelAttribute MemberDTO param, Model model) throws Exception {
+		memberService.findemail(response, param);
+	}
+	
+	// 회원 탈퇴
+	@RequestMapping(value = "/memberDelete", method = RequestMethod.GET)
+	public String memberDelete() throws Exception{
+		return "member/memberDelete";
+	}
+	
+	
+	@RequestMapping(value = "/memberDelete", method = RequestMethod.POST)
+	public String memberDelete(@ModelAttribute MemberDTO param, HttpSession session, RedirectAttributes rttr) throws Exception {
+		memberService.memberDelete(param);
+		session.invalidate();
+		return "main/main";
+	}
 }

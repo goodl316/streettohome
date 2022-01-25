@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,6 @@
 	crossorigin="anonymous">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<script src="/tastyServer/assets/js/jquery-3.6.0.min.js"></script>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -40,86 +40,67 @@
                         <li><a href="#">내게시글목록</a></li>
                         <li><a href="#">찜하기목록</a></li>
                         <li><a href="#">결제내역</a></li>
+                        <li><a href="../member/memberDelete">회원탈퇴</a></li>
                     </ul>
 
                     <br>
                 </div>
             </div>
 
-	<section class="mainpage">
+	<div id="joinpage">
 
 		<form action="/member/updateMember" method="post" id="updateForm"
 			enctype="multipart/form-data">
 	
 	<h1>회원 정보 수정</h1>
 
-			<fieldset>
-				<ul class="form-box">
-					<li>
-						<p>이메일</p> <input name="m_email"
-						value="${sessionScope.loginMember.m_email}" readonly="readonly">
-					</li>
-
-					<li>
-						<p>비밀번호</p> <input type="password" id="InputPassword" name="m_pw"
-						required="required" placeholder="비밀번호를 입력해주세요.">
-					</li>
-
-					<li>
-						<p class="tit">비밀번호 확인</p>
-						<p class="form">
-							<input type="password" id="InputPasswordChck" name="m_pw2"
-								placeholder="비밀번호 확인값을 입력해주세요."> <label id="pwdResult"></label>
-						</p>
-						<div id="checkPwMsg"></div>
-					</li>
-
-					<li>
-						<p class="tit">이름</p>
-						<p>${sessionScope.loginMember.m_name}</p>
-					</li>
-
-					<li>
-						<p class="tit">닉네임</p> <input name="m_nickname"
-						value="${sessionScope.loginMember.m_nickname}">
-					</li>
-
-					<li>
-						<p class="tit">연락처</p> <input type="text"
-						value="${sessionScope.loginMember.m_phone}" id="tel1"
-						name="m_phone" size="11">
-					</li>
-
-					<li>
-						<p class="tit">우편번호</p>
-						<p class="form">
-							<input type="text" id="zipCode" name="m_zipcode"
-								value="${sessionScope.loginMember.m_zipcode}">
-						<div id="ckZip" onclick="addrSearch();">우편번호 검색</div>
-
-					</li>
-
-					<li>
-						<p class="tit">주소</p>
-						<p class="form">
-							<input type="text" id="m_address1" name="m_address"
-								value="${sessionScope.loginMember.m_address}">
-						</p>
-					</li>
-
-				</ul>
-			</fieldset>
-
-			<br>
-			<div class="btns" align="center">
-				<div id="updateBtn" onclick="updateMember();">수정하기</div>
-				<br>
+			<div>
+			<div style="font-weight:bold;">이메일</div>
+			<div><input class="email" id="m_email" readOnly="readOnly" value="${sessionScope.loginMember.m_email}"></div>
 			</div>
-		</form>
+			
+			<div>
+			<div style="font-weight:bold;">변경할 비밀번호</div>
+			<div><input class="join_password" type="password" id="m_pw" name="m_pw"  onchange="chk_pattern_pw()" placeholder="비밀번호를 입력해주세요." required>
+			<div id="m_pw_msg"></div>
+			</div>
+					
 
-	</section>
+			<div style="font-weight:bold;">비밀번호 확인</div>
+			<div><input class="join_password_chk" type="password" id="m_pw_chk" name="m_pw2" onchange="chk_pw()" placeholder="비밀번호 확인값을 입력해주세요.">
+			<div id="m_pw_chk_msg"></div>
+			</div>
+			
+			<div>
+			<div style="font-weight:bold;">이름</div>
+			<div>${sessionScope.loginMember.m_name}</div>
+			</div>
 
-	<script>
+			<div style="font-weight:bold;">닉네임</div>
+			<div><input class="join_nickname" type="text" id="m_nickname" name="m_nickname" 
+			placeholder="닉네임을 입력해주세요." required value="${sessionScope.loginMember.m_nickname}" data-nickname="${sessionScope.loginMember.m_nickname }">
+			<button class="nameChk" type="button" id="nameChk" onclick="fn_nameChk();" value="N">중복확인</button></div>
+			</div>	
+			
+			<div style="font-weight:bold;">휴대전화</div>
+			<div><input class="join_ph" type="text" id="m_phone" onchange="ph_pattern_pw()" 
+			placeholder="연락처를 입력해주세요." value="${sessionScope.loginMember.m_phone}"></div>
+			<div id="m_phone_msg"></div>
+			
+			<div style="font-weight:bold;">주소</div>
+			<div id="daumAddrApi">
+			<input type="text" id="m_zipcode" name="m_zipcode" placeholder="우편번호" value="${sessionScope.loginMember.m_zipcode}" readonly="readonly">
+			<input type="button" id="ckZip" onclick="addrSearch();" value="우편번호 찾기"><br>
+			<input type="text" id="m_address" name="m_address" placeholder="주소를 입력해주세요." value="${sessionScope.loginMember.m_address}">
+			</div>	
+
+			<div><input class="updateBtn" type="button" id="updateBtn" value="수정하기" onclick="updateMember1();"></div>
+			<div><input class="updateBtn" type="button" id="updateBtn" value="확인" onclick="updateMember1();"></div>
+	</form>
+	</div>
+	
+	<script defer type="text/javascript" src="/js/member/updateMember.js"></script>
+	<!-- <script>
 		// 참조 API : http://postcode.map.daum.net/guide
 		function addrSearch() {
 			new daum.Postcode({
@@ -159,50 +140,52 @@
 				}
 			}).open();
 		};
-
-		const pwElem = document.getElementById('inputPassword');
-		const pwChckElem = document.getElementById('inputPasswordChck');
-		const chckPwMsgElem = document.getElementById('checkPwMsg');
-		pwChckElem.addEventListener('focusout', chckPw);
-		pwElem.addEventListener('focusout', chckPw);
-
-		function chckPw() {
-			if (pwElem.value != pwChckElem.value) {
-				if (pwChckElem.value == '') {
-					chckPwMsgElem.innerText = '비밀번호를 확인 다시 해주세요!';
-					chckPwMsgElem.style.color = 'red';
-					return false;
-				} else {
-					chckPwMsgElem.innerText = '비밀번호가 일치 하지 않습니다.';
-					chckPwMsgElem.style.color = 'red';
-					return false;
-				}
-			} else {
-				chckPwMsgElem.innerText = '비밀번호가 일치 합니다.';
-				chckPwMsgElem.style.color = 'green';
-				return true;
+		
+		$("input[name=m_phone]").blur(function(){
+			  var phone = $(this).val();
+			  if( phone == '' || phone == 'undefined') return;
+			  if(! phone_check(phone) ) {
+			  	$(".result-phone").text('올바른 연락처 형식으로 입력해주세요.');
+			    $(this).focus();
+			    return false;
+			  }else {
+				$(".result-phone").text('');
+			  }
+			});
+					
+		
+		// 닉네임 중복
+		function fn_nameChk() {
+			if ($("#m_nickname").val() == "") {
+				alert("닉네임을 입력해주세요.");
+				return
 			}
-
-		}
-		function chckPw2() {
-			if (pwElem.value != pwChckElem.value) {
-				if (pwChckElem.value == '') {
-					chckPwMsgElem.innerText = '비밀번호를 확인 다시 해주세요!';
-					chckPwMsgElem.style.color = 'red';
-					return false;
-				} else {
-					chckPwMsgElem.innerText = '비밀번호가 일치 하지 않습니다.';
-					chckPwMsgElem.style.color = 'red';
-					return false;
+			$.ajax({
+				url : "/member/nameChk",
+				type : "post",
+				dataType : "json",
+				data : {
+					"m_nickname" : $("#m_nickname").val()
+				},
+				success : function(data) {
+					if (data == 1) {
+						alert("중복된 닉네임입니다.");
+						console.log("중복");
+					} else if (data == 0) {
+						$("#nameChk").attr("value", "Y");
+						$("#m_nickname").val();
+						alert("사용가능한 닉네임입니다.");
+						console.log("사용가능함");
+					} else {
+						alert("닉네임을 입력해주세요.");
+					}
 				}
-			} else {
-				chckPwMsgElem.innerText = '비밀번호가 일치 합니다.';
-				chckPwMsgElem.style.color = 'green';
-				return true;
-			}
-		}
+			})
+		} -->
+	<!-- <script>
+
 		function updateMember() {
 			$('#updateForm').submit();
 		}
-	</script>
+	</script> -->
 </body>
