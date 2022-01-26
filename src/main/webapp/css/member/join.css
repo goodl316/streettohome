@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+div#joinpage {
+	text-align: left;
+	padding: 20px;
+}
+
+.contents > h2 {
+	text-align: black;
+}
+
+.join1 input {
+	text-align: center;
+}
+
+div {
+	padding: 0.8px;
+}

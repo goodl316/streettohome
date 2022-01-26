@@ -1,26 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset=UTF-8”>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="/resources/js/addressapi.js"></script>
+<link rel="stylesheet" href="/css/member/join.css">
 <title>회원가입</title>
-</head>
-<body>
 
-	<%@ include file="../temp/header.jsp"%>
-
+	<div class="contents">
+      <h2 class="jointext">회원가입</h2>
 	<div id="joinpage">
 	
 		<div>
-			<div><input type="radio" name="m_state" value="0" checked="checked">개인</div>
-			<div><input type="radio" name="m_state" value="1">단체</div>
+			<div><input type="radio" name="m_state" value="0" checked="checked">개인
+			<input type="radio" name="m_state" value="1">단체</div>
 		</div>
 		
 		<div>
@@ -57,15 +49,11 @@
 		<div style="font-weight:bold;">주소</div>
 		<div id="daumAddrApi">
 		<input type="text" id="m_zipcode" name="m_zipcode" placeholder="우편번호" readonly="readonly">
-		<input type="button" id="ckZip" onclick="addrSearch();" value="우편번호 찾기"><br>
+		<input type="button" id="ckZip" onclick="addrSearch();" value="우편번호"><br>
 		<input type="text" id="m_address" name="m_address" placeholder="주소를 입력해주세요.">
 		</div>
-		
-		<div><input class="joinBtn" type="button" id="joinBtn" value="회원가입" onclick="join();"></div>
-		
+	</div>
+	<div><input class="joinBtn" type="button" id="joinBtn" value="회원가입" onclick="join();"></div>
 	</div>
 	
 	<script defer type="text/javascript" src="/js/member/member.js"></script>
-	
-</body>
-</html>

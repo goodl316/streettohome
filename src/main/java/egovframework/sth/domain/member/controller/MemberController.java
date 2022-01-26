@@ -46,7 +46,7 @@ public class MemberController {
 			model.addAttribute("Msg", "이메일 또는 비밀번호를 확인해주세요.");
 			return "/member/login";
 		} else {
-			return "redirect:/";
+			return "/main/main";
 		}
 	}
 
@@ -142,7 +142,7 @@ public class MemberController {
 
 	@RequestMapping("/mypage")
 	public String mypage() {
-		return "/member/mypage";
+		return "/member/updateMember";
 	}
 
 //	@RequestMapping(value = "/mypage", method = RequestMethod.POST)
@@ -178,7 +178,7 @@ public class MemberController {
 	// 회원 탈퇴
 	@RequestMapping(value = "/memberDelete", method = RequestMethod.GET)
 	public String memberDelete() throws Exception{
-		return "member/memberDelete";
+		return "/member/memberDelete";
 	}
 	
 	

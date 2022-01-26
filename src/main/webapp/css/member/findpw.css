@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.findpwpage > h2 {
+	text-align: black;
+}
+
+.findpwpage {
+	width: 30%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.find-input {
+	width: 100%;
+}
+
+.find-input input {
+	width: 100%;
+}

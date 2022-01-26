@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.findemailpage > h2 {
+	text-align: black;
+}
+
+.findemailpage {
+	width: 30%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.findemail-input {
+	width: 100%;
+}
+
+.findemail-input input {
+	width: 100%;
+}

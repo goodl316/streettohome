@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+div#updatePage {
+	text-align: left;
+	padding: 20px;
+}
+.contents > h2 {
+	text-align: black;
+}
+
+.update1 input {
+	text-align: center;
+}
+
+#grid {
+	display: grid;
+	grid-template-columns: 3fr 7fr;
+}
+
