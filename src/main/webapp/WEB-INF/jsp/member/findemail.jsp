@@ -52,7 +52,7 @@
 		</div>
 		<div class="finddiv">
 				<button type="button" id=findBtn class="emailBtn">이메일찾기</button>
-				<button type="button" onclick="history.go(-1);" class="gologin">로그인으로</button>
+				<button type="button" id=gologinBtn onclick="history.go(-1);" class="gologin">로그인으로</button>
 		</div>
 	</div>
 

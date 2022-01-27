@@ -31,7 +31,7 @@
 		</div>
 		<div class="finddiv">
 			<button type="button" id="findBtn" class="pwBtn">비밀번호찾기</button>
-			<button type="button" onclick="history.go(-1);" class="gologin">로그인으로</button>
+			<button type="button" id="gologinBtn" onclick="history.go(-1);" class="gologin">로그인으로</button>
 		</div>
 	</div>
 	

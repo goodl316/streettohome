@@ -22,3 +22,8 @@
 	padding: 20px;
 }
 
+#grid {
+	display: grid;
+	grid-template-columns: 2.5fr 7fr;
+}
+
