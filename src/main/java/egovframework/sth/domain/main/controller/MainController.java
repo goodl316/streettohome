@@ -19,6 +19,7 @@ public class MainController {
 	@GetMapping("/main")
 	public void main(Model model,MainVO vo ) {
 		model.addAttribute("list", service.selMainList(vo));
+		model.addAttribute("banner", service.bannerList(vo));
 		
 	}
 }

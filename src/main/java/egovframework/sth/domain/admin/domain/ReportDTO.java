@@ -7,7 +7,22 @@ public class ReportDTO {
 	private int m_no;
 	private String rp_ctnt;
 	private String an_type1;
+	private int rp_del;
+	private String rp_dt;
 	
+	
+	public String getRp_dt() {
+		return rp_dt;
+	}
+	public void setRp_dt(String rp_dt) {
+		this.rp_dt = rp_dt;
+	}
+	public int getRp_del() {
+		return rp_del;
+	}
+	public void setRp_del(int rp_del) {
+		this.rp_del = rp_del;
+	}
 	public String getAn_type1() {
 		return an_type1;
 	}

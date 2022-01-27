@@ -30,7 +30,45 @@ public class AdminService {
 	
 	public List<BoardDTO> selBoard(BoardDTO dto){
 		return mapper.selBoard(dto);
+	
+	}
+	
+	public List<BannerDTO> bannerList(BannerDTO dto){
+		return mapper.bannerList(dto);
+	}
+	
+	public List<ReportVO> selReport(ReportDTO dto){
+		return mapper.selReport(dto);
+	}
+	
+	public List<AskDTO> selAskList(AskDTO dto){
+		return mapper.selAskList(dto);
+	}
+	
+	public BannerDTO selinfo(BannerDTO dto) {
+		BannerDTO vo = mapper.selinfo(dto);
+		String path = "/img/banner/banner/"+dto.getChkImg();
+		if(futils.delFile(path)) {
+			System.out.println("성공");
+		}else {
+			System.out.println("실패");
 		}
+		System.out.println(dto.getChkImg());
+		System.out.println(vo.getBa_img1());
+		System.out.println(vo.getBa_no());
+		
+		if(vo.getBa_img1().equals(dto.getChkImg())) {
+			System.out.println("treu");
+			dto.setBa_img1("");
+			mapper.updBannerImg(dto);
+		}
+		
+		return vo;
+	}
+	
+	public List<BoardDTO> delBoardList(BoardDTO dto){
+		return mapper.delBoardList(dto);
+	}
 	
 	public int delBoard(BoardDTO dto) {
 		return mapper.delBoard(dto);
@@ -44,13 +82,7 @@ public class AdminService {
 	public int insReport(ReportDTO dto){
 		return mapper.insReport(dto);
 	}
-	public List<ReportVO> selReport(ReportDTO dto){
-		return mapper.selReport(dto);
-	}
 	
-	public List<AskDTO> selAskList(AskDTO dto){
-		return mapper.selAskList(dto);
-	}
 	public int delAsk(AskDTO dto) {
 		return mapper.delAsk(dto);
 	}
@@ -103,31 +135,9 @@ public class AdminService {
 		return 1;
 	}
 	
-	public List<BannerDTO> bannerList(BannerDTO dto){
-		return mapper.bannerList(dto);
+	
+	
+	public int delReport(ReportDTO dto) {
+		return mapper.delReport(dto);
 	}
-	
-	public BannerDTO selinfo(BannerDTO dto) {
-		BannerDTO vo = mapper.selinfo(dto);
-		String path = "/img/banner/banner/"+dto.getChkImg();
-		if(futils.delFile(path)) {
-			System.out.println("성공");
-		}else {
-			System.out.println("실패");
-		}
-		System.out.println(dto.getChkImg());
-		System.out.println(vo.getBa_img1());
-		System.out.println(vo.getBa_no());
-		
-		if(vo.getBa_img1().equals(dto.getChkImg())) {
-			System.out.println("treu");
-			dto.setBa_img1("");
-			mapper.updBannerImg(dto);
-		}
-		
-		return vo;
-	}
-	
-	
-	
 }

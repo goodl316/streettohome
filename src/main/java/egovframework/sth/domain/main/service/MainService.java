@@ -17,5 +17,9 @@ public class MainService {
 	public List<MainVO> selMainList(MainVO vo){
 		return mapper.selMainList(vo);
 	}
+	
+	public List<MainVO> bannerList(MainVO vo){
+		return mapper.bannerList(vo);
+	}
 
 }

@@ -10,5 +10,6 @@ import egovframework.sth.domain.main.domain.MainVO;
 public interface MainMapper {
 
 	List<MainVO> selMainList(MainVO vo);
+	List<MainVO> bannerList(MainVO vo);
 	
 }
