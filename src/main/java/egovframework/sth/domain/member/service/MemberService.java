@@ -1,7 +1,10 @@
 package egovframework.sth.domain.member.service;
 
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.mail.HtmlEmail;

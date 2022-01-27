@@ -13,49 +13,71 @@
 </head>
 <body>
 	<div class="container">
-		<div class="type_title">강아지를 안다</div>
-		<div>
-			검색 지역<select name="sido1" id="sido1"></select> <select name="gugun1"
-				id="gugun1"></select> 품종<select name="an_type1" id="an_type1"></select>
-			<select name="an_type2" id="an_type2"></select> 유료/뮤료<select
-				name="b_tt" id="b_tt">
-				<option value="">선택</option>
-				<option value="무료">무료</option>
-				<option value="유료">유료</option>
-				<option value="경매">경매</option>
-			</select> 성별<select name="an_gender" id="an_gender">
-				<option value="">선택</option>
-				<option value="수컷">수컷</option>
-				<option value="암컷">암컷</option>
-			</select> 가격<select name="b_price" id="b_price">
-				<option value="">선택</option>
-				<option value=50000>0~50000</option>
-				<option value=200000>50000~200000</option>
-				<option value=500000>200000~500000</option>
-				<option value=500000>500000~</option>
-			</select> 검색할 키워드<input type="text" class="searchText" value="">
-			<button onclick="clkvalue(); moveList()">검색</button>
-			<br>
-
-
+		<div class="type_title">${param.an_type1}를집으로</div>
+		<div class="select-list">
+			<div class="div1st">
+				<div class="loc">검색 지역</div>
+				<div class="sidogun">
+					<select name="sido1" id="sido1"></select> 
+					<select name="gugun1"id="gugun1"></select>
+				</div>
+			</div>
+			<div class="div2st">
+				<div class="type">품종  </div>
+				<div class="typ">
+					<select name="an_type1" id="an_type1"></select>  
+					<select name="an_type2" id="an_type2"></select>
+				</div>
+			</div>
+			<div class="div3st">
+				<div class="tt">유료/뮤료</div>
+				<select name="b_tt" id="b_tt">
+					<option value="">선택</option>
+					<option value="무료">무료</option>
+					<option value="유료">유료</option>
+					<option value="경매">경매</option>
+				</select>
+			</div>
+			<div class="div4st">
+				<div class="gen">성별  </div>
+				<select name="an_gender" id="an_gender">
+					<option value="">선택</option>
+					<option value="수컷">수컷</option>
+					<option value="암컷">암컷</option>
+				</select>
+			</div>
+			<div class="div5st">
+				<div class="pri">가격  </div>
+				<select name="b_price" id="b_price">
+					<option value="">선택</option>
+					<option value=50000>0~50000</option>
+					<option value=200000>50000~200000</option>
+					<option value=500000>200000~500000</option>
+					<option value=500000>500000~</option>
+				</select>
+			</div>
+			<button class="schBtn" onclick="clkvalue(); moveList()">검색</button>
 		</div>
-
+		<div class="chkLine"></div>
+		<div style="position :relative">
+		<button class="regBtn" onclick="regBoard()">글등록</button>
+		</div>
 		<div class="list_contain">
 			<div class="list_group">
 				<c:forEach var="list" items="${list}">
-					<div class="list_item">
-					<a href="/board/view?b_no=${list.b_no}">이동</a>
-					<a href="/board/boardmod?b_no=${list.b_no}">수정</a>
-						<div class="item_img">
-							<img src="/img/board/an_${list.an_no}/${list.an_img}">
+					<a href="/board/view?b_no=${list.b_no}">
+						<div class="list_item">
+							<div class="item_img">
+								<img src="/img/board/an_${list.an_no}/${list.an_img}">
+							</div>
+							<div class="item_txt">
+								<p>
+									<span>[${list.an_type2}]</span> ${list.b_title}
+								</p>
+								<p>${list.b_dt}</p>
+							</div>
 						</div>
-						<div class="item_txt">
-							<p>
-								<span>${list.an_type2 }</span>${list.b_title}
-							</p>
-							<p>${list.b_dt}</p>
-						</div>
-					</div>
+					</a>
 				</c:forEach>
 			</div>
 		</div>
@@ -88,7 +110,6 @@
 	<ul id="pagingul">
 	</ul>
 
-	<button onclick="paging(20,1,5)">페이징 확인</button>
 
 
 

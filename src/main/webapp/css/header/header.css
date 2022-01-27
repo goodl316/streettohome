@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+
+body a {
+	text-decoration: none;
+	color: black;
+}
+
+body li {
+	list-style: none;
+}
+
+.logo {
+	text-align: center;
+	font-size: 50px;
+}
+
+.nav-member {
+	position: absolute;
+	left: 90%;
+	bottom: 94%;
+	font-size: 15px;
+}
+
+.login-btn {
+	margin-right: 6px;
+}
+
+.join-btn {
+	margin-right: 3px;
+}
+.navList {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 60px;
+}
+
+.navList li {
+	text-align: center;
+	margin: 0 57px;
+	height: 90px;
+}
+
+.navList li a {
+	display: inline-block;
+	font-size: 25px;
+	font-weight: bold;
+	line-height: 110px;
+	width: 200px;
+}
+.header-user{
+	display: flex;
+	position: absolute;
+	left:72%;
+	bottom:93%;
+	font-size: 14px;
+	
+}

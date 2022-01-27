@@ -1,23 +1,29 @@
 @charset "UTF-8";
 
-.item_img img{
-	width: 250px;
-	height: 250px;
-}
-.dogList{
-	width:1200px;	
-	display: flex;
-	flex-wrap: wrap;
-}
-.catList{
-	width:1200px;	
-	display: flex;
-	flex-wrap: wrap;
+.mainbanner{
+	width :100%;
+	height: 800px;
+
 }
 .list_item{
-	margin-left:10px;
+	
 }
-.banner img{
-	width: 1400px;
-	height: 600px;
+.dogList{
+	display: flex;
+	flex-wrap: wrap;
+}
+.item_img img{
+	width: 200px;
+	height: 200px;
+}
+.banner ul{
+	list-style: none;
+	display: flex;
+	padding-left: 0px;
+}
+.banner li{
+	width: 100%;
+}
+.list_item{
+	margin-left: 5px;
 }
