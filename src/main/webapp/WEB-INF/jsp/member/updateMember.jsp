@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <title>회원 정보 수정</title>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/member/updateMember.css">
 
@@ -15,7 +16,7 @@
 	<div id="updatePage">
 	<form action="/member/updateMember" method="post" id="updateForm" enctype="multipart/form-data">
 			<div>
-			<div style="font-weight:bold;"></div>
+			<div style="font-weight:bold;">이메일</div>
 			<div><input class="email" id="m_email" readOnly="readOnly" value="${sessionScope.loginMember.m_email}"></div>
 			</div>
 			
@@ -39,7 +40,7 @@
 			<div style="font-weight:bold;">닉네임</div>
 			<div><input class="join_nickname" type="text" id="m_nickname" name="m_nickname" 
 			placeholder="닉네임을 입력해주세요." required value="${sessionScope.loginMember.m_nickname}" data-nickname="${sessionScope.loginMember.m_nickname }">
-			<button class="nameChk" type="button" id="nameChk" onclick="fn_nameChk();" value="N">중복확인</button></div>
+			<button class="nameChk modyBtn" type="button" id="nameChk" onclick="fn_nameChk();" value="N">중복확인</button></div>
 			</div>	
 			
 			<div style="font-weight:bold;">휴대전화</div>
@@ -49,14 +50,16 @@
 			
 			<div style="font-weight:bold;">주소</div>
 			<div id="daumAddrApi">
+			<div>
 			<input type="text" id="m_zipcode" name="m_zipcode" placeholder="우편번호" value="${sessionScope.loginMember.m_zipcode}" readonly="readonly">
-			<input type="button" id="ckZip" onclick="addrSearch();" value="우편번호 찾기"><br>
-			<input type="text" id="m_address" name="m_address" placeholder="주소를 입력해주세요." value="${sessionScope.loginMember.m_address}">
+			<button class="modyBtn" type="button" id="ckZip" onclick="addrSearch();">우편번호찾기</button></div>
+			<div>
+			<input type="text" id="m_address" name="m_address" placeholder="주소를 입력해주세요." value="${sessionScope.loginMember.m_address}"></div>
 			</div>	
 	</form>
 	</div>
-	<div class="update1"><input class="updateBtn" type="button" id="updateBtn" value="수정하기" onclick="updateMember1();"> 
-	<input class="updateBtn" type="button" id="updateBtn" value="확인" onclick="updateMember1();">
+	<div class="update1">
+	<input class="updateBtn modyBtn" type="button" id="updateBtn" value="수정하기" onclick="updateMember1();"> 
 	</div>
 	</div>
 	</div>

@@ -34,10 +34,10 @@
 			<h2 class="deletetxt">회원탈퇴</h2>
 			<form action="/member/memberDelete" method="post">
 				<div class="delete">
-					<input class="memberdel" type="text" id="m_email" name="m_email"
-						value="${sessionScope.loginMember.m_email}" readonly="readonly" />
-					<input class="memberdel" type="password" id="m_pw" name="m_pw"
-						placeholder="비밀번호" />
+					<p><input class="memberdel" type="text" id="m_email" name="m_email"
+						value="${sessionScope.loginMember.m_email}" readonly="readonly" /><p>
+					<p><input class="memberdel" type="password" id="m_pw" name="m_pw"
+						placeholder="비밀번호" /></p>
 				</div>
 				<div class="delete_warn">${requestScope.Msg}</div>
 				<div class="deletemem">
