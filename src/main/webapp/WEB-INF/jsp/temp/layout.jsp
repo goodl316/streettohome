@@ -17,7 +17,7 @@
 		</div>
 	</section>
 	<div class="page-footer">
-		
+		<tiles:insertAttribute name="footer"/>
 	</div>
 </body>
 </html>
