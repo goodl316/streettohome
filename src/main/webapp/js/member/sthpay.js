@@ -1,4 +1,12 @@
 const m_no = $('.pay-money-balance').data('member-pk');
+const url = window.location.pathname;
+const idx = url.substring(url.lastIndexOf('/')+1);
+
+if(idx == 0) {
+	$('.buy').addClass('clicked');
+} else {
+	$('.sell').addClass('clicked');
+}
 
 // 잔액조회
 function getMyInfo() {
@@ -62,6 +70,10 @@ function movePage(no) {
 	location.href = '/member/sthpay/' + no + '?page=1';
 }
 
+function moveBoard(no) {
+	location.href = '/board/view?b_no=' + no;
+}
+
 // 파라미터 가져오기
 function getParameter(param) {
 	return new URLSearchParams(location.search).get(param);
@@ -79,3 +91,4 @@ function linkPage(pageNo) {
 		location.href = "/member/sthpay/" + idx + "?page=" + pageNo;
 	}
 }
+

@@ -15,7 +15,7 @@ function getPaymentInfo() {
         })
         .then((data) => {
 			makePaymentInfo(data.data);
-			if(data.data.b_state == '분양완료') {
+			if(data.data.b_state == '3') {
 				alert('이미 분양되었습니다.');
 				window.close();
 			}

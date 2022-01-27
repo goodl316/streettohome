@@ -23,7 +23,7 @@ function linkPage(pageNo) {
 function openMessageView(ms_no, ms_title) {
 	const url = "/member/message/view?ms_no=" + ms_no;
 	const title = ms_title;
-	openPopup(url, 480, 300, title);
+	openPopup(url, 510, 460, title);
 }
 
 // 팝업창
@@ -107,7 +107,7 @@ function message(str, chkValList) {
 function openWriteMessage(ms_receiver) {
 	const url = "/member/message/write?ms_receiver=" + ms_receiver;
 	const title = '메시지보내기';
-	openPopup(url, 480, 300, title);
+	openPopup(url, 510, 460, title);
 }
 
 $('.message-write-button.send').on('click', ()=>{

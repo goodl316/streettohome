@@ -64,7 +64,9 @@
 					<c:if test="${requestScope.data.b_tt eq '경매' }">
 						<div class="view-auction">
 							<div class="view-startprice">경매시작가 ${requestScope.data.ac_startprice }원</div>
-							<div id="enddate" class="view-enddate" data-enddt="${requestScope.data.b_enddt }"></div>
+							<c:if test="${requestScope.data.b_enddt ne null}">
+								<div id="enddate" class="view-enddate" data-enddt="${requestScope.data.b_enddt }"></div>
+							</c:if>
 						</div>
 					</c:if>
 				</div>
@@ -89,10 +91,10 @@
 					<div class=view-info-content>${requestScope.data.an_gender }</div>
 				</div>
 				<div class="view-button-container">
-					<input type="button" class="view-info-button favorite" value="찜">
+					<div class="view-info-button favorite">찜하기<i class="fas fa-heart"></i></div>
 					<input type="button" class="view-info-button message" value="쪽지" onclick="openWriteMessage(${requestScope.data.m_no})">
 					<c:choose>
-						<c:when test="${requestScope.data.b_state eq '분양완료' }">
+						<c:when test="${requestScope.data.b_state eq '3' }">
 							<input type="button" class="view-info-button none" value="분양완료">
 						</c:when>
 						<c:when test="${requestScope.data.b_tt eq '경매' }">
@@ -107,11 +109,15 @@
 		</div>
 		
 		<!-- 상세설명 -->
-		<div class="view-detail">상세설명</div>  <!-- onclick view-detail-container display none 풀기 -->
 		<div class="view-detail-container">
 			<div class="view-img-container"></div>
 			<div class="view-detail-content">${requestScope.data.b_ctnt }</div>
-			<div class="view-detail-report"><button class="view-button-report">신고하기</button></div>
+			<div class="view-detail-report">
+			<button class="view-detail-button report"><img src="/images/egovframework/icon/siren.png"></img>신고하기</button>
+			<c:if test="${requestScope.data.m_no eq sessionScope.loginMember.m_no }">
+				<button class="view-detail-button modify" onclick="location.href='/board/boardmod?b_no=${requestScope.data.b_no }'">수정하기</button>
+			</c:if>
+			</div>
 		</div>
 		
 		<!-- 댓글화면 -->
@@ -130,11 +136,13 @@
 				<ul class="view-reply-list"></ul>
 			</div>
 		</div>
-		<div class="view-detail-footer"><a href="">목록보기</a></div>
+		<div class="view-detail-footer"><span class="view-button-return" onclick="returnPage()">목록보기</span></div>
 	
 	</div>
 </body>
 <script defer type="text/javascript" src="/js/member/message.js"></script>
 <script defer type="text/javascript" src="/js/board/view.js"></script>
 <script defer type="text/javascript" src="/js/board/reply.js"></script>
+<script defer type="text/javascript" src="/js/board/timer.js"></script>
+
 </html>

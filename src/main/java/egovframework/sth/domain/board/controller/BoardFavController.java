@@ -48,7 +48,7 @@ public class BoardFavController {
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		param.setM_no(member.getM_no());
 		model.addAttribute("data", service.selFavList(param));
-		return "member/favlist";
+		return "/member/favlist";
 	}
 	
 	@ResponseBody
