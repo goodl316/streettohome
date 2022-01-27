@@ -19,27 +19,31 @@
 	</div>
 	<div class="select">
 	<div class="up">
-	<div>
+	<div class="up-name">
 		<div>이름 </div>
 		<input type="text" id="an_name" placeholder="이름을 입력해 주세요">
 	</div>
-	<div>
+	<div class="up-type">
 		<div>품종 </div>
+		<div class="type2">
 		<select name="an_type1" id="an_type1"></select> <select
 			name="an_type2" id="an_type2"></select>
+		</div>
 	</div>
-	<div class="enddt_contain"></div>
-	<div class="price_contain"></div>
+	<div class="enddt_contain" style="display: none"></div>
+	<div class="price_contain" style="display: none"></div>
 	<br>
-	<div>
+	<div class="up-sido">
 		<div>지역</div>
-		<select name="sido1" id="sido1"></select> <select name="gugun1"
-			id="gugun1"></select>
+		<div class="sido2">
+		<select name="sido1" id="sido1"></select>
+		<select name="gugun1" id="gugun1"></select>
+		</div>
 	</div>
-	</div>
-	<div>
+	<div class="up-age">
 		<div>나이 </div>
 		<input type="text" class="input_age" placeholder="반려동물 나이를 입력해 주세요">
+	</div>
 	</div>
 	<div>
 		<div>분양방식 </div>
