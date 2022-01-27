@@ -58,6 +58,8 @@
 .loc, .type, .tt, .gen, .pri {
 	font-size: 13px;
 	width: 50px;
+	text-align: left;
+	padding-left: 3px;
 }
 .sidogun, .typ{
 	display: flex;
@@ -88,7 +90,7 @@
 	color: white;
 	border: none;
 	box-shadow: 1px 1px 1px 1px #aba5a5;
-	width: 120px;
+	width: 7.4%;
 	font-size: 20px;
 	position: absolute;
 	right: 0;

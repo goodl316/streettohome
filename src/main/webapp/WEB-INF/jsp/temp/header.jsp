@@ -20,7 +20,7 @@
     <div>
         <header>
         <input type="hidden" value="${sessionScope.loginMember.m_authstate}" id="loginData">
-            <h1 class= "logo"><a href= "/main">Street to home</a></h1>
+            <h1 class= "logo"><a href= "/">Street to home</a></h1>
             <div class="header-contain">
                 <c:choose>
                     <c:when test="${empty sessionScope.loginMember}">
