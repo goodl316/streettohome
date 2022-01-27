@@ -6,20 +6,20 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/main/main.css">
-<title>Insert title here</title>
+<title>StreetToHome</title>
 </head>
 <body>
-
-	<c:if test="${loginMember != null }">
-		<button onclick="regBoard()">글등록</button>
-		<c:if test="${loginMember.m_authstate == 999 }">
-			<button onclick="moveAdmin(1)">관리자페이지</button>
-		</c:if>
-	</c:if>
 	<div class="mainContainer">
 
 		<div class="banner">
-			<img class="mainbanner" src="#">
+			<ul>
+				<c:forEach var="ba" items="${banner}" end="0">
+					<c:if test="${ba.ba_img1 != '' }">
+						<li><img class="mainbanner"
+							src="/img/banner/banner/${ba.ba_img1}"></li>
+					</c:if>
+				</c:forEach>
+			</ul>
 		</div>
 
 		<div class="minaList">
@@ -33,7 +33,7 @@
 							</div>
 							<div class="item_txt">
 								<p>
-									<span>${list.an_type2 }</span>${list.b_title}
+									<span>[${list.an_type2}]</span> ${list.b_title}
 								</p>
 								<p>${list.b_dt}</p>
 							</div>
@@ -62,8 +62,13 @@
 			</div>
 
 		</div>
-
-
 	</div>
+	<c:if test="${loginMember != null }">
+		<button onclick="regBoard()">글등록</button>
+		<c:if test="${loginMember.m_authstate == 999 }">
+			<button onclick="moveAdmin(1)">관리자페이지</button>
+		</c:if>
+	</c:if>
+
 </body>
 </html>

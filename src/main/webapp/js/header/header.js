@@ -31,7 +31,7 @@ function moveList(an_type1) {
 			alert("구/군을 선택해주세요")
 			return;
 		}
-		if (b_type == "품종 선택") {
+		if (an_type2 == "품종 선택") {
 			alert("품종을 선택해주세요")
 			return;
 		}

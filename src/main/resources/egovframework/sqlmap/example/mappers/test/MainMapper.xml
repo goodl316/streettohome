@@ -18,6 +18,10 @@
 		WHERE a.b_del =0
 		order by a.b_no
 	</select>
+	
+	<select id="bannerList" resultMap="MainVO">
+	select * from banner;
+	</select>
 
 
 </mapper>

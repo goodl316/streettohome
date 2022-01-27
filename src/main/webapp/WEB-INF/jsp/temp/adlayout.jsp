@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<tiles:insertAttribute name="header2" />
 </head>
 <body>
 	

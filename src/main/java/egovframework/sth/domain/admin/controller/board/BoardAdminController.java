@@ -26,6 +26,12 @@ public class BoardAdminController {
 		model.addAttribute("list", service.selBoard(dto));
 	}
 	
+	@GetMapping("/admin/delBoardAdmin")
+	public void delBoardAdmin(Model model, BoardDTO dto) {
+		model.addAttribute("list", service.delBoardList(dto));
+		
+	}
+	
 	@ResponseBody
 	@PostMapping("/admin/delBoard")
 	public Map<String,Object> delBoard(@RequestBody BoardDTO dto){

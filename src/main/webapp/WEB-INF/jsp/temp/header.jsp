@@ -9,48 +9,47 @@
 <meta name="Author" content="">
 <meta name="Keywords" content="">
 <meta name="Description" content="">
+
 <link rel="stylesheet" href="css/header.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.2.0/css/all.min.css" integrity="sha512-6c4nX2tn5KbzeBJo9Ywpa0Gkt+mzCzJBrE1RB6fmpcsoN+b/w/euwIMuQKNyUoU/nToKN3a8SgNOtPrbW12fug==" crossorigin="anonymous" />
+<link rel="stylesheet" href="/css/header/header.css"/>
+
 <title>Document</title>
 </head>
 <body>
     <div>
         <header>
         <input type="hidden" value="${sessionScope.loginMember.m_authstate}" id="loginData">
-            <h1>Street to home</h1>
-            <div class="login clearfix">
+            <h1 class= "logo"><a href= "/main">Street to home</a></h1>
+            <div class="header-contain">
                 <c:choose>
                     <c:when test="${empty sessionScope.loginMember}">
-                        <p class="nav-item">
-                            <a class="nav-link" onclick="login()" href="../member/login">로그인</a>
-                        </p>
+                    <div class="nav-member">
+                            <a class="login-btn" onclick="login()" href="../member/login">로그인</a>
+                        	<a class="join_btn" href="/member/join">회원가입</a>
+                    </div>
                     </c:when>
                     <c:otherwise>
 				    	<input id="header-session-id" type="hidden" value="${sessionScope.loginMember.m_no }">
-                        <p class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">${sessionScope.loginMember.m_name} 님,
-                                반갑습니다.</a>
-                        </p>
-                        <div class="nav-item message">
-                        	<div class="nav-link message"><i class="item-message-icon"></i></div>
+				    	<div class="header-user">
+                            <a class="">${sessionScope.loginMember.m_name} 님,반갑습니다.</a> ||
+                        	<div class="nav-link message">메시지 : <i class="item-message-icon"></i></div>||
+                           	 <a class="dropdown-item" href="../member/logout">로그아웃</a>  ||
+                            <a class="dropdown-item" href="../member/mypage">마이페이지</a>
+                        
                         </div>
-                        <p class="dropdown-menu dropdown-menu-end"
-                            aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="../member/logout">로그아웃</a> <a
-                                class="dropdown-item" href="../member/mypage">마이페이지</a>
-                        </p>
+                           
                     </c:otherwise>
                 </c:choose>
             </div>
             <nav>
-                <ul class="navList clearfix">
+                <ul class="navList">
                     <li><a href="javascript:;">스트릿투홈 소개</a></li>
                     <li><a href="/board/boardList?an_type1=강아지">강아지를 집으로</a></li>
-                    <li><a href="board/boardList?an_type1=고양이">고양이를 집으로</a></li>
+                    <li><a href="/board/boardList?an_type1=고양이">고양이를 집으로</a></li>
                     <li><a href="javascript:;">후원</a></li>
                     <li><a href="javascript:;">입양후기</a></li>
+                    <li><a href="javascript:;">문의하기</a></li>
                 </ul>
             </nav>
         </header>
