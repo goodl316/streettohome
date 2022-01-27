@@ -10,7 +10,7 @@
 			value="/WEB-INF/jsp/temp/header.jsp" />
 	</definition>
 	
-	<definition name="*" extends="base">
+	<definition name="/*" extends="base">
 			<put-attribute name="body"
 			value="/WEB-INF/jsp/main.jsp" />		
 	</definition>
@@ -24,7 +24,7 @@
 	
 	<definition name="/member/*" extends="base">
 			<put-attribute name="body"
-			value="/WEB-INF/jsp/member/{1}.jsp" />		
+			value="/WEB-INF/jsp/member/{1}.jsp" />
 	</definition>
 	
 	<definition name="ask/*" extends="base">

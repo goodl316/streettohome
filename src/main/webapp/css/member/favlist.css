@@ -1,0 +1,42 @@
+.page-body {
+    display: grid;
+    grid-template-columns: 2.5fr 7.5fr;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.fav-list-header, .fav-list-item {
+    display: grid;
+    grid-template-columns: minmax(35px, auto) 1fr 5fr minmax(60px, auto) minmax(86px, auto) minmax(50px,auto);
+    gap: 7px;
+    padding: 8px 3px;
+}
+
+.fav-list-header {
+    border-bottom: 1px solid #b3b3b3;
+    font-weight: 600;
+}
+
+.fav-button-delete {
+    color: white;
+    background-color: #015f93;
+    border: none;
+    border-radius: .3rem;
+    box-shadow: 1px 1px 1px 1px rgb(173, 173, 173);
+    padding: 5px 14px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.fav-list-item:hover {
+    background-color: #e9e9e9;
+}
+
+.fav-item-title:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+

@@ -1,27 +1,17 @@
 $('input[name=radio]').on('click', () => {
-	switch($('input[name="radio"]:checked').val()) {
-		case '1':
-		$('.report-etc-text').val("부적절한 홍보 게시글");
-		$('.report-etc-text').attr('readOnly','true');
-		break;
-		case '2':
-		$('.report-etc-text').val("음란성 또는 청소년에게 부적합한 내용");
-		$('.report-etc-text').attr('readOnly','true');
-		break;
-		case '3':
-		$('.report-etc-text').val("명예훼손/사생활 침해 및 저작권침해등");
-		$('.report-etc-text').attr('readOnly','true');
-		break;
-		case '4':
-		$('.report-etc-text').val("허위 게시글");
-		$('.report-etc-text').attr('readOnly','true');
-		break;
-		case '5':
-		$('.report-etc-text').removeAttr('readOnly');
+	console.log($('input[name=radio]:checked').parent().text());
+	if(!$('input[name=radio]:checked').parent().text().indexOf('기타')) {
 		$('.report-etc-text').val("");
-		break;
+		$('.report-etc-text').removeAttr('readOnly');
+	} else {
+		$('.report-etc-text').val($('input[name=radio]:checked').parent().text());
+		$('.report-etc-text').attr('readOnly','true');
 	}
 });
+
+if($('input[name=radio]:checked')) {
+	
+}
 
 function closePopup() {
 	window.close();
@@ -34,7 +24,7 @@ function getParameter(param) {
 const b_no = getParameter('b_no');
 const m_no = getParameter('m_no');
 
-$('.report-button').on('click', ()=> {
+$('.report-button.submit').on('click', ()=> {
 	const param = {
 		b_no: b_no,
 		m_no: m_no,
@@ -51,7 +41,8 @@ $('.report-button').on('click', ()=> {
     }
 	
 	if(param.rp_ctnt == '') {
-		alert('신고이유를 선택해주세요.')
+		alert('신고이유를 선택해주세요.');
+		return;
 	} else {
 		fetch('/report', init)
 			.then((res) => {

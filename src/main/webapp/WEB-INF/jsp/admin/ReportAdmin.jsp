@@ -19,7 +19,7 @@
 					<th>제목</th>
 					<th>신고자</th>
 					<th>신고사유</th>
-					<th>작성자</th>
+					<th>작성날짜</th>
 					<th>게시글삭제</th>
 				</tr>
 				<c:forEach var="list" items="${list}">
@@ -28,64 +28,13 @@
 						<td>${list.b_title}</td>
 						<td>${list.wr_no }</td>
 						<td>${list.rp_ctnt}</td>
-						<td>${list.name}</td>
+						<td>${list.rp_dt}</td>
 						<td>
 							<button onclick="delBoard(${list.b_no})">삭제</button>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
-		</c:when>
-		<c:when test="${param.an_type1 eq '강아지' }">
-			<h1>신고받은 게시판 관리</h1>
-			<table>
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>신고자</th>
-					<th>신고사유</th>
-					<th>작성자</th>
-					<th>게시글삭제</th>
-				</tr>
-				<c:forEach var="list" items="${list}">
-					<tr>
-						<td>${list.rp_no }</td>
-						<td>${list.b_title}</td>
-						<td>${list.wr_no }</td>
-						<td>${list.rp_ctnt}</td>
-						<td>${list.name}</td>
-						<td>
-							<button onclick="delBoard(${list.b_no})">삭제</button>
-						</td>
-					</tr>
-				</c:forEach>
-			</table>
-		</c:when>
-		<c:when test="${param.an_type1 eq '고양이' }">
-		<h1>신고받은 게시판 관리</h1>
-			<table>
-				<tr>
-					<th>번호</th>
-					<th>제목</th>
-					<th>신고자</th>
-					<th>신고사유</th>
-					<th>작성자</th>
-					<th>게시글삭제</th>
-				</tr>
-				<c:forEach var="list" items="${list}">
-					<tr>
-						<td>${list.rp_no }</td>
-						<td>${list.b_title}</td>
-						<td>${list.wr_no }</td>
-						<td>${list.rp_ctnt}</td>
-						<td>${list.name}</td>
-						<td>
-							<button onclick="delBoard(${list.b_no})">삭제</button>
-						</td>
-					</tr>
-				</c:forEach>
-			</table>
-		
 		</c:when>
 </c:choose>
 </c:if>

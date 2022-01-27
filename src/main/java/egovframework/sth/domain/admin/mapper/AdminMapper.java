@@ -16,9 +16,11 @@ public interface AdminMapper {
 
 	List<MemberDTO> selMember(MemberDTO dto);
 	List<BoardDTO> selBoard(BoardDTO dto);
+	List<BoardDTO> delBoardList(BoardDTO dto);
 	List<ReportVO> selReport(ReportDTO dto);
 	List<AskDTO> selAskList(AskDTO dto);
 	List<BannerDTO> bannerList(BannerDTO dto);
+
 	BannerDTO selinfo(BannerDTO dto);
 	AskDTO selAsk(AskDTO dto);
 	int delBoard(BoardDTO dto);
@@ -27,4 +29,5 @@ public interface AdminMapper {
 	int delAsk(AskDTO dto);
 	int updBannerImg(BannerDTO dto);
 	int insBannerImg(BannerDTO dto);
+	int delReport(ReportDTO dto);
 }

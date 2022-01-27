@@ -15,10 +15,10 @@ public class MainController {
 	private MainService service;
 	
 
-
-	@GetMapping("/main")
-	public void main(Model model,MainVO vo ) {
+	@GetMapping("/")
+	public String main(Model model,MainVO vo ) {
 		model.addAttribute("list", service.selMainList(vo));
-		
+		model.addAttribute("banner", service.bannerList(vo));
+		return "/main";
 	}
 }

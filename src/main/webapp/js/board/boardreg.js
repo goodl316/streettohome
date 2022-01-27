@@ -304,18 +304,19 @@ $(document).ready(function() {
 			enddt_contain.innerHTML = ""
 		} else if (val == "유료") {
 			price_contain.style.display = "block"
+			enddt_contain.style.display = "none"
 			price_contain.innerHTML = `
-		가격 : <input type="text" class="input_price" placeholder="격을 입력해 주세요"><br>
+		<div>가격</div> : <input type="text" class="input_price" placeholder="격을 입력해 주세요"><br>
 		`
 		} else if (val == "경매") {
 			price_contain.style.display = "block"
 			enddt_contain.style.display = "block"
 			price_contain.innerHTML = `
-		시작 가격 : <input type="text" class="input_price" placeholder="시작 가격을 입력해 주세요"><br>
+		<div>시작 가격</div> : <input type="text" class="input_price" placeholder="시작 가격을 입력해 주세요"><br>
 			
 		`
 			enddt_contain.innerHTML=`
-			마감 날짜 : <select class="enddt" name="enddt">
+			<div>마감 날짜</div> : <select class="enddt" name="enddt">
 						<option value=1>1일</option>
 						<option value=2>2일</option>
 						<option value=3>3일</option>

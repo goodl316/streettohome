@@ -16,16 +16,16 @@
 			<th>내용</th>
 			<th>작성날짜</th>
 			<th>작성자</th>
+			<th>삭제</th>
 		</tr>
 		<c:forEach var="list" items="${list}">
 			<tr>
-				<a href="/ask/detailAsk?ak_no=${list.ak_no}">
 				<td>${list.ak_no }</td>
 				<td>${list.ak_title}</td>
 				<td>${list.ak_ctnt}</td>
 				<td>${list.ak_dt}</td>
 				<td>${list.m_name }</td>
-				</a>
+				
 				<td>
 					<button onclick="delAsk(${list.ak_no})">삭제</button>
 				</td>

@@ -15,9 +15,9 @@
 		type="egovframework.sth.domain.admin.domain.BoardVO" id="BoardVO" />
 	<resultMap
 		type="egovframework.sth.domain.admin.domain.ReportVO" id="ReportVO" />
-		<resultMap
-		type="egovframework.sth.domain.admin.domain.BannerDTO" id="BannerDTO"/>
-		
+	<resultMap
+		type="egovframework.sth.domain.admin.domain.BannerDTO" id="BannerDTO" />
+
 
 	<insert id="insreport">
 		insert into report
@@ -35,10 +35,10 @@
 		and m_auth = 1;
 	</select>
 	<select id="bannerList" resultMap="BannerDTO">
-	select* from banner;
+		select* from banner;
 	</select>
 	<select id="selinfo" resultMap="BannerDTO">
-	select ba_no, ba_img1 from banner where ba_no = #{ba_no}
+		select ba_no, ba_img1 from banner where ba_no = #{ba_no}
 	</select>
 
 	<select id="selBoard" resultMap="BoardDTO">
@@ -51,14 +51,20 @@
 		#{an_type1}
 	</select>
 
+	<select id="delBoardList" resultMap="BoardDTO">
+		select
+		a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,b.an_type1 from board a
+		left
+		join animal_info b
+		on a.b_no = b.b_no
+		where a.b_del =1
+	</select>
+
 	<select id="selReport" resultMap="ReportVO">
 		<if test="an_type1 == null">
-			select a.rp_no,a.b_no,
-			(select d.m_name from member where
-			d.m_no = a.m_no) as wr_no,
+			select a.rp_no,a.b_no,a.rp_del,a.rp_dt,
+			(select m_name from member where m_no=a.m_no) as wr_no,
 			a.rp_ctnt,b.b_title,
-			(select d.m_name from
-			member where d.m_no = b.m_no) as name,
 			c.an_type1 from
 			report a
 			left
@@ -68,15 +74,14 @@
 			on a.b_no =
 			c.b_no
 			left join member d
-			on a.m_no = d.m_no;
+			on a.m_no = d.m_no
+			where a.rp_del = 0;
+			
 		</if>
 		<if test="an_type1 != null ">
-			select a.rp_no,a.b_no,
-			(select d.m_name from member where
-			d.m_no = a.m_no) as wr_no,
+			select a.rp_no,a.b_no,a.rp_del,a.rp_dt,
+			(select m_name from member where m_no=a.m_no) as wr_no,
 			a.rp_ctnt,b.b_title,
-			(select d.m_name from
-			member where d.m_no = b.m_no) as name,
 			c.an_type1,d.m_name from
 			report
 			a
@@ -88,21 +93,21 @@
 			left join member d
 			on a.m_no = d.m_no;
 			where c.an_type1 =
-			#{an_type1}
+			#{an_type1} and a.rp_del = 0;
 		</if>
 	</select>
 	<select id="selAskList" resultMap="AskDTO">
-	select a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,a.m_no,b.m_name from ask a
-	left join member b
-	on a.m_no = b.m_no
-	where a.ak_del = 0
+		select a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,a.m_no,b.m_name from ask a
+		left join member b
+		on a.m_no = b.m_no
+		where a.ak_del = 0
 	</select>
-	
+
 	<select id="selAsk" resultMap="AskDTO">
-	select a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,b.m_name,b.m_email from ask a 
-	left join member b
-	on a.m_no = b.m_no
-	where ak_no = #{ak_no}
+		select a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,b.m_name,b.m_email from ask a
+		left join member b
+		on a.m_no = b.m_no
+		where ak_no = #{ak_no}
 	</select>
 
 	<update id="delBoard">
@@ -115,17 +120,24 @@
 		set m_state = 3
 		where m_no = #{m_no}
 	</update>
-	
+
 	<update id="delAsk">
-	update ask
-	set ak_del =1
-	where ak_no = #{ak_no}
+		update ask
+		set ak_del =1
+		where ak_no = #{ak_no}
+	</update>
+
+	<update id="updBannerImg">
+		update banner
+		set ba_img1 = #{ba_img1}
+		where ba_no = #{ba_no};
 	</update>
 	
-	<update id="updBannerImg">
-	update banner
-	set ba_img1 = #{ba_img1}
-	where ba_no = #{ba_no};
+	<update id="delReport">
+	update report
+	set rp_del = 1
+	where rp_no;
 	</update>
+	
 	
 </mapper>
