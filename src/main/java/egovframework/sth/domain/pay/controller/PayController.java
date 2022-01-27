@@ -33,10 +33,6 @@ public class PayController {
 	
 	@GetMapping("/pay")
 	public String pay() {
-		MemberDTO dto = new MemberDTO();
-		//TODO: 임시 session 삭제하기
-		dto.setM_no(1);
-		session.setAttribute("loginMember", dto);
 		return "/popup/pay";
 	}
 	

@@ -1,0 +1,49 @@
+body {
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.report-container {
+    width: 90%;
+}
+
+.report-title {
+    padding-bottom: 4px;
+    border-bottom: 2px solid #005E93;
+    font-size: 16px;
+}
+
+.report-selectbox {
+    border: 1px solid #b3b3b3;
+    padding: 10px 14px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    background-color: #dfdfdf;
+}
+
+.report-body p {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.report-button {
+    color: white;
+    background-color: #015f93;
+    border: none;
+    border-radius: .3rem;
+    box-shadow: 1px 1px 1px 1px rgb(173, 173, 173);
+    padding: 5px 14px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.report-footer {
+    text-align: center;
+}
+
+.report-button.cancle {
+    background-color: #878787;
+}

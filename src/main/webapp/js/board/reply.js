@@ -60,15 +60,24 @@ function makeReplyList(data) {
         const replyBody = $('<div class="view-reply-list-body"></div>');
         const replyContent = $('<div class="view-reply-content"></div>');
         const replyDelete = $('<div class="view-reply-delete"></div>');
-        const replyDelbtn = $('<input type="button" value="삭제">');
+        const replyDelbtn = $('<i class="fas fa-times"></i>');
         const reReplyContainer = $('<div class="view-reply-rereply-container"></div>')
 
         $('.view-reply-list').append(replyPiece);
         replyPiece.append(replyHeader, replyBody, reReplyContainer);
-        replyHeader.append(replyWriter, replyDate);
-        replyWriter.text(item.r_writer);
-        replyDate.text(item.r_dt.substr(0,19));
-        replyBody.append(replyContent, replyDelete);
+        replyHeader.append(replyWriter, replyDate, replyDelete);
+        replyWriter.html('<a class="view-reply-message">' + item.r_writer + '</a>');
+		$('.view-reply-message').attr('onclick','openWriteMessage(' + item.m_no + ')')
+        replyDate.text(item.r_dt.substr(0,16));
+        replyBody.append(replyContent);
+		if(item.r_dept > 0) {
+			replyPiece.addClass('rereply');
+			if(item.r_dept < 10) {
+				replyPiece.css('width' , 100-(item.r_dept*5) + '%');
+			} else {
+				replyPiece.css('width' , '50%');
+			}
+		}
 
         if (item.r_del == 0) {
             replyContent.text(item.r_ctnt);
@@ -96,8 +105,7 @@ function makeReplyList(data) {
                     return;
                 }
                 const rereplyElem = $('#view-reply-write').clone();
-				rereplyElem.find('#reply-form').removeClass('reply-form');
-				rereplyElem.find('#reply-form').addClass('reply-form'+item.r_no);
+				rereplyElem.find('.reply-form').addClass('form-no'+item.r_no);
 				rereplyElem.find('#reply-txtarea').val('');
 				
                 reReplyContainer.addClass('rereply-on');
@@ -105,10 +113,10 @@ function makeReplyList(data) {
                 rereplyElem.find('#reply-submit').on('click', () => {
                     const param = {
                         b_no: b_no,
-                        r_ctnt: $('.reply-form'+item.r_no + ' #reply-txtarea' ).val(),
+                        r_ctnt: $('.form-no'+item.r_no + ' #reply-txtarea' ).val(),
                         r_idx: item.r_idx,
                         r_ord: item.r_ord,
-                        r_detp: item.r_dept,
+                        r_dept: item.r_dept,
 						m_no: memberPK
                     };
                     if(param.r_ctnt == '') {

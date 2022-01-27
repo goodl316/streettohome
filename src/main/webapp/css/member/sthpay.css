@@ -1,0 +1,102 @@
+.page-body {
+    display: grid;
+    grid-template-columns: 2.5fr 7.5fr;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.pay-history-container {
+    width: 100%;
+}
+
+.pay-history-header {
+    text-align: left;
+}
+
+.pay-history-list-header, .pay-history-item {
+    display: grid;
+    grid-template-columns: minmax(35px, auto) 1fr 5fr minmax(60px, auto) minmax(86px, auto);
+    gap: 7px;
+    padding: 8px 3px;
+}
+
+.pay-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;   
+}
+
+.pay-history-list-header {
+    border-bottom: 1px solid #b3b3b3;
+    font-weight: 600;
+}
+
+.pay-history-button {
+    color: black;
+    background-color: white;
+    border: none;
+    padding: 5px 14px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.pay-history-button:hover, .clicked {
+    border-bottom: 3px solid #015f93;
+    color: #015f93;
+    font-weight: 600;
+}
+
+.pay-history-item:hover {
+    background-color: #e9e9e9;
+}
+
+.pay-history-title:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.pay-footer a:hover {
+    background-color: #b3b3b3;
+    color: red;
+    font-weight: bold;
+}
+
+.pay-money-container {
+    width: 50%;
+    border-radius: .6rem;
+    padding: 15px;
+    color: white;
+    background-color: #015f93;
+    border: 4px solid #015f93;
+    margin-bottom: 50px;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,25%);
+}
+
+.pay-money-charge {
+    text-align: right;
+}
+
+.pay-money-title, .pay-money-balance {
+    text-align: left;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.pay-money-balance {
+    font-size: 24px;
+}
+
+.pay-button-charge {
+    background-color: #e95b0c;
+        border: none;
+        border-radius: 1rem;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 4px 8px;
+}
+

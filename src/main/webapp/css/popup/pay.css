@@ -1,0 +1,134 @@
+body {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.pay-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    width: 80%;
+}
+
+.pay-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+}
+
+.pay-header { 
+    width: 100%;
+    text-align: left;
+    font-size: 28px;
+    border-bottom: 3px solid #005e93;
+    padding-bottom: 10px;
+}
+
+.pay-balance, .pay-price {
+    border: none;
+    border-radius: .4rem;
+    background-color: #f3f3f3;
+    margin: 10px;
+    padding: 20px;
+}
+
+.pay-balance-title, .pay-price-title {
+    font-size: 28px;
+}
+
+.pay-balance-ctnt, .pay-price-ctnt {
+    font-size: 22px;
+    text-align: right;
+    background-color: white;
+    border: 2px solid #b3b3b3;
+    border-radius: .3rem;
+    padding: 5px 20px;
+    margin-top: 20px;
+}
+
+.pay-charge-button {
+    background-color: #e95b0c;
+    border: none;
+    border-radius: .3rem;
+    color: white;
+    font-size: 22px;
+    box-shadow: 1px 1px 1px 1px rgb(175, 175, 175);
+    cursor: pointer;
+    margin: 7px 0
+}
+
+.pay-balance-button {
+    text-align: center;
+}
+
+.pay-startprice-title, .pay-curprice-title {
+    font-size: 24px;
+
+}
+
+.pay-startprice-ctnt, .pay-curprice-ctnt {
+    text-align: right;
+    font-size: 26px;
+}
+
+.pay-bid-title {
+    border-top: 2px solid #8a8a8a;
+    font-size: 22px;
+    margin: 3px 0;
+}
+
+.pay-checkbox {
+    font-size: 12px;
+}
+
+.pay-bid-ctnt {
+    text-align: center;
+    margin: 5px 0;
+}
+.pay-bid-text {
+    width: 95%;
+    font-size: 24px;
+    text-align: right;
+    border: 2px solid #b3b3b3;
+    border-radius: .4rem;
+    padding: 4px;
+}
+
+.pay-timer {
+    font-size: 12px;
+    color: red;
+}
+.pay-button-box {
+    text-align: center;
+}
+.pay-button {
+    color: white;
+    background-color: #015f93;
+    border: none;
+    border-radius: .3rem;
+    box-shadow: 1px 1px 1px 1px rgb(173, 173, 173);
+    padding: 5px 14px;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.pay-button.cancle {
+    background-color: #b3b3b3;
+}
+
+.pay-button.payment {
+    background-color: #005e93;
+}
+
+.pay-checkbox div {
+    padding: 3px;
+}
+
+.pay-button-box {
+    text-align: right;
+}

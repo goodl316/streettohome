@@ -8,6 +8,7 @@
 .view-main-container {
 	display: flex;
 	width: 100%;
+	margin-bottom: 30px;
 }
 
 .view-thumbnail {
@@ -23,16 +24,24 @@
 
 .view-subtitle-container {
 	display: flex;
+	margin: 5px 0 0 0
 }
 
 .view-type, .view-date, .view-nowprice {
 	flex-grow: 1;
 	text-align: left;
+	font-size: 12px;
+	color: #636363;
 }
 
 .view-info {
 	text-align: right;
 } 
+
+.view-hit {
+	font-size: 12px;
+	color: #636363;
+}
 
 .view-hit, .view-info {
 	flex-grow: 1;
@@ -42,17 +51,30 @@
 
 .view-state {
 	display: inline;
-	border: 1px solid black;
+	border: none;
 	border-radius: 0.6rem;
+	font-size: 12px;
+	padding: 2px 5px;
+	margin-right: 5px;
+}
+
+.view-state.state {
+	background-color: #3b93e5;
+	color: #ffffff;
+}
+.view-state.trade {
+	background-color: #e58d3b;
+	color: #ffffff;
 }
 
 .view-title-container {
-	font-size: 24px;
+	font-size: 40px;
+	text-align: left;
 }
 
 .view-price {
 	text-align: left;
-	font-size: 24px;
+	font-size: 36px;
 }
 
 .view-price-container {
@@ -70,11 +92,19 @@
 	display: grid;
 	grid-template-columns: .3fr .7fr;
 	text-align: left;
+	gap: 5px;
+	margin: 5px 0;
+	font-size: 14px;
 }
 
 .view-button-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
+	gap: 10px;
+}
+
+.view-enddate {
+	color: red;
 }
 
 .view-detail {
@@ -83,7 +113,7 @@
 	align-items: center;
 	color: #005e93;
 	font-size: 30px;
-	font-style: bold;
+	font-weight: bold;
 	margin: 8px 0px;
 	cursor: pointer;
 }
@@ -119,20 +149,26 @@
 .view-detail-content {
 	text-align: left;
 	font-size: 20px;
+	margin-bottom: 100px;
 }
 
 .view-detail-report {
 	text-align: right;
+	vertical-align: middle;
+}
+
+.view-reply-text-container {
+	margin-bottom: 20px;
 }
 
 .view-reply-container {
 	text-align: left;
+	padding: 4px
 }
 
 .view-reply-write {
-	width: 100%;
 	border: 1px solid #bfbfbf;
-	padding: 10px;
+	margin-top: 10px;
 }
 
 .reply-form {
@@ -145,6 +181,7 @@
 	height: 80px;
 	resize: none;
 	outline-style: none;
+	padding: 5px;
 }
 
 .reply-button-container {
@@ -168,13 +205,91 @@ ul {
 
 .view-reply-list-header {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 2.3fr .6fr .1fr;
+	gap: 6px;
+	margin-bottom: 4px;
 }
 
 .view-reply-writer {
 	text-align: left;
+	font-weight: bold;
 }
 
 .view-reply-date { 
 	text-align: right;
+	font-size: 12px;
+	text-decoration-color: #bfbfbf;
+}
+
+.view-reply-content {
+	cursor: pointer;
+}
+
+.view-reply-piece {
+	padding: 8px;
+	box-shadow: 1px 1px 1px 1px #bfbfbf;
+	margin: 10px 0;
+	border-radius: .3rem;
+}
+
+.view-detail-footer {
+	margin: 20px 0;
+}
+
+.view-button-return {
+	font-size: 28px;
+	color: #bfbfbf;
+	cursor: pointer;
+	border: 2px solid #bfbfbf;
+	border-radius: 3rem;
+	padding: 5px;
+}
+
+.view-detail-button {
+	background-color: white;
+	border: none;
+	color: #bfbfbf;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.rereply {
+	margin-left: auto;
+}
+
+.view-info-button {
+	height: 45px;
+	font-size: 18px;
+	color: white;
+	border: none;
+	cursor: pointer;
+	border-radius: .25rem;
+}
+
+.view-info-button.favorite {
+	background-color: #ffa0a0;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-info-button.message {
+	background-color: #53f16d;
+}
+
+.view-info-button.buy, .auction, .none {
+	background-color: #419bee;
+}
+
+.view-reply-message {
+	cursor: pointer;
+}
+
+.view-reply-delete .fa-times {
+	cursor: pointer;
+	margin: auto;
+}
+
+.view-info-title {
+	border-right: 1px solid #bfbfbf;
 }

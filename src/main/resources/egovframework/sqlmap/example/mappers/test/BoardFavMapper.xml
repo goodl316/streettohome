@@ -3,7 +3,7 @@
 <mapper namespace="egovframework.sth.domain.board.mapper.BoardFavMapper">
 
 	<resultMap type="egovframework.sth.domain.board.domain.BoardFavDTO" id="BoardFavDTO"/>
-	<resultMap type="egovframework.sth.domain.board.domain.BoardDTO" id="BoardDTO"/>
+	<resultMap type="egovframework.sth.domain.board.domain.BoardViewVO" id="BoardViewVO"/>
 	
 	<!-- 찜등록 -->
 	<insert id="insFav">
@@ -22,14 +22,17 @@
 	</select>
 	
 	<!-- 찜목록 -->
-	<select id="selFavList" resultMap="BoardDTO">
+	<select id="selFavList" resultMap="BoardViewVO">
 		SELECT B.b_no, B.b_title, B.b_dt, B.b_price, B.b_tt, B.b_enddt, B.m_no, 
-		M.m_nickname AS b_writer
+		M.m_nickname AS b_writer,
+		AN.an_type2 AS an_type2
 		FROM board AS B
 		INNER JOIN fav AS F
 		ON B.b_no = F.b_no
 		LEFT JOIN member AS M
 		ON B.m_no = M.m_no
+		LEFT JOIN animal_info AN
+		ON B.b_no = AN.b_no
 		WHERE F.m_no = #{m_no}
 	</select>
 	
