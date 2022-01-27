@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+.member-txt {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 28px;
+	display: flex;
+	align-items: center;
+	color: #5B5B5B;
+	text-align: left;
+}
+
+.contents {
+	margin: 0 auto;
+	width: 40%;
+	height: 60%;
+}
+.contents > h2 {
+	text-align: center;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 36px;
+	/* line-height: 42px; */
+	color: #000000;
+}
+.member-input {
+	width: 100%;
+}
+
+member-input div {
+	text-align:left;
+}
+
+div#joinpage input {
+	width: 80%;
+	padding: 10px;
+	border: none;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	background: #FFFFFF;
+}
+
+div {
+	padding: 0 0 10px;
+	text-align: left;
+}
+
+.joinBtn {
+	background-color: #005E93; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 15px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 8px;
+	cursor:pointer;
+}
+
+#joindiv {
+	text-align: center;
+	padding: 30px;
+}
+
+#daumAddrApi > #m_zipcode, #m_address {
+	width: 80%;
+	padding: 10px;
+	border: none;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	background: #FFFFFF;
+}
+
+#member-input > #m_email, #emailChk {
+	display: inline-block;
+}
+
