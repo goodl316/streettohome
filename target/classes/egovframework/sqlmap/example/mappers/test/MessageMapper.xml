@@ -44,6 +44,7 @@
 			</otherwise>
 		</choose>
 		  AND ms_del = 0
+		  ORDER BY ms_dt DESC
 		  LIMIT #{firstIndex}, #{recordCountPerPage}
 	</select>
 	
