@@ -1,19 +1,73 @@
 @charset "UTF-8";
 
-div#updatePage {
-	text-align: left;
-	padding: 20px;
-}
-.contents > h2 {
-	text-align: black;
+body {
+	min-width: 1700px;
 }
 
-.update1 input {
+.contents {
+	margin: 0 auto;
+	width: 80%;
+	height: 60%;
+}
+
+.contents > h2 {
 	text-align: center;
+	text-align: black;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 36px;
+	/* line-height: 42px; */
+	color: #000000;
+}
+
+.member-txt {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 24px;
+	line-height: 28px;
+	display: flex;
+	align-items: center;
+	color: #5B5B5B;
+	text-align: left;
+}
+
+div {
+	padding: 0 0 10px;
+	text-align: left;
 }
 
 #grid {
 	display: grid;
 	grid-template-columns: 2.5fr 7fr;
 }
+
+div#updatePage input {
+	width: 80%;
+	padding: 10px;
+	border: none;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	background: #FFFFFF;
+}
+
+.modyBtn {
+	background-color: #005E93; /* Green */
+	border: none;
+	color: white;
+	padding: 12px 12px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 13px;
+	border-radius: 8px;
+	cursor:pointer;
+}
+
+.update1{
+	text-align: center;
+}
+
+
 
