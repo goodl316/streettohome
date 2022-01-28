@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+body {
+	min-width: 1600px;
+}
+
+
 .member-txt {
 	font-family: Roboto;
 	font-style: normal;
@@ -14,7 +19,7 @@
 
 .contents {
 	margin: 0 auto;
-	width: 40%;
+	width: 60%;
 	height: 60%;
 }
 .contents > h2 {
@@ -66,7 +71,7 @@ div {
 	padding: 30px;
 }
 
-#daumAddrApi > #m_zipcode, #m_address {
+#m_zipcode {
 	width: 80%;
 	padding: 10px;
 	border: none;
@@ -75,7 +80,48 @@ div {
 	background: #FFFFFF;
 }
 
-#member-input > #m_email, #emailChk {
-	display: inline-block;
+#m_address {
+	width: 80%;
+	padding: 10px;
+	border: none;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	background: #FFFFFF;
 }
+
+.modyBtn {
+	background-color: #005E93; /* Green */
+	border: none;
+	color: white;
+	padding: 12px 12px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 13px;
+	border-radius: 8px;
+	cursor:pointer;
+}
+
+div#m_email_msg {
+	margin: 0 10px 10px;
+	padding: 0;
+}
+
+div#m_pw_msg {
+	margin: 0 10px 10px;
+	padding: 0;
+}
+
+div#m_pw_chk_msg {
+	margin: 0 10px 10px;
+	padding: 0;
+}
+
+div#m_phone_msg {
+	margin: 0 10px 10px;
+	padding: 0;
+}
+
+
+
 

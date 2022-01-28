@@ -1,5 +1,9 @@
 @charset "UTF-8";
-
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
 
 body a {
 	text-decoration: none;
@@ -13,6 +17,10 @@ body li {
 .logo {
 	text-align: center;
 	font-size: 50px;
+	background-color: #f7f7f7;
+	margin: 0;
+	padding-bottom: 20px;
+	padding-top: 30px;
 }
 
 .nav-member {
@@ -29,31 +37,63 @@ body li {
 .join-btn {
 	margin-right: 3px;
 }
-.navList {
+
+.nav-header {
+	width: 100%;
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	margin-top: 60px;
+	border-bottom: 1px solid #919191;
+	border-top: 3px solid #ececec;
+}
+.navList {
+	width: 60%;
+	min-width: 700px;
+	display: flex;
+	margin: 0;
+	justify-content: space-between;
 }
 
 .navList li {
 	text-align: center;
-	margin: 0 57px;
-	height: 90px;
+	padding: 16px 6px;
+	cursor: pointer;
 }
 
-.navList li a {
-	display: inline-block;
-	font-size: 25px;
-	font-weight: bold;
-	line-height: 110px;
-	width: 200px;
-}
 .header-user{
 	display: flex;
 	position: absolute;
 	left:72%;
 	bottom:93%;
 	font-size: 14px;
-	
+}
+
+.logo-img {
+	width: 165px;
+	height: 105px;
+}
+
+.navList li {
+	color: #333;
+	text-decoration: none;
+	display: inline-block;
+	padding: 15px 0;
+	position: relative;
+}
+
+.navList li:after {    
+	background: none repeat scroll 0 0 transparent;
+	bottom: 0;
+	content: "";
+	display: block;
+	height: 2px;
+	left: 50%;
+	position: absolute;
+	background: #000000;
+	transition: width 0.3s ease 0s, left 0.3s ease 0s;
+	width: 0;
+}
+
+.navList li:hover:after { 
+	width: 100%; 
+	left: 0; 
 }

@@ -1,17 +1,30 @@
 @charset "UTF-8";
 
-/* .container {
-  overflow: hidden;
+.container {
+	background-color: #F2F2F2;
+	border-radius: 9px;
+	height: 100%;
 }
-.sidebar, .content{
-  height: 500px;
-  border-radius: 4px;
-  margin: 20px;
-  border:1px solid #777;
+
+.sidebar>h2 {
+	font-size: 30px;
+	padding: 50px;
+	text-align: center;
 }
-.sidebar{
-  width: 300px;
-}
-.content{
-  width: 630px;
+
+/* .list {
+	padding: 50px;
 } */
+
+.list>li>a {
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 21px;
+	/* identical to box height */
+	display: flex;
+	align-items: center;
+	color: #000000;
+	margin: 40px;
+}

@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+	min-width: 1400px;
+}
+
 .logintext {
 	margin: 0 auto;
 }
@@ -23,6 +27,7 @@ input[type="checkbox"] {
 	text-align: center;
 	width: 40%;
 	height: 60%;
+	padding: 60px;
 }
 
 a {

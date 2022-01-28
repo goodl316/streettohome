@@ -20,7 +20,7 @@
     <div>
         <header>
         <input type="hidden" value="${sessionScope.loginMember.m_authstate}" id="loginData">
-            <h1 class= "logo"><a href= "/">Street to home</a></h1>
+            <h1 class= "logo"><a href="/"><img class="logo-img" src="/images/egovframework/icon/logo.png"></a></h1>
             <div class="header-contain">
                 <c:choose>
                     <c:when test="${empty sessionScope.loginMember}">
@@ -42,14 +42,14 @@
                     </c:otherwise>
                 </c:choose>
             </div>
-            <nav>
+            <nav class="nav-header">
                 <ul class="navList">
-                    <li><a href="javascript:;">스트릿투홈 소개</a></li>
-                    <li><a href="/board/boardList?an_type1=강아지">강아지를 집으로</a></li>
-                    <li><a href="/board/boardList?an_type1=고양이">고양이를 집으로</a></li>
-                    <li><a href="javascript:;">후원</a></li>
-                    <li><a href="javascript:;">입양후기</a></li>
-                    <li><a href="javascript:;">문의하기</a></li>
+                    <li onclick="location.href='/'">스트릿투홈 소개</li>
+                    <li onclick="location.href='/board/boardList?an_type1=강아지'">강아지를 집으로</li>
+                    <li onclick="location.href='/board/boardList?an_type1=고양이'">고양이를 집으로</li>
+                    <li onclick="location.href='/'">후원</li>
+                    <li onclick="location.href='/'">입양후기</li>
+                    <li onclick="location.href='/'">문의하기</li>
                 </ul>
             </nav>
         </header>
