@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+	min-width: 1400px;
+}
+
 .findemailpage>h2 {
 	text-align: black;
 	font-family: Roboto;
@@ -14,6 +18,7 @@
 	width: 30%;
 	margin: 0 auto;
 	text-align: center;
+	padding: 60px;
 }
 
 .findemail-input {

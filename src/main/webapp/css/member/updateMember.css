@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+	min-width: 1700px;
+}
+
 .contents {
 	margin: 0 auto;
 	width: 80%;
@@ -8,6 +12,13 @@
 
 .contents > h2 {
 	text-align: center;
+	text-align: black;
+	font-family: Roboto;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 36px;
+	/* line-height: 42px; */
+	color: #000000;
 }
 
 .member-txt {

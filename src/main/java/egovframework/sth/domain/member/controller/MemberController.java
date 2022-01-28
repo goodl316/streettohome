@@ -106,15 +106,15 @@ public class MemberController {
 		switch (result) {
 		case 0:
 			model.addAttribute("Msg", "인증이 옳바르지 않습니다.");
-			return "member/login";
+			return "/member/login";
 
 		case 1:
 			memberService.upM_authstate(param);
 			model.addAttribute("Msg", "회원가입한 정보로 로그인 해주세요!");
-			return "member/login";
+			return "/member/login";
 		}
 		model.addAttribute("Msg", "재로그인 해주세요.");
-		return "member/login";
+		return "/member/login";
 
 	}
 
@@ -181,11 +181,14 @@ public class MemberController {
 		return "/member/memberDelete";
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping(value = "/memberDelete", method = RequestMethod.POST)
-	public String memberDelete(@ModelAttribute MemberDTO param, HttpSession session, RedirectAttributes rttr) throws Exception {
-		memberService.memberDelete(param);
-		session.invalidate();
-		return "main/main";
+	public int memberDelete(@RequestBody MemberDTO param, HttpSession session, RedirectAttributes rttr) throws Exception {
+		if(memberService.memberDelete(param) == 1) {
+			session.invalidate();
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 }

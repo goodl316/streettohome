@@ -1,4 +1,3 @@
-var joinBtn = document.querySelector('#joinBtn')
 var m_email_Elem = document.querySelector('#m_email')
 var m_pw_Elem = document.querySelector('#m_pw')
 var m_pw_chk_Elem = document.querySelector('#m_pw_chk')
@@ -81,12 +80,18 @@ function chk_pw() {
 }
 
 function name_Pattern() {
+	if (m_name_Elem.value !== null) {
 		joinPossible[3] = true
+		} else {
+			joinPossible[3] = false
+		}
 }
 
 function nickname_Pattern() {
-	if (m_name_Elem.value !== null) {
+	if (m_nickname_Elem.value !== null) {
 		joinPossible[4] = true
+		} else {
+			joinPossible[4] = false
 		}
 }
 
@@ -126,6 +131,7 @@ function ph_pattern_pw() {
 		m_phone_msg.style.color = "red"
 	} else {
 		joinPossible[5] = true
+		m_phone_msg.innerHTML = ""
 	}
 }
 
@@ -155,14 +161,14 @@ joinBtn.onclick = function () {
 				return
 			case 3:
 				alert('이름을 다시 확인하세요.');	
-				m_nickname_Elem.focus()		
+				m_name_Elem.focus()		
 				return
 			case 4:
 				alert('닉네임을 다시 확인해주세요.');	
 				m_nickname_Elem.focus()		
 				return
 			case 5:
-				alert('연락처를 다시 확인해주세요.');	
+				alert('연락처를 확인해주세요.');	
 				m_phone_Elem.focus()		
 				return
 		} 
@@ -182,6 +188,9 @@ joinBtn.onclick = function () {
 				return;
 			} else if ($("#nameChk").val() == 'N') {
 				alert ("닉네임 중복 확인을 해주세요.");
+				return;
+			} else if  ($("#m_phone").val() == "") {
+				alert ("연락처를 입력해주세요.")
 				return;
 			}
             joinAjax(params)
