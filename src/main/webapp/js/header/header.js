@@ -158,15 +158,12 @@ $(document).ready(function(){
 
 function connectWS() {
 	sock.onopen = ()=> {
-		console.log('connection opened');
 	};
 	sock.onmessage = (e)=> {
 		let splitdata = e.data.split(":");
 		if(splitdata[0].indexOf("ms") > -1) {
-			console.log(splitdata[1] + '개의 쪽지');
-			$('.nav-link.message').append(splitdata[1]+"");
+			$('.item-message-icon').append(splitdata[1]);
 		} else {
-			console.log(e.data);
 		}
 		sock.onclose = ()=> {
 		}

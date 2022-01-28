@@ -32,8 +32,16 @@
 		,(select count(*) from report where
 		m_no = a.m_no) as warning
 		from member a where a.m_state = #{m_state}
-		and m_auth = 1;
+		and m_auth = 1
+		LIMIT #{firstIndex}, #{recordCountPerPage}
 	</select>
+	
+	<select id="selCountMember" resultType="int">
+		SELECT COUNT(*) 
+		FROM member 
+		WHERE m_state = #{m_state} AND m_auth = 1;
+	</select>
+	
 	<select id="bannerList" resultMap="BannerDTO">
 		select* from banner;
 	</select>

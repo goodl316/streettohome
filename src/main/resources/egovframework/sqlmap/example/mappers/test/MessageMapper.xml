@@ -4,7 +4,7 @@
 	<resultMap type="egovframework.sth.domain.message.domain.MessageDTO" id="MessageDTO"></resultMap>
 
 	<select id="selCountMessage" resultType="int">
-		SELECT COUNT(*) FROM message WHERE ms_receiver = #{ms_receiver} AND ms_read = 0
+		SELECT COUNT(*) FROM message WHERE ms_receiver = #{ms_receiver} AND ms_read = 0 AND ms_del = 0
 	</select>
 	
 	<select id="selCountTotalMessage" resultType="int">
