@@ -1,6 +1,7 @@
 package egovframework.sth.domain.admin.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
@@ -14,7 +15,7 @@ import egovframework.sth.domain.admin.domain.ReportVO;
 @Mapper
 public interface AdminMapper {
 
-	List<MemberDTO> selMember(MemberDTO dto);
+	List<MemberDTO> selMember(Map<String, Object> param);
 	List<BoardDTO> selBoard(BoardDTO dto);
 	List<BoardDTO> delBoardList(BoardDTO dto);
 	List<ReportVO> selReport(ReportDTO dto);
@@ -30,4 +31,5 @@ public interface AdminMapper {
 	int updBannerImg(BannerDTO dto);
 	int insBannerImg(BannerDTO dto);
 	int delReport(ReportDTO dto);
+	int selCountMember(Map<String, Object> param);
 }

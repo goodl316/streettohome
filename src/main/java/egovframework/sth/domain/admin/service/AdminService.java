@@ -1,6 +1,7 @@
 package egovframework.sth.domain.admin.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ import egovframework.sth.domain.admin.domain.MemberDTO;
 import egovframework.sth.domain.admin.domain.ReportDTO;
 import egovframework.sth.domain.admin.domain.ReportVO;
 import egovframework.sth.domain.admin.mapper.AdminMapper;
-import egovframework.sth.domain.board.domain.AnimalDTO;
 import egovframework.sth.global.common.FileUtils;
 
 @Service
@@ -24,8 +24,8 @@ public class AdminService {
 	@Autowired
 	private FileUtils futils;
 	
-	public List<MemberDTO> selMember(MemberDTO dto) {
-		return mapper.selMember(dto);
+	public List<MemberDTO> selMember(Map<String, Object> param) {
+		return mapper.selMember(param);
 	}
 	
 	public List<BoardDTO> selBoard(BoardDTO dto){
@@ -139,5 +139,9 @@ public class AdminService {
 	
 	public int delReport(ReportDTO dto) {
 		return mapper.delReport(dto);
+	}
+	
+	public int selCountMember(Map<String, Object> param) {
+		return mapper.selCountMember(param);
 	}
 }

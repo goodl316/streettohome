@@ -24,18 +24,24 @@ body li {
 }
 
 .nav-member {
+	min-width: 150px;
 	position: absolute;
-	left: 90%;
-	bottom: 94%;
-	font-size: 15px;
+	right: 30px;
+	top: 30px;
+	font-size: 13px;
 }
 
 .login-btn {
 	margin-right: 6px;
 }
 
+.login-btn:hover, .join-btn:hover, .nav-link.message:hover, .dropdown-item:hover {
+	background-color: #bfbfbf;
+	cursor: pointer;
+}
+
 .join-btn {
-	margin-right: 3px;
+	margin-right: 3px; 
 }
 
 .nav-header {
@@ -60,17 +66,19 @@ body li {
 }
 
 .header-user{
+	min-width: 400px;
 	display: flex;
 	position: absolute;
-	left:72%;
-	bottom:93%;
-	font-size: 14px;
+	right: 30px;
+	top: 30px;
+	font-size: 13px;
 }
 
-.logo-img {
-	width: 165px;
-	height: 105px;
+.header-user div {
+	padding: 3px 5px;
 }
+
+
 
 .navList li {
 	color: #333;
@@ -96,4 +104,16 @@ body li {
 .navList li:hover:after { 
 	width: 100%; 
 	left: 0; 
+}
+
+.item-message-icon {
+	background-color: red;
+	border-radius: 10rem;
+	color: white;
+	padding: 1px 3px;
+	font-size: 12px;
+}
+
+.header-welcome {
+	font-weight: 600;
 }

@@ -1,11 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/admin/board.css">
 </head>
 <body>
 <input type="hidden" value="${loginMember.m_authstate}" class="authstate">
@@ -13,8 +15,8 @@
 <c:choose>
 		<c:when test="${param.an_type1 eq '강아지' }">
 			<h1>강아지 게시판 관리</h1>
-			<table>
-				<tr>
+			<table class="admin-board dog">
+				<tr class="list-header">
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
@@ -30,7 +32,7 @@
 						<td>${list.m_no }</td>
 						<td>${list.b_auth}</td>
 						<td>${list.b_tt }</td>
-						<td>${list.b_dt }</td>
+						<td><c:set var="TextValue" value="${list.b_dt}"/>${fn:substring(TextValue,0,10) }</td>
 						<td>
 							<button onclick="delBoard(${list.b_no})">삭제</button>
 						</td>
@@ -40,8 +42,8 @@
 		</c:when>
 		<c:when test="${param.an_type1 eq '고양이' }">
 		<h1>고양이 게시판 관리</h1>
-			<table>
-				<tr>
+			<table class="admin-board cat">
+				<tr class="list-header">
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
@@ -57,7 +59,7 @@
 						<td>${list.m_no}</td>
 						<td>${list.b_auth }</td>
 						<td>${list.b_tt }</td>
-						<td>${list.b_dt}</td>
+						<td><c:set var="TextValue" value="${list.b_dt}"/>${fn:substring(TextValue,0,10) }</td>
 						<td>
 							<button onclick="delBoard(${list.m_no})">삭제</button>
 						</td>
