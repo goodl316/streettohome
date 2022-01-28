@@ -32,6 +32,11 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	
+	@RequestMapping(value = "/spon", method = RequestMethod.GET)
+	public String spon() {
+		return "/member/spon";
+	}
 
 	// 1. 로그인 화면
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -46,7 +51,7 @@ public class MemberController {
 			model.addAttribute("Msg", "이메일 또는 비밀번호를 확인해주세요.");
 			return "/member/login";
 		} else {
-			return "/main/main";
+			return "/";
 		}
 	}
 
