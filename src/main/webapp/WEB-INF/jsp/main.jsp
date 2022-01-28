@@ -27,6 +27,7 @@
 			<div class="dogList">
 				<c:forEach var="list" items="${list}" end="8">
 					<c:if test="${list.an_type1 eq '강아지' }">
+					<a href="/board/view?b_no=${list.b_no}">
 						<div class="list_item">
 							<div class="item_img">
 								<img src="/img/board/an_${list.an_no}/${list.an_img}">
@@ -38,6 +39,7 @@
 								<p>${list.b_dt}</p>
 							</div>
 						</div>
+						</a>
 					</c:if>
 				</c:forEach>
 			</div>
@@ -45,6 +47,7 @@
 			<div class="catList">
 				<c:forEach var="list" items="${list}" end="8">
 					<c:if test="${list.an_type1 eq '고양이' }">
+					<a href="/board/view?b_no=${list.b_no}">
 						<div class="list_item">
 							<div class="item_img">
 								<img src="/img/board/an_${list.an_no}/${list.an_img}">
@@ -56,9 +59,9 @@
 								<p>${list.b_dt}</p>
 							</div>
 						</div>
+						</a>
 					</c:if>
 				</c:forEach>
-
 			</div>
 
 		</div>

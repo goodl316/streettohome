@@ -1,53 +1,104 @@
 @charset "UTF-8";
 
-.reg_title{
+.reg_title {
+	margin-top:90px;
 	font-size: 40px;
 }
 
-
-.input_title{
-	border:none;
+.input_title {
+	margin-top:10px;
+	border: none;
 	box-shadow: 1px 1px 1px 1px #b3b3b3;
 	width: 100%;
 	height: 50px;
 }
 
-.input_ctnt{
-	margin-top :10px;
-	border:none;
-	box-shadow:1px 1px 1px 1px #b3b3b3; 
+.input_ctnt {
+	margin-top: 10px;
+	border: none;
+	box-shadow: 1px 1px 1px 1px #b3b3b3;
 	width: 100%;
 	height: 500px;
 }
+
 .select {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	width: 100%;
-	
 }
-.up{
+
+.up {
 	display: flex;
 	width: 100%;
 }
 
-.up div{
+.up div {
 	width: 100%;
 }
 
-.up select{
+.up select {
 	width: 100%;
+	border: none;
+	box-shadow: 1px 1px 1px 1px #b3b3b3;
+	height: 25px;
 }
+
 .type2 {
 	display: flex;
 }
-.sido2{
+
+.sido2 {
 	display: flex;
 }
-#an_name{
-	width: 100%
+
+#an_name {
+	width: 95%; border : none;
+	box-shadow: 1px 1px 1px 1px #b3b3b3;
+	border: none;
+	height: 25px;
 }
 
-.input_age{
-	width: 100%
+.input_age {
+	width: 95%;
+	border: none;
+	box-shadow: 1px 1px 1px 1px #b3b3b3;
+	height: 25px;
+}
+
+.loc_title, .type_title, .nm_title, .age_title {
+	font-size: 13px;
+	text-align: left;
+	padding-left: 3px;
+	color: #b3b3b3;
+}
+
+.ns_title, .tt_title, .gender_title {
+	font-size: 13px;
+	text-align: left;
+	padding-left: 3px;
+}
+
+.down {
+	margin-top:10px;
+	display: flex;
+	width: 100%;
+}
+
+.down_tt, .down_gen, .down_ns {
+	font-size : 13px;
+	margin-left: 25px;
+	color: #b3b3b3;
+}
+
+.reg_con{
+	margin-top: 10px;
+}
+.regBtn{
+	width : 15%;
+	height : 35px;
+	background-color: #005E93;
+	color: white;
+	border-radius: 0.25rem;
+	box-shadow: 1px 1px 1px 1px;
 }
