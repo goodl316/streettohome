@@ -8,28 +8,27 @@
 		template="/WEB-INF/jsp/temp/layout.jsp">
 		<put-attribute name="header"
 			value="/WEB-INF/jsp/temp/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/jsp/temp/footer.jsp" />
 	</definition>
-	
-	<definition name="/*" extends="base">
-			<put-attribute name="body"
-			value="/WEB-INF/jsp/main.jsp" />		
-	</definition>
-	
 
+	<definition name="/*" extends="base">
+		<put-attribute name="body" value="/WEB-INF/jsp/main.jsp" />
+	</definition>
 
 	<definition name="board/*" extends="base">
-			<put-attribute name="body"
-			value="/WEB-INF/jsp/board/{1}.jsp" />		
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/board/{1}.jsp" />
 	</definition>
-	
+
 	<definition name="/member/*" extends="base">
-			<put-attribute name="body"
+		<put-attribute name="body"
 			value="/WEB-INF/jsp/member/{1}.jsp" />
 	</definition>
-	
+
 	<definition name="ask/*" extends="base">
-			<put-attribute name="body"
-			value="/WEB-INF/jsp/ask/{1}.jsp" />		
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/ask/{1}.jsp" />
 	</definition>
 
 	<definition name="base2"

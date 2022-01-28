@@ -176,6 +176,6 @@ function connectWS() {
 	}
 }
 
-$('.nav-item.message').on('click', ()=> {
+$('.nav-link.message').on('click', ()=> {
 	location.href = '/member/message?page=1&ms_receiver=' + $("#header-session-id").val();
 })
