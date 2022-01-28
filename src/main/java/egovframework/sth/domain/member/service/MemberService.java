@@ -206,11 +206,9 @@ public class MemberService {
 	
 	public int memberDelete(MemberDTO param) throws Exception {
 		MemberDTO member = mapper.selMember(param);
-		System.out.println(member.getM_pw());
 		if (param.getM_pw() != null && BCrypt.checkpw(param.getM_pw(), member.getM_pw())) {
 			return mapper.memberDelete(param);
 		}
-		System.out.println(param.getM_pw());
 		return 0;		
 	}
 }

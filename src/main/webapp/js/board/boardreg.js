@@ -300,8 +300,8 @@ $(document).ready(function() {
 		
 		val = $(this).val()
 		if (val == "무료") {
-			price_contain.innerHTML = ""
-			enddt_contain.innerHTML = ""
+			price_contain.style.display ="none";
+			enddt_contain.style.display ="none";
 		} else if (val == "유료") {
 			price_contain.style.display = "block"
 			enddt_contain.style.display = "none"

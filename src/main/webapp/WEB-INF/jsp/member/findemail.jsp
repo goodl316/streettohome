@@ -43,11 +43,11 @@
 		<h2 class="find-text">이메일 찾기</h2>
    
 		<div class="findemail">
-				<div class="find-input">
+				<div class="find-input"> 
 					<p><input class="w3-input" type="text" id="m_name" name="m_name"
-						required placeholder="이름"></p>
+						required placeholder="이름" maxlength="16"></p>
 					<p><input class="w3-input" type="text" id="m_phone" name="m_phone"
-						required placeholder="전화번호"></p>
+						required placeholder="전화번호" maxlength="11"></p>
 				</div>
 		</div>
 		<div class="finddiv">

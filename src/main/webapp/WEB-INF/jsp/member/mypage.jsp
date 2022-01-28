@@ -8,10 +8,8 @@
 
 <div class="container">
 	<div class="sidebar">
+	<h2 class="my">${sessionScope.loginMember.m_name} 님</h2>
 		<ul class="list">
-			<h5 style="text-align: center">
-				<strong>${sessionScope.loginMember.m_name} 님</strong>
-			</h5>
 			<li><a href="../member/updateMember">회원정보수정</a></li>
 			<li><a href="#">입양신청목록</a></li>
 			<li><a href="#">내게시글목록</a></li>

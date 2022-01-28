@@ -25,5 +25,24 @@
 	width: 100%;
 }
 .list_item{
-	margin-left: 5px;
+	margin-left: 10px;
+}
+.item_img img {
+	width: 100%;
+	height: 270px;
+}
+.item_txt {
+	width: 100%
+}
+
+.dogList a{
+	width: 25%;
+}
+
+.catList a{
+	width: 25%;
+}
+.catList {
+	display: flex;
+	flex-wrap: wrap;
 }

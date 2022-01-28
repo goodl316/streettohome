@@ -98,11 +98,12 @@
 		</c:when>
 	</c:choose>
 	<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="linkPage"/>
+
 	</c:if>
 	<c:if test="${loginMember.m_authstate != 999 }">
-	<h1>접속 권한이 없습니다.</h1>
+		<h1>접속 권한이 없습니다.</h1>
 	</c:if>
-	
+
 </body>
 </html>
 <script type="text/javascript" src="/js/admin/memberAdmin.js"></script>
