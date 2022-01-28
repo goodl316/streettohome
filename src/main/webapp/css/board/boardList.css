@@ -37,7 +37,6 @@
 .select-list {
 	margin-top: 50px;
 	display: flex;
-	/*justify-content: center;*/
 }
 .select-list select {
 	border: none;
