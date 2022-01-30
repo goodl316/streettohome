@@ -16,8 +16,8 @@ import egovframework.sth.domain.admin.domain.ReportVO;
 public interface AdminMapper {
 
 	List<MemberDTO> selMember(Map<String, Object> param);
-	List<BoardDTO> selBoard(BoardDTO dto);
-	List<BoardDTO> delBoardList(BoardDTO dto);
+	List<BoardDTO> selBoard(Map<String, Object> param);
+	List<BoardDTO> delBoardList(Map<String, Object> dto);
 	List<ReportVO> selReport(ReportDTO dto);
 	List<AskDTO> selAskList(AskDTO dto);
 	List<BannerDTO> bannerList(BannerDTO dto);
@@ -32,4 +32,6 @@ public interface AdminMapper {
 	int insBannerImg(BannerDTO dto);
 	int delReport(ReportDTO dto);
 	int selCountMember(Map<String, Object> param);
+	int selCountBoard(Map<String, Object> param);
+	int selCountDelBoard(Map<String, Object> param);
 }

@@ -15,11 +15,19 @@
 	<!-- 메인 컨테이너 -->
 		<div class="view-main-container">
 			<div class="view-thumbnail">
-				<img src="">
+				<img class="view-thumbnail-image" src="/img/board/an_${requestScope.data.an_no}/${requestScope.data.an_img}">
 				<div class="view-auth">
 					<c:choose>
-						<c:when test="${requestScope.data.b_auth eq 0 }">관리자에게 인증받지 않은 게시글 입니다.</c:when>
-						<c:otherwise>관리자에게 인증받은 게시글 입니다.</c:otherwise>
+						<c:when test="${requestScope.data.b_auth eq 0 }">
+							<div class="view-auth-0">
+								<i class="fas fa-exclamation-triangle"></i> 관리자에게 인증받지 않은 게시글 입니다.
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="view-auth-1">
+								<i class="fas fa-check-circle"></i> 관리자에게 인증받은 게시글 입니다.
+							</div>
+						</c:otherwise>
 					</c:choose>
 				</div>
 			</div>

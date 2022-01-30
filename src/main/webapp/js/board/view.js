@@ -30,11 +30,11 @@ favBtn.on('click', () => {
 });
 
 function selFav() { 
-	if(favBtn.hasClass('clicked')) {
-		$('.fa-heart').css('color', 'red');
-	} else {
-		$('.fa-heart').css('color', 'white');
-	}
+	// if(favBtn.hasClass('clicked')) {
+	// 	$('.fa-heart').css('color', 'red');
+	// } else {
+	// 	$('.fa-heart').css('color', 'white');
+	// }
     fetch('/board/fav?b_no=' + b_no + '&m_no=' + memberPK)
         .then((res) => {
             return res.json();
@@ -42,8 +42,10 @@ function selFav() {
         .then((data) => {
             if (data.result == null) {
                 favBtn.removeClass('clicked');
+                $('.fa-heart').css('color', 'white');
             } else {
                 favBtn.addClass('clicked');
+                $('.fa-heart').css('color', 'red');
             }
         });
 }

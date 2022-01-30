@@ -69,3 +69,14 @@ header h3{
 .board {
 	margin-top: 25%;
 }
+
+.pagination {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.pagination a:hover {
+    background-color: #b3b3b3;
+    color: red;
+    font-weight: bold;
+}
