@@ -28,4 +28,6 @@ public interface MemberMapper {
 	MemberDTO findemail(MemberDTO param);
 	
 	int memberDelete(MemberDTO param);
+
+	int spon(MemberDTO param);
 }

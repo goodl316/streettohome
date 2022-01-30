@@ -1,17 +1,24 @@
 @charset "UTF-8";
 
-
 body{
 	display: flex;
-	justify-content:center;
 	width: 100%;
-	height: 1440px;
+	height: 100%;
+	margin: 40px 0 0;
+	justify-content: center;
+	min-width: 1700px;
+}
+
+.admin-container {
+	display: grid;
+	grid-template-columns: .3fr 1fr;
+	width: 90%;
+	height: 60%;
+	border: 2px solid #005e93;
 }
 
 header{
 	text-align:center;
-	width: 30%;
-	height: 100%;
 	background-color: #005E93;
 }
 
@@ -29,9 +36,8 @@ section{
 }
 
 .nav{
-	
 	height: 100%;
-	margin-top: 100px;
+	margin-top: 80px;
 }
 
 .user{
@@ -40,9 +46,9 @@ section{
 	height: 15%;
 }
 
-.nav ul{
+/* .nav ul{
 	padding-left: 0px;
-}
+} */
 
 .nav li{
 	line-height: 52px;
@@ -54,18 +60,33 @@ section{
 }
 
 header h3{
-	margin-top: 25%;
-	font-size: 30px;
+	margin-top: 20px;
+	font-size: 25px;
 	
 }
 
 .user a{
-	font-size: 20px;
+	font-size: 15px;
 }
 .board a{
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .board {
-	margin-top: 25%;
+	    margin: 100px 50px 0;
 }
+
+.user {
+	margin: 0;
+}
+
+li {
+	text-align: left;
+}
+
+.user_admin {
+	margin: 0 50px 0;
+}
+
+ul { list-style: none; }
+
