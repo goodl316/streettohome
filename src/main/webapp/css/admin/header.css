@@ -73,20 +73,18 @@ header h3{
 }
 
 .board {
-	    margin: 100px 50px 0;
+
+	margin-top: 25%;
 }
 
-.user {
-	margin: 0;
+.pagination {
+	text-align: center;
+	margin-top: 20px;
 }
 
-li {
-	text-align: left;
+.pagination a:hover {
+    background-color: #b3b3b3;
+    color: red;
+    font-weight: bold;
 }
-
-.user_admin {
-	margin: 0 50px 0;
-}
-
-ul { list-style: none; }
 

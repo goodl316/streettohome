@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,9 +67,11 @@
 					</tr>
 				</c:forEach>
 			</table>
-		
 		</c:when>
 </c:choose>
+<div class=pagination>
+	<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="linkPage"/>
+</div>
 </c:if>
 
 <c:if test="${loginMember.m_authstate != 999 }">

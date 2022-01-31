@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <title>마이페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="/tastyServer/assets/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="/css/member/mypage.css">
 
 <div class="container">

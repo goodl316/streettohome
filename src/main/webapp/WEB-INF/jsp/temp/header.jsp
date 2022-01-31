@@ -18,58 +18,54 @@
 
 <title>Document</title>
 </head>
-<body>
-	<div>
-		<header>
-			<input type="hidden" value="${sessionScope.loginMember.m_authstate}" id="loginData">
-			<h1 class="logo">
-				<a href="/" class="logo-img-box">
-					<img class="logo-img" src="/images/egovframework/icon/logo.png">
-				</a>
-			</h1>
-			<div class="header-contain">
-				<c:choose>
-					<c:when test="${empty sessionScope.loginMember}">
-						<div class="nav-member">
-							<a class="login-btn" onclick="login()" href="../member/login">로그인</a>
-							<a class="join-btn" href="/member/join">회원가입</a>
-						</div>
-					</c:when>
-					<c:otherwise>
-						<input id="header-session-id" type="hidden" value="${sessionScope.loginMember.m_no }">
-						<div class="header-user">
-							<div>
-								<a class="header-welcome">${sessionScope.loginMember.m_name}님 반갑습니다.</a>
-							</div>
-							<div class="nav-link message">
-								<span>쪽지</span>
-								<span class="item-message-icon"></span>
-							</div>						
-							<div>
-								<a class="dropdown-item" href="../member/logout">로그아웃</a>
-							</div>
-							<div>
-								<a class="dropdown-item" href="../member/mypage">마이페이지</a>
-							</div>
-						</div>
-					</c:otherwise>
-				</c:choose>
-			</div>
-			<nav class="nav-header">
-				<ul class="navList">
-					<li onclick="location.href='/'">스트릿투홈 소개</li>
-					<li onclick="location.href='/board/boardList?an_type1=강아지'">강아지를	집으로</li>
-					<li onclick="location.href='/board/boardList?an_type1=고양이'">고양이를	집으로</li>
-					<li onclick="location.href='/member/spon'">후원</li>
-					<li onclick="location.href='/'">입양후기</li>
-					<li onclick="location.href='/'">문의하기</li>
-				</ul>
-			</nav>
-		</header>
-		<div class="container"></div>
-		<footer></footer>
+
+<header>
+	<input type="hidden" value="${sessionScope.loginMember.m_authstate}" id="loginData">
+	<h1 class="logo">
+		<a href="/" class="logo-img-box">
+			<img class="logo-img" src="/images/egovframework/icon/logo.png">
+		</a>
+	</h1>
+	<div class="header-contain">
+		<c:choose>
+			<c:when test="${empty sessionScope.loginMember}">
+				<div class="nav-member">
+					<a class="login-btn" onclick="login()" href="../member/login">로그인</a>
+					<a class="join-btn" href="/member/join">회원가입</a>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<input id="header-session-id" type="hidden" value="${sessionScope.loginMember.m_no }">
+				<div class="header-user">
+					<div>
+						<a class="header-welcome">${sessionScope.loginMember.m_name}님 반갑습니다.</a>
+					</div>
+					<div class="nav-link message">
+						<span>쪽지</span>
+						<span class="item-message-icon"></span>
+					</div>						
+					<div>
+						<a class="dropdown-item" href="../member/logout">로그아웃</a>
+					</div>
+					<div>
+						<a class="dropdown-item" href="../member/mypage">마이페이지</a>
+					</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
+
 	</div>
-</body>
+	<nav class="nav-header">
+		<ul class="navList">
+			<li onclick="location.href='/'">스트릿투홈 소개</li>
+			<li onclick="location.href='/board/boardList?an_type1=강아지'">강아지를	집으로</li>
+			<li onclick="location.href='/board/boardList?an_type1=고양이'">고양이를	집으로</li>
+			<li onclick="location.href='/'">후원</li>
+			<li onclick="location.href='/'">입양후기</li>
+			<li onclick="location.href='/'">문의하기</li>
+		</ul>
+	</nav>
+</header>
 </html>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="

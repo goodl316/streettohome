@@ -28,8 +28,8 @@ public class AdminService {
 		return mapper.selMember(param);
 	}
 	
-	public List<BoardDTO> selBoard(BoardDTO dto){
-		return mapper.selBoard(dto);
+	public List<BoardDTO> selBoard(Map<String, Object> param){
+		return mapper.selBoard(param);
 	
 	}
 	
@@ -66,7 +66,7 @@ public class AdminService {
 		return vo;
 	}
 	
-	public List<BoardDTO> delBoardList(BoardDTO dto){
+	public List<BoardDTO> delBoardList(Map<String, Object> dto){
 		return mapper.delBoardList(dto);
 	}
 	
@@ -143,5 +143,13 @@ public class AdminService {
 	
 	public int selCountMember(Map<String, Object> param) {
 		return mapper.selCountMember(param);
+	}
+	
+	public int selCountBoard(Map<String, Object> param) {
+		return mapper.selCountBoard(param);
+	}
+	
+	public int selCountDelBoard(Map<String, Object> param) {
+		return mapper.selCountDelBoard(param);
 	}
 }
