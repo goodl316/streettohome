@@ -9,11 +9,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<div class="admin-container">
 		<tiles:insertAttribute name="header2"/>
 		<section>
 			<tiles:insertAttribute name="body" />		
 		</section>
+	
+	</div>
 </body>
 
 </body>

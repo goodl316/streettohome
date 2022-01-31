@@ -18,6 +18,7 @@
 
 <title>Document</title>
 </head>
+
 <header>
 	<input type="hidden" value="${sessionScope.loginMember.m_authstate}" id="loginData">
 	<h1 class="logo">
@@ -52,6 +53,7 @@
 				</div>
 			</c:otherwise>
 		</c:choose>
+
 	</div>
 	<nav class="nav-header">
 		<ul class="navList">

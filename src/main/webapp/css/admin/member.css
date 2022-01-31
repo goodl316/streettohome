@@ -32,3 +32,15 @@ table tr:hover {
 table {
     min-width: 910px;
 }
+
+h1 {
+	margin: 50px 50px 0;
+}
+
+.comoon-member {
+	padding: 30px 50px 0;
+}
+
+table {
+	padding: 50px 40px 50px;
+}

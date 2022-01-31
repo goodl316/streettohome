@@ -28,6 +28,10 @@ public class MemberService {
 
 	@Autowired
 	private MyUtils myUtils;
+	
+	public int spon(MemberDTO param) {
+		return mapper.spon(param);
+	}
 
 	// 회원 가입
 	public int join(MemberDTO param) throws MessagingException, UnsupportedEncodingException {

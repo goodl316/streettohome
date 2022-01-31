@@ -21,9 +21,9 @@
 			<h3>사용자 관리</h3>
 			<div class="user_admin">
 			<ul class="u_ul">
-				<li><a href="/admin/MemberAdmin?m_state=1">개인사용자</a></li>
-				<li><a href="/admin/MemberAdmin?m_state=2">단체사용자</a></li>
-				<li><a href="/admin/MemberAdmin?m_state=3">이용정지 사용자</a></li>
+				<li><a href="/admin/MemberAdmin?m_state=1&page=1">개인이용자</a></li>
+				<li><a href="/admin/MemberAdmin?m_state=2&page=1">단체이용자</a></li>
+				<li><a href="/admin/MemberAdmin?m_state=3&page=1">이용정지 사용자</a></li>
 			</ul>
 			</div>
 			</div>
@@ -31,10 +31,10 @@
 			<h3>게시글 관리</h3>
 			<div>
 			<ul class="b_ul">
-				<li><a href="/admin/BoardAdmin?an_type1=강아지">강아지 게시글</a></li>
-				<li><a href="/admin/BoardAdmin?an_type1=고양이">고양이 게시글</a></li>
-				<li><a href="/admin/ReportAdmin">신고받은 게시글</a>
-				<li><a href="/admin/delBoardAdmin">삭제된 게시글</a></li>
+				<li><a href="/admin/BoardAdmin?an_type1=강아지&page=1">강아지 게시글</a></li>
+				<li><a href="/admin/BoardAdmin?an_type1=고양이&page=1">고양이 게시글</a></li>
+				<li><a href="/admin/ReportAdmin&page=1">신고받은 게시글</a>
+				<li><a href="/admin/delBoardAdmin&page=1">삭제된 게시글</a></li>
 			</ul>
 			</div>
 			</div>
