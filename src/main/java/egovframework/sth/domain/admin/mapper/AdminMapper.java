@@ -17,7 +17,7 @@ public interface AdminMapper {
 
 	List<MemberDTO> selMember(Map<String, Object> param);
 	List<BoardDTO> selBoard(Map<String, Object> param);
-	List<BoardDTO> delBoardList(Map<String, Object> dto);
+	List<BoardDTO> delBoardList(Map<String,Object> param);
 	List<ReportVO> selReport(ReportDTO dto);
 	List<AskDTO> selAskList(AskDTO dto);
 	List<BannerDTO> bannerList(BannerDTO dto);

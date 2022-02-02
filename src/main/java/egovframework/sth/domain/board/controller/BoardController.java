@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,45 +31,19 @@ public class BoardController {
 	
 	
 	@GetMapping("/board/boardList")
-	public void boardList(Model model, BoardVO vo) {
-		System.out.println(vo.getB_loc_sido());
-		System.out.println(vo.getB_loc_gugun());
-		System.out.println(vo.getAn_type2());
-		System.out.println(vo.getAn_gender());
-		System.out.println(vo.getB_tt());
+	public void boardList(Model model, HttpServletRequest req) {
+		PaginationInfo pagination = new PaginationInfo();
+		Map<String, Object> map = new HashMap<>();
+		pagination.setCurrentPageNo(Integer.parseInt(req.getParameter("page")));
+		pagination.setPageSize(8);
+		pagination.setRecordCountPerPage(10);
+		map.put("recordCountPerPage", pagination.getRecordCountPerPage());
+		map.put("firstIndex", pagination.getFirstRecordIndex());
+		map.put("an_type1", req.getParameter("an_type1"));
+		pagination.setTotalRecordCount(service.countBoard(map));
 		
-		BoardVO vo2 = new BoardVO();
-		System.out.println(vo.getAn_type1());
-		String an_type1 = null;
-		if(vo.getAn_type1() != null) {
-			 an_type1 = vo.getAn_type1();
-		}
-		System.out.println(an_type1);
-		vo2 = service.countBoard(vo);
-		int nowPage = vo.getNowPage();
-    	int cntPerPage = vo.getCntPerPage();
-    	int total = vo2.getCountBoard();
-    	
-    	System.out.println(nowPage);
-    	System.out.println(cntPerPage);
-    	if (nowPage == 0 && cntPerPage == 0) {
-    		nowPage = 1;
-    		cntPerPage = 12;
-    	} else if (nowPage == 0) {
-    		nowPage = 1;
-    	} else if (cntPerPage == 0) { 
-    		cntPerPage = 12;
-    	}
-    	
-    	System.out.println("total2:"+total);
-    	System.out.println("2:"+nowPage);
-    	System.out.println("2:"+cntPerPage);
-    	
-    	
-		
-    	vo = new BoardVO(total, nowPage,an_type1, cntPerPage,vo.getB_loc_sido(),vo.getB_loc_gugun(),vo.getB_tt(),vo.getAn_gender(),vo.getB_price(),vo.getAn_type2());
-		model.addAttribute("list", service.boardList(vo));
-		model.addAttribute("paging", vo);
+		model.addAttribute("paginationInfo", pagination);
+		model.addAttribute("list", service.boardList(map));
 		
 
 	}

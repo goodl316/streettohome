@@ -144,7 +144,7 @@ function movePage2(endPage, cntPerPage, an_type1) {
 }
 
 function moveAdmin(m_state){
-	location.href="/admin/MemberAdmin?m_state="+m_state
+	location.href="/admin/MemberAdmin?m_state="+m_state+"&page=1"
 }
 
 let socket = null;

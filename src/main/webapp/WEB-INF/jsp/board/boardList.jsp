@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,33 +84,11 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="selectPage">
-		<c:if test="${paging.startPage != 1 }">
-			<a
-				onclick="movePage(${paging.startPage},${paging.cntPerPage},'${param.an_type1}')">${p }</a>
-		</c:if>
-		<c:forEach begin="${paging.startPage }" end="${paging.endPage }"
-			var="p">
-			<c:choose>
-				<c:when test="${p == paging.nowPage }">
-					<b>${p}</b>
-				</c:when>
-				<c:when test="${p != paging.nowPage }">
-					<a
-						onclick="movePage1(${p},${paging.cntPerPage},'${param.an_type1}')">${p}</a>
-				</c:when>
-			</c:choose>
-		</c:forEach>
-		<c:if test="${paging.endPage != paging.lastPage}">
-			<a
-				onclick="movePage2(${paging.endPage},${paging.cntPerPage},'${param.an_type1}')">&gt;</a>
-		</c:if>
-
+	
+	<c:set var="TextValue" value=""/>${fn:substring(TextValue,0,10) }
+	<div class=pagination>
+	<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="linkPage"/>
 	</div>
-
-	<ul id="pagingul">
-	</ul>
 
 
 

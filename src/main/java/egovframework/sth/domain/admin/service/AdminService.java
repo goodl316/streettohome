@@ -66,8 +66,8 @@ public class AdminService {
 		return vo;
 	}
 	
-	public List<BoardDTO> delBoardList(Map<String, Object> dto){
-		return mapper.delBoardList(dto);
+	public List<BoardDTO> delBoardList(Map<String,Object> map) {
+		return mapper.delBoardList(map);
 	}
 	
 	public int delBoard(BoardDTO dto) {

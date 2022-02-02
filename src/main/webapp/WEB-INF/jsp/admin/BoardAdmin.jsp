@@ -60,7 +60,8 @@
 						<td>${list.m_no}</td>
 						<td>${list.b_auth }</td>
 						<td>${list.b_tt }</td>
-						<td><c:set var="TextValue" value="${list.b_dt}"/>${fn:substring(TextValue,0,10) }</td>
+						<td>
+						<c:set var="TextValue" value="${list.b_dt}"/>${fn:substring(TextValue,0,10) }</td>
 						<td>
 							<button onclick="delBoard(${list.m_no})">삭제</button>
 						</td>
