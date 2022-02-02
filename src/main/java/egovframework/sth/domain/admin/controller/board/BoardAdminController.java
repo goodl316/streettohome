@@ -43,7 +43,8 @@ public class BoardAdminController {
 	}
 	
 	@GetMapping("/admin/delBoardAdmin")
-	public void delBoardAdmin(Model model, BoardDTO dto, HttpServletRequest req) {
+	public void delBoardAdmin(Model model, HttpServletRequest req) {
+		System.out.println("Asdasd");
 		PaginationInfo pagination = new PaginationInfo();
 		Map<String, Object> map = new HashMap<>();
 		
@@ -53,7 +54,7 @@ public class BoardAdminController {
 		
 		map.put("recordCountPerPage", pagination.getRecordCountPerPage());
 		map.put("firstIndex", pagination.getFirstRecordIndex());
-		pagination.setTotalRecordCount(service.selCountBoard(map));
+		pagination.setTotalRecordCount(service.selCountDelBoard(map));
 		
 		model.addAttribute("paginationInfo", pagination);
 		model.addAttribute("list", service.delBoardList(map));

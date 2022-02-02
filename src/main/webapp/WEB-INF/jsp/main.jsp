@@ -19,6 +19,7 @@
 							src="/img/banner/banner/${ba.ba_img1}"></li>
 					</c:if>
 				</c:forEach>
+				
 			</ul>
 		</div>
 

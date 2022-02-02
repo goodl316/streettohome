@@ -56,7 +56,7 @@
 
 .loc, .type, .tt, .gen, .pri {
 	font-size: 13px;
-	width: 50px;
+	width: 100%;
 	text-align: left;
 	padding-left: 3px;
 }
