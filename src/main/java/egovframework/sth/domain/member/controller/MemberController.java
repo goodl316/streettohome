@@ -33,6 +33,11 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@RequestMapping(value = "/intro", method = RequestMethod.GET)
+	public String intro() {
+		return "/member/intro";
+	}
+	
 	@RequestMapping(value = "/spon", method = RequestMethod.GET)
 	public String spon() {
 		return "/member/spon";

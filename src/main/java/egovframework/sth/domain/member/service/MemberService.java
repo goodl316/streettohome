@@ -29,6 +29,10 @@ public class MemberService {
 	@Autowired
 	private MyUtils myUtils;
 	
+	public int intro(MemberDTO param) {
+		return mapper.intro(param);
+	}
+	
 	public int spon(MemberDTO param) {
 		return mapper.spon(param);
 	}
