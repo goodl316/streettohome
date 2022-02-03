@@ -5,6 +5,13 @@ html, body, head {
 	box-sizing: border-box;
 }
 
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	font-family: 'Noto Sans KR';
+}
+
 section {
     display: flex;
     width: 100%;
@@ -13,6 +20,8 @@ section {
     justify-content: center;
     box-sizing: border-box;
     min-width: 1280px;
+    margin-bottom: 50px;
+    flex: 1;
 }
 
 .page-body {
@@ -28,6 +37,9 @@ section {
 .page-header header {
     position: relative;
     width: 100%;
+}
+
+.page-footer {
 }
 
 .template-footer-container {
