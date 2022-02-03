@@ -10,7 +10,6 @@
 </head>
 <body>
 	<div class="mainContainer">
-
 		<div class="banner">
 			<ul>
 				<c:forEach var="ba" items="${banner}" end="0">
@@ -19,10 +18,8 @@
 							src="/img/banner/banner/${ba.ba_img1}"></li>
 					</c:if>
 				</c:forEach>
-				
 			</ul>
 		</div>
-
 		<div class="minaList">
 			<h2>강아지를 집으로</h2>
 			<div class="dogList">
@@ -64,7 +61,6 @@
 					</c:if>
 				</c:forEach>
 			</div>
-
 		</div>
 	</div>
 	<c:if test="${loginMember != null }">

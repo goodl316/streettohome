@@ -12,7 +12,7 @@
 </head>
 <body>
 	<c:if test="${loginMember.m_authstate == 999 }">
-		<h1>삭제된 게시판 관리</h1>
+		<h1>삭제된 게시글 관리</h1>
 		<table>
 			<tr class="list-header">
 				<th>번호</th>

@@ -28,7 +28,7 @@
 			<textarea maxlength="1000" class="message-write-ctnt"></textarea>
 		</div>
 		<div class="message-write-footer">
-			<div class="message-write-button"><input type="button" value="전송"></div>
+			<div class="message-write-button"><input type="button" value="전송" onclick="sendMessage()"></div>
 			<div class="message-write-button"><input type="button" value="취소" onclick="window.close()"></div>
 		</div>
 	</div>

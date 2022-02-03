@@ -11,9 +11,8 @@
 <body>
 	<c:if test="${loginMember.m_authstate == 999 }">
 		<header>
-		<div>
-		<h1>Street to
-		Home</h1>
+		<div class="admin-header-logo">
+			<img src="/images/egovframework/icon/logo.png" onclick="location.href='/'">
 		</div>
 		
 			<div class="nav">

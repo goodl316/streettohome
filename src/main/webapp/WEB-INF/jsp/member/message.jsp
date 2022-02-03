@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/WEB-INF/jsp/member/mypage.jsp" %>
 <link rel="stylesheet" href="/css/member/message.css">
+<div>
 	<div class="message-container">
 		<div class="message-header">
 			<div class="message-buttons">
@@ -42,4 +43,5 @@
 			<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="linkPage"/>
 		</div>
 	</div>
+</div>
 <script defer type="text/javascript" src="/js/member/message.js"></script>

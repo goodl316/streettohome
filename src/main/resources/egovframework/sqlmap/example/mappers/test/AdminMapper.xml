@@ -33,6 +33,7 @@
 		m_no = a.m_no) as warning
 		from member a where a.m_state = #{m_state}
 		and m_auth = 1
+		ORDER BY a_m_no DESC
 		LIMIT #{firstIndex}, #{recordCountPerPage}
 	</select>
 	
@@ -57,6 +58,7 @@
 		on a.b_no = b.b_no
 		where a.b_del =0 and b.an_type1=
 		#{an_type1}
+		ORDER BY a.b_no DESC
 		LIMIT #{firstIndex}, #{recordCountPerPage}
 	</select>
 	
@@ -84,6 +86,7 @@
 		LEFT JOIN member C
 		on a.m_no = C.m_no
 		where a.b_del =1
+		ORDER BY a.b_no DESC
 		LIMIT #{firstIndex}, #{recordCountPerPage}
 	</select>
 
@@ -102,8 +105,8 @@
 			c.b_no
 			left join member d
 			on a.m_no = d.m_no
-			where a.rp_del = 0;
-			
+			where a.rp_del = 0
+			ORDER BY a.rp_no DESC
 		</if>
 		<if test="an_type1 != null ">
 			select a.rp_no,a.b_no,a.rp_del,a.rp_dt,
@@ -120,7 +123,8 @@
 			left join member d
 			on a.m_no = d.m_no;
 			where c.an_type1 =
-			#{an_type1} and a.rp_del = 0;
+			#{an_type1} and a.rp_del = 0
+			ORDER BY a.rp_no DESC
 		</if>
 	</select>
 	<select id="selAskList" resultMap="AskDTO">

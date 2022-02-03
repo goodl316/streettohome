@@ -34,8 +34,11 @@ body {
 }
 
 div {
-	padding: 0 0 10px;
 	text-align: left;
+}
+
+form div {
+	margin-bottom: 6px;
 }
 
 #grid {
@@ -63,6 +66,10 @@ div#updatePage input {
 	font-size: 13px;
 	border-radius: 8px;
 	cursor:pointer;
+}
+
+.updateBtn {
+	margin-top: 10px;
 }
 
 .update1{

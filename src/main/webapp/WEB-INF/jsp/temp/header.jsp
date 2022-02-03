@@ -58,8 +58,8 @@
 	<nav class="nav-header">
 		<ul class="navList">
 			<li onclick="location.href='/'">스트릿투홈 소개</li>
-			<li onclick="location.href='/board/boardList?an_type1=강아지'">강아지를	집으로</li>
-			<li onclick="location.href='/board/boardList?an_type1=고양이'">고양이를	집으로</li>
+			<li onclick="location.href='/board/boardList?an_type1=강아지&page=1'">강아지를	집으로</li>
+			<li onclick="location.href='/board/boardList?an_type1=고양이&page=1'">고양이를	집으로</li>
 			<li onclick="location.href='/'">후원</li>
 			<li onclick="location.href='/'">입양후기</li>
 			<li onclick="location.href='/'">문의하기</li>
