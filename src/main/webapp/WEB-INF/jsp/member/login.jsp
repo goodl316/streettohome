@@ -7,8 +7,6 @@
 
 <link rel="stylesheet" href="/css/member/login.css">
 <title>로그인</title>
-
-<section style="display: flex; justify-content: center;">
    <div class="contents">
       <h2 class="logintext">로그인</h2>
       <form id="loginForm" action="/member/login" method="post" autocomplete="off">
@@ -28,8 +26,5 @@
 			<p class="btn"><input class="loginBtn" type="button" id="loginBtn" value="로그인" onclick="login();"></p>
          </div>
       </form>
-     
    </div>
-  </section>
-
 <script defer type="text/javascript" src="/js/member/login.js"></script>

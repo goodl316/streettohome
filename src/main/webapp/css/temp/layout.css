@@ -1,4 +1,16 @@
 @charset "UTF-8";
+html, body, head {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	font-family: 'Noto Sans KR';
+}
 
 section {
     display: flex;
@@ -7,9 +19,27 @@ section {
     text-align: center;
     justify-content: center;
     box-sizing: border-box;
+    min-width: 1280px;
+    margin-bottom: 50px;
+    flex: 1;
 }
+
 .page-body {
 	width: 60%;
+}
+
+.page-header {
+    display: flex;
+    justify-content: center;
+    min-width: 1280px;
+}
+
+.page-header header {
+    position: relative;
+    width: 100%;
+}
+
+.page-footer {
 }
 
 .template-footer-container {
@@ -17,7 +47,10 @@ section {
     color: white;
     background-color: #005E93;
     bottom: 0;
-    padding: 20px;
+}
+
+.footer-container {
+	padding: 30px;
 }
 .footer-title {
     font-size: 36px;

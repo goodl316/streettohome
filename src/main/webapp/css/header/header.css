@@ -23,14 +23,6 @@ body li {
 	padding-top: 30px;
 }
 
-.nav-member {
-	min-width: 150px;
-	position: absolute;
-	right: 30px;
-	top: 30px;
-	font-size: 13px;
-}
-
 .login-btn {
 	margin-right: 6px;
 }
@@ -63,10 +55,21 @@ body li {
 	text-align: center;
 	padding: 16px 6px;
 	cursor: pointer;
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 28px;
 }
 
-.header-user{
+.header-user {
 	min-width: 400px;
+	display: flex;
+	position: absolute;
+	right: 30px;
+	top: 30px;
+	font-size: 13px;
+}
+
+.nav-member {
+	min-width: 200px;
 	display: flex;
 	position: absolute;
 	right: 30px;
@@ -77,8 +80,6 @@ body li {
 .header-user div {
 	padding: 3px 5px;
 }
-
-
 
 .navList li {
 	color: #333;

@@ -8,6 +8,11 @@ ul {
     padding: 0;
 }
 
+.message-container {
+	position: relative;
+	padding: 20px;
+}
+
 .message-content-header, .message-content-item {
     display: grid;
     grid-template-columns: .5fr 1.5fr 5.5fr 2.5fr;

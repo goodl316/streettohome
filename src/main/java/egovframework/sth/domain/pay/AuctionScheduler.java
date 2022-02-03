@@ -39,8 +39,12 @@ public class AuctionScheduler {
 				param2.setB_no(b_no);
 				param2.setBuyer(list.get(i).getAc_cur_winner());
 				
+				if(list.get(i).getAc_cur_winner() == 0) {
+					mapper.closeAuction(b_no);
+					return;
+				}
+				mapper.boardState(b_no);
 				mapper.insHistory(param2);
-				mapper.closeAuction(b_no);
 				mapper.boardState(b_no);
 				mapper.buyAuction(param);
 				mapper.sellAuction(param);

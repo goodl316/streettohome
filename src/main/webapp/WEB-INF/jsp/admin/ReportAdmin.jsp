@@ -6,15 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/css/admin/board.css">
 </head>
 <body>
 <input type="hidden" value="${loginMember.m_authstate}" class="authstate">
 <c:if test="${loginMember.m_authstate == 999 }">
 <c:choose>
 		<c:when test="${param.an_type1 == null }">
-			<h1>신고받은 게시판 관리</h1>
-			<table>
-				<tr>
+			<h1>신고받은 게시글 관리</h1>
+			<table class="admin-report">
+				<tr class="list-header">
 					<th>번호</th>
 					<th>제목</th>
 					<th>신고자</th>

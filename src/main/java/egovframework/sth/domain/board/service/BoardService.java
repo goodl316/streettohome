@@ -2,6 +2,7 @@ package egovframework.sth.domain.board.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,19 +29,21 @@ public class BoardService {
 	}
 	
 	
-	public List<BoardVO> boardList(BoardVO vo){
+	public List<BoardVO> boardList(Map<String,Object> map){
+		BoardVO vo = new BoardVO();
 		if(vo.getB_price() == 0) {
 			vo.setB_price(1);
 		}
 		
-		return mapper.boardList(vo);
+		return mapper.boardList(map);
 	}
 	
-	public BoardVO countBoard(BoardVO vo) {
+	public int countBoard(Map<String,Object> map) {
+		BoardVO vo = new BoardVO();
 		if(vo.getB_price() == 0) {
 			vo.setB_price(1);
 		}
-		return mapper.countBoard(vo);
+		return mapper.countBoard(map);
 	}
 	
 	public List<String> selImgList(int b_no){

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,16 +60,19 @@
 						<td>${list.m_no}</td>
 						<td>${list.b_auth }</td>
 						<td>${list.b_tt }</td>
-						<td><c:set var="TextValue" value="${list.b_dt}"/>${fn:substring(TextValue,0,10) }</td>
+						<td>
+						<c:set var="TextValue" value="${list.b_dt}"/>${fn:substring(TextValue,0,10) }</td>
 						<td>
 							<button onclick="delBoard(${list.m_no})">삭제</button>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
-		
 		</c:when>
 </c:choose>
+<div class=pagination>
+	<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="linkPage"/>
+</div>
 </c:if>
 
 <c:if test="${loginMember.m_authstate != 999 }">

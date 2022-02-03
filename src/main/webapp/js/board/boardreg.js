@@ -183,11 +183,15 @@ function boardReg() {
 	}
 		enddt = parseInt(enddt,10)
 		
-	var date = new Date()	
+	var date = new Date()
+	var b_enddt;	
 	if(enddt != null){
-		
-	var b_enddt = date.getFullYear() +"-"+(date.getMonth()+1)+"-"+(date.getDate()+enddt)+" "+date.getHours()+":"+date.getMinutes()	
-	}
+		date.setDate(date.getDate()+enddt);
+		date.setHours(date.getHours() + 9);
+		b_enddt = date.toISOString().replace('T', ' ').substring(0, 19);
+/*	var b_enddt = date.getFullYear() +"-"+(date.getMonth()+1)+"-"+(date.getDate()+enddt)+" "+date.getHours()+":"+date.getMinutes()	
+*/	}
+	
 	
 
 	params = {
@@ -200,6 +204,8 @@ function boardReg() {
 		m_no : m_no,
 		b_enddt : b_enddt
 	}
+	console.log(b_enddt);
+	console.log(enddt);
 
 	boardregAjax(params)
 

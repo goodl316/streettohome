@@ -36,12 +36,14 @@
 			<div style="font-weight:bold;">이름</div>
 			<div>${sessionScope.loginMember.m_name}</div>
 			</div>
-
+			
+			<div>
 			<div style="font-weight:bold;">닉네임</div>
 			<div><input class="join_nickname" type="text" id="m_nickname" name="m_nickname" 
 			placeholder="닉네임을 입력해주세요." required value="${sessionScope.loginMember.m_nickname}" data-nickname="${sessionScope.loginMember.m_nickname }" maxlength="8">
 			<button class="nameChk modyBtn" type="button" id="nameChk" onclick="fn_nameChk();" value="N">중복확인</button></div>
 			</div>	
+			</div>
 			
 			<div style="font-weight:bold;">휴대전화</div>
 			<div><input class="join_ph" type="text" id="m_phone" onchange="ph_pattern_pw()" 
@@ -52,7 +54,7 @@
 			<div id="daumAddrApi">
 			<div>
 			<input type="text" id="m_zipcode" name="m_zipcode" placeholder="우편번호" value="${sessionScope.loginMember.m_zipcode}" readonly="readonly">
-			<button class="modyBtn" type="button" id="ckZip" onclick="addrSearch();">우편번호찾기</button></div>
+			<button class="modyBtn" type="button" id="ckZip" onclick="addrSearch();">검색하기</button></div>
 			<div>
 			<input type="text" id="m_address" name="m_address" placeholder="주소를 입력해주세요." value="${sessionScope.loginMember.m_address}" maxlength="100"></div>
 			</div>	

@@ -90,15 +90,16 @@
 						<td>0</td>
 						<td><c:set var="TextValue" value="${list.m_dt}"/>${fn:substring(TextValue,0,10) }</td>
 						<td>
-							<button onclick="delMember(${list.m_no})">정지</button>
+							<button onclick="\elMember(${list.m_no})">정지</button>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</c:when>
 	</c:choose>
-	<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="linkPage"/>
-
+	<div class="pagination">
+		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="linkPage"/>
+	</div>
 	</c:if>
 	<c:if test="${loginMember.m_authstate != 999 }">
 		<h1>접속 권한이 없습니다.</h1>

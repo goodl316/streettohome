@@ -40,9 +40,7 @@
 	)
 	</insert>
 
-	<select id="boardList"
-		resultType="egovframework.sth.domain.board.domain.AnimalDTO"
-		resultMap="BoardVO">
+	<select id="boardList" resultMap="BoardVO">
 		<choose>
 			<when test=" an_type1 != null">
 				SELECT
@@ -57,6 +55,7 @@
 				WHERE b.an_type1=#{an_type1}
 				and a.b_del =0
 				order by a.b_no
+				LIMIT #{firstIndex}, #{recordCountPerPage}
 			</when>
 			<when test="an_type1 == null">
 				SELECT a.b_title,a.b_no,a.b_dt,a.b_tt,a.b_loc_sido,
@@ -75,11 +74,12 @@
 				and a.b_price <![CDATA[<]]>#{b_price}
 				and a.b_del = 0
 				order by a.b_no
+				LIMIT #{firstIndex}, #{recordCountPerPage}
 			</when>
 		</choose>
 	</select>
 
-	<select id="countBoard" resultMap="BoardVO">
+	<select id="countBoard" resultType="int">
 		<choose>
 			<when test="an_type1 != null">
 				select count(*) as countBoard from animal_info a
