@@ -10,7 +10,6 @@
 	<h2 class="my">${sessionScope.loginMember.m_name} 님</h2>
 		<ul class="list">
 			<li><a href="/member/updateMember">회원정보수정</a></li>
-			<li><a href="#">입양신청목록</a></li>
 			<li><a href="#">내게시글목록</a></li>
 			<li><a href="/member/favlist?page=1">찜하기목록</a></li>
 			<li><a href="/member/sthpay/0?page=1">결제내역</a></li>

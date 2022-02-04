@@ -3,10 +3,13 @@ package egovframework.sth.domain.admin.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import egovframework.sth.domain.admin.domain.AdminMessageDTO;
 import egovframework.sth.domain.admin.domain.AskDTO;
 import egovframework.sth.domain.admin.domain.BannerDTO;
 import egovframework.sth.domain.admin.domain.BoardDTO;
@@ -23,6 +26,8 @@ public class AdminService {
 	private AdminMapper mapper;
 	@Autowired
 	private FileUtils futils;
+	@Autowired
+	private HttpSession session;
 	
 	public List<MemberDTO> selMember(Map<String, Object> param) {
 		return mapper.selMember(param);
@@ -151,5 +156,17 @@ public class AdminService {
 	
 	public int selCountDelBoard(Map<String, Object> param) {
 		return mapper.selCountDelBoard(param);
+	}
+	
+	public String[] autoComplete() {
+		return mapper.selAllNickname();
+	}
+	
+	public int sendAllMessage(AdminMessageDTO param) {
+		egovframework.sth.domain.member.domain.MemberDTO member = new egovframework.sth.domain.member.domain.MemberDTO();
+		member = (egovframework.sth.domain.member.domain.MemberDTO) session.getAttribute("loginMember");
+		param.setMs_sender(member.getM_no());
+		param.setMs_receiver(mapper.selAllMember());
+		return mapper.sendAllMessage(param);
 	}
 }
