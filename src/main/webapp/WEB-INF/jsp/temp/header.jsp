@@ -21,6 +21,7 @@
 
 <header>
 	<input type="hidden" value="${sessionScope.loginMember.m_authstate}" id="loginData">
+	<input id="header-session-id" type="hidden" value="${sessionScope.loginMember.m_no }">
 	<h1 class="logo">
 		<a href="/" class="logo-img-box">
 			<img class="logo-img" src="/images/egovframework/icon/logo.png">
@@ -35,7 +36,6 @@
 				</div>
 			</c:when>
 			<c:otherwise>
-				<input id="header-session-id" type="hidden" value="${sessionScope.loginMember.m_no }">
 				<div class="header-user">
 					<div>
 						<a class="header-welcome">${sessionScope.loginMember.m_name}님 반갑습니다.</a>

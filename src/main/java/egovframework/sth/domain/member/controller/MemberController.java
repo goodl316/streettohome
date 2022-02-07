@@ -40,7 +40,7 @@ public class MemberController {
 
 	// 1. 로그인 화면
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
+	public String openLogin() {
 		return "/member/login";
 	}
 
