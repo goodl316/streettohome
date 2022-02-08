@@ -42,6 +42,20 @@
 		</choose>
 	</insert>
 	
+	<select id="selTransactionHistory" resultType="egovframework.sth.global.common.excel.model.TransactionHistoryDTO">
+		SELECT b_no, 
+		(SELECT m_email FROM member WHERE m_no = th_buyer) AS th_buyer, 
+		(SELECT m_email FROM member WHERE m_no = th_seller) AS th_seller,
+		th_price, th_fee, th_dt
+		FROM transaction_history
+	</select>
+	
+	<select id="selTableInfo" resultType="egovframework.sth.domain.admin.domain.TableInfoDTO">
+		SELECT COLUMN_NAME AS 'column', DATA_TYPE AS 'type', COLUMN_KEY AS 'key'
+        FROM INFORMATION_SCHEMA.COLUMNS
+        WHERE TABLE_SCHEMA='streettohome' AND TABLE_NAME=#{table};
+	</select>
+	
 	<select id="selAllMember" resultType="int">
 		SELECT m_no FROM member
 	</select>

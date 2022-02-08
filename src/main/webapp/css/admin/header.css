@@ -103,3 +103,14 @@ header h3{
 table {
 	width: 100%;
 }
+
+.history-download {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.excel-icon {
+	margin-left: 10px;
+    padding-top: 6px;
+}
