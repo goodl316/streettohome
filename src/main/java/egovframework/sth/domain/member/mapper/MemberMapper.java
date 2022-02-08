@@ -30,4 +30,6 @@ public interface MemberMapper {
 	int memberDelete(MemberDTO param);
 
 	int spon(MemberDTO param);
+	
+	int intro(MemberDTO param);
 }

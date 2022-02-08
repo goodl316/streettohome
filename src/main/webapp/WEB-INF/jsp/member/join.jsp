@@ -63,11 +63,11 @@
 </div>
 	<div id="daumAddrApi">
 		<div>
-			&nbsp <input type="text" class="m_zipcode" id="m_zipcode" name="m_zipcode" placeholder="우편번호" readonly="readonly"> 
+			<input type="text" class="m_zipcode" id="m_zipcode" name="m_zipcode" placeholder="우편번호" readonly="readonly"> 
 			<input type="button" class="modyBtn" id="ckZip" onclick="addrSearch();" value="우편번호"><br> 
 		</div>
 		<div>
-			&nbsp <input type="text" id="m_address" name="m_address" placeholder="주소를 입력해주세요." maxlength="100">
+			<input type="text" id="m_address" name="m_address" placeholder="주소를 입력해주세요." maxlength="100">
 		</div>
 	</div>
 	<div id="joindiv">
