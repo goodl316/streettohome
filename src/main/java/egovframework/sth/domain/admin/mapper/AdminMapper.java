@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
+import egovframework.sth.domain.admin.domain.AdminMessageDTO;
 import egovframework.sth.domain.admin.domain.AskDTO;
 import egovframework.sth.domain.admin.domain.BannerDTO;
 import egovframework.sth.domain.admin.domain.BoardDTO;
@@ -21,6 +22,8 @@ public interface AdminMapper {
 	List<ReportVO> selReport(ReportDTO dto);
 	List<AskDTO> selAskList(AskDTO dto);
 	List<BannerDTO> bannerList(BannerDTO dto);
+	int[] selAllMember();
+	String[] selAllNickname();
 
 	BannerDTO selinfo(BannerDTO dto);
 	AskDTO selAsk(AskDTO dto);
@@ -34,4 +37,5 @@ public interface AdminMapper {
 	int selCountMember(Map<String, Object> param);
 	int selCountBoard(Map<String, Object> param);
 	int selCountDelBoard(Map<String, Object> param);
+	int sendAllMessage(AdminMessageDTO param);
 }

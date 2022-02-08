@@ -1,6 +1,6 @@
-.common-member tr, .group-member tr, .banned-member tr {
+.admin-ask tr {
     display: grid;
-    grid-template-columns: .5fr 1.5fr 4fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 3fr 1fr 1fr 1fr 1fr;
     gap: 7px;
     padding: 8px 3px;
 }
@@ -37,14 +37,6 @@ h1 {
 	margin: 50px 50px 0;
 }
 
-.comoon-member {
-	padding: 30px 50px 0;
-}
-
 table {
 	padding: 50px 40px 50px;
-}
-
-.open-message {
-	cursor: pointer;
 }

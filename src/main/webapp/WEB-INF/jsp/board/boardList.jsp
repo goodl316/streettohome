@@ -70,7 +70,7 @@
 					<a href="/board/view?b_no=${list.b_no}">
 						<div class="list_item">
 							<div class="item_img">
-								<img src="/img/board/an_${list.an_no}/${list.an_img}">
+								<img src="/img/board/an_${list.an_no}/${list.an_img}" onerror="this.src='/images/noimage.png'">
 							</div>
 							<div class="item_txt">
 								<p>

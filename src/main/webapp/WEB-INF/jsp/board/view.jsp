@@ -15,7 +15,7 @@
 	<!-- 메인 컨테이너 -->
 		<div class="view-main-container">
 			<div class="view-thumbnail">
-				<img class="view-thumbnail-image" src="/img/board/an_${requestScope.data.an_no}/${requestScope.data.an_img}">
+				<img class="view-thumbnail-image" src="/img/board/an_${requestScope.data.an_no}/${requestScope.data.an_img}" onerror="this.src='/images/noimage.png'">
 				<div class="view-auth">
 					<c:choose>
 						<c:when test="${requestScope.data.b_auth eq 0 }">

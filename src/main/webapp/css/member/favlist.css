@@ -17,6 +17,7 @@ ul {
 
 .fav-container {
 	padding: 20px 40px;
+	min-width: 600px;
 }
 
 .fav-list-header {

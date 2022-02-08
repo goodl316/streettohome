@@ -29,7 +29,7 @@
 				<c:forEach var="list" items="${list}">
 					<tr>
 						<td>${list.b_no }</td>
-						<td>${list.b_title}</td>
+						<td onclick="location.href='/board/boardList?b_no=${list.b_no}'">${list.b_title}</td>
 						<td>${list.m_no }</td>
 						<td>${list.b_auth}</td>
 						<td>${list.b_tt }</td>
@@ -56,7 +56,7 @@
 				<c:forEach var="list" items="${list}">
 					<tr>
 						<td>${list.b_no }</td>
-						<td>${list.b_title}</td>
+						<td onclick="location.href='/board/boardList?b_no=${list.b_no}'">${list.b_title}</td>
 						<td>${list.m_no}</td>
 						<td>${list.b_auth }</td>
 						<td>${list.b_tt }</td>

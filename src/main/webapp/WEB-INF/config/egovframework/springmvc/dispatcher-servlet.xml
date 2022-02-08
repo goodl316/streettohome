@@ -58,6 +58,7 @@
 			</list>
 		</property>
 	</bean>
+	
 	<bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
 		<property name="interceptors">
@@ -66,6 +67,27 @@
 			</list>
 		</property>
 	</bean>
+	
+	<mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/" />
+            <mvc:exclude-mapping path="/css/**" />
+            <mvc:exclude-mapping path="/js/**" />
+            <mvc:exclude-mapping path="/img/**" />
+            <mvc:exclude-mapping path="/images/**" />
+            <mvc:exclude-mapping path="/member/**" />
+            <mvc:exclude-mapping path="/ask/regAsk" />
+            <mvc:exclude-mapping path="/board/boardList"/>
+            <mvc:exclude-mapping path="/board/view"/>
+            <bean id="commonInterceptor" class="egovframework.sth.global.common.CommonInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**"/>
+            <mvc:exclude-mapping path="/admin/login"/>
+            <bean id="adminInterceptor" class="egovframework.sth.global.common.AdminInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
@@ -118,21 +140,4 @@
 	<mvc:default-servlet-handler />
 	<mvc:view-controller path="/cmmn/validator.do"
 		view-name="cmmn/validator" />
-		
-	<mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/member/**"/>
-            <mvc:exclude-mapping path="/ask/regAsk"/>
-            <bean id="commonInterceptor" class="egovframework.sth.global.common.CommonInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/admin/**"/>
-            <mvc:exclude-mapping path="/admin/login"/>
-            <bean id="adminInterceptor" class="egovframework.sth.global.common.AdminInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
-		
-		
-	
 </beans>

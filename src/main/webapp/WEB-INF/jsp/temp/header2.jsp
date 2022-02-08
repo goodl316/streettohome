@@ -14,7 +14,7 @@
 		<div class="admin-header-logo">
 			<img src="/images/egovframework/icon/logo.png" onclick="location.href='/'">
 		</div>
-		
+			<input type="hidden" value="${sessionScope.loginMember.m_no }" id="m_no">
 			<div class="nav">
 			<div class="user">
 			<h3>사용자 관리</h3>
@@ -41,14 +41,9 @@
 				<a href="/admin/AskAdmin?page=1">문의글 관리</a>
 			</h3>
 
-			<h3>쪽지 보내기</h3>
+			<h3><a href="/admin/MessageAdmin">쪽지 보내기</a></h3>
 			</div>
 		</header>
 	</c:if>
-
-	<c:if test="${loginMember.m_authstate != 999 }">
-
-	</c:if>
-
 </body>
 </html>

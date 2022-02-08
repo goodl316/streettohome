@@ -30,7 +30,7 @@
 					<tr>
 						<td>${list.m_no }</td>
 						<td>${list.m_name}</td>
-						<td>${list.m_email}</td>
+						<td class="open-message" onclick="openWriteMessage(${list.m_no})">${list.m_email}</td>
 						<td>0</td>
 						<td>0</td>
 						<td><c:set var="TextValue" value="${list.m_dt}"/>${fn:substring(TextValue,0,10) }</td>
@@ -57,7 +57,7 @@
 					<tr>
 						<td>${list.m_no }</td>
 						<td>${list.m_name}</td>
-						<td>${list.m_email}</td>
+						<td class="open-message" onclick="openWriteMessage(${list.m_no})">${list.m_email}</td>
 						<td>0</td>
 						<td>0</td>
 						<td><c:set var="TextValue" value="${list.m_dt}"/>${fn:substring(TextValue,0,10) }</td>

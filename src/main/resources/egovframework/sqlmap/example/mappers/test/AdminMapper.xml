@@ -25,6 +25,30 @@
 		value(
 		#{b_no},#{m_no},"신고사유")
 	</insert>
+	
+	<insert id="sendAllMessage">
+		INSERT INTO message
+		(ms_title, ms_receiver, ms_sender, ms_ctnt)
+		VALUES
+		<choose>
+			<when test="allChk == 0">
+				(#{ms_title}, (SELECT m_no FROM member WHERE m_nickname = #{nickname}), #{ms_sender}, #{ms_ctnt})
+			</when>
+			<otherwise>
+				<foreach collection="ms_receiver" item="item" index="index"  separator="," >
+					(#{ms_title}, #{item}, #{ms_sender}, #{ms_ctnt})
+				</foreach>
+			</otherwise>
+		</choose>
+	</insert>
+	
+	<select id="selAllMember" resultType="int">
+		SELECT m_no FROM member
+	</select>
+	
+	<select id="selAllNickname" resultType="String">
+		SELECT m_nickname FROM member
+	</select>
 
 	<select id="selMember" resultMap="MemberDTO">
 		select
@@ -33,7 +57,7 @@
 		m_no = a.m_no) as warning
 		from member a where a.m_state = #{m_state}
 		and m_auth = 1
-		ORDER BY a_m_no DESC
+		ORDER BY a.m_no DESC
 		LIMIT #{firstIndex}, #{recordCountPerPage}
 	</select>
 	

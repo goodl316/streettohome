@@ -147,16 +147,16 @@ function moveAdmin(m_state){
 	location.href="/admin/MemberAdmin?m_state="+m_state+"&page=1"
 }
 
-let socket = null;
-let sock = new SockJS("/echo");
-socket = sock;
 $(document).ready(function(){
-    if($("#header-session-id").val() != '') {
-            connectWS();	
-}
+    if($("#header-session-id").val() == '') {
+		return;
+	}
+	let sock = new SockJS("/echo");
+	console.log('sdfas');
+    connectWS(sock);
 });
 
-function connectWS() {
+function connectWS(sock) {
 	sock.onopen = ()=> {
 	};
 	sock.onmessage = (e)=> {
