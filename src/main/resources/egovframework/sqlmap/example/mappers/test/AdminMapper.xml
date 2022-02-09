@@ -25,101 +25,194 @@
 		value(
 		#{b_no},#{m_no},"신고사유")
 	</insert>
-	
+
 	<insert id="sendAllMessage">
 		INSERT INTO message
 		(ms_title, ms_receiver, ms_sender, ms_ctnt)
 		VALUES
 		<choose>
 			<when test="allChk == 0">
-				(#{ms_title}, (SELECT m_no FROM member WHERE m_nickname = #{nickname}), #{ms_sender}, #{ms_ctnt})
+				(#{ms_title}, (SELECT m_no FROM member WHERE
+				m_nickname = #{nickname}), #{ms_sender}, #{ms_ctnt})
 			</when>
 			<otherwise>
-				<foreach collection="ms_receiver" item="item" index="index"  separator="," >
+				<foreach collection="ms_receiver" item="item" index="index"
+					separator=",">
 					(#{ms_title}, #{item}, #{ms_sender}, #{ms_ctnt})
 				</foreach>
 			</otherwise>
 		</choose>
 	</insert>
-	
+
 	<select id="selAllMember" resultType="int">
 		SELECT m_no FROM member
 	</select>
-	
+
 	<select id="selAllNickname" resultType="String">
-		SELECT m_nickname FROM member
+		SELECT m_nickname FROM
+		member
 	</select>
 
 	<select id="selMember" resultMap="MemberDTO">
-		select
-		a.m_no,a.m_name,a.m_email,a.m_dt
-		,(select count(*) from report where
-		m_no = a.m_no) as warning
-		from member a where a.m_state = #{m_state}
-		and m_auth = 1
-		ORDER BY a.m_no DESC
-		LIMIT #{firstIndex}, #{recordCountPerPage}
+		<choose>
+			<when test="m_name == null">
+				<if test="m_state !=null">
+					select
+					a.m_no,a.m_name,a.m_email,a.m_dt,a.m_authstate
+					,(select count(*) from report where
+					m_no = a.m_no) as warning
+					from member a where a.m_state = #{m_state}
+					and m_auth = 1 and m_authstate = 1
+					ORDER BY a.m_no DESC
+					LIMIT #{firstIndex}, #{recordCountPerPage}
+				</if>
+				<if test="m_authstate !=null">
+					select
+					a.m_no,a.m_name,a.m_email,a.m_dt,a.m_authstate
+					,(select count(*) from report where
+					m_no = a.m_no) as warning
+					from member a where a.m_authstate = #{m_authstate}
+					and m_auth = 1
+					ORDER BY a.m_no DESC
+					LIMIT #{firstIndex}, #{recordCountPerPage}
+				</if>
+			</when>
+			<when test="m_name !=null">
+				<if test="m_state !=null">
+					select
+					a.m_no,a.m_name,a.m_email,a.m_dt,a.m_authstate
+					,(select count(*) from report where
+					m_no = a.m_no) as warning
+					from member a where a.m_state = #{m_state}
+					and m_auth = 1 and m_name=#{m_name} and m_authstate = 1
+					ORDER BY a.m_no DESC
+					LIMIT #{firstIndex}, #{recordCountPerPage}
+				</if>
+				<if test="m_authstate !=null">
+					select
+					a.m_no,a.m_name,a.m_email,a.m_dt,a.m_authstate
+					,(select count(*) from report where
+					m_no = a.m_no) as warning
+					from member a where a.m_authstate = #{m_authstate}
+					and m_auth = 1 and m_name=#{m_name}
+					ORDER BY a.m_no DESC
+					LIMIT #{firstIndex}, #{recordCountPerPage}
+				</if>
+			</when>
+		</choose>
 	</select>
-	
+
 	<select id="selCountMember" resultType="int">
-		SELECT COUNT(*) 
-		FROM member 
+		SELECT COUNT(*)
+		FROM member
 		WHERE m_state = #{m_state} AND m_auth = 1;
 	</select>
-	
+
 	<select id="bannerList" resultMap="BannerDTO">
 		select* from banner;
 	</select>
 	<select id="selinfo" resultMap="BannerDTO">
-		select ba_no, ba_img1 from banner where ba_no = #{ba_no}
+		select ba_no, ba_img1 from banner
+		where ba_no = #{ba_no}
 	</select>
 
-	<select id="selBoard" resultMap="BoardDTO">
-		select
-		a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,b.an_type1 from board a
-		left
-		join animal_info b
-		on a.b_no = b.b_no
-		where a.b_del =0 and b.an_type1=
-		#{an_type1}
-		ORDER BY a.b_no DESC
-		LIMIT #{firstIndex}, #{recordCountPerPage}
-	</select>
 	
+
 	<select id="selCountBoard" resultType="int">
-		SELECT COUNT(*) FROM board as A
+		SELECT COUNT(*) FROM board
+		as A
 		LEFT JOIN animal_info B
 		ON A.b_no = B.b_no
-		WHERE A.b_del = 0 AND B.an_type1 = #{an_type1}
+		WHERE A.b_del = 0 AND
+		B.an_type1 = #{an_type1}
 	</select>
-	
+
 	<select id="selCountDelBoard" resultType="int">
-		SELECT COUNT(*) FROM board as A
+		SELECT COUNT(*) FROM
+		board as A
 		LEFT JOIN animal_info B
 		ON A.b_no = B.b_no
 		WHERE A.b_del = 1
 	</select>
+	
+	<select id="selBoard" resultMap="BoardDTO">
+	<choose>
+	<when test="m_name == null">
+		select
+		a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,b.an_type1,C.m_name as b_writer from board a
+		left
+		join animal_info b
+		on a.b_no = b.b_no
+		LEFT
+		JOIN member C
+		on a.m_no = C.m_no
+		where a.b_del =0 and b.an_type1=
+		#{an_type1}
+		ORDER BY a.b_no DESC
+		LIMIT #{firstIndex},
+		#{recordCountPerPage}
+		</when>
+		<when test="m_name != null">
+		select
+		a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,b.an_type1,C.m_name as b_writer from board a
+		left
+		join animal_info b
+		on a.b_no = b.b_no
+		LEFT
+		JOIN member C
+		on a.m_no = C.m_no
+		where a.b_del =0 and b.an_type1=
+		#{an_type1} and C.m_name =#{m_name}
+		ORDER BY a.b_no DESC
+		LIMIT #{firstIndex},
+		#{recordCountPerPage}
+		</when>
+		</choose>
+	</select>
 
 	<select id="delBoardList" resultMap="BoardDTO">
+	<choose>
+	<when test="m_name == null">
 		select
-		a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,b.an_type1,C.m_nickname AS b_writer
+		a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,b.an_type1,C.m_name AS
+		b_writer
 		from board AS a
 		left
 		join animal_info b
 		on a.b_no = b.b_no
-		LEFT JOIN member C
+		LEFT
+		JOIN member C
 		on a.m_no = C.m_no
-		where a.b_del =1
+		where a.b_del =1 
 		ORDER BY a.b_no DESC
 		LIMIT #{firstIndex}, #{recordCountPerPage}
+		</when>
+		<when test="m_name != null">
+		select
+		a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,b.an_type1,C.m_name AS
+		b_writer
+		from board AS a
+		left
+		join animal_info b
+		on a.b_no = b.b_no
+		LEFT
+		JOIN member C
+		on a.m_no = C.m_no
+		where a.b_del =1 and C.m_name=#{m_name}
+		ORDER BY a.b_no DESC
+		LIMIT #{firstIndex}, #{recordCountPerPage}
+		</when>
+		</choose>
 	</select>
 
 	<select id="selReport" resultMap="ReportVO">
 		<if test="an_type1 == null">
 			select a.rp_no,a.b_no,a.rp_del,a.rp_dt,
-			(select m_name from member where m_no=a.m_no) as wr_no,
+			(select m_name from
+			member where m_no=a.m_no) as wr_no,
 			a.rp_ctnt,b.b_title,
-			c.an_type1 from
+			c.an_type1
+			from
 			report a
 			left
 			join board b
@@ -129,12 +222,14 @@
 			c.b_no
 			left join member d
 			on a.m_no = d.m_no
-			where a.rp_del = 0
+			where a.rp_del =
+			0
 			ORDER BY a.rp_no DESC
 		</if>
 		<if test="an_type1 != null ">
 			select a.rp_no,a.b_no,a.rp_del,a.rp_dt,
-			(select m_name from member where m_no=a.m_no) as wr_no,
+			(select m_name from
+			member where m_no=a.m_no) as wr_no,
 			a.rp_ctnt,b.b_title,
 			c.an_type1,d.m_name from
 			report
@@ -145,21 +240,26 @@
 			on a.b_no
 			= c.b_no
 			left join member d
-			on a.m_no = d.m_no;
+			on a.m_no =
+			d.m_no;
 			where c.an_type1 =
 			#{an_type1} and a.rp_del = 0
-			ORDER BY a.rp_no DESC
+			ORDER BY a.rp_no
+			DESC
 		</if>
 	</select>
 	<select id="selAskList" resultMap="AskDTO">
-		select a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,a.m_no,b.m_name from ask a
-		left join member b
+		select
+		a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,a.m_no,b.m_name from ask a
+		left
+		join member b
 		on a.m_no = b.m_no
 		where a.ak_del = 0
 	</select>
 
 	<select id="selAsk" resultMap="AskDTO">
-		select a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,b.m_name,b.m_email from ask a
+		select
+		a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,b.m_name,b.m_email from ask a
 		left join member b
 		on a.m_no = b.m_no
 		where ak_no = #{ak_no}
@@ -172,9 +272,17 @@
 	</update>
 	<update id="delMember">
 		update member
-		set m_state = 3
+		set m_authstate = 3
 		where m_no = #{m_no}
 	</update>
+
+	<update id="liftBan">
+		update member
+		set m_authstate = 1
+		where m_no = #{m_no}
+
+	</update>
+
 
 	<update id="delAsk">
 		update ask
@@ -185,14 +293,27 @@
 	<update id="updBannerImg">
 		update banner
 		set ba_img1 = #{ba_img1}
-		where ba_no = #{ba_no};
+		where ba_no =
+		#{ba_no};
 	</update>
-	
+
 	<update id="delReport">
-	update report
-	set rp_del = 1
-	where rp_no;
+		update report
+		set rp_del = 1
+		where rp_no;
 	</update>
 	
+	<update id="okBoard">
+	update board
+	set b_auth = 1
+	where b_no = #{b_no}
+	</update>
 	
+	<update id="nonOk">
+	update board
+	set b_auth = 0
+	where b_no = #{b_no}
+	</update>
+
+
 </mapper>

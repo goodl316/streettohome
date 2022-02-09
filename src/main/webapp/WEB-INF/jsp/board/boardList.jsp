@@ -32,7 +32,7 @@
 				</div>
 			</div>
 			<div class="div3st">
-				<div class="tt">유료/뮤료</div>
+				<div class="tt">분양방식</div>
 				<select name="b_tt" id="b_tt">
 					<option value="">선택</option>
 					<option value="무료">무료</option>

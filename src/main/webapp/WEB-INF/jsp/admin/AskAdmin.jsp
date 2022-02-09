@@ -29,7 +29,7 @@
 				<td><c:set var="TextValue" value="${list.ak_dt}"/>${fn:substring(TextValue,0,10) }</td>
 				<td>${list.m_name }</td>
 				<td>
-					<button onclick="delAsk(${list.ak_no})">삭제</button>
+					<button onclick="delAsk(${list.ak_no})">읽음</button>
 				</td>
 			</tr>
 		</c:forEach>

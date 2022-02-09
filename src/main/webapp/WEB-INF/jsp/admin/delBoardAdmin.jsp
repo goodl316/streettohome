@@ -13,6 +13,10 @@
 <body>
 	<c:if test="${loginMember.m_authstate == 999 }">
 		<h1>삭제된 게시글 관리</h1>
+		<div class="search-user">
+			<input class="search-text"type="text" placeholder="작성자 이름을 입력해 주세요.">
+			<button class="search-btn" onclick="searchMem2(${param.page})">검색</button>
+			</div>
 		<table>
 			<tr class="list-header">
 				<th>번호</th>
@@ -44,3 +48,4 @@
 	</c:if>
 </body>
 </html>
+<script type="text/javascript" src="/js/admin/boardAdmin.js" ></script>

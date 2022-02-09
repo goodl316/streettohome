@@ -22,7 +22,7 @@
 			<ul class="u_ul">
 				<li><a href="/admin/MemberAdmin?m_state=1&page=1">개인이용자</a></li>
 				<li><a href="/admin/MemberAdmin?m_state=2&page=1">단체이용자</a></li>
-				<li><a href="/admin/MemberAdmin?m_state=3&page=1">이용정지 사용자</a></li>
+				<li><a href="/admin/MemberAdmin?m_authstate=3&page=1">이용정지 사용자</a></li>
 			</ul>
 			</div>
 			</div>

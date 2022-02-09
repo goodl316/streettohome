@@ -38,4 +38,7 @@ public interface AdminMapper {
 	int selCountBoard(Map<String, Object> param);
 	int selCountDelBoard(Map<String, Object> param);
 	int sendAllMessage(AdminMessageDTO param);
+	int liftBan(MemberDTO dto);
+	int okBoard(BoardDTO dto);
+	int nonOk(BoardDTO dto);
 }
