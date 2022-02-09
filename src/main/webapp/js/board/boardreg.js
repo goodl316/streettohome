@@ -204,8 +204,6 @@ function boardReg() {
 		m_no : m_no,
 		b_enddt : b_enddt
 	}
-	console.log(b_enddt);
-	console.log(enddt);
 
 	boardregAjax(params)
 
@@ -221,7 +219,6 @@ function boardregAjax(params) {
 		dataType: "json",
 		contentType: "application/json",
 		success: function(data) {
-			console.log(data)
 			animalReg(data.b_no)
 			if(params.b_tt == "경매"){
 				insAuction(data.b_no,data.b_enddt)
@@ -241,8 +238,6 @@ function animalregAjax(params) {
 		dataType: "json",
 		contentType: "application/json",
 		success: function(data) {
-			console.log(data)
-			console.log(data.an_no)
 			product_img_upload(data.an_no)
 		}
 	})
@@ -283,9 +278,6 @@ function insAuction(b_no,ac_enddt){
 	}).then(function(res){
 		return res.json()
 	}).then(function(data){
-			if(data == 1){
-				console.log("Aaa")
-			}	
 	})
 	
 }
@@ -312,17 +304,17 @@ $(document).ready(function() {
 			price_contain.style.display = "block"
 			enddt_contain.style.display = "none"
 			price_contain.innerHTML = `
-		<div>가격</div> : <input type="text" class="input_price" placeholder="격을 입력해 주세요"><br>
+		<div>가격</div> <input type="text" class="input_price" placeholder="격을 입력해 주세요"><br>
 		`
 		} else if (val == "경매") {
 			price_contain.style.display = "block"
 			enddt_contain.style.display = "block"
 			price_contain.innerHTML = `
-		<div>시작 가격</div> : <input type="text" class="input_price" placeholder="시작 가격을 입력해 주세요"><br>
+		<div>시작 가격</div> <input type="text" class="input_price" placeholder="시작 가격을 입력해 주세요"><br>
 			
 		`
 			enddt_contain.innerHTML=`
-			<div>마감 날짜</div> : <select class="enddt" name="enddt">
+			<div>마감 날짜</div> <select class="enddt" name="enddt">
 						<option value=1>1일</option>
 						<option value=2>2일</option>
 						<option value=3>3일</option>
@@ -433,28 +425,20 @@ function fileRemove(index,fileNm) {
 
 	var imgId = "#img_id_"+fileNm;
 	var test = document.querySelector(''+imgId)
-	console.log(test)
-	console.log(imgId)
-	console.log(">>>>>>>>>>>>>>>>>>>>>>>")
 	$(imgId).remove();
 	console.log(fileInfoArr);
 	formData.delete('imgs');
 	
-	console.log("delete after1"+formData.getAll("imgs"))
-	console.log("/////////////////////////////////////")
 	for (var i = 0; i < fileInfoArr.length; i++) {
 		if(fileInfoArr.length>0){
 		formData.append('imgs', fileInfoArr[i])
-		console.log("bugggggggggggg")
 		}
 	}
-	console.log("delete after2"+formData.getAll('imgs'))
 
 }
 
 function deleteImg(){
 	$('#input_img').val("");
-	console.log("///")
 }
 
 //썸네일 미리보기.
@@ -469,7 +453,6 @@ function previewImage(targetObj, View_area) {
 
 
 	var files = targetObj.files;
-	console.log("improt"+files.length)
 	for (var i = 0; i < files.length; i++) {
 		var file = files[i];
 		fileInfoArr.push(file);
@@ -495,8 +478,8 @@ function previewImage(targetObj, View_area) {
 		img.className = "addImg";
 		img.classList.add("obj");
 		img.file = file;
-		img.style.width = 'inherit';
-		img.style.height = 'inherit';
+		img.style.width = '200px';
+		img.style.height = '200px';
 		img.style.cursor = 'pointer';
 		const idx = i;
 		img.onclick = ()=>fileRemove(idx,orginNm);   //이미지를 클릭했을 때.
@@ -531,7 +514,6 @@ function previewImage(targetObj, View_area) {
 		//console.log(input_img.files[i].name)
 		}
 	}
-	console.log(formData.getAll('imgs'))
 
 }
 

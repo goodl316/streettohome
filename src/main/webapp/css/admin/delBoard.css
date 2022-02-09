@@ -40,3 +40,25 @@ h1 {
 table {
 	padding: 50px 40px 50px;
 }
+
+.search-user{
+	position: absolute;
+	right: 0;
+}
+.search-btn{
+	 color: white;
+    background-color: #015f93;
+    border: none;
+    border-radius: .3rem;
+    box-shadow: 1px 1px 1px 1px rgb(173, 173, 173);
+    padding: 5px 14px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.search-text{
+	width: 200px;
+	height: 25px;
+	border: none;
+    box-shadow: 1px 1px 1px 1px #b3b3b3;
+    border-radius: 0.03rem;
+}

@@ -15,9 +15,22 @@ public class BoardDTO{
 	private String b_writer;
 	private String searchTxt;
 	private String an_type1;
+	private int state;
+	private String b_ok;
 	
 	
-	
+	public String getB_ok() {
+		return b_ok;
+	}
+	public void setB_ok(String b_ok) {
+		this.b_ok = b_ok;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
 	public String getSearchTxt() {
 		return searchTxt;
 	}

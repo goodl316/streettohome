@@ -16,13 +16,17 @@
 <c:choose>
 		<c:when test="${param.an_type1 eq '강아지' }">
 			<h1>강아지 게시판 관리</h1>
+			<div class="search-user">
+			<input class="search-text"type="text" placeholder="작성자 이름을 입력해 주세요.">
+			<button class="search-btn" onclick="searchMem('${param.an_type1}',${param.page})">검색</button>
+			</div>
 			<table class="admin-board dog">
 				<tr class="list-header">
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>승인 Y/N</th>
-					<th>무료/유료</th>
+					<th>분양방식</th>
 					<th>등록날짜</th>
 					<th>게시글삭제</th>
 				</tr>
@@ -30,8 +34,19 @@
 					<tr>
 						<td>${list.b_no }</td>
 						<td onclick="location.href='/board/view?b_no=${list.b_no}'">${list.b_title}</td>
-						<td>${list.m_no }</td>
-						<td>${list.b_auth}</td>
+						<td>${list.b_writer }</td>
+						<td>
+						<c:choose>
+						<c:when test="${list.b_auth ==0 }">
+						N
+						<button class="okbtn" onclick="okBtn('${list.b_no}')">승인</button>
+						</c:when>
+						<c:when test="${list.b_auth == 1 }">
+						Y
+						<button class="okbtn" onclick="nonOk('${list.b_no}')">해제</button>
+						</c:when>
+						</c:choose>
+						</td>
 						<td>${list.b_tt }</td>
 						<td><c:set var="TextValue" value="${list.b_dt}"/>${fn:substring(TextValue,0,10) }</td>
 						<td>
@@ -43,13 +58,17 @@
 		</c:when>
 		<c:when test="${param.an_type1 eq '고양이' }">
 		<h1>고양이 게시판 관리</h1>
+			<div class="search-user">
+			<input class="search-text"type="text" placeholder="작성자 이름을 입력해 주세요.">
+			<button class="search-btn" onclick="searchMem('${param.an_type1}',${param.page})">검색</button>
+			</div>
 			<table class="admin-board cat">
 				<tr class="list-header">
 					<th>번호</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>승인 Y/N</th>
-					<th>무료/유료</th>
+					<th>분양방식</th>
 					<th>등록날짜</th>
 					<th>게시글삭제</th>
 				</tr>
@@ -57,7 +76,7 @@
 					<tr>
 						<td>${list.b_no }</td>
 						<td onclick="location.href='/board/view?b_no=${list.b_no}'">${list.b_title}</td>
-						<td>${list.m_no}</td>
+						<td>${list.b_writer}</td>
 						<td>${list.b_auth }</td>
 						<td>${list.b_tt }</td>
 						<td>

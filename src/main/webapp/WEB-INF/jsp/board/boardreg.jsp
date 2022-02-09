@@ -10,18 +10,17 @@
 <body>
 	<input type="hidden" value="${loginMember.m_no}" class="member_no">
 	<h1 class="reg_title">게시글 작성</h1>
-	<div>
-		<span id='View_area'
-			style='position: relative; color: black; border: 0px solid black;'>
-		</span>
-		<div style="width: 500px">
+	<div style="display: flex">
+		<div style="width: 200px; height: 200px;">
 		<label for="input_img">
-		<img class="img_upload" src="/images/up_load_img.png" style="width: 100%">
+		<img class="img_upload" src="/images/up_load_img.png" style="width: 100%; height: 100%;">
 		</label>
 		 <input id="input_img" name="input_img" type="file" multiple
 			accept="image/*" onchange="previewImage(this,'View_area');"
 			onclick="deleteImg();">
 		</div>
+		<span id='View_area'>
+		</span>
 	</div>
 	<div class="select">
 	<div class="up">

@@ -16,6 +16,10 @@
 	<c:choose>
 		<c:when test="${param.m_state == 1 }">
 			<h1>개인사용자 관리</h1>
+			<div class="search-user">
+			<input class="search-text"type="text" placeholder="사용자 이름을 입력해 주세요.">
+			<button class="search-btn" onclick="searchMem(${param.m_state},${param.page})">검색</button>
+			</div>
 			<table class="common-member">
 				<tr class="list-header">
 					<th>번호</th>
@@ -43,6 +47,10 @@
 		</c:when>
 		<c:when test="${param.m_state == 2 }">
 		<h1>단체이용자 관리</h1>
+		<div class="search-user">
+			<input class="search-text"type="text" placeholder="사용자 이름을 입력해 주세요.">
+			<button class="search-btn" onclick="searchMem(${param.m_state},${param.page})">검색</button>
+			</div>
 			<table class="group-member">
 				<tr class="list-header">
 					<th>번호</th>
@@ -69,8 +77,12 @@
 			</table>
 		
 		</c:when>
-		<c:when test="${param.m_state == 3 }">
+		<c:when test="${param.m_authstate == 3 }">
 		<h1>이용정지 사용자 관리</h1>
+		<div class="search-user">
+			<input class="search-text"type="text" placeholder="사용자 이름을 입력해 주세요.">
+			<button class="search-btn" onclick="searchMem2(${param.m_authstate},${param.page})">검색</button>
+			</div>
 			<table class="banned-member">
 				<tr class="list-header">
 					<th>번호</th>
@@ -90,7 +102,7 @@
 						<td>0</td>
 						<td><c:set var="TextValue" value="${list.m_dt}"/>${fn:substring(TextValue,0,10) }</td>
 						<td>
-							<button onclick="\elMember(${list.m_no})">정지</button>
+							<button onclick="liftban(${list.m_no})">헤제</button>
 						</td>
 					</tr>
 				</c:forEach>

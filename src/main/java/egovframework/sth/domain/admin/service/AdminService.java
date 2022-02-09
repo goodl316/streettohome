@@ -54,6 +54,7 @@ public class AdminService {
 	}
 	
 	public List<BoardDTO> selBoard(Map<String, Object> param){
+		
 		return mapper.selBoard(param);
 	
 	}
@@ -101,7 +102,15 @@ public class AdminService {
 	
 	
 	public int delMember(MemberDTO dto) {
-		return mapper.delMember(dto);
+		System.out.println("!!!!!!!"+dto.getState());
+		if(dto.getState() == 1) {
+			return mapper.delMember(dto);
+		}else if(dto.getState() ==2) {
+		
+			return mapper.liftBan(dto);
+		}
+		
+		return 0;
 	}
 	
 	public int insReport(ReportDTO dto){
@@ -190,6 +199,16 @@ public class AdminService {
 		return mapper.sendAllMessage(param);
 	}
 	
+	
+	public int okBoard(BoardDTO dto) {
+		if(dto.getState() == 1) {
+			return mapper.okBoard(dto);
+		}else if(dto.getState() == 2) {
+			return mapper.nonOk(dto);
+		}
+		
+		return 0;
+  }
 	public List<TransactionHistoryDTO> getHistory() {
 		return mapper.selTransactionHistory();
 	}

@@ -14,8 +14,15 @@ public class MemberDTO {
 	private String m_dt;
 	private int m_pay;
 	private int m_authstate;
+	private int state;
 	
 	
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
 	@Override
 	public String toString() {
 		return m_email+m_name+m_nickname+m_phone.toString();

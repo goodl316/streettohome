@@ -50,6 +50,11 @@
 					<div>
 						<a class="dropdown-item" href="../member/mypage">마이페이지</a>
 					</div>
+					<c:if test="${sessionScope.loginMember.m_authstate == 999 }">
+					<div>
+						<a class="dropdown-item" href="../admin/MemberAdmin?m_state=1&page=1">관리자페이지</a>
+					</div>
+					</c:if>
 				</div>
 			</c:otherwise>
 		</c:choose>

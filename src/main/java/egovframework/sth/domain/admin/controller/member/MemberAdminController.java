@@ -34,7 +34,11 @@ public class MemberAdminController {
 		map.put("recordCountPerPage", pagination.getRecordCountPerPage());
 		map.put("firstIndex", pagination.getFirstRecordIndex());
 		map.put("m_state", req.getParameter("m_state"));
+		map.put("m_name", req.getParameter("m_name"));
+		map.put("m_authstate", req.getParameter("m_authstate"));
 		pagination.setTotalRecordCount(service.selCountMember(map));
+		
+		System.out.println(req.getParameter("m_name"));
 		
 		model.addAttribute("list", service.selMember(map));
 		model.addAttribute("paginationInfo", pagination);

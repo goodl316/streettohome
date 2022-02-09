@@ -36,6 +36,8 @@ public class BoardAdminController {
 		map.put("recordCountPerPage", pagination.getRecordCountPerPage());
 		map.put("firstIndex", pagination.getFirstRecordIndex());
 		map.put("an_type1", req.getParameter("an_type1"));
+		map.put("m_name", req.getParameter("m_name"));
+		
 		pagination.setTotalRecordCount(service.selCountBoard(map));
 		
 		model.addAttribute("paginationInfo", pagination);
@@ -54,6 +56,7 @@ public class BoardAdminController {
 		
 		map.put("recordCountPerPage", pagination.getRecordCountPerPage());
 		map.put("firstIndex", pagination.getFirstRecordIndex());
+		map.put("m_name", req.getParameter("m_name"));
 		pagination.setTotalRecordCount(service.selCountDelBoard(map));
 		
 		model.addAttribute("paginationInfo", pagination);
@@ -68,4 +71,13 @@ public class BoardAdminController {
 		val.put("data", service.delBoard(dto));
 		return val;
 	}
+	
+	@ResponseBody
+	@PostMapping("/admin/boardOk")
+	public Map<String,Object> boardOk(@RequestBody BoardDTO dto){
+		Map<String,Object> val = new HashMap<>();
+		val.put("data", service.okBoard(dto));
+		return val;
+	}
+	
 }

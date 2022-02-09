@@ -10,6 +10,7 @@ function delMember(m_no){
 	}
 	
 	var param = {
+		state : 1,
 		m_no : m_no
 	}
 	
@@ -38,4 +39,37 @@ function openWriteMessage(ms_receiver) {
 	const url = "/member/message/write?ms_receiver=" + ms_receiver;
 	const title = '메시지보내기';
 	openPopup(url, 510, 460, title);
+}
+
+function searchMem(m_state,page){
+	var m_name = $('.search-text').val();
+	
+	location.href = "/admin/MemberAdmin?m_state="+m_state+"&page="+page+"&m_name="+m_name
+}
+
+function searchMem2(m_authstate,page){
+	var m_name = $('.search-text').val();
+	
+	location.href = "/admin/MemberAdmin?m_authstate="+m_authstate+"&page="+page+"&m_name="+m_name
+}
+
+
+function liftban(m_no){
+	
+	var param = {
+		m_no : m_no,
+		state : 2
+	}
+	
+	fetch(`/admin/delMember`,{
+		method:'post',
+		headers :{
+			'Content-Type':'application/json'
+		},
+		body:JSON.stringify(param)
+	}).then(function(res){
+		return res.json()
+	}).then(function(data){
+		location.reload();
+	})
 }
