@@ -43,7 +43,161 @@
 			</otherwise>
 		</choose>
 	</insert>
-
+	
+	<select id="selBoardStatistics" resultType="egovframework.sth.domain.admin.domain.StatisticsDTO">
+		SELECT 
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(b_no) AS cnt
+				FROM board 
+				WHERE date(b_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 30 day) AND CURDATE()
+				GROUP BY date(b_dt)
+			) AS a),1) AS 'today'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(b_no) AS cnt
+				FROM board 
+				WHERE date(b_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 30 WEEK) AND CURDATE()
+				GROUP BY week(b_dt)
+			) AS a),1) AS 'week'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(b_no) AS cnt
+				FROM board 
+				WHERE date(b_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 12 MONTH) AND CURDATE()
+				GROUP BY MONTH(b_dt)
+			) AS a),1) AS 'month'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(b_no) AS cnt
+				FROM board 
+				WHERE date(b_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 12 YEAR) AND CURDATE()
+				GROUP BY YEAR(b_dt)
+			) AS a),1) AS 'year'
+	</select>
+	
+	<select id="selReplyStatistics" resultType="egovframework.sth.domain.admin.domain.StatisticsDTO">
+		SELECT 
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(r_no) AS cnt
+				FROM reply 
+				WHERE date(r_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 30 day) AND CURDATE()
+				GROUP BY date(r_dt)
+			) AS a),1) AS 'today'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(r_no) AS cnt
+				FROM reply
+				WHERE date(r_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 30 WEEK) AND CURDATE()
+				GROUP BY week(r_dt)
+			) AS a),1) AS 'week'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(r_no) AS cnt
+				FROM reply
+				WHERE date(r_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 12 MONTH) AND CURDATE()
+				GROUP BY MONTH(r_dt)
+			) AS a),1) AS 'month'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(r_no) AS cnt
+				FROM reply
+				WHERE date(r_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 12 YEAR) AND CURDATE()
+				GROUP BY YEAR(r_dt)
+			) AS a),1) AS 'year'
+	</select>
+	
+	<select id="selTranHisStatistics" resultType="egovframework.sth.domain.admin.domain.StatisticsDTO">
+		SELECT 
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(b_no) AS cnt
+				FROM transaction_history 
+				WHERE date(th_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 30 day) AND CURDATE()
+				GROUP BY date(th_dt)
+			) AS a),1) AS 'today'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(b_no) AS cnt
+				FROM transaction_history
+				WHERE date(th_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 30 WEEK) AND CURDATE()
+				GROUP BY week(th_dt)
+			) AS a),1) AS 'week'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(b_no) AS cnt
+				FROM transaction_history
+				WHERE date(th_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 12 MONTH) AND CURDATE()
+				GROUP BY MONTH(th_dt)
+			) AS a),1) AS 'month'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT COUNT(b_no) AS cnt
+				FROM transaction_history
+				WHERE date(th_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 12 YEAR) AND CURDATE()
+				GROUP BY YEAR(th_dt)
+			) AS a),1) AS 'year'
+	</select>
+	
+	<select id="selSalesStatistics" resultType="egovframework.sth.domain.admin.domain.StatisticsDTO">
+		SELECT 
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT SUM(th_fee) AS cnt
+				FROM transaction_history 
+				WHERE date(th_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 30 day) AND CURDATE()
+				GROUP BY date(th_dt)
+			) AS a)) AS 'today'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT SUM(th_fee) AS cnt
+				FROM transaction_history
+				WHERE date(th_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 30 WEEK) AND CURDATE()
+				GROUP BY week(th_dt)
+			) AS a)) AS 'week'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT SUM(th_fee) AS cnt
+				FROM transaction_history
+				WHERE date(th_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 12 MONTH) AND CURDATE()
+				GROUP BY MONTH(th_dt)
+			) AS a)) AS 'month'
+			,
+			round((SELECT AVG(a.cnt)
+			FROM(
+				SELECT SUM(th_fee) AS cnt
+				FROM transaction_history
+				WHERE date(th_dt) BETWEEN DATE_sub(CURDATE(), INTERVAL 12 YEAR) AND CURDATE()
+				GROUP BY YEAR(th_dt)
+			) AS a)) AS 'year'
+	</select>
+	
+	<select id="selTransactionHistory" resultType="egovframework.sth.global.common.excel.model.TransactionHistoryDTO">
+		SELECT b_no, 
+		(SELECT m_email FROM member WHERE m_no = th_buyer) AS th_buyer, 
+		(SELECT m_email FROM member WHERE m_no = th_seller) AS th_seller,
+		th_price, th_fee, th_dt
+		FROM transaction_history
+	</select>
+	
+	<select id="selTableInfo" resultType="egovframework.sth.domain.admin.domain.TableInfoDTO">
+		SELECT COLUMN_NAME AS 'column', DATA_TYPE AS 'type', COLUMN_KEY AS 'key'
+        FROM INFORMATION_SCHEMA.COLUMNS
+        WHERE TABLE_SCHEMA='streettohome' AND TABLE_NAME=#{table};
+	</select>
+	
 	<select id="selAllMember" resultType="int">
 		SELECT m_no FROM member
 	</select>

@@ -75,7 +75,7 @@
 				<c:forEach var="list" items="${list}">
 					<tr>
 						<td>${list.b_no }</td>
-						<td onclick="location.href='/board/boardList?b_no=${list.b_no}'">${list.b_title}</td>
+						<td onclick="location.href='/board/view?b_no=${list.b_no}'">${list.b_title}</td>
 						<td>${list.b_writer}</td>
 						<td>${list.b_auth }</td>
 						<td>${list.b_tt }</td>
