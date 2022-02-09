@@ -1,0 +1,12 @@
+.statistics-container {
+    width: 100%;
+    height: 1000px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(550px, 1fr));
+    overflow: auto;
+}
+
+.statistics-board, .statistics-reply, .statistics-tranhis, .statistics-sales {
+	padding: 20px;
+	position: relative;
+}
