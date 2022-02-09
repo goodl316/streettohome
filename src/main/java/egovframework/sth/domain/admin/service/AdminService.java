@@ -3,8 +3,11 @@ package egovframework.sth.domain.admin.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +21,8 @@ import egovframework.sth.domain.admin.domain.ReportDTO;
 import egovframework.sth.domain.admin.domain.ReportVO;
 import egovframework.sth.domain.admin.mapper.AdminMapper;
 import egovframework.sth.global.common.FileUtils;
+import egovframework.sth.global.common.excel.ExcelDownload;
+import egovframework.sth.global.common.excel.model.TransactionHistoryDTO;
 
 @Service
 public class AdminService {
@@ -28,6 +33,8 @@ public class AdminService {
 	private FileUtils futils;
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private ExcelDownload excelDownload;
 	
 	public List<MemberDTO> selMember(Map<String, Object> param) {
 		return mapper.selMember(param);
@@ -168,5 +175,13 @@ public class AdminService {
 		param.setMs_sender(member.getM_no());
 		param.setMs_receiver(mapper.selAllMember());
 		return mapper.sendAllMessage(param);
+	}
+	
+	public List<TransactionHistoryDTO> getHistory() {
+		return mapper.selTransactionHistory();
+	}
+	
+	public void excelDownload(HttpServletRequest request, HttpServletResponse response, String table, List<?> dto) throws Exception {
+		excelDownload.reqExcelDownload(request, response, table, dto);
 	}
 }
