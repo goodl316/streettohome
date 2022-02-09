@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +18,7 @@ import egovframework.sth.domain.admin.domain.BoardDTO;
 import egovframework.sth.domain.admin.domain.MemberDTO;
 import egovframework.sth.domain.admin.domain.ReportDTO;
 import egovframework.sth.domain.admin.domain.ReportVO;
+import egovframework.sth.domain.admin.domain.StatisticsDTO;
 import egovframework.sth.domain.admin.mapper.AdminMapper;
 import egovframework.sth.global.common.FileUtils;
 import egovframework.sth.global.common.excel.ExcelDownload;
@@ -35,6 +35,19 @@ public class AdminService {
 	private HttpSession session;
 	@Autowired
 	private ExcelDownload excelDownload;
+	
+	public StatisticsDTO selBoardStatistics() {
+		return mapper.selBoardStatistics();
+	}
+	public StatisticsDTO selReplyStatistics() {
+		return mapper.selReplyStatistics();
+	}
+	public StatisticsDTO selTranHisStatistics() {
+		return mapper.selTranHisStatistics();
+	}
+	public StatisticsDTO selSalesStatistics() {
+		return mapper.selSalesStatistics();
+	}
 	
 	public List<MemberDTO> selMember(Map<String, Object> param) {
 		return mapper.selMember(param);

@@ -1,6 +1,6 @@
 .admin-report tr {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: .5fr 3.5fr 3fr 1fr 1fr 1fr 1fr;
     gap: 7px;
     padding: 8px 3px;
 }
@@ -39,4 +39,8 @@ h1 {
 
 table {
 	padding: 50px 40px 50px;
+}
+
+.pointer {
+	cursor: pointer;
 }

@@ -12,6 +12,7 @@ import egovframework.sth.domain.admin.domain.BoardDTO;
 import egovframework.sth.domain.admin.domain.MemberDTO;
 import egovframework.sth.domain.admin.domain.ReportDTO;
 import egovframework.sth.domain.admin.domain.ReportVO;
+import egovframework.sth.domain.admin.domain.StatisticsDTO;
 import egovframework.sth.domain.admin.domain.TableInfoDTO;
 import egovframework.sth.global.common.excel.model.TransactionHistoryDTO;
 
@@ -28,6 +29,10 @@ public interface AdminMapper {
 	String[] selAllNickname();
 	List<TransactionHistoryDTO> selTransactionHistory();
 	List<TableInfoDTO> selTableInfo(String table);
+	StatisticsDTO selBoardStatistics();
+	StatisticsDTO selReplyStatistics();
+	StatisticsDTO selTranHisStatistics();
+	StatisticsDTO selSalesStatistics();
 
 	BannerDTO selinfo(BannerDTO dto);
 	AskDTO selAsk(AskDTO dto);

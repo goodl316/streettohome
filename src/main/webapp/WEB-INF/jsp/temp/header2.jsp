@@ -43,6 +43,7 @@
 
 			<h3><a href="/admin/MessageAdmin">쪽지 보내기</a></h3>
 			<h3><a href="/admin/excel/transaction_history" class="history-download">거래내역 다운 <img class="excel-icon" src="/images/egovframework/icon/excel.png"></a></h3>
+			<h3><a href="/admin/statistics">통계</a></h3>
 			</div>
 		</header>
 	</c:if>
