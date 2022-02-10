@@ -111,12 +111,10 @@ function nickname_Pattern() {
 				success : function(data) {
 					if (data == 1) {
 						alert("중복된 닉네임입니다.");
-						console.log("중복");
 					} else if (data == 0) {
 						$("#nameChk").attr("value", "Y");
 						$("#m_nickname").val();
 						alert("사용가능한 닉네임입니다.");
-						console.log("사용가능함");
 					} else {
 						alert("닉네임을 입력해주세요.");
 					}
@@ -137,7 +135,6 @@ function ph_pattern_pw() {
 
 //join버튼 클릭시 메세지 띄우고, 모든 칸이 알맞게 입력됐을시 값 받아주기.
 joinBtn.onclick = function () {
-	console.log(joinPossible)
 	for (var i = 0; i < joinPossible.length; i++) {
 		if (!joinPossible[i]) {
 			chkMsg(i)
@@ -244,8 +241,6 @@ joinBtn.onclick = function () {
                 }
  
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                console.log(data.zonecode);
-                console.log(fullRoadAddr);
                 
                 
                 $("[name=m_zipcode]").val(data.zonecode);

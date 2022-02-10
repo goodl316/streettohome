@@ -13,7 +13,6 @@ function fileRemove2(name,item,ba_no){
 		chkImg: item
 		
 	}
-	console.log(params)
 	
 	fetch(`/admin/delimg`,{
 		method:'post',
@@ -25,14 +24,12 @@ function fileRemove2(name,item,ba_no){
 		return res.json()
 	}).then(function(data){
 		if(data == 1){
-			console.log("sucess")
 		}
 	})
 	
 }
 
 function fileRemove(fileNm) {
-	console.log("fileNm: "+fileNm)
 	
 	
 	fileInfoArr.splice(fileNm, 1);
@@ -40,22 +37,14 @@ function fileRemove(fileNm) {
 
 	var imgId = "#img_id_"+fileNm;
 	var test = document.querySelector(''+imgId)
-	console.log(test)
-	console.log(imgId)
-	console.log(">>>>>>>>>>>>>>>>>>>>>>>")
 	$(imgId).remove();
-	console.log(fileInfoArr);
 	formData.delete('imgs');
 	
-	console.log("delete after1"+formData.getAll("imgs"))
-	console.log("/////////////////////////////////////")
 	for (var i = 0; i < fileInfoArr.length; i++) {
 		if(fileInfoArr.length>0){
 		formData.append('imgs', fileInfoArr[i])
-		console.log("bugggggggggggg")
 		}
 	}
-	console.log("delete after2"+formData.getAll('imgs'))
 
 }
 
@@ -70,7 +59,6 @@ function previewImage(targetObj, View_area) {
 
 
 	var files = targetObj.files;
-	console.log("improt"+files.length)
 	for (var i = 0; i < files.length; i++) {
 		var file = files[i];
 		fileInfoArr.push(file);
@@ -130,7 +118,6 @@ function previewImage(targetObj, View_area) {
 		if(input_img.files.length>0){
 			
 		formData.append('imgs', input_img.files[i])
-		//console.log(input_img.files[i].name)
 		}
 	}
 	
@@ -139,7 +126,6 @@ function previewImage(targetObj, View_area) {
 
 
 function updimg() {
-	console.log(formData.getAll('imgs'))
 	
 	$.ajax({
 		method: "POST",
@@ -149,14 +135,12 @@ function updimg() {
 		contentType: false,
 		cache: false,
 		success: function(){
-			console.log("success")
 		}
 	}
 	)
 }
 
 if(View_area){
-	console.log("asdasd")
 	getImgList()
 }
 
@@ -165,7 +149,6 @@ function getImgList(){
 	.then(function(res){
 		return res.json()
 	}).then((list)=>{
-		console.log(list)
 		View_area.innerHTML = ""
 		proc(list)
 	})

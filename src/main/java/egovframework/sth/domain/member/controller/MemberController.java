@@ -56,7 +56,7 @@ public class MemberController {
 			model.addAttribute("Msg", "이메일 또는 비밀번호를 확인해주세요.");
 			return "/member/login";
 		} else {
-			return "/";
+			return "redirect:/";
 		}
 	}
 
@@ -81,7 +81,6 @@ public class MemberController {
 		
 		Map<String,Object> val = new HashMap<>();
 		val.put("data", memberService.join(param));
-//		System.out.println(param.toString());
 		return val;
 	}
 
@@ -90,7 +89,6 @@ public class MemberController {
 	@RequestMapping(value = "emailChk", method = RequestMethod.POST)
 	public int emailChk(MemberDTO param) throws Exception {
 		int result = memberService.emailChk(param);
-		System.out.println(result);
 		return result;
 	}
 
@@ -144,8 +142,6 @@ public class MemberController {
         String m_pw = param.getM_pw();
         member.setM_pw(m_pw);
         session.setAttribute("loginMember", member);
-        System.out.println(param.toString());
-        System.out.println(member.toString());
 		map.put("result", memberService.updateMember(param));
 		return map;
 	}

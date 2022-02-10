@@ -61,9 +61,7 @@ public class BoardService {
 		AnimalDTO vo = mapper.selinfo(dto);
 		String path = "/img/board/an_"+dto.getB_no()+"/"+dto.getChkImg();
 		if(futils.delFile(path)) {
-			System.out.println("성공");
 		}else {
-			System.out.println("실패");
 		}
 		
 		if(vo.getAn_img() == dto.getChkImg()) {
@@ -82,7 +80,6 @@ public class BoardService {
 	}
 	
 	public int insAnimal(AnimalDTO dto) {
-		System.out.println("service:"+dto.getAn_age()+","+dto.getAn_gender());
 		
 		return mapper.insAnimal(dto);
 	}

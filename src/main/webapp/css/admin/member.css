@@ -49,8 +49,8 @@ table {
 	cursor: pointer;
 }
 .search-user{
-	position: absolute;
-	right: 0;
+	text-align: right;
+	padding-right: 40px;
 }
 .search-btn{
 	 color: white;

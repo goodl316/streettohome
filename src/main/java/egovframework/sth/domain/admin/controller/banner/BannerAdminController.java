@@ -27,7 +27,6 @@ public class BannerAdminController {
 	@ResponseBody
 	@PostMapping("/admin/insbanner")
 	public int insbanner(@RequestBody MultipartFile[] imgs){
-		System.out.println(imgs.length);
 		return service.bannerimgUpload(imgs);
 	}
 	

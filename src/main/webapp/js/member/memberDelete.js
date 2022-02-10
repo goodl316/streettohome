@@ -27,7 +27,6 @@ function memberDelete(param) {
 		contentType: "application/json",
 		success: function(data) {
 			if (data==0) {
-				console.log(data)
 				alert('비밀번호가 일치하지 않습니다.')
 				return;
 			} else {

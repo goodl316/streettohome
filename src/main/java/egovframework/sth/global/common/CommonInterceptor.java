@@ -22,7 +22,6 @@ public class CommonInterceptor implements HandlerInterceptor {
         if(loginMember == null) {
         	msg = "로그인 후 이용해주세요.";
         	response.sendRedirect("/member/login?msg=" + urlEncoder(msg));
-        	System.out.println("aa");
             return false;
         } else {
         	if (loginMember != null && loginMember.getM_state().equals("3")) {

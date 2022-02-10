@@ -40,7 +40,6 @@ public class BoardVO extends BoardDTO{
 		this.countBoard = countBoard;
 	}
 
-
 	public int getRecordCountPerPage() {
 		return recordCountPerPage;
 	}

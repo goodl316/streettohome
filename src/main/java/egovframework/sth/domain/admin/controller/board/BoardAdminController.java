@@ -48,7 +48,6 @@ public class BoardAdminController {
 	
 	@GetMapping("/admin/delBoardAdmin")
 	public void delBoardAdmin(Model model, HttpServletRequest req) {
-		System.out.println("Asdasd");
 		PaginationInfo pagination = new PaginationInfo();
 		Map<String, Object> map = new HashMap<>();
 		

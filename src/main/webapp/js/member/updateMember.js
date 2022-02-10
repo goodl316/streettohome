@@ -44,12 +44,10 @@ function chk_pw() {
 				success : function(data) {
 					if (data == 1) {
 						alert("중복된 닉네임입니다.");
-						console.log("중복");
 					} else if (data == 0) {
 						$("#nameChk").attr("value", "Y");
 						$("#m_nickname").val();
 						alert("사용가능한 닉네임입니다.");
-						console.log("사용가능함");
 					} else {
 						alert("닉네임을 입력해주세요.");
 					}
@@ -76,14 +74,12 @@ var params = {
                     m_zipcode : $("#m_zipcode").val(),
                     m_address : $("#m_address").val()
             }
-			console.log(sNick);
 			if ($("#m_nickname").val() == sNick){
 				$("#nameChk").val() == 'Y'
 				} else if ($("#nameChk").val() == 'N') {
 				alert ("닉네임 중복 확인을 해주세요.");
 				return
 			}
-	console.log(params)
 	updateMember(params)
 	
 			}
@@ -96,7 +92,6 @@ function updateMember(params) {
                 dataType: "json",
                 contentType: "application/json",
                 success: function(data) {
-		console.log(data)
 					if(data.result == 1) {
 						alert('수정된 정보로 로그인 해주세요.')
 	                	location.href = '/member/logout'
@@ -136,8 +131,6 @@ function updateMember(params) {
                 }
  
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                console.log(data.zonecode);
-                console.log(fullRoadAddr);
                 
                 
                 $("[name=m_zipcode]").val(data.zonecode);

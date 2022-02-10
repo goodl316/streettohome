@@ -43,7 +43,6 @@ function chargeMoney() {
             'content-type': 'application/json;charset=UTF-8'
         }
     }
-	console.log(init.body);
 	fetch('/pay/charge', init)
 	.then((res) => {
 			if (!res.ok) {

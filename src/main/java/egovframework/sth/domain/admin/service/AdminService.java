@@ -75,16 +75,10 @@ public class AdminService {
 		BannerDTO vo = mapper.selinfo(dto);
 		String path = "/img/banner/banner/"+dto.getChkImg();
 		if(futils.delFile(path)) {
-			System.out.println("성공");
 		}else {
-			System.out.println("실패");
 		}
-		System.out.println(dto.getChkImg());
-		System.out.println(vo.getBa_img1());
-		System.out.println(vo.getBa_no());
 		
 		if(vo.getBa_img1().equals(dto.getChkImg())) {
-			System.out.println("treu");
 			dto.setBa_img1("");
 			mapper.updBannerImg(dto);
 		}
@@ -102,7 +96,6 @@ public class AdminService {
 	
 	
 	public int delMember(MemberDTO dto) {
-		System.out.println("!!!!!!!"+dto.getState());
 		if(dto.getState() == 1) {
 			return mapper.delMember(dto);
 		}else if(dto.getState() ==2) {

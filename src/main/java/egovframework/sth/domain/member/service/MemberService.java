@@ -71,7 +71,6 @@ public class MemberService {
 		} else if (BCrypt.checkpw(param.getM_pw(), result.getM_pw())) {
 			// 로그인 성공
 			result.setM_pw(null);
-			System.out.println("성공");
 			session.setAttribute("loginMember", result);
 
 			return 1;
@@ -114,12 +113,10 @@ public class MemberService {
 
 	// 회원정보 수정
 	public int updateMember(MemberDTO param) {
-		System.out.println(param.getM_pw());
 		if (param.getM_pw() != null) {
 		String hashPw = BCrypt.hashpw(param.getM_pw(), BCrypt.gensalt());
 		param.setM_pw(hashPw);
 		}
-		System.out.println(param.getM_pw());
 		return mapper.updateMember(param);
 		}
 
@@ -164,7 +161,6 @@ public class MemberService {
 			email.setHtmlMsg(msg);
 			email.send();
 		} catch (Exception e) {
-			System.out.println("메일발송 실패 : " + e);
 		}
 	}
 

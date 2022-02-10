@@ -67,7 +67,6 @@ public class BoardController {
 	
 	@GetMapping("/board/boardmod")
 	public void modBoard(Model model,BoardVO vo) {
-		System.out.println("................................");
 		model.addAttribute("data",service.modselboard(vo));
 		
 	}
@@ -93,7 +92,6 @@ public class BoardController {
 	@ResponseBody
 	@GetMapping("/board/boardmodImg")
 	public List<String> modBoardImg(int b_no) {
-		System.out.println("b_no:"+b_no);
 		return service.selImgList(b_no);
 		
 	}
@@ -119,7 +117,6 @@ public class BoardController {
 	@ResponseBody
 	@PostMapping("/board/test")
 	public String test(@RequestBody BoardDTO dto) {
-		System.out.println("제목:" + dto.getB_title());
 
 		return "success";
 	}
@@ -129,7 +126,6 @@ public class BoardController {
 	public Map<String, Object> insboard(@RequestBody BoardDTO dto) {
 		Map<String, Object> val = new HashMap<>();
 		val.put("data", service.insBoard(dto));
-		System.out.println("b_no:" + dto.getB_no()); 
 		val.put("b_no",dto.getB_no());
 		val.put("b_enddt", dto.getB_enddt());
 		return val;
@@ -142,8 +138,6 @@ public class BoardController {
 	public Map<String, Object> insAnimal(@RequestBody AnimalDTO dto) {
 		Map<String, Object> val = new HashMap<>();
 		val.put("data", service.insAnimal(dto));
-		System.out.println(dto.getB_no());
-		System.out.println(dto.getAn_no());
 		
 		val.put("an_no", dto.getAn_no());
 
@@ -153,8 +147,6 @@ public class BoardController {
 	@ResponseBody
 	@PostMapping("/updpatImg")
 	public int patimgUpload(@RequestBody MultipartFile[] imgs, int an_no) {
-		System.out.println(an_no);
-		System.out.println(imgs.length);
 
 		return service.patimgUpload(imgs, an_no);
 	}

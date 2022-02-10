@@ -13,6 +13,7 @@ function clkvalue(){
 	if(b_tt == "무료"){
 		b_price = 0;
 	}
+
 	if(an_type2 == '품종선택'){
 		an_type2 = ""
 		console.log(an_type2)

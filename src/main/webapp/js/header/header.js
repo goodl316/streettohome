@@ -1,11 +1,7 @@
 var loginData = document.querySelector('#loginData').value
-console.log(loginData)
 
 
 function regBoard() {
-	console.log(loginData)
-
-
 	location.href = `/board/boardreg`
 }
 
@@ -34,9 +30,6 @@ function moveList(an_type1) {
 			b_price = 0;
 		}
 
-
-
-
 		var params = {
 			sido1: sido1,
 			gugun1: gugun1,
@@ -53,8 +46,6 @@ function moveList(an_type1) {
 
 
 
-
-
 	}
 }
 
@@ -68,8 +59,7 @@ $(document).ready(function() {
 		return;
 	}
 	let sock = new SockJS("/echo");
-	console.log('sdfas');
-	connectWS(sock);
+    connectWS(sock);
 });
 
 function connectWS(sock) {
