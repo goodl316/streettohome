@@ -1,47 +1,115 @@
 @charset "UTF-8";
 
-.mainbanner{
-	width :100%;
+.mainbanner {
+	width: 100%;
 	height: 800px;
-
 }
-.list_item{
+
+.list_item {
 	
 }
-.dogList{
+
+.dogList {
 	display: flex;
 	flex-wrap: wrap;
 }
-.item_img img{
+
+.item_img img {
 	width: 200px;
 	height: 200px;
 }
-.banner ul{
+/* .banner ul{
 	list-style: none;
 	display: flex;
 	padding-left: 0px;
+} */
+.banner {
+	width: 100%;
+	height: 600px;
+	position: relative;
+	overflow: hidden;
 }
-.banner li{
+
+.slides {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 2500px; /* 슬라이드할 사진과 마진 총 넓이 */
+	transition: left 0.5s ease-out; /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+	width: 100%;
+	height: 100%;
+	padding: 0;
+}
+
+/* .slides li:first-child {
+	margin-left: 100px;
+} */ 
+/* 슬라이드들 옆으로 정렬 */
+.slides li:not(:last-child) {
+	float: left;
+}
+
+.slides li {
+	float: left;
+	padding: 0 20px;
+}
+
+
+.slides li img {
+	height: 100%;
 	width: 100%;
 }
-.list_item{
+
+.banner-controller span {
+	position: absolute;
+	background-color: transparent;
+	color: black;
+	text-align: center;
+	border-radius: 50%;
+	padding: 10px 20px;
+	top: 50%;
+	font-size: 1.3em;
+	cursor: pointer;
+} /* 이전, 다음 화살표에 마우스 커서가 올라가 있을때 */
+.banner-controller span:hover {
+	background-color: rgba(128, 128, 128, 0.11);
+}
+
+.prev {
+	left: 10px;
+} /* 이전 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 왼쪽으로 이동하는 효과*/
+.prev:hover {
+	transform: translateX(-10px);
+}
+
+.next {
+	right: 10px;
+} /* 다음 화살표에 마우스 커서가 올라가 있을때 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
+.next:hover {
+	transform: translateX(10px);
+}
+
+.list_item {
 	margin-left: 10px;
 }
+
 .item_img img {
 	width: 100%;
 	height: 270px;
 }
+
 .item_txt {
 	width: 100%
 }
 
-.dogList a{
+.dogList a {
 	width: 25%;
 }
 
-.catList a{
+.catList a {
 	width: 25%;
 }
+
 .catList {
 	display: flex;
 	flex-wrap: wrap;

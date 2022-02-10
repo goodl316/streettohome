@@ -31,25 +31,21 @@ function clk() {
 	} else {
 		price = 0;
 	}
-	console.log(gender.length)
 	
 	for (i = 0; i < gender.length; i++) {
 		if (gender[i].checked == true) {
 			gender_value = gender[i].value
-			console.log(gender_value)
 		}
 	}
 	for (i = 0; i < b_tt.length; i++) {
 		if (b_tt[i].checked == true) {
 			b_tt_value = b_tt[i].value
-			console.log(b_tt_value)
 		}
 	}
 	
 	for (i = 0; i < b_ns.length; i++) {
 		if (an_ns[i].checked == true) {
 			b_ns_value = an_ns[i].value
-			console.log(b_ns_value)
 		}
 	}
 	
@@ -79,7 +75,6 @@ function clk() {
 
 	}
 
-	console.log(params)
 
 }
 
@@ -87,7 +82,6 @@ function clk() {
 
 function product_img_upload(an_no) {
 	
-	console.log(formData.getAll("imgs"))
 	
 	formData.append('an_no', an_no) // 추가
 	$.ajax({
@@ -98,7 +92,6 @@ function product_img_upload(an_no) {
 		contentType: false,
 		cache: false,
 		success: function() {
-			console.log("success")
 			location.href="/main"
 		}
 	})
@@ -119,14 +112,12 @@ function animalReg(b_no){
 	for (i = 0; i < an_gender.length; i++) {
 		if (an_gender[i].checked == true) {
 			gender_value = an_gender[i].value
-			console.log(gender_value)
 		}
 	}
 	
 	for (i = 0; i < b_ns.length; i++) {
 		if (an_ns[i].checked == true) {
 			an_ns_value = an_ns[i].value
-			console.log(an_ns_value)
 		}
 	}
 	
@@ -172,13 +163,11 @@ function boardReg() {
 	} else {
 		price = 0;
 	}
-	console.log(gender.length)
 	
 	
 	for (i = 0; i < b_tt.length; i++) {
 		if (b_tt[i].checked == true) {
 			b_tt_value = b_tt[i].value
-			console.log(b_tt_value)
 		}
 	}
 		enddt = parseInt(enddt,10)
@@ -266,9 +255,6 @@ function insAuction(b_no,ac_enddt){
 		
 	}
 	
-	console.log(params
-	)
-	
 	fetch(`/board/insAuction`,{
 		method: 'post',
 		headers : {
@@ -288,7 +274,6 @@ function insAuction(b_no,ac_enddt){
 
 
 $(document).ready(function() {
-	console.log("ready!");
 	
 
 	$('input[type=radio][name=tradetype]').click(function() {
@@ -416,8 +401,6 @@ $("select[name^=an_type1]").change(function() {
 
 //썸네일 클릭시 삭제.
 function fileRemove(index,fileNm) {
-	console.log("index: "+index);
-	console.log("fileNm: "+fileNm)
 	
 	
 	fileInfoArr.splice(fileNm, 1);
@@ -426,7 +409,6 @@ function fileRemove(index,fileNm) {
 	var imgId = "#img_id_"+fileNm;
 	var test = document.querySelector(''+imgId)
 	$(imgId).remove();
-	console.log(fileInfoArr);
 	formData.delete('imgs');
 	
 	for (var i = 0; i < fileInfoArr.length; i++) {
@@ -511,7 +493,6 @@ function previewImage(targetObj, View_area) {
 		if(input_img.files.length>0){
 			
 		formData.append('imgs', input_img.files[i])
-		//console.log(input_img.files[i].name)
 		}
 	}
 

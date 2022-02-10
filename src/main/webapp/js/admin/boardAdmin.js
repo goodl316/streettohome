@@ -5,7 +5,7 @@ function delBoard(b_no){
 	var authstate = document.querySelector('.authstate')
 	if(authstate.value != 999) {
 		
-		alert('실행권환이 없습니다.')
+		alert('실행권한이 없습니다.')
 		
 		return
 	}

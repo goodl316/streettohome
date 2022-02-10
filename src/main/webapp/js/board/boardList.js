@@ -15,7 +15,6 @@ function clkvalue(){
 		b_price = 0;
 	}
 	
-	console.log(sido1,gugun1,an_type2,b_tt,an_gender,b_price,search)
 	
 	
 }

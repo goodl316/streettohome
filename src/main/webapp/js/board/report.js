@@ -1,5 +1,4 @@
 $('input[name=radio]').on('click', () => {
-	console.log($('input[name=radio]:checked').parent().text());
 	if(!$('input[name=radio]:checked').parent().text().indexOf('기타')) {
 		$('.report-etc-text').val("");
 		$('.report-etc-text').removeAttr('readOnly');

@@ -27,11 +27,8 @@ function regAskAjax(params){
 	}).then(function(res){
 		return res.json()
 	}).then(function(data){
-			console.log(data)
 			if(data == 1){
-				console.log("true")
 			}else{
-				console.log(data)
 			}
 		
 	})

@@ -26,25 +26,21 @@ function clk() {
 	} else {
 		price = 0;
 	}
-	console.log(gender.length)
 	
 	for (i = 0; i < gender.length; i++) {
 		if (gender[i].checked == true) {
 			gender_value = gender[i].value
-			console.log(gender_value)
 		}
 	}
 	for (i = 0; i < b_tt.length; i++) {
 		if (b_tt[i].checked == true) {
 			b_tt_value = b_tt[i].value
-			console.log(b_tt_value)
 		}
 	}
 	
 	for (i = 0; i < b_ns.length; i++) {
 		if (an_ns[i].checked == true) {
 			b_ns_value = an_ns[i].value
-			console.log(b_ns_value)
 		}
 	}
 
@@ -64,14 +60,11 @@ function clk() {
 
 	}
 
-	console.log(params)
 
 }
 
 
 if(View_area){
-	console.log("asdasd")
-	console.log(b_no)
 	getImgList(b_no)
 }
 
@@ -80,7 +73,6 @@ function getImgList(b_no){
 	.then(function(res){
 		return res.json()
 	}).then((list)=>{
-		console.log(list)
 		View_area.innerHTML = ""
 		proc(b_no,list)
 	})
@@ -121,25 +113,21 @@ function updBoard(b_no){
 	} else {
 		price = 0;
 	}
-	console.log(gender.length)
 	
 	for (i = 0; i < gender.length; i++) {
 		if (gender[i].checked == true) {
 			gender_value = gender[i].value
-			console.log(gender_value)
 		}
 	}
 	for (i = 0; i < b_tt.length; i++) {
 		if (b_tt[i].checked == true) {
 			b_tt_value = b_tt[i].value
-			console.log(b_tt_value)
 		}
 	}
 	
 	for (i = 0; i < b_ns.length; i++) {
 		if (an_ns[i].checked == true) {
 			b_ns_value = an_ns[i].value
-			console.log(b_ns_value)
 		}
 	}
 
@@ -170,9 +158,7 @@ function updBoard(b_no){
 	}).then(function(res){
 		return res.json()
 	}).then(function(data){
-		console.log(data.b_no)
 		product_img_upload(data.b_no)
-		console.log("finish")
 	})
 }
 
@@ -182,7 +168,6 @@ function updBoard(b_no){
 
 function product_img_upload(an_no) {
 	
-	console.log(formData.getAll("imgs"))
 	
 	formData.append('an_no', an_no) // 추가
 	$.ajax({
@@ -193,7 +178,6 @@ function product_img_upload(an_no) {
 		contentType: false,
 		cache: false,
 		success: function() {
-			console.log("success")
 		}
 	})
 }
@@ -202,11 +186,8 @@ function product_img_upload(an_no) {
 
 
 function createRecode(b_no,item,i){
-	console.log("re:",b_no)
-	console.log("itme",item)
 	const search = item.indexOf('.')
 	const name = item.substr(0,search)
-	console.log(name)
 	
 	var span = document.createElement('span')
 	span.id='img_id_'+name
@@ -217,8 +198,6 @@ function createRecode(b_no,item,i){
 	
 	`
 	fileInfoArr.push(item)
-	console.log(span)
-	console.log(fileInfoArr)
 	fullName.push(item)
 	
 	return span
@@ -228,7 +207,6 @@ function createRecode(b_no,item,i){
 function deleteImg(){
 	
 	$('#input_img').val("");
-	console.log("///")
 }
 
 function fileRemove2(name,item){
@@ -242,7 +220,6 @@ function fileRemove2(name,item){
 		chkImg: item
 		
 	}
-	console.log(params)
 	
 	fetch(`/delete/img`,{
 		method:'post',
@@ -254,14 +231,12 @@ function fileRemove2(name,item){
 		return res.json()
 	}).then(function(data){
 		if(data == 1){
-			console.log("sucess")
 		}
 	})
 	
 }
 
 function fileRemove(fileNm) {
-	console.log("fileNm: "+fileNm)
 	
 	
 	fileInfoArr.splice(fileNm, 1);
@@ -269,22 +244,14 @@ function fileRemove(fileNm) {
 
 	var imgId = "#img_id_"+fileNm;
 	var test = document.querySelector(''+imgId)
-	console.log(test)
-	console.log(imgId)
-	console.log(">>>>>>>>>>>>>>>>>>>>>>>")
 	$(imgId).remove();
-	console.log(fileInfoArr);
 	formData.delete('imgs');
 	
-	console.log("delete after1"+formData.getAll("imgs"))
-	console.log("/////////////////////////////////////")
 	for (var i = 0; i < fileInfoArr.length; i++) {
 		if(fileInfoArr.length>0){
 		formData.append('imgs', fileInfoArr[i])
-		console.log("bugggggggggggg")
 		}
 	}
-	console.log("delete after2"+formData.getAll('imgs'))
 
 }
 
@@ -299,7 +266,6 @@ function previewImage(targetObj, View_area) {
 
 
 	var files = targetObj.files;
-	console.log("improt"+files.length)
 	for (var i = 0; i < files.length; i++) {
 		var file = files[i];
 		fileInfoArr.push(file);
@@ -354,7 +320,6 @@ function previewImage(targetObj, View_area) {
 	}
 	
 	if(document.querySelector('#input_img') == input_img){
-		console.log("tree")
 	}
 	
 		
@@ -362,15 +327,12 @@ function previewImage(targetObj, View_area) {
 		if(input_img.files.length>0){
 			
 		formData.append('imgs', input_img.files[i])
-		//console.log(input_img.files[i].name)
 		}
 	}
-	console.log(formData.getAll('imgs'))
 
 }
 
 $(document).ready(function() {
-	console.log("ready!");
 
 	$('input[type=radio][name=tradetype]').click(function() {
 

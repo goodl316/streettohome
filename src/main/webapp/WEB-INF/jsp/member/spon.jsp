@@ -7,6 +7,6 @@
 <style>
 .spon { width: 100%;}
 </style>
-<div class="spon">
+<div class="spon" style="padding: 40px">
 	<img class='spon' src="/images/spon.png" alt="">
 </div>

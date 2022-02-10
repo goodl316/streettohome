@@ -11,14 +11,17 @@
 <body>
 	<div class="mainContainer">
 		<div class="banner">
-			<ul>
+			<ul class="slides">
+			<li><img class="mainbanner"	src="/images/main.png"> </li>
 				<c:forEach var="ba" items="${banner}" end="0">
-					<c:if test="${ba.ba_img1 != '' }">
-						<li><img class="mainbanner"
-							src="/img/banner/banner/${ba.ba_img1}"></li>
-					</c:if>
+					<li><img class="mainbanner"
+					src="/img/banner/banner/${ba.ba_img1}"></li>
 				</c:forEach>
 			</ul>
+			<p class="banner-controller">
+				<span class="prev">&lang;</span> 
+				<span class="next">&rang;</span>
+			</p>
 		</div>
 		<div class="minaList">
 			<h2>강아지를 집으로</h2>

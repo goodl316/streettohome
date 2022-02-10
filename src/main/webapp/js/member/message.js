@@ -73,7 +73,6 @@ function message(str, chkValList) {
 	let confirmMsg = '';
 	const delMsg = '정말로 삭제 하시겠습니까?';
 	const readMsg = '읽음처리로 변경하시겠습니까?';
-	console.log(str, chkValList);
 	if(str == 'DELETE') {
 		method = 'DELETE';
 		confirmMsg = delMsg;

@@ -1,9 +1,7 @@
 var loginData = document.querySelector('#loginData').value
-console.log(loginData)
 
 
 function regBoard() {
-console.log(loginData)	
 	
 	
 	location.href = `/board/boardreg`
@@ -51,7 +49,6 @@ function moveList(an_type1) {
 		}
 
 		if (b_price == "" && b_tt != "무료") {
-			console.log(b_price)
 			alert("가격을 선택해 주세요")
 			return;
 		}
@@ -121,7 +118,6 @@ function movePage(startPage, cntPerPage, an_type1) {
 		}
 
 		if (b_price == "" && b_tt != "무료") {
-			console.log(b_price)
 			alert("가격을 선택해 주세요")
 			return;
 		}
@@ -152,7 +148,6 @@ $(document).ready(function(){
 		return;
 	}
 	let sock = new SockJS("/echo");
-	console.log('sdfas');
     connectWS(sock);
 });
 

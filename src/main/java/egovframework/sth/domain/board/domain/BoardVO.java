@@ -59,7 +59,6 @@ public class BoardVO extends BoardDTO{
 		this.b_price = b_price;
 		this.an_type1 = an_type1;
 		this.an_type2 = an_type2;
-		System.out.println(this.an_type1);
 	}
 
 	public int getNowPage() {
