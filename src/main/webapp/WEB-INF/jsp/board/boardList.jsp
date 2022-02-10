@@ -16,7 +16,7 @@
 <body>
 <input type="hidden" value="${param.an_type1}" class="get_an_type1">
 	<div class="container">
-		<div class="type_title">${list[0d].an_type1}를집으로</div>
+		<div class="type_title">${list[0].an_type1}를집으로</div>
 		<div class="select-list">
 			<div class="div1st">
 				<div class="loc">검색 지역</div>
