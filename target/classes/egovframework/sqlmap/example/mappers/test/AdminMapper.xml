@@ -302,6 +302,9 @@
 		on a.m_no = C.m_no
 		where a.b_del =0 and b.an_type1=
 		#{an_type1}
+		<if test="b_auth !=null and b_auth !='' ">
+		and b_auth = #{b_auth}
+		</if>
 		ORDER BY a.b_no DESC
 		LIMIT #{firstIndex},
 		#{recordCountPerPage}
@@ -316,7 +319,11 @@
 		JOIN member C
 		on a.m_no = C.m_no
 		where a.b_del =0 and b.an_type1=
-		#{an_type1} and C.m_name =#{m_name}
+		#{an_type1} 
+		<if test="b_auth !=null and b_auth !='' ">
+		and b_auth = #{b_auth}
+		</if>
+		and C.m_name =#{m_name}
 		ORDER BY a.b_no DESC
 		LIMIT #{firstIndex},
 		#{recordCountPerPage}

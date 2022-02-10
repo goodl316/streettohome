@@ -31,19 +31,24 @@ public class BoardController {
 	
 	
 	@GetMapping("/board/boardList")
-	public void boardList(Model model, HttpServletRequest req) {
+	public void boardList(Model model,BoardVO vo, HttpServletRequest req) {
 		PaginationInfo pagination = new PaginationInfo();
-		Map<String, Object> map = new HashMap<>();
 		pagination.setCurrentPageNo(Integer.parseInt(req.getParameter("page")));
 		pagination.setPageSize(8);
 		pagination.setRecordCountPerPage(10);
-		map.put("recordCountPerPage", pagination.getRecordCountPerPage());
-		map.put("firstIndex", pagination.getFirstRecordIndex());
-		map.put("an_type1", req.getParameter("an_type1"));
-		pagination.setTotalRecordCount(service.countBoard(map));
+		pagination.setTotalRecordCount(service.countBoard(vo));
+		vo.setRecordCountPerPage(pagination.getRecordCountPerPage());
+		vo.setFirstIndex(pagination.getFirstRecordIndex());
+		System.out.println(vo.getAn_gender());
+		System.out.println(vo.getAn_type2());
+		System.out.println(vo.getB_loc_sido());
+		System.out.println(vo.getB_loc_gugun());
+		System.out.println(vo.getB_price());
+		System.out.println(vo.getB_tt());
+		
 		
 		model.addAttribute("paginationInfo", pagination);
-		model.addAttribute("list", service.boardList(map));
+		model.addAttribute("list", service.boardList(vo));
 		
 
 	}

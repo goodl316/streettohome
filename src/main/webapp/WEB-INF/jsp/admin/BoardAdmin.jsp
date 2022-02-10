@@ -17,6 +17,11 @@
 		<c:when test="${param.an_type1 eq '강아지' }">
 			<h1>강아지 게시판 관리</h1>
 			<div class="search-user">
+			<select id="okselect">
+			<option value = "">전체</option>
+			<option	value = 0>승인 대기</option>
+			<option value = 1>승인 완료</option>
+			</select>
 			<input class="search-text"type="text" placeholder="작성자 이름을 입력해 주세요.">
 			<button class="search-btn" onclick="searchMem('${param.an_type1}',${param.page})">검색</button>
 			</div>
@@ -59,6 +64,11 @@
 		<c:when test="${param.an_type1 eq '고양이' }">
 		<h1>고양이 게시판 관리</h1>
 			<div class="search-user">
+			<select onchange="selectValue(this.value);">
+			<option value= "">전체</option>
+			<option value = 0>승인 대기</option>
+			<option value = 1>승인 완료</option>
+			</select>
 			<input class="search-text"type="text" placeholder="작성자 이름을 입력해 주세요.">
 			<button class="search-btn" onclick="searchMem('${param.an_type1}',${param.page})">검색</button>
 			</div>
@@ -77,7 +87,18 @@
 						<td>${list.b_no }</td>
 						<td onclick="location.href='/board/view?b_no=${list.b_no}'">${list.b_title}</td>
 						<td>${list.b_writer}</td>
-						<td>${list.b_auth }</td>
+						<td>
+						<c:choose>
+						<c:when test="${list.b_auth ==0 }">
+						N
+						<button class="okbtn" onclick="okBtn('${list.b_no}')">승인</button>
+						</c:when>
+						<c:when test="${list.b_auth == 1 }">
+						Y
+						<button class="okbtn" onclick="nonOk('${list.b_no}')">해제</button>
+						</c:when>
+						</c:choose>
+						</td>
 						<td>${list.b_tt }</td>
 						<td>
 						<c:set var="TextValue" value="${list.b_dt}"/>${fn:substring(TextValue,0,10) }</td>

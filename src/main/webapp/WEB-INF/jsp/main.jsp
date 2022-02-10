@@ -66,12 +66,6 @@
 			</div>
 		</div>
 	</div>
-	<c:if test="${loginMember != null }">
-		<button onclick="regBoard()">글등록</button>
-		<c:if test="${loginMember.m_authstate == 999 }">
-			<button onclick="moveAdmin(1)">관리자페이지</button>
-		</c:if>
-	</c:if>
 
 </body>
 </html>

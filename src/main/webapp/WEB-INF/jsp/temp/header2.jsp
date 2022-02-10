@@ -37,6 +37,9 @@
 			</ul>
 			</div>
 			</div>
+			<div class="banner">
+			<h3><a href="/admin/bannerAdmin">배너 관리</a></h3>
+			</div>
 			<h3>
 				<a href="/admin/AskAdmin?page=1">문의글 관리</a>
 			</h3>

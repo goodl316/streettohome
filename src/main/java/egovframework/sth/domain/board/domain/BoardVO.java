@@ -21,7 +21,16 @@ public class BoardVO extends BoardDTO{
 	private String an_type2;
 	private String an_img;
 	private int countBoard;
+	private int recordCountPerPage;
+	private int firstIndex;
 	
+	public int getFirstIndex() {
+		return firstIndex;
+	}
+
+	public void setFirstIndex(int firstIndex) {
+		this.firstIndex = firstIndex;
+	}
 
 	public int getCountBoard() {
 		return countBoard;
@@ -31,121 +40,12 @@ public class BoardVO extends BoardDTO{
 		this.countBoard = countBoard;
 	}
 
-	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
-	private int cntPage = 5;
-
-	public int getCntPage() {
-		return cntPage;
+	public int getRecordCountPerPage() {
+		return recordCountPerPage;
 	}
 
-	public void setCntPage(int cntPage) {
-		this.cntPage = cntPage;
-	}
-
-	public BoardVO() {
-	}
-
-	public BoardVO(int total, int nowPage,String an_type1, int cntPerPage,String b_loc_sido,String b_loc_gugun,String b_tt,String an_gender,int b_price, String an_type2) {
-		setNowPage(nowPage);
-		setCntPerPage(cntPerPage);
-		setTotal(total);
-		calcLastPage(getTotal(), getCntPerPage());
-		calcStartEndPage(getNowPage(), cntPage);
-		calcStartEnd(getNowPage(), getCntPerPage());
-		this.b_loc_sido = b_loc_sido;
-		this.b_loc_gugun = b_loc_gugun;
-		this.b_tt = b_tt;
-		this.an_gender = an_gender;
-		this.b_price = b_price;
-		this.an_type1 = an_type1;
-		this.an_type2 = an_type2;
-	}
-
-	public int getNowPage() {
-		return nowPage;
-	}
-
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-
-	public int getStartPage() {
-		return startPage;
-	}
-
-	public void setStartPage(int startPage) {
-		this.startPage = startPage;
-	}
-
-	public int getEndPage() {
-		return endPage;
-	}
-
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
-	}
-
-	public int getTotal() {
-		return total;
-	}
-
-	public void setTotal(int total) {
-		this.total = total;
-	}
-
-	public int getCntPerPage() {
-		return cntPerPage;
-	}
-
-	public void setCntPerPage(int cntPerPage) {
-		this.cntPerPage = cntPerPage;
-	}
-
-	public int getLastPage() {
-		return lastPage;
-	}
-
-	public void setLastPage(int lastPage) {
-		this.lastPage = lastPage;
-	}
-
-	public int getStart() {
-		return start;
-	}
-
-	public void setStart(int start) {
-		this.start = start;
-	}
-
-	public int getEnd() {
-		return end;
-	}
-
-	public void setEnd(int end) {
-		this.end = end;
-	}
-
-	// 제일 마지막 페이지 계산
-	public void calcLastPage(int total, int cntPerPage) {
-		setLastPage((int) Math.ceil((double) total / (double) cntPerPage));
-	}
-
-	// 시작, 끝 페이지 계산
-	public void calcStartEndPage(int nowPage, int cntPage) {
-		setEndPage(((int) Math.ceil((double) nowPage / (double) cntPage)) * cntPage);
-		if (getLastPage() < getEndPage()) {
-			setEndPage(getLastPage());
-		}
-		setStartPage(getEndPage() - cntPage + 1);
-		if (getStartPage() < 1) {
-			setStartPage(1);
-		}
-	}
-
-	// DB 쿼리에서 사용할 start, end값 계산
-	public void calcStartEnd(int nowPage, int cntPerPage) {
-		setEnd(nowPage * cntPerPage);
-		setStart(getEnd() - cntPerPage);
+	public void setRecordCountPerPage(int recordCountPerPage) {
+		this.recordCountPerPage = recordCountPerPage;
 	}
 
 	public int getB_no() {
