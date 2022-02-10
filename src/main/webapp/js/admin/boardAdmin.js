@@ -29,8 +29,15 @@ function delBoard(b_no){
 
 function searchMem(an_type1,page){
 	var m_name = $('.search-text').val();
+	var b_auth = $("#okselect option:selected").val();
+	console.log(m_name)
+	if(m_name != null && m_name != ""){
+	return location.href = "/admin/BoardAdmin?an_type1="+an_type1+"&page="+page+"&m_name="+m_name+
+	"&b_auth="+b_auth
+	}else{
+	return location.href = "/admin/BoardAdmin?an_type1="+an_type1+"&page="+page+"&b_auth="+b_auth
+	}
 	
-	location.href = "/admin/BoardAdmin?an_type1="+an_type1+"&page="+page+"&m_name="+m_name
 }
 
 function searchMem2(page){
@@ -78,3 +85,9 @@ function nonOk(b_no){
 		location.reload()
 	})
 }
+
+function ccc(){
+	var a = $("#okselect option:selected").val();
+	console.log(a)
+}
+

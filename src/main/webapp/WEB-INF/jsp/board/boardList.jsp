@@ -14,8 +14,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<input type="hidden" value="${param.an_type1}" class="get_an_type1">
 	<div class="container">
-		<div class="type_title">${param.an_type1}를집으로</div>
+		<div class="type_title">${list[0d].an_type1}를집으로</div>
 		<div class="select-list">
 			<div class="div1st">
 				<div class="loc">검색 지역</div>
@@ -27,7 +28,6 @@
 			<div class="div2st">
 				<div class="type">품종  </div>
 				<div class="typ">
-					<select name="an_type1" id="an_type1"></select>  
 					<select name="an_type2" id="an_type2"></select>
 				</div>
 			</div>

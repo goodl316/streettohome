@@ -29,21 +29,12 @@ public class BoardService {
 	}
 	
 	
-	public List<BoardVO> boardList(Map<String,Object> map){
-		BoardVO vo = new BoardVO();
-		if(vo.getB_price() == 0) {
-			vo.setB_price(1);
-		}
-		
-		return mapper.boardList(map);
+	public List<BoardVO> boardList(BoardVO vo){
+		return mapper.boardList(vo);
 	}
 	
-	public int countBoard(Map<String,Object> map) {
-		BoardVO vo = new BoardVO();
-		if(vo.getB_price() == 0) {
-			vo.setB_price(1);
-		}
-		return mapper.countBoard(map);
+	public int countBoard(BoardVO vo) {
+		return mapper.countBoard(vo);
 	}
 	
 	public List<String> selImgList(int b_no){
