@@ -45,7 +45,7 @@
 			<when test=" an_type1 != null">
 				SELECT
 				a.b_title,a.b_no,a.b_dt,a.b_tt,a.b_loc_sido,
-				a.b_loc_gugun,a.b_price,
+				a.b_loc_gugun,a.b_price,b.an_type1,
 				b.an_type2,b.an_img,b.an_no
 				FROM board a
 				LEFT
@@ -59,19 +59,35 @@
 			</when>
 			<when test="an_type1 == null">
 				SELECT a.b_title,a.b_no,a.b_dt,a.b_tt,a.b_loc_sido,
-				a.b_loc_gugun,a.b_price,
+				a.b_loc_gugun,a.b_price,b.an_type1,
 				b.an_type2,b.an_img,b.an_no
 				FROM board a
 				LEFT
 				JOIN
 				animal_info b
 				ON a.b_no = b.b_no
-				WHERE a.b_loc_sido=#{b_loc_sido}
+				WHERE
+				<if test='b_loc_sido != null and b_loc_sido != "" '> 
+				a.b_loc_sido=#{b_loc_sido}
+				</if>
+				<if test='b_loc_gugun != null and b_loc_gugun != "" '>
 				and a.b_loc_gugun=#{b_loc_gugun}
+				</if>
+				<if test='b_tt != null and b_tt != "" '>
 				and a.b_tt =#{b_tt}
+				</if>
+				<if test='an_type2 != null and an_type2 != "" '>
 				and b.an_type2=#{an_type2}
+				</if>
+				<if test='an_gender != null and an_gender != "" '>
 				and b.an_gender =#{an_gender}
+				</if>
+				<if test='b_price != 0'>
 				and a.b_price <![CDATA[<]]>#{b_price}
+				</if>
+				<if test= 'b_price == 0 and b_tt == "무료" '>
+				and a.b_price = 0		
+				</if>
 				and a.b_del = 0
 				order by a.b_no
 				LIMIT #{firstIndex}, #{recordCountPerPage}

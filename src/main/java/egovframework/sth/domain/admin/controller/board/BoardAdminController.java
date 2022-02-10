@@ -37,6 +37,8 @@ public class BoardAdminController {
 		map.put("firstIndex", pagination.getFirstRecordIndex());
 		map.put("an_type1", req.getParameter("an_type1"));
 		map.put("m_name", req.getParameter("m_name"));
+		map.put("b_auth", req.getParameter("b_auth"));
+		
 		
 		pagination.setTotalRecordCount(service.selCountBoard(map));
 		

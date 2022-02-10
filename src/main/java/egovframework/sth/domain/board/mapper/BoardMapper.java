@@ -15,11 +15,11 @@ import egovframework.sth.domain.board.domain.BoardViewVO;
 public interface BoardMapper {
 	
 	BoardViewVO selBoardView(BoardDTO param);
-	List<BoardVO> boardList(Map<String,Object> map);
+	List<BoardVO> boardList(BoardVO vo);
 	int insBoard(BoardDTO dto);
 	int insAnimal(AnimalDTO dto);
 	int updpatImg(AnimalDTO dto);
-	int countBoard(Map<String,Object> map);
+	int countBoard(BoardVO vo);
 	AnimalDTO selinfo(AnimalDTO dto);
 	BoardVO modselboard(BoardVO vo);
 	int updateBoard(BoardVO vo);

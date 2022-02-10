@@ -25,17 +25,19 @@
 		value(
 		#{b_no},#{m_no},"신고사유")
 	</insert>
-	
+
 	<insert id="sendAllMessage">
 		INSERT INTO message
 		(ms_title, ms_receiver, ms_sender, ms_ctnt)
 		VALUES
 		<choose>
 			<when test="allChk == 0">
-				(#{ms_title}, (SELECT m_no FROM member WHERE m_nickname = #{nickname}), #{ms_sender}, #{ms_ctnt})
+				(#{ms_title}, (SELECT m_no FROM member WHERE
+				m_nickname = #{nickname}), #{ms_sender}, #{ms_ctnt})
 			</when>
 			<otherwise>
-				<foreach collection="ms_receiver" item="item" index="index"  separator="," >
+				<foreach collection="ms_receiver" item="item" index="index"
+					separator=",">
 					(#{ms_title}, #{item}, #{ms_sender}, #{ms_ctnt})
 				</foreach>
 			</otherwise>
@@ -199,32 +201,6 @@
 	<select id="selAllMember" resultType="int">
 		SELECT m_no FROM member
 	</select>
-	
-	<select id="selAllNickname" resultType="String">
-		SELECT m_nickname FROM member
-	</select>
-
-	<insert id="sendAllMessage">
-		INSERT INTO message
-		(ms_title, ms_receiver, ms_sender, ms_ctnt)
-		VALUES
-		<choose>
-			<when test="allChk == 0">
-				(#{ms_title}, (SELECT m_no FROM member WHERE
-				m_nickname = #{nickname}), #{ms_sender}, #{ms_ctnt})
-			</when>
-			<otherwise>
-				<foreach collection="ms_receiver" item="item" index="index"
-					separator=",">
-					(#{ms_title}, #{item}, #{ms_sender}, #{ms_ctnt})
-				</foreach>
-			</otherwise>
-		</choose>
-	</insert>
-
-	<select id="selAllMember" resultType="int">
-		SELECT m_no FROM member
-	</select>
 
 	<select id="selAllNickname" resultType="String">
 		SELECT m_nickname FROM
@@ -326,6 +302,9 @@
 		on a.m_no = C.m_no
 		where a.b_del =0 and b.an_type1=
 		#{an_type1}
+		<if test="b_auth !=null and b_auth !='' ">
+		and b_auth = #{b_auth}
+		</if>
 		ORDER BY a.b_no DESC
 		LIMIT #{firstIndex},
 		#{recordCountPerPage}
@@ -340,7 +319,11 @@
 		JOIN member C
 		on a.m_no = C.m_no
 		where a.b_del =0 and b.an_type1=
-		#{an_type1} and C.m_name =#{m_name}
+		#{an_type1} 
+		<if test="b_auth !=null and b_auth !='' ">
+		and b_auth = #{b_auth}
+		</if>
+		and C.m_name =#{m_name}
 		ORDER BY a.b_no DESC
 		LIMIT #{firstIndex},
 		#{recordCountPerPage}
