@@ -8,81 +8,7 @@ var inputImgElem = document.querySelector('#inputImg')
 var formData = new FormData();
 var fileArr;
 var fileInfoArr = [];
-
-function clk() {
-	var title = document.querySelector(".input_title").value
-	var ctnt = document.querySelector('.input_ctnt').value
-	var price = document.querySelector('.input_price')
-	var age = document.querySelector('.input_age').value
-	var an_type1 = document.querySelector('#an_type1').value
-	var an_type2 = document.querySelector('#an_type2').value
-	var b_tt = document.getElementsByName('tradetype')
-	var gender = document.getElementsByName('gender')
-	var an_ns = document.getElementsByName('b_ns')
-	var sido = document.querySelector('#sido1').value
-	var gun = document.querySelector('#gugun1').value
-	var an_name = document.querySelector('#an_name').value
-	var enddt = document.querySelector('.enddt').value
-	var gender_value = "";
-	var b_tt_value = "";
-	var b_ns_value = 0;
-	if (price) {
-		price = document.querySelector('.input_price').value
-	} else {
-		price = 0;
-	}
-	console.log(gender.length)
-	
-	for (i = 0; i < gender.length; i++) {
-		if (gender[i].checked == true) {
-			gender_value = gender[i].value
-			console.log(gender_value)
-		}
-	}
-	for (i = 0; i < b_tt.length; i++) {
-		if (b_tt[i].checked == true) {
-			b_tt_value = b_tt[i].value
-			console.log(b_tt_value)
-		}
-	}
-	
-	for (i = 0; i < b_ns.length; i++) {
-		if (an_ns[i].checked == true) {
-			b_ns_value = an_ns[i].value
-			console.log(b_ns_value)
-		}
-	}
-	
-		var date = new Date()
-
-	enddt = parseInt(enddt,10)
-	if(enddt != null){
-		
-	var b_enddt = date.getFullYear() +"-"+(date.getMonth()+1)+"-"+(date.getDate()+enddt)+" "+date.getHours()+":"+date.getMinutes()	
-	}
-
-
-	params = {
-		b_title: title,
-		b_ctnt: ctnt,
-		b_price: price,
-		an_age: age,
-		an_gender: gender_value,
-		b_loc_sido: sido,
-		b_loc_gugun: gun,
-		b_tt: b_tt_value,
-		an_ns: b_ns_value,
-		an_type1: an_type1,
-		an_type2: an_type2,
-		an_name: an_name,
-		b_enddt: b_enddt
-
-	}
-
-	console.log(params)
-
-}
-
+var enddt = null
 
 
 function product_img_upload(an_no) {
@@ -159,10 +85,13 @@ function boardReg() {
 	var ctnt = document.querySelector('.input_ctnt').value
 	var price = document.querySelector('.input_price')
 	var b_tt = document.getElementsByName('tradetype')
-	var enddt = document.querySelector('.enddt').value
+	var enddtelem = document.querySelector('.enddt')
 	var sido = document.querySelector('#sido1').value
 	var gun = document.querySelector('#gugun1').value
 	
+	if(enddtelem){
+		enddt = enddtelem.value
+	}
 	
 	var b_tt_value = "";
 	
@@ -181,8 +110,10 @@ function boardReg() {
 			console.log(b_tt_value)
 		}
 	}
+	
+	if(enddtelem){
 		enddt = parseInt(enddt,10)
-		
+	}
 	var date = new Date()
 	var b_enddt;	
 	if(enddt != null){
