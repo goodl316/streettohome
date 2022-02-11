@@ -52,11 +52,13 @@ public class ExcelDownload {
         CellStyle headerStyle = CellStyleSetting(workbook, "header");
         CellStyle dataStyle = CellStyleSetting(workbook, "data");
         CellStyle dateStyle = CellStyleSetting(workbook, "date");
+        
+        String[] TranHeaderKey = {"번호", "구매자", "판매자", "가격", "수수료", "거래일"};
 
         row = sheet.createRow(0);
         for(int i=0; i<headerKey.length; i++) { // 헤더 추가
             cell = row.createCell(i);
-            cell.setCellValue(headerKey[i]);
+            cell.setCellValue(TranHeaderKey[i]);
             cell.setCellStyle(headerStyle);
         }
 

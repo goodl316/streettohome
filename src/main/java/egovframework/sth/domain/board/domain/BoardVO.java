@@ -23,7 +23,18 @@ public class BoardVO extends BoardDTO{
 	private int countBoard;
 	private int recordCountPerPage;
 	private int firstIndex;
+	private String type3;
 	
+	
+	
+	public String getType3() {
+		return type3;
+	}
+
+	public void setType3(String type3) {
+		this.type3 = type3;
+	}
+
 	public int getFirstIndex() {
 		return firstIndex;
 	}

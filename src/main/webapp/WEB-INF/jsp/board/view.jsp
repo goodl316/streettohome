@@ -108,7 +108,7 @@
 						<c:when test="${requestScope.data.b_tt eq '경매' }">
 							<input type="button" class="view-info-button auction" value="분양신청">
 						</c:when>
-						<c:when test="${requestScope.data.b_tt eq '유료' }">
+						<c:when test="${requestScope.data.b_tt eq '유료' or requestScope.data.b_tt eq '무료'}">
 							<input type="button" class="view-info-button buy" value="분양신청">
 						</c:when>
 					</c:choose>
