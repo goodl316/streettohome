@@ -8,80 +8,12 @@ var inputImgElem = document.querySelector('#inputImg')
 var formData = new FormData();
 var fileArr;
 var fileInfoArr = [];
-
-function clk() {
-	var title = document.querySelector(".input_title").value
-	var ctnt = document.querySelector('.input_ctnt').value
-	var price = document.querySelector('.input_price')
-	var age = document.querySelector('.input_age').value
-	var an_type1 = document.querySelector('#an_type1').value
-	var an_type2 = document.querySelector('#an_type2').value
-	var b_tt = document.getElementsByName('tradetype')
-	var gender = document.getElementsByName('gender')
-	var an_ns = document.getElementsByName('b_ns')
-	var sido = document.querySelector('#sido1').value
-	var gun = document.querySelector('#gugun1').value
-	var an_name = document.querySelector('#an_name').value
-	var enddt = document.querySelector('.enddt').value
-	var gender_value = "";
-	var b_tt_value = "";
-	var b_ns_value = 0;
-	if (price) {
-		price = document.querySelector('.input_price').value
-	} else {
-		price = 0;
-	}
-	
-	for (i = 0; i < gender.length; i++) {
-		if (gender[i].checked == true) {
-			gender_value = gender[i].value
-		}
-	}
-	for (i = 0; i < b_tt.length; i++) {
-		if (b_tt[i].checked == true) {
-			b_tt_value = b_tt[i].value
-		}
-	}
-	
-	for (i = 0; i < b_ns.length; i++) {
-		if (an_ns[i].checked == true) {
-			b_ns_value = an_ns[i].value
-		}
-	}
-	
-		var date = new Date()
-
-	enddt = parseInt(enddt,10)
-	if(enddt != null){
-		
-	var b_enddt = date.getFullYear() +"-"+(date.getMonth()+1)+"-"+(date.getDate()+enddt)+" "+date.getHours()+":"+date.getMinutes()	
-	}
-
-
-	params = {
-		b_title: title,
-		b_ctnt: ctnt,
-		b_price: price,
-		an_age: age,
-		an_gender: gender_value,
-		b_loc_sido: sido,
-		b_loc_gugun: gun,
-		b_tt: b_tt_value,
-		an_ns: b_ns_value,
-		an_type1: an_type1,
-		an_type2: an_type2,
-		an_name: an_name,
-		b_enddt: b_enddt
-
-	}
-
-
-}
-
+var enddt = null
 
 
 function product_img_upload(an_no) {
 	
+	console.log(formData.getAll("imgs"))
 	
 	formData.append('an_no', an_no) // 추가
 	$.ajax({
@@ -92,7 +24,8 @@ function product_img_upload(an_no) {
 		contentType: false,
 		cache: false,
 		success: function() {
-			location.href="/main"
+			console.log("success")
+			location.href="/board/view?b_no=" + an_no;
 		}
 	})
 }
@@ -112,12 +45,14 @@ function animalReg(b_no){
 	for (i = 0; i < an_gender.length; i++) {
 		if (an_gender[i].checked == true) {
 			gender_value = an_gender[i].value
+			console.log(gender_value)
 		}
 	}
 	
 	for (i = 0; i < b_ns.length; i++) {
 		if (an_ns[i].checked == true) {
 			an_ns_value = an_ns[i].value
+			console.log(an_ns_value)
 		}
 	}
 	
@@ -144,16 +79,19 @@ function boardReg() {
 		alert('로그인후 이용해 주세요')
 		location.href = `/member/login`
 		return;
-	}
+	}	
 	
 	var title = document.querySelector(".input_title").value
 	var ctnt = document.querySelector('.input_ctnt').value
 	var price = document.querySelector('.input_price')
 	var b_tt = document.getElementsByName('tradetype')
-	var enddt = document.querySelector('.enddt').value
+	var enddtelem = document.querySelector('.enddt')
 	var sido = document.querySelector('#sido1').value
 	var gun = document.querySelector('#gugun1').value
 	
+	if(enddtelem){
+		enddt = enddtelem.value
+	}
 	
 	var b_tt_value = "";
 	
@@ -163,15 +101,19 @@ function boardReg() {
 	} else {
 		price = 0;
 	}
+	console.log(gender.length)
 	
 	
 	for (i = 0; i < b_tt.length; i++) {
 		if (b_tt[i].checked == true) {
 			b_tt_value = b_tt[i].value
+			console.log(b_tt_value)
 		}
 	}
+	
+	if(enddtelem){
 		enddt = parseInt(enddt,10)
-		
+	}
 	var date = new Date()
 	var b_enddt;	
 	if(enddt != null){
@@ -255,6 +197,9 @@ function insAuction(b_no,ac_enddt){
 		
 	}
 	
+	console.log(params
+	)
+	
 	fetch(`/board/insAuction`,{
 		method: 'post',
 		headers : {
@@ -274,6 +219,7 @@ function insAuction(b_no,ac_enddt){
 
 
 $(document).ready(function() {
+	console.log("ready!");
 	
 
 	$('input[type=radio][name=tradetype]').click(function() {
@@ -401,6 +347,8 @@ $("select[name^=an_type1]").change(function() {
 
 //썸네일 클릭시 삭제.
 function fileRemove(index,fileNm) {
+	console.log("index: "+index);
+	console.log("fileNm: "+fileNm)
 	
 	
 	fileInfoArr.splice(fileNm, 1);
@@ -409,6 +357,7 @@ function fileRemove(index,fileNm) {
 	var imgId = "#img_id_"+fileNm;
 	var test = document.querySelector(''+imgId)
 	$(imgId).remove();
+	console.log(fileInfoArr);
 	formData.delete('imgs');
 	
 	for (var i = 0; i < fileInfoArr.length; i++) {
@@ -493,13 +442,11 @@ function previewImage(targetObj, View_area) {
 		if(input_img.files.length>0){
 			
 		formData.append('imgs', input_img.files[i])
+		//console.log(input_img.files[i].name)
 		}
 	}
 
 }
 
 //========================================날짜포맷==================================================
-
-
-
 

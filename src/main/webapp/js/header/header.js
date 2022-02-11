@@ -5,12 +5,23 @@ function regBoard() {
 	location.href = `/board/boardreg`
 }
 
+function get_query() {
+    var url = document.location.href;
+    var qs = url.substring(url.indexOf('?') + 1).split('&');
+    for (var i = 0, result = {}; i < qs.length; i++) {
+        qs[i] = qs[i].split('=');
+        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+    }
+    return result;
+}
+
 function moveList(an_type1) {
 	if (an_type1 != null) {
 		var url = `?an_type1=` + an_type1
 		location.href = `/board/boardList` + url
 	} else {
-
+		
+		var type3 = get_query().an_type1;
 		var sido1 = document.querySelector('#sido1').value
 		var gugun1 = document.querySelector('#gugun1').value
 		var an_type2 = document.querySelector('#an_type2').value
@@ -31,6 +42,7 @@ function moveList(an_type1) {
 		}
 
 		var params = {
+			type3: type3,
 			sido1: sido1,
 			gugun1: gugun1,
 			an_type2: an_type2,
@@ -39,12 +51,9 @@ function moveList(an_type1) {
 			b_price: b_price
 		}
 
-		alert(sido1 + gugun1 + an_type2 + b_tt + an_gender + b_price)
 
 		location.href = "/board/boardList?b_loc_sido=" + sido1 + "&b_loc_gugun=" + gugun1 + "&an_type2=" + an_type2 +
-			"&b_tt=" + b_tt + "&an_gender=" + an_gender + "&b_price=" + b_price + "&page=" + 1
-
-
+			"&b_tt=" + b_tt + "&an_gender=" + an_gender + "&b_price=" + b_price + "&page=" + 1 + "&type3=" + type3
 
 	}
 }
@@ -68,7 +77,7 @@ function connectWS(sock) {
 	sock.onmessage = (e) => {
 		let splitdata = e.data.split(":");
 		if (splitdata[0].indexOf("ms") > -1) {
-			$('.item-message-icon').append(splitdata[1]);
+			$('.item-message-icon').text(splitdata[1]);
 		} else {
 		}
 		sock.onclose = () => {

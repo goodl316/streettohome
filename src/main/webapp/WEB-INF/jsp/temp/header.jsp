@@ -42,7 +42,7 @@
 					</div>
 					<div class="nav-link message">
 						<span>쪽지</span>
-						<span class="item-message-icon"></span>
+						<span class="item-message-icon">0</span>
 					</div>						
 					<div>
 						<a class="dropdown-item" href="../member/logout">로그아웃</a>

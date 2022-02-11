@@ -15,10 +15,10 @@
 
 	<insert id="insBoard" useGeneratedKeys="true" keyProperty="b_no">
 		INSERT INTO board (
-		b_title,b_ctnt,b_hit,b_price,b_loc_sido,b_loc_gugun,b_tt,b_enddt,b_auth,b_del
+		b_title,b_ctnt,b_hit,b_price,b_loc_sido,b_loc_gugun,b_tt,b_enddt,b_auth,b_del,m_no
 		)values
 		(#{b_title},#{b_ctnt},#{b_hit},#{b_price}
-		,#{b_loc_sido},#{b_loc_gugun},#{b_tt},#{b_enddt},#{b_auth},#{b_del})
+		,#{b_loc_sido},#{b_loc_gugun},#{b_tt},#{b_enddt},#{b_auth},#{b_del},#{m_no})
 	</insert>
 
 	<insert id="insAnimal" useGeneratedKeys="true"
@@ -67,8 +67,9 @@
 				animal_info b
 				ON a.b_no = b.b_no
 				WHERE
+				b.an_type1 = #{type3}
 				<if test='b_loc_sido != null and b_loc_sido != "" '> 
-				a.b_loc_sido=#{b_loc_sido}
+				and a.b_loc_sido=#{b_loc_sido}
 				</if>
 				<if test='b_loc_gugun != null and b_loc_gugun != "" '>
 				and a.b_loc_gugun=#{b_loc_gugun}
@@ -88,6 +89,7 @@
 				<if test= 'b_price == 0 and b_tt == "무료" '>
 				and a.b_price = 0		
 				</if>
+				
 				and a.b_del = 0
 				order by a.b_no
 				LIMIT #{firstIndex}, #{recordCountPerPage}

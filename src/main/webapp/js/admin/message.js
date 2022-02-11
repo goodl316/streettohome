@@ -36,6 +36,9 @@ function sendMessage() {
 				alert('다시 시도해주세요.');
 				return;
 			}
+			$('#title').val('');
+			$('#receiver').val('');
+			$('#ctnt').val('');
         });
 }
 
