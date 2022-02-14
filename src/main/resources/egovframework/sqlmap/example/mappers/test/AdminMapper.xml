@@ -266,7 +266,7 @@
 		select* from banner;
 	</select>
 	<select id="selinfo" resultMap="BannerDTO">
-		select ba_no, ba_img1 from banner
+		select ba_no, ba_img from banner
 		where ba_no = #{ba_no}
 	</select>
 
@@ -437,7 +437,7 @@
 
 	<update id="updBannerImg">
 		update banner
-		set ba_img1 = #{ba_img1}
+		set ba_img = #{ba_img}
 		where ba_no =
 		#{ba_no};
 	</update>
