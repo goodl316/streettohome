@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-    <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
 	<div class="container">
 		<div class="type_title">
 		<c:if test="${param.an_type1 eq null }">${param.type3 }를집으로</c:if>
-		<c:if test="${param.an_type1 != null }">${list[0].an_type1 }를집으로</c:if>
+		<c:if test="${param.an_type1 != null }">${param.an_type1 }를집으로</c:if>
 		</div>
 		<div class="select-list">
 			<div class="div1st">
@@ -79,7 +79,7 @@
 								<p>
 									<span>[${list.an_type2}]</span> ${list.b_title}
 								</p>
-								<p>${list.b_dt}</p>
+								<p><c:set var="TextValue" value="${list.b_dt}"/>${fn:substring(TextValue,0,10) }</p>
 							</div>
 						</div>
 					</a>

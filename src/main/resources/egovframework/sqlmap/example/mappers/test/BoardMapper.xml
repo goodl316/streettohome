@@ -89,7 +89,6 @@
 				<if test= 'b_price == 0 and b_tt == "무료" '>
 				and a.b_price = 0		
 				</if>
-				
 				and a.b_del = 0
 				order by a.b_no
 				LIMIT #{firstIndex}, #{recordCountPerPage}
@@ -100,19 +99,40 @@
 	<select id="countBoard" resultType="int">
 		<choose>
 			<when test="an_type1 != null">
-				select count(*) as countBoard from animal_info a
-				left join board b
+				select count(*) as countBoard from board a
+				left join animal_info b
 				on a.b_no = b.b_no
-				WHERE a.an_type1=#{an_type1}
-				and b.b_del = 0
+				WHERE b.an_type1=#{an_type1}
+				and a.b_del = 0
 			</when>
 			<when test="an_type1 == null">
-				select count(*) as countBoard from animal_info a
-				left join board b
+				select count(*) as countBoard from board a
+				left join animal_info b
 				on a.b_no = b.b_no
-				WHERE a.an_type2 = #{an_type2} AND a.an_gender = #{an_gender} AND b.b_price <![CDATA[<]]> #{b_price} AND 
-				b.b_loc_sido = #{b_loc_sido} AND b.b_loc_gugun = #{b_loc_gugun}
-				AND b.b_tt = #{b_tt} and b.b_del = 0
+				WHERE
+				b.an_type1 = #{type3}
+				<if test='an_type2 != null and an_type2 != "" '> 
+				AND b.an_type2 = #{an_type2}
+				</if>
+				<if test='an_gender != null and an_gender != "" '>
+				AND b.an_gender = #{an_gender}
+				</if>
+				<if test='b_price != 0'>
+				AND a.b_price <![CDATA[<]]>#{b_price}
+				</if>
+				<if test= 'b_price == 0 and b_tt == "무료" '>
+				AND a.b_price = 0		
+				</if>
+				<if test='b_loc_sido != null and b_loc_sido != "" '>
+				AND a.b_loc_sido = #{b_loc_sido}
+				</if>
+				<if test='b_loc_gugun != null and b_loc_gugun != "" '>
+				AND a.b_loc_gugun = #{b_loc_gugun}
+				</if>
+				<if test='b_tt != null and b_tt != "" '>
+				AND a.b_tt = #{b_tt} 
+				</if>
+				and a.b_del = 0
 			</when>
 		</choose>
 	</select>
@@ -158,23 +178,49 @@
 	
 	<update id="updateBoard">
 		update board
-		set b_title = #{b_title}
-		, b_ctnt = #{b_ctnt}
-		, b_loc_sido = #{b_loc_sido}
-		, b_loc_gugun = #{b_loc_gugun}
-		, b_tt = #{b_tt}
-		, b_price = #{b_price}
+		set b_no = b_no
+		<if test='b_title !=null and b_title != ""'> 
+		,b_title = #{b_title}
+		</if>
+		<if test='b_ctnt !=null and b_ctnt != ""'>
+		,b_ctnt = #{b_ctnt}
+		</if>
+		<if test='b_loc_sido !=null and b_loc_sido != ""'>
+		,b_loc_sido = #{b_loc_sido}
+		</if>
+		<if test='b_loc_gugun !=null and b_loc_gugun != ""'>
+		,b_loc_gugun = #{b_loc_gugun}
+		</if>
+		<if test='b_tt !=null and b_tt != ""'>
+		,b_tt = #{b_tt}
+		</if>
+		<if test='b_price !=null and b_price != ""'>
+		,b_price = #{b_price}
+		</if>
 		where b_no = #{b_no}
 	</update>
 	
 	<update id="updateAnimal">
 		update animal_info
-		set an_name = #{an_name}
+		set an_no =an_no
+		<if test='an_name !=null and an_name != ""'> 
+		,an_name = #{an_name}
+		</if>
+		<if test='an_gender !=null and an_gender != ""'>
 		, an_gender = #{an_gender}
+		</if>
+		<if test='an_age !=null and an_age != ""'>
 		, an_age = #{an_age}
+		</if>
+		<if test='an_type1 !=null and an_type1 != ""'>
 		, an_type1 = #{an_type1}
+		</if>
+		<if test='an_type2 !=null and an_type2 != ""'>
 		, an_type2 = #{an_type2}
+		</if>
+		<if test='an_ns !=null and an_ns != ""'>
 		, an_ns = #{an_ns}
+		</if>
 		where b_no = #{b_no}
 	</update>
 	

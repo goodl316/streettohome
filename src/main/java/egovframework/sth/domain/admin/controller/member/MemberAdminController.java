@@ -37,6 +37,7 @@ public class MemberAdminController {
 		map.put("m_state", req.getParameter("m_state"));
 		map.put("m_name", req.getParameter("m_name"));
 		map.put("m_authstate", req.getParameter("m_authstate"));
+		System.out.println(map.get("m_state"));
 		pagination.setTotalRecordCount(service.selCountMember(map));
 		
 		

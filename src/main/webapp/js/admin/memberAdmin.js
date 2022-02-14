@@ -11,10 +11,17 @@ function get_query() {
 }
 
 function linkPage(pageNo) {
-	if(get_query().m_state != undefined) {
-		location.href = "/admin/MemberAdmin?m_state=" + get_query().m_state + "&page=" + pageNo;
-	} else {
+	var m_state =get_query().m_state
+	var m_name = get_query().m_name;
+	
+	if(m_state != undefined && m_name == undefined) {
+		location.href = "/admin/MemberAdmin?m_state=" + m_state + "&page=" + pageNo;
+	} else if(m_state == undefined && m_name == undefined){
 		location.href = "/admin/MemberAdmin?m_authstate=" + get_query().m_authstate + "&page=" + pageNo;
+	} else if(m_state != undefined && m_name != undefined){
+		location.href = "/admin/MemberAdmin?m_state=" + m_state +"&m_name="+m_name +"&page=" + pageNo;
+	} else if(m_state == undefined && m_name != undefined){
+		location.href = "/admin/MemberAdmin?m_authstate=" + get_query().m_authstate +"&m_name="+m_name+"&page="+pageNo;
 	}
 	
 }
