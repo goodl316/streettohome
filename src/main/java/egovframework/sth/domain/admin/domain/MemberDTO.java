@@ -16,6 +16,15 @@ public class MemberDTO {
 	private int m_pay;
 	private int m_authstate;
 	private int state;
+	private int boardCount;
+	
+	
+	public int getBoardCount() {
+		return boardCount;
+	}
+	public void setBoardCount(int boardCount) {
+		this.boardCount = boardCount;
+	}
 	public int getM_no() {
 		return m_no;
 	}

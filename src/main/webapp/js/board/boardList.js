@@ -1,6 +1,15 @@
 var list_group = document.querySelector('.list_group');
 const type1 = $('.get_an_type1').val();
 console.log(type1)
+function get_query() {
+    var url = document.location.href;
+    var qs = url.substring(url.indexOf('?') + 1).split('&');
+    for (var i = 0, result = {}; i < qs.length; i++) {
+        qs[i] = qs[i].split('=');
+        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+    }
+    return result;
+}
 
 function clkvalue(){
 	var sido1 = document.querySelector('#sido1').value
@@ -70,7 +79,7 @@ $("select[name^=sido]").change(function() {
   }
  });
 
-if(type1 =='강아지'){
+if(type1 =='강아지' || get_query().type3){
 $("select[name^=an_type2]").each(function() {
   $selsido = $(this);
   $.each(eval(an_type1), function() {

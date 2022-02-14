@@ -20,7 +20,7 @@ public class AuctionScheduler {
 	PayMapper mapper;
 	
 	@Transactional(rollbackFor = {Exception.class})
-	@Scheduled(cron = "0/5 * * * * ?")
+//	@Scheduled(cron = "0/5 * * * * ?")
 	public void closeAuction() throws Exception {
 		List<AuctionDTO> list = mapper.selAuctionList();
 		

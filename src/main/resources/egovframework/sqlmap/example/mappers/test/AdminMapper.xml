@@ -216,7 +216,7 @@
 					,(select count(*) from report where
 					m_no = a.m_no) as warning
 					from member a where a.m_state = #{m_state}
-					and m_auth = 1 and m_authstate = 1
+					and m_authstate = 1
 					ORDER BY a.m_no DESC
 					LIMIT #{firstIndex}, #{recordCountPerPage}
 				</if>
@@ -226,7 +226,6 @@
 					,(select count(*) from report where
 					m_no = a.m_no) as warning
 					from member a where a.m_authstate = #{m_authstate}
-					and m_auth = 1
 					ORDER BY a.m_no DESC
 					LIMIT #{firstIndex}, #{recordCountPerPage}
 				</if>
@@ -235,10 +234,11 @@
 				<if test="m_state !=null">
 					select
 					a.m_no,a.m_name,a.m_email,a.m_dt,a.m_authstate
-					,(select count(*) from report where
-					m_no = a.m_no) as warning
-					from member a where a.m_state = #{m_state}
-					and m_auth = 1 and m_name=#{m_name} and m_authstate = 1
+					,(select count(*) from board where
+					m_no = a.m_no) as countBoard
+					from member a
+					where a.m_state = #{m_state}
+					and m_name=#{m_name} and m_authstate = 1
 					ORDER BY a.m_no DESC
 					LIMIT #{firstIndex}, #{recordCountPerPage}
 				</if>
@@ -257,9 +257,35 @@
 	</select>
 
 	<select id="selCountMember" resultType="int">
-		SELECT COUNT(*)
-		FROM member
-		WHERE m_state = #{m_state} AND m_auth = 1;
+	<choose>
+		<when test="m_name == null">
+			<if test='m_state != null '>
+				SELECT COUNT(*)
+				FROM member
+				WHERE m_state = #{m_state} AND m_authstate = 1;
+			</if>
+			<if test='m_authstate != null '>
+				SELECT COUNT(*)
+				FROM member
+				WHERE m_authstate = #{m_authstate};
+			</if>
+		</when>
+		<when test="m_name !=null">
+			<if test="m_state !=null">
+				SELECT COUNT(*)
+				FROM member
+				WHERE m_state = #{m_state}
+				and m_name=#{m_name} and m_authstate = 1
+			</if>
+			<if test="m_authstate !=null">
+				SELECT COUNT(*)
+				FROM member
+				WHERE m_authstate = #{m_authstate}
+				and m_name=#{m_name}
+			</if>
+		</when>
+		
+	</choose>
 	</select>
 
 	<select id="bannerList" resultMap="BannerDTO">
@@ -273,98 +299,81 @@
 	
 
 	<select id="selCountBoard" resultType="int">
-		SELECT COUNT(*) FROM board
-		as A
-		LEFT JOIN animal_info B
-		ON A.b_no = B.b_no
-		WHERE A.b_del = 0 AND
-		B.an_type1 = #{an_type1}
-	</select>
-
-	<select id="selCountDelBoard" resultType="int">
-		SELECT COUNT(*) FROM
-		board as A
-		LEFT JOIN animal_info B
-		ON A.b_no = B.b_no
-		WHERE A.b_del = 1
+		<choose>
+		<when test="m_name == null">
+			SELECT COUNT(*) FROM
+			board a
+			LEFT JOIN animal_info b
+			ON a.b_no = B.b_no
+			LEFT JOIN member c
+			on a.m_no = c.m_no
+			where a.b_del =0 and b.an_type1=
+			#{an_type1}
+			<if test="b_auth !=null and b_auth !='' ">
+			and b_auth = #{b_auth}
+			</if>
+		</when>
+		<when test="m_name != null">
+			SELECT COUNT(*) FROM
+			board a
+			LEFT JOIN animal_info b
+			ON a.b_no = B.b_no
+			LEFT JOIN member c
+			on a.m_no = c.m_no
+			where a.b_del =0 and b.an_type1=
+			#{an_type1}
+			<if test="b_auth !=null and b_auth !='' ">
+			and a.b_auth = #{b_auth}
+			</if>
+			and c.m_name =#{m_name}
+		</when>
+		</choose>
 	</select>
 	
 	<select id="selBoard" resultMap="BoardDTO">
 	<choose>
-	<when test="m_name == null">
-		select
-		a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,b.an_type1,C.m_name as b_writer from board a
-		left
-		join animal_info b
-		on a.b_no = b.b_no
-		LEFT
-		JOIN member C
-		on a.m_no = C.m_no
-		where a.b_del =0 and b.an_type1=
-		#{an_type1}
-		<if test="b_auth !=null and b_auth !='' ">
-		and b_auth = #{b_auth}
-		</if>
-		ORDER BY a.b_no DESC
-		LIMIT #{firstIndex},
-		#{recordCountPerPage}
-		</when>
-		<when test="m_name != null">
-		select
-		a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,b.an_type1,C.m_name as b_writer from board a
-		left
-		join animal_info b
-		on a.b_no = b.b_no
-		LEFT
-		JOIN member C
-		on a.m_no = C.m_no
-		where a.b_del =0 and b.an_type1=
-		#{an_type1} 
-		<if test="b_auth !=null and b_auth !='' ">
-		and b_auth = #{b_auth}
-		</if>
-		and C.m_name =#{m_name}
-		ORDER BY a.b_no DESC
-		LIMIT #{firstIndex},
-		#{recordCountPerPage}
-		</when>
+		<when test="m_name == null">
+			select
+			a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,
+			b.an_type1,C.m_name as b_writer
+			from board a
+			left
+			join animal_info b
+			on a.b_no = b.b_no
+			LEFT JOIN member C
+			on a.m_no = C.m_no
+			where a.b_del =0 and b.an_type1=
+			#{an_type1}
+			<if test='b_auth !=null and b_auth !="" '>
+			and b_auth = #{b_auth}
+			</if>
+			ORDER BY a.b_no DESC
+			LIMIT #{firstIndex},
+			#{recordCountPerPage}
+			</when>
+			<when test="m_name != null">
+			select
+			a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,
+			b.an_type1,C.m_name as b_writer
+			from board a
+			left
+			join animal_info b
+			on a.b_no = b.b_no
+			LEFT JOIN member C
+			on a.m_no = C.m_no
+			where a.b_del =0 and b.an_type1=
+			#{an_type1}
+			and C.m_name = #{m_name}
+			<if test='b_auth !=null and b_auth !="" '>
+			and b_auth = #{b_auth}
+			</if>
+			ORDER BY a.b_no DESC
+			LIMIT #{firstIndex},
+			#{recordCountPerPage}
+			</when>
 		</choose>
 	</select>
 
-	<select id="delBoardList" resultMap="BoardDTO">
-	<choose>
-	<when test="m_name == null">
-		select
-		a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,b.an_type1,C.m_name AS
-		b_writer
-		from board AS a
-		left
-		join animal_info b
-		on a.b_no = b.b_no
-		LEFT
-		JOIN member C
-		on a.m_no = C.m_no
-		where a.b_del =1 
-		ORDER BY a.b_no DESC
-		LIMIT #{firstIndex}, #{recordCountPerPage}
-		</when>
-		<when test="m_name != null">
-		select
-		a.b_no,a.b_title,a.b_auth,a.b_dt,a.b_tt,b.an_type1,C.m_name AS
-		b_writer
-		from board AS a
-		left
-		join animal_info b
-		on a.b_no = b.b_no
-		LEFT
-		JOIN member C
-		on a.m_no = C.m_no
-		where a.b_del =1 and C.m_name=#{m_name}
-		ORDER BY a.b_no DESC
-		LIMIT #{firstIndex}, #{recordCountPerPage}
-		</when>
-		</choose>
-	</select>
 
 	<select id="selReport" resultMap="ReportVO">
 		<if test="an_type1 == null">
