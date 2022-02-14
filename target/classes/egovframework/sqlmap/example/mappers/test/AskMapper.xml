@@ -10,13 +10,19 @@
 		SELECT ak_no, ak_name, ak_title, ak_ctnt, ak_dt, ak_idx, ak_dept
 		FROM ask
 		WHERE ak_del = 0
-		ORDER BY ak_idx DESC
+		ORDER BY ak_idx DESC, ak_dept ASC
 	</select>
 	
 	<select id="selAsk" resultMap="AskDTO">
 		SELECT * 
 		FROM ask
 		WHERE ak_idx = #{ak_idx}
+	</select>
+	
+	<select id="selAskAdmin" resultMap="AskDTO">
+		SELECT * 
+		FROM ask
+		WHERE ak_no = #{ak_no}
 	</select>
 	
 	<insert id="insAsk">
@@ -37,19 +43,24 @@
 		(ak_no, ak_name, ak_title, ak_pw, ak_ctnt, ak_idx, ak_dept)
 		VALUES(
 		(SELECT NEXTVAL(ask_seq)),
-		#{ak_name},
+		"관리자",
 		#{ak_title}, 
-		(SELECT ak_pw FROM ask WHERE ak_idx = #{ak_idx}), 
+		(SELECT A.ak_pw FROM ask AS A WHERE ak_no = #{ak_idx}), 
 		#{ak_ctnt}, 
-		#{ak_idx}),
-		1
+		#{ak_idx},
+		(SELECT B.ak_dept FROM ask AS B WHERE ak_no = #{ak_idx}) + 1)
 	</insert>
 	
 	<update id="updAsk">
 		UPDATE ask
 		SET ak_title = #{ak_title},
-		ak_pw = #{ak_pw},
 		ak_ctnt = #{ak_ctnt}
+		WHERE ak_no = #{ak_no}
+	</update>
+	
+	<update id="updAns">
+		UPDATE ask
+		SET	ak_ctnt = #{ak_ctnt}
 		WHERE ak_no = #{ak_no}
 	</update>
 	

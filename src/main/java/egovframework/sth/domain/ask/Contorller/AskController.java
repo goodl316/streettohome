@@ -4,6 +4,7 @@ package egovframework.sth.domain.ask.Contorller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.sth.domain.ask.domain.AskDTO;
 import egovframework.sth.domain.ask.service.AskService;
@@ -31,11 +34,16 @@ public class AskController {
 	public void getPassword() {
 	}
 	
+	@GetMapping("/ask/view")
+	public String getView() {
+		return "/ask/view";
+	}
+	
 	@PostMapping("/ask/view")
-	public String checkPassword(AskDTO param, HttpServletRequest req, HttpServletResponse res, Model model) throws IOException {
-		if(service.selAsk(param).getAk_pw().equals(param.getAk_pw())) {
-			model.addAttribute("data", service.selAsk(param));
-			return "redirect:/ask/view";
+	public String checkPassword(AskDTO param, HttpServletRequest req, HttpServletResponse res, RedirectAttributes redirect) throws IOException, ServletException {
+		if(service.selAsk(param).get(0).getAk_pw().equals(param.getAk_pw())) {
+			redirect.addFlashAttribute("data",service.selAsk(param));
+			return "redirect:/ask/view/";
 		} else {
 			res.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = res.getWriter();
