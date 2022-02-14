@@ -21,7 +21,7 @@ public class MainVO {
 	private String an_ns;
 	private String an_gender;
 	private int ba_no;
-	private String ba_img1;
+	private String ba_img;
 	
 	public int getB_no() {
 		return b_no;
@@ -143,11 +143,11 @@ public class MainVO {
 	public void setBa_no(int ba_no) {
 		this.ba_no = ba_no;
 	}
-	public String getBa_img1() {
-		return ba_img1;
+	public String getba_img() {
+		return ba_img;
 	}
-	public void setBa_img1(String ba_img1) {
-		this.ba_img1 = ba_img1;
+	public void setba_img(String ba_img) {
+		this.ba_img = ba_img;
 	}
 	
 	
