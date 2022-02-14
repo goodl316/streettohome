@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import egovframework.sth.domain.admin.domain.BannerDTO;
 import egovframework.sth.domain.main.domain.MainVO;
 import egovframework.sth.domain.main.mapper.MainMapper;
 
@@ -21,5 +22,6 @@ public class MainService {
 	public List<MainVO> bannerList(MainVO vo){
 		return mapper.bannerList(vo);
 	}
+	
 
 }

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper
 	namespace="egovframework.sth.domain.main.mapper.MainMapper">
-	<resultMap type="egovframework.sth.domain.main.domain.MainVO"
-		id="MainVO" />
+	<resultMap type="egovframework.sth.domain.main.domain.MainVO" id="MainVO" />
+	<resultMap type="egovframework.sth.domain.admin.domain.BannerDTO" id="BannerDTO" />
 
 	<select id="selMainList" resultMap="MainVO">
 		SELECT
@@ -22,6 +22,7 @@
 	<select id="bannerList" resultMap="MainVO">
 	select * from banner;
 	</select>
+	
 
 
 </mapper>
