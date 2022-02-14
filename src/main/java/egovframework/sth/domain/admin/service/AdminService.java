@@ -78,8 +78,8 @@ public class AdminService {
 		}else {
 		}
 		
-		if(vo.getBa_img1().equals(dto.getChkImg())) {
-			dto.setBa_img1("");
+		if(vo.getba_img().equals(dto.getChkImg())) {
+			dto.setba_img("");
 			mapper.updBannerImg(dto);
 		}
 		
@@ -133,23 +133,23 @@ public class AdminService {
 				
 					if(i==0) {
 						dto.setBa_no(1);
-						dto.setBa_img1(fileNm);
+						dto.setba_img(fileNm);
 						mapper.updBannerImg(dto);
 					}else if(i==1) {
 						dto.setBa_no(2);
-						dto.setBa_img1(fileNm);
+						dto.setba_img(fileNm);
 						mapper.updBannerImg(dto);
 					}else if(i==2) {
 						dto.setBa_no(3);
-						dto.setBa_img1(fileNm);
+						dto.setba_img(fileNm);
 						mapper.updBannerImg(dto);
 					}else if(i==3) {
 						dto.setBa_no(4);
-						dto.setBa_img1(fileNm);
+						dto.setba_img(fileNm);
 						mapper.updBannerImg(dto);
 					}else if(i==4) {
 						dto.setBa_no(5);
-						dto.setBa_img1(fileNm);
+						dto.setba_img(fileNm);
 						mapper.updBannerImg(dto);
 				}
 			}
