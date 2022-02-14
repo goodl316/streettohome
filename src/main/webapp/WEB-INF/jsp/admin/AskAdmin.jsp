@@ -15,21 +15,19 @@
 	<table class="admin-ask">
 		<tr class="list-header">
 			<th>번호</th>
-			<th>제목</th>
-			<th>내용</th>
-			<th>작성날짜</th>
 			<th>작성자</th>
+			<th>제목</th>
+			<th>작성날짜</th>
 			<th>삭제</th>
 		</tr>
 		<c:forEach var="list" items="${list}">
-			<tr>
+			<tr class="ask-item${list.ak_no }">
 				<td>${list.ak_no }</td>
-				<td>${list.ak_title}</td>
-				<td>${list.ak_ctnt}</td>
+				<td>${list.ak_name }</td>
+				<td onclick="getAsk(${list.ak_no}, '${list.ak_title }')">${list.ak_title}</td>
 				<td><c:set var="TextValue" value="${list.ak_dt}"/>${fn:substring(TextValue,0,10) }</td>
-				<td>${list.m_name }</td>
 				<td>
-					<button onclick="delAsk(${list.ak_no})">읽음</button>
+					<button onclick="delAsk(${list.ak_no})">삭제</button>
 				</td>
 			</tr>
 		</c:forEach>

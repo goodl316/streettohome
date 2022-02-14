@@ -18,8 +18,12 @@ public class AskService {
 		return mapper.selAskList();
 	}
 	
-	public AskDTO selAsk(AskDTO param) {
+	public List<AskDTO> selAsk(AskDTO param) {
 		return mapper.selAsk(param);
+	}
+	
+	public AskDTO selAskAdmin(int ak_no) {
+		return mapper.selAskAdmin(ak_no);
 	}
 	
 	public int insAsk(AskDTO dto) {
@@ -28,5 +32,17 @@ public class AskService {
 	
 	public int insAns(AskDTO dto) {
 		return mapper.insAns(dto);
+	}
+	
+	public int delAsk(int ak_no) {
+		return mapper.delAsk(ak_no);
+	}
+	
+	public int updAns(AskDTO param) {
+		return mapper.updAns(param);
+	}
+	
+	public int updAsk(AskDTO param) {
+		return mapper.updAsk(param);
 	}
 }

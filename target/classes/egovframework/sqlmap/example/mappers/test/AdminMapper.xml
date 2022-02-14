@@ -409,22 +409,6 @@
 			DESC
 		</if>
 	</select>
-	<select id="selAskList" resultMap="AskDTO">
-		select
-		a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,a.m_no,b.m_name from ask a
-		left
-		join member b
-		on a.m_no = b.m_no
-		where a.ak_del = 0
-	</select>
-
-	<select id="selAsk" resultMap="AskDTO">
-		select
-		a.ak_no,a.ak_title,a.ak_ctnt,a.ak_dt,b.m_name,b.m_email from ask a
-		left join member b
-		on a.m_no = b.m_no
-		where ak_no = #{ak_no}
-	</select>
 
 	<update id="delBoard">
 		update board

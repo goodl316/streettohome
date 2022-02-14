@@ -9,7 +9,7 @@
 		이름 <input type="text" name="ak_name" placeholder="이름을 입력해 주세요">
 		</div>
 		<div>
-		비밀번호 * <input type="password" name="ak_password" autocomplete="off" placeholder="비밀번호를 입력해 주세요.">
+		비밀번호 * <input type="password" name="ak_pw" autocomplete="off" placeholder="비밀번호를 입력해 주세요.">
 		</div>
 		<div>
 		내용 * <textarea name="ak_ctnt" placeholder="내용을 입력해 주세요"></textarea>
