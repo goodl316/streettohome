@@ -40,8 +40,17 @@
 		VALUES
 		(#{b_no}, #{buyer}
 		, (SELECT m_no FROM board WHERE b_no = #{b_no}), 
-		((SELECT b_price FROM board WHERE b_no = #{b_no}) * #{fee}) / 100
-		, (SELECT b_price FROM board WHERE b_no = #{b_no}))
+		<choose>
+			<when test="auctionChk == true">
+				#{b_price} * #{fee} / 100,
+				#{b_price}
+			</when>
+			<otherwise>
+				((SELECT b_price FROM board WHERE b_no = #{b_no}) * #{fee}) / 100
+				, (SELECT b_price FROM board WHERE b_no = #{b_no})
+			</otherwise>
+		</choose>
+		)
 	</insert>
 	
 	<select id="selCountList" resultType="int">
@@ -120,7 +129,7 @@
 	
 	<update id="sellAuction">
 		UPDATE member
-		SET m_pay = m_pay + (#{ac_price} * #{fee} / 100)
+		SET m_pay = m_pay + (#{ac_price} - (#{ac_price} * #{fee} / 100))
 		WHERE m_no = #{m_no}
 	</update>
 	

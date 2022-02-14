@@ -6,19 +6,56 @@
 	<resultMap
 		type="egovframework.sth.domain.ask.domain.AskDTO" id="AskDTO" />
 		
+	<select id="selAskList" resultMap="AskDTO">
+		SELECT ak_no, ak_name, ak_title, ak_ctnt, ak_dt, ak_idx, ak_dept
+		FROM ask
+		WHERE ak_del = 0
+		ORDER BY ak_idx DESC
+	</select>
+	
+	<select id="selAsk" resultMap="AskDTO">
+		SELECT * 
+		FROM ask
+		WHERE ak_idx = #{ak_idx}
+	</select>
+	
 	<insert id="insAsk">
-	insert into ask
-	(ak_title,ak_ctnt,m_no)
-	values(
-	#{ak_title},#{ak_ctnt},#{m_no})
+		INSERT INTO ask
+		(ak_no, ak_name, ak_title, ak_pw, ak_ctnt, ak_idx)
+		VALUES(
+		(SELECT NEXTVAL(ask_seq)), 
+		#{ak_name}, 
+		#{ak_title}, 
+		#{ak_pw}, 
+		#{ak_ctnt}, 
+		(SELECT LASTVAL(ask_seq))
+		)
 	</insert>
 	
+	<insert id="insAns">
+		INSERT INTO ask
+		(ak_no, ak_name, ak_title, ak_pw, ak_ctnt, ak_idx, ak_dept)
+		VALUES(
+		(SELECT NEXTVAL(ask_seq)),
+		#{ak_name},
+		#{ak_title}, 
+		(SELECT ak_pw FROM ask WHERE ak_idx = #{ak_idx}), 
+		#{ak_ctnt}, 
+		#{ak_idx}),
+		1
+	</insert>
 	
+	<update id="updAsk">
+		UPDATE ask
+		SET ak_title = #{ak_title},
+		ak_pw = #{ak_pw},
+		ak_ctnt = #{ak_ctnt}
+		WHERE ak_no = #{ak_no}
+	</update>
 	
-	
-	
-
-		
-
-
+	<update id="delAsk">
+		UPDATE ask
+		SET ak_del = 1
+		WHERE ak_no = #{ak_no}
+	</update>
 </mapper>

@@ -98,6 +98,6 @@
 
 </body>
 </html>
-<script defer type="text/javascript" src='/js/board/boardList.js?ver=2'>
+<script defer type="text/javascript" src='/js/board/boardList.js'>
 	
 </script>

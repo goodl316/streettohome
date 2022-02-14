@@ -38,6 +38,8 @@ public class AuctionScheduler {
 				PayDTO param2 = new PayDTO();
 				param2.setB_no(b_no);
 				param2.setBuyer(list.get(i).getAc_cur_winner());
+				param2.setAuctionChk(true);
+				param2.setB_price(param.getAc_price());
 				
 				if(list.get(i).getAc_cur_winner() == 0) {
 					mapper.closeAuction(b_no);
@@ -48,6 +50,7 @@ public class AuctionScheduler {
 				mapper.boardState(b_no);
 				mapper.buyAuction(param);
 				mapper.sellAuction(param);
+				mapper.closeAuction(b_no);
 			}
 		}
 	}

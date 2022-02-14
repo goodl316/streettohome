@@ -1,5 +1,23 @@
 var authstate = document.querySelector('.authstate')
 
+function get_query() {
+    var url = document.location.href;
+    var qs = url.substring(url.indexOf('?') + 1).split('&');
+    for (var i = 0, result = {}; i < qs.length; i++) {
+        qs[i] = qs[i].split('=');
+        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+    }
+    return result;
+}
+
+function linkPage(pageNo) {
+	if(get_query().m_state != undefined) {
+		location.href = "/admin/MemberAdmin?m_state=" + get_query().m_state + "&page=" + pageNo;
+	} else {
+		location.href = "/admin/MemberAdmin?m_authstate=" + get_query().m_authstate + "&page=" + pageNo;
+	}
+	
+}
 
 function delMember(m_no){
 	var authstate = document.querySelector('.authstate')
