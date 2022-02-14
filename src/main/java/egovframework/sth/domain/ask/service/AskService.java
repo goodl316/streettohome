@@ -14,9 +14,19 @@ public class AskService {
 	@Autowired
 	private AskMapper mapper;
 	
+	public List<AskDTO> selAskList() {
+		return mapper.selAskList();
+	}
+	
+	public AskDTO selAsk(AskDTO param) {
+		return mapper.selAsk(param);
+	}
+	
 	public int insAsk(AskDTO dto) {
 		return mapper.insAsk(dto);
 	}
 	
-
+	public int insAns(AskDTO dto) {
+		return mapper.insAns(dto);
+	}
 }

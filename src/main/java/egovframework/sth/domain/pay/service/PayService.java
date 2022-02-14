@@ -37,6 +37,7 @@ public class PayService {
 	public int payment(PayDTO param) {
 		MemberDTO member = (MemberDTO) session.getAttribute("loginMember");
 		if(member.getM_no() != param.getBuyer()) { return 0; }
+		param.setAuctionChk(false);
 		mapper.insHistory(param);
 		mapper.buy(param);
 		mapper.sell(param);

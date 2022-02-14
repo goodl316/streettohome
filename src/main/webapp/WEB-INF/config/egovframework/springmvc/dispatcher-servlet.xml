@@ -77,7 +77,7 @@
             <mvc:exclude-mapping path="/img/**" />
             <mvc:exclude-mapping path="/images/**" />
             <mvc:exclude-mapping path="/member/**" />
-            <mvc:exclude-mapping path="/ask/regAsk" />
+            <mvc:exclude-mapping path="/ask/**" />
             <mvc:exclude-mapping path="/board/boardList"/>
             <mvc:exclude-mapping path="/board/view"/>
             <bean id="commonInterceptor" class="egovframework.sth.global.common.CommonInterceptor"/>

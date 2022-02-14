@@ -31,6 +31,7 @@ public class MemberAdminController {
 		pagination.setPageSize(8);
 		pagination.setRecordCountPerPage(10);
 		
+		
 		map.put("recordCountPerPage", pagination.getRecordCountPerPage());
 		map.put("firstIndex", pagination.getFirstRecordIndex());
 		map.put("m_state", req.getParameter("m_state"));

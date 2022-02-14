@@ -13,8 +13,17 @@ public class PayDTO {
 	private int buyer;
 	private int seller;
 	
+	private boolean auctionChk;
+	
 	private final int fee = 5;
 	
+	
+	public boolean isAuctionChk() {
+		return auctionChk;
+	}
+	public void setAuctionChk(boolean auctionChk) {
+		this.auctionChk = auctionChk;
+	}
 	public int getM_pay() {
 		return m_pay;
 	}

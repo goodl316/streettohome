@@ -31,7 +31,7 @@
 		<c:choose>
 			<c:when test="${empty sessionScope.loginMember}">
 				<div class="nav-member">
-					<a class="login-btn" onclick="login()" href="../member/login">로그인</a>
+					<a class="login-btn" onclick="login()" href="/member/login">로그인</a>
 					<a class="join-btn" href="/member/join">회원가입</a>
 				</div>
 			</c:when>
@@ -45,14 +45,14 @@
 						<span class="item-message-icon">0</span>
 					</div>						
 					<div>
-						<a class="dropdown-item" href="../member/logout">로그아웃</a>
+						<a class="dropdown-item" href="/member/logout">로그아웃</a>
 					</div>
 					<div>
-						<a class="dropdown-item" href="../member/mypage">마이페이지</a>
+						<a class="dropdown-item" href="/member/mypage">마이페이지</a>
 					</div>
 					<c:if test="${sessionScope.loginMember.m_authstate == 999 }">
 					<div>
-						<a class="dropdown-item" href="../admin/MemberAdmin?m_state=1&page=1">관리자페이지</a>
+						<a class="dropdown-item" href="/admin/MemberAdmin?m_state=1&page=1">관리자페이지</a>
 					</div>
 					</c:if>
 				</div>

@@ -1,12 +1,29 @@
-var authstate = document.querySelector('.authstate')
+var authstate = document.querySelector('.authstate');
 
+function get_query() {
+    var url = document.location.href;
+    var qs = url.substring(url.indexOf('?') + 1).split('&');
+    for (var i = 0, result = {}; i < qs.length; i++) {
+        qs[i] = qs[i].split('=');
+        result[qs[i][0]] = decodeURIComponent(qs[i][1]);
+    }
+    return result;
+}
+
+function linkPage(pageNo) {
+	if(get_query().m_name == undefined) {
+		location.href = "/admin/BoardAdmin?an_type1=" + get_query().an_type1 + "&page=" + pageNo;
+		
+	} else {
+		location.href = "/admin/BoardAdmin?an_type1=" + get_query().an_type1 + "&page=" + pageNo + "&m_name=" + get_query().m_name;
+		
+	}
+}
 
 function delBoard(b_no){
 	var authstate = document.querySelector('.authstate')
 	if(authstate.value != 999) {
-		
 		alert('실행권한이 없습니다.')
-		
 		return
 	}
 	
