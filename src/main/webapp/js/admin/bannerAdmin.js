@@ -84,8 +84,8 @@ function previewImage(targetObj, View_area) {
 		img.className = "addImg";
 		img.classList.add("obj");
 		img.file = file;
-		img.style.width = 'inherit';
-		img.style.height = 'inherit';
+		img.style.width = '250px';
+		img.style.height = '250px';
 		img.style.cursor = 'pointer';
 		const idx = i;
 		img.onclick = ()=>fileRemove(orginNm);   //이미지를 클릭했을 때.
@@ -182,8 +182,7 @@ function createRecode(item,i){
 	span.id='img_id_'+name1
 	span.innerHTML=
 	`
-	
-	<img src="/img/banner/banner/${item.ba_img}" onclick="fileRemove2('${name1}','${item.ba_img}','${item.ba_no}')" width="450px" height="450px">
+	${i+1} <img src="/img/banner/banner/${item.ba_img}" onclick="fileRemove2('${name1}','${item.ba_img}','${item.ba_no}')" width="250px" height="250px">
 	
 	`
 	fileInfoArr.push(item.ba_img)

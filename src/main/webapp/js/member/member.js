@@ -172,7 +172,7 @@ joinBtn.onclick = function () {
 	}
 	
 	 var params = {
-					m_state :  $("#m_state").val(),
+					          m_state : $("#m_state").val(),
                     m_email : $("#m_email").val(),
                     m_pw : $("#m_pw").val(),
                     m_name : $("#m_name").val(),
