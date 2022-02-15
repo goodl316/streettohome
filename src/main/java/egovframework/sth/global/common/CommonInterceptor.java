@@ -24,11 +24,11 @@ public class CommonInterceptor implements HandlerInterceptor {
         	response.sendRedirect("/member/login?msg=" + urlEncoder(msg));
             return false;
         } else {
-        	if (loginMember != null && loginMember.getM_state().equals("3")) {
+        	if (loginMember != null && loginMember.getM_authstate() == 3 ) {
         		msg = "차단되었습니다. 관리자에게 문의해주세요.";
         		response.sendRedirect("/member/login?msg=" + urlEncoder(msg));
         		return false;
-        	} else if (loginMember != null && loginMember.getM_auth().equals("0")) {
+        	} else if (loginMember != null && loginMember.getM_authstate() == 0 ) {
         		msg = "미인증 계정입니다. 인증 후 이용해주세요.";
         		response.sendRedirect("/member/login?msg=" + urlEncoder(msg));
         		return false;
