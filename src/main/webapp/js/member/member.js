@@ -172,6 +172,7 @@ joinBtn.onclick = function () {
 	}
 	
 	 var params = {
+					m_state : $("#m_state").val(),
                     m_email : $("#m_email").val(),
                     m_pw : $("#m_pw").val(),
                     m_name : $("#m_name").val(),
@@ -202,7 +203,7 @@ joinBtn.onclick = function () {
                 dataType: "json",
                 contentType: "application/json",
                 success: function(data) {
-					alert('해당 이메일로 회원가입 인증 ulr을 보냈습니다.')
+					alert('해당 이메일로 회원가입 인증 url을 보냈습니다.')
                 	location.href = '/member/login'
                     
                     
