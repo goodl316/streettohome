@@ -15,7 +15,8 @@
 <input type="hidden" value="${param.b_no }" class="hidden_b_no">
 <input type="hidden" value="${loginMember.m_no}" class="member_no">
 	<h1 class="reg_title">게시글 작성</h1>
-	<div style="display: flex">
+	<di
+	v style="display: flex">
 		<div style="width: 200px; height: 200px;">
 		<label for="input_img">
 		<img class="img_upload" src="/images/up_load_img.png" style="width: 100%; height: 100%;">

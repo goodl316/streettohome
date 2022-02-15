@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,16 +11,28 @@
 <link rel="stylesheet" href="/css/admin/banner.css">
 </head>
 <body>
-<div>
-<h1> 배너 관리</h1>
-</div>
-<div class="viewcontainer">
-<span id='View_area' style='position:relative; color: black; border: 0px solid black;'> </span>
-<input id="input_img" name="input_img" type="file" multiple accept="image/*"
-		onchange="previewImage(this,'View_area');" onclick="deleteImg(); fileRemove2();" >
-<button onclick="updimg()">등록</button>
-</div>
+	<div>
+		<h1>배너 관리</h1>
+	</div>
+	<div class="viewcontainer">
+		<div >
+			<div style="width: 200px; height: 200px;">
+				<label for="input_img"> <img class="img_upload"
+					src="/images/up_load_img.png" style="width: 100%; height: 100%;">
+				</label>
+				<input id="input_img" name="input_img" type="file" multiple
+					accept="image/*" onchange="previewImage(this,'View_area');"
+					onclick="deleteImg(); fileRemove2();">
+			</div>
+			<div style="display: flex;">
+			<span id='View_area'
+				style='position: relative; color: black; border: 0px solid black;'>
+			</span>
+			</div>
+			<button class="img_btn"onclick="updimg()">등록</button>
+		</div>
+	</div>
 </body>
 
 </html>
- <script  type="text/javascript" src="/js/admin/bannerAdmin.js"></script>
+<script type="text/javascript" src="/js/admin/bannerAdmin.js"></script>
