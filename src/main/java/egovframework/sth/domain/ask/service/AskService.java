@@ -1,6 +1,7 @@
 package egovframework.sth.domain.ask.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ public class AskService {
 	@Autowired
 	private AskMapper mapper;
 	
-	public List<AskDTO> selAskList() {
-		return mapper.selAskList();
+	public List<AskDTO> selAskList(Map<String, Object> param) {
+		return mapper.selAskList(param);
 	}
 	
 	public List<AskDTO> selAsk(AskDTO param) {
@@ -44,5 +45,9 @@ public class AskService {
 	
 	public int updAsk(AskDTO param) {
 		return mapper.updAsk(param);
+	}
+	
+	public int selAskCount() {
+		return mapper.selAskCount();
 	}
 }

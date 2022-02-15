@@ -24,7 +24,7 @@
 			<tr class="ask-item${list.ak_no }">
 				<td>${list.ak_no }</td>
 				<td>${list.ak_name }</td>
-				<td onclick="getAsk(${list.ak_no}, '${list.ak_title }')">${list.ak_title}</td>
+				<td class="item-title" onclick="getAsk(${list.ak_no}, '${list.ak_title }')">${list.ak_title}</td>
 				<td><c:set var="TextValue" value="${list.ak_dt}"/>${fn:substring(TextValue,0,10) }</td>
 				<td>
 					<button onclick="delAsk(${list.ak_no})">삭제</button>
@@ -32,7 +32,9 @@
 			</tr>
 		</c:forEach>
 	</table>
-
+	<div class="ask-footer">
+			<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="linkPage"/>
+	</div>
 </body>
 </html>
 <script type="text/javascript" src="/js/admin/askAdmin.js"></script>

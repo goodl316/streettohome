@@ -9,10 +9,14 @@
 </head>
 <body>
 	<div>
-		<form class="mod-form" action="/admin/ask/mod" method="post">
+		<form class="mod-form" action="/ask/mod" method="post">
 			<input type="hidden" name="ak_no" value="${data.ak_no }">
-			<input class="mod-title" type="text" placeholder="제목을 입력하세요" value="${data.ak_title }" readOnly>
-			<textarea class="mod-ctnt" name="ak_ctnt" placeholder="내용을 입력하세요">${data.ak_ctnt }</textarea>
+			<div>
+				<input class="mod-title" type="text" name="ak_title" placeholder="제목을 입력하세요" value="${data.ak_title }">
+			</div>
+			<div>
+				<textarea class="mod-ctnt" name="ak_ctnt" placeholder="내용을 입력하세요">${data.ak_ctnt }</textarea>
+			</div>
 			<button>작성</button>
 		</form>
 	</div>

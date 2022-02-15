@@ -15,10 +15,10 @@ function delAsk(ak_no) {
 	}).then(function(data) {
 		if(data.data == 1) {
 			alert('삭제되었습니다.');
+			location.reload();
 		} else {
 			alert('삭제 실패. 잠시 후 시도해주세요.')
 		}
-		location.reload();
 	})
 }
 
@@ -35,4 +35,8 @@ function openPopup(url, _width, _height, title) {
 	const popOption = 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top;
 
 	window.open(url, title, popOption);
+}
+
+function linkPage(pageNo) {
+	location.href = "/admin/AskAdmin?page="+ pageNo;
 }

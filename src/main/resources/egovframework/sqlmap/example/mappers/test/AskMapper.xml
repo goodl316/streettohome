@@ -11,6 +11,11 @@
 		FROM ask
 		WHERE ak_del = 0
 		ORDER BY ak_idx DESC, ak_dept ASC
+		LIMIT #{firstIndex}, #{recordCountPerPage}
+	</select>
+	
+	<select id="selAskCount" resultType="int">
+		SELECT COUNT(ak_no) FROM ask WHERE ak_del = 0
 	</select>
 	
 	<select id="selAsk" resultMap="AskDTO">
