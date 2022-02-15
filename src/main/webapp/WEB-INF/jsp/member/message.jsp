@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="/WEB-INF/jsp/member/mypage.jsp" %>
 <link rel="stylesheet" href="/css/member/message.css">
+<c:if test="${sessionScope.loginMember != null }">
 <div>
 	<div class="message-container">
 		<div class="message-header">
@@ -44,4 +45,5 @@
 		</div>
 	</div>
 </div>
+</c:if>
 <script defer type="text/javascript" src="/js/member/message.js"></script>

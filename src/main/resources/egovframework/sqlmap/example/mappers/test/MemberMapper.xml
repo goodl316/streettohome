@@ -3,6 +3,9 @@
 <mapper
 	namespace="egovframework.sth.domain.member.mapper.MemberMapper">
 
+	<resultMap
+		type="egovframework.sth.domain.board.domain.BoardVO" id="BoardVO"></resultMap>
+	
 	<select id="selMember"
 		resultType="egovframework.sth.domain.member.domain.MemberDTO">
 		select * from member where m_email=#{m_email}
@@ -59,6 +62,14 @@
 		where m_email = #{m_email}
 		and m_auth =
 		#{m_auth};
+	</select>
+	
+	<select id="myboard" resultMap="BoardVO">
+	select * from board where m_no = #{m_no} and b_del = 0 order by b_no desc
+	limit #{firstIndex}, #{recordCountPerPage}
+	</select>
+	<select id="countmyBoard" resultType="int">
+	select count(*) from board where m_no = #{m_no} and b_del = 0
 	</select>
 
 	<update id="upM_authstate">
