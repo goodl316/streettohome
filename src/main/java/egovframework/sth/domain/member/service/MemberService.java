@@ -2,6 +2,7 @@ package egovframework.sth.domain.member.service;
 
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.mail.HtmlEmail;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import egovframework.sth.domain.board.domain.BoardVO;
 import egovframework.sth.domain.member.Utils.MyUtils;
 import egovframework.sth.domain.member.domain.MemberDTO;
 import egovframework.sth.domain.member.mapper.MemberMapper;
@@ -215,6 +216,14 @@ public class MemberService {
 			return mapper.memberDelete(param);
 		}
 		return 0;		
+	}
+	
+	public List<BoardVO> myboard(BoardVO vo){
+		return mapper.myboard(vo);
+	}
+	
+	public int countmyBoard(BoardVO vo) {
+		return mapper.countmyBoard(vo);
 	}
 }
 	

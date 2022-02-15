@@ -5,7 +5,7 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/member/memberDelete.css">
-
+<c:if test="${sessionScope.loginMember != null }">
 <div id="grid">
 	<div id="areaA">
 		<%@ include file="../member/mypage.jsp"%>
@@ -32,5 +32,5 @@
 			</div>
 		</div>
 </div>
-
+</c:if>
 <script defer type="text/javascript" src="/js/member/memberDelete.js"></script>

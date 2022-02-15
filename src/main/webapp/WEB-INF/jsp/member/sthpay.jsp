@@ -6,6 +6,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet" href="/css/member/sthpay.css">
 <%@ include file="/WEB-INF/jsp/member/mypage.jsp" %>
+<c:if test="${sessionScope.loginMember != null }">
 <div class="pay-container">
 	 <div class="pay-header"><h1>스홈페이</h1></div>
 	 <div class="pay-body">
@@ -47,4 +48,5 @@
 	 </div>
 </div>
 </body>
+</c:if>
 <script type="text/javascript" src="/js/member/sthpay.js"></script>
