@@ -8,6 +8,7 @@
 <div id="areaA">
 <%@ include file="/WEB-INF/jsp/member/mypage.jsp"%>
 </div>
+<div class="contents">
 <h2>나의 게시글 목록</h2>
 <table class="my-board">
 	<tr class="list-header">
@@ -41,6 +42,7 @@
 <div class=pagination>
 	<ui:pagination paginationInfo="${paginationInfo}" type="image"
 		jsFunction="linkPage" />
+</div>
 </div>
 </div>
 <script defer type="text/javascript" src="/js/member/myboard.js"></script>
