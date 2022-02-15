@@ -178,6 +178,7 @@ function product_img_upload(an_no) {
 		contentType: false,
 		cache: false,
 		success: function() {
+			location.href = "/board/view?b_no"+an_no
 		}
 	})
 }
@@ -334,26 +335,7 @@ function previewImage(targetObj, View_area) {
 
 $(document).ready(function() {
 
-	$('input[type=radio][name=tradetype]').click(function() {
-
-		var price_contain = document.querySelector('.price_contain')
-
-		val = $(this).val()
-		if (val == "무료") {
-			price_contain.innerHTML = ""
-		} else if (val == "유료") {
-			price_contain.style.display = "block"
-			price_contain.innerHTML = `
-		가격 : <input type="text" class="input_price" placeholder="격을 입력해 주세요"><br>
-		`
-		} else if (val == "경매") {
-			price_contain.style.display = "block"
-			price_contain.innerHTML = `
-		시작 가격 : <input type="text" class="input_price" placeholder="시작 가격을 입력해 주세요"><br>
-		`
-		}
-
-	})
+	
 	
 	var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
 	var area1 = []

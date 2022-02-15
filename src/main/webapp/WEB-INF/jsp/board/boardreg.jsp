@@ -35,8 +35,7 @@
 			name="an_type2" id="an_type2"></select>
 		</div>
 	</div>
-	<div class="enddt_contain" style="display: none"></div>
-	<div class="price_contain" style="display: none"></div>
+	
 	<br>
 	<div class="up-sido">
 		<div class="loc_title">지역</div>
@@ -70,6 +69,9 @@
 		<input type="radio" id="b_ns" name="b_ns" value="1" /> 모름 <input
 			type="radio" id="b_ns" name="b_ns" value="2" />
 	</div>
+	<div class="enddt_contain" style="display: none"></div>
+	<div class="price_contain" style="display: none"></div>
+	
 	</div>
 	</div>
 	
