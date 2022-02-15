@@ -11,8 +11,8 @@
 	<h2 class="jointext">회원가입</h2>
 	<div>
 		<div>
-			<input type="radio" name="m_state" value="0" checked="checked">개인
-			<input type="radio" name="m_state" value="1">단체
+			<input type="radio" id="m_state" value="0" checked="checked">개인
+			<input type="radio" id="m_state" value="1">단체
 		</div>
 	</div>
 	<div id="joinpage">
