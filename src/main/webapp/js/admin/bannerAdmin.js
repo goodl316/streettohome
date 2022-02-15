@@ -182,8 +182,10 @@ function createRecode(item,i){
 	span.id='img_id_'+name1
 	span.innerHTML=
 	`
-	${i+1} <img src="/img/banner/banner/${item.ba_img}" onclick="fileRemove2('${name1}','${item.ba_img}','${item.ba_no}')" width="250px" height="250px">
-	
+	<div class="small_item">
+		<div>${i+1}번째 배너</div>
+		<img src="/img/banner/banner/${item.ba_img}" onclick="fileRemove2('${name1}','${item.ba_img}','${item.ba_no}')" width="250px" height="250px">
+	<div>
 	`
 	fileInfoArr.push(item.ba_img)
 	fullName.push(item.ba_img)

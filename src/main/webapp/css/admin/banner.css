@@ -7,3 +7,17 @@ h1{
 .viewcontainer{
 	padding:50px 40px 50px;
 }
+#input_img{display:none;}
+
+.img_btn{
+	width : 10%;
+	height : 35px;
+	background-color: #005E93;
+	color: white;
+	border-radius: 0.25rem;
+	box-shadow: 1px 1px 1px 1px;
+}
+
+.small_item{
+	display: flex;
+}
