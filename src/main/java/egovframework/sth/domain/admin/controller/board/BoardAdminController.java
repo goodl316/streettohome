@@ -39,7 +39,9 @@ public class BoardAdminController {
 		map.put("m_name", req.getParameter("m_name"));
 		map.put("b_auth", req.getParameter("b_auth"));
 		
-		
+		System.out.println("b_auth"+map.get("b_auth"));
+		System.out.println("m_name"+map.get("m_name"));
+		System.out.println("an_type1"+map.get("an_type1"));
 		pagination.setTotalRecordCount(service.selCountBoard(map));
 		
 		model.addAttribute("paginationInfo", pagination);

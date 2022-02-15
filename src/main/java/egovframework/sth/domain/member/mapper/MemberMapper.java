@@ -1,7 +1,10 @@
 package egovframework.sth.domain.member.mapper;
 
+import java.util.List;
+
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
+import egovframework.sth.domain.board.domain.BoardVO;
 import egovframework.sth.domain.member.domain.MemberDTO;
 
 @Mapper
@@ -32,4 +35,8 @@ public interface MemberMapper {
 	int spon(MemberDTO param);
 	
 	int intro(MemberDTO param);
+	
+	List<BoardVO> myboard(BoardVO vo);
+	
+	int countmyBoard(BoardVO vo);
 }

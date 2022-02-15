@@ -5,7 +5,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/member/updateMember.css">
-
+<c:if test="${sessionScope.loginMember != null }">
 <div id="grid">
 <div id="areaA">
 <%@ include file="../member/mypage.jsp" %>
@@ -65,5 +65,5 @@
 	</div>
 	</div>
 	</div>
-
+</c:if>
 	<script defer type="text/javascript" src="/js/member/updateMember.js"></script>

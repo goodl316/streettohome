@@ -84,8 +84,8 @@ function previewImage(targetObj, View_area) {
 		img.className = "addImg";
 		img.classList.add("obj");
 		img.file = file;
-		img.style.width = 'inherit';
-		img.style.height = 'inherit';
+		img.style.width = '250px';
+		img.style.height = '250px';
 		img.style.cursor = 'pointer';
 		const idx = i;
 		img.onclick = ()=>fileRemove(orginNm);   //이미지를 클릭했을 때.
@@ -175,19 +175,18 @@ function proc(list){
 function createRecode(item,i){
 
 	
-	if(item.ba_img1 !=null && item.ba_img1 != ""){
-		const search = item.ba_img1.indexOf('.')
-	const name1 = item.ba_img1.substr(0,search)
+	if(item.ba_img !=null && item.ba_img != ""){
+		const search = item.ba_img.indexOf('.')
+	const name1 = item.ba_img.substr(0,search)
 	var span = document.createElement('span')
 	span.id='img_id_'+name1
 	span.innerHTML=
 	`
-	
-	<img src="/img/banner/banner/${item.ba_img1}" onclick="fileRemove2('${name1}','${item.ba_img1}','${item.ba_no}')" width="450px" height="450px">
+	${i+1} <img src="/img/banner/banner/${item.ba_img}" onclick="fileRemove2('${name1}','${item.ba_img}','${item.ba_no}')" width="250px" height="250px">
 	
 	`
-	fileInfoArr.push(item.ba_img1)
-	fullName.push(item.ba_img1)
+	fileInfoArr.push(item.ba_img)
+	fullName.push(item.ba_img)
 	}
 	if(span == "undefined"){
 		span.innerHTML = ``

@@ -2,6 +2,7 @@ package egovframework.sth.domain.member.service;
 
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.mail.HtmlEmail;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import egovframework.sth.domain.board.domain.BoardVO;
 import egovframework.sth.domain.member.Utils.MyUtils;
 import egovframework.sth.domain.member.domain.MemberDTO;
 import egovframework.sth.domain.member.mapper.MemberMapper;
@@ -50,7 +51,7 @@ public class MemberService {
 
 			// 사용자에게 보내지는 메일 작성
 			String text = String.format(
-					"<a href='http://localhost:8080/member/emailConfirm?m_email=%S&m_auth=%s'target='_blank'>이메일 인증 확인</a>,",
+					"<a href='http://192.168.0.87:8090/member/emailConfirm?m_email=%S&m_auth=%s'target='_blank'>이메일 인증 확인</a>,",
 					param.getM_email(), key);
 			String subject = "STREET TO HOME 이메일 인증";
 			myUtils.mailSender(param.getM_email(), subject, text);
@@ -215,6 +216,14 @@ public class MemberService {
 			return mapper.memberDelete(param);
 		}
 		return 0;		
+	}
+	
+	public List<BoardVO> myboard(BoardVO vo){
+		return mapper.myboard(vo);
+	}
+	
+	public int countmyBoard(BoardVO vo) {
+		return mapper.countmyBoard(vo);
 	}
 }
 	
