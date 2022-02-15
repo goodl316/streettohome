@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,8 +65,10 @@
 					<div class="view-price">
 						<c:choose>
 							<c:when test="${requestScope.data.b_tt eq '무료' }">무료</c:when>
-							<c:when test="${requestScope.data.b_tt eq '유료' }">${requestScope.data.b_price }원</c:when>
-							<c:when test="${requestScope.data.b_tt eq '경매' }">${requestScope.data.ac_price }원</c:when>
+							<c:when test="${requestScope.data.b_tt eq '유료' }">
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${requestScope.data.b_price}" />원</c:when>
+							<c:when test="${requestScope.data.b_tt eq '경매' }">
+							<fmt:formatNumber type="number" maxFractionDigits="3" value="${requestScope.data.b_price}" />원</c:when>
 						</c:choose>
 					</div>
 					<c:if test="${requestScope.data.b_tt eq '경매' }">
