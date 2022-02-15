@@ -1,3 +1,10 @@
+body{
+	min-width: 1700px;
+}
+#grid{
+	display: flex;
+}
+
 .admin-board tr {
     display: grid;
     grid-template-columns: 1fr 4fr 1fr 1fr 1fr 1fr 1fr;
