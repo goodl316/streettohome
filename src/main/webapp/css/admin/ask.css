@@ -25,6 +25,11 @@ table tr td button {
     cursor: pointer;
 }
 
+.item-title {
+	cursor: pointer;
+	text-align: left;
+}
+
 table tr:hover {
     background-color: #e3e3e3;
 }
@@ -39,4 +44,8 @@ h1 {
 
 table {
 	padding: 50px 40px 50px;
+}
+
+.ask-footer {
+	text-align: center;
 }

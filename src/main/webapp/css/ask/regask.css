@@ -1,0 +1,35 @@
+.ask-form input {
+	padding: 8px;
+	font-size: 16px;
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+.ask-textarea {
+	resize: none;
+	padding: 8px;
+	font-size: 16px;
+	width: 100%;
+	min-height: 200px;
+}
+
+.ask-form {
+	text-align: center;
+	padding: 20px;
+}
+
+.mod-form div {
+	text-align: center;
+	width: 70%;
+	margin: 10px auto;
+}
+
+.regbtn {
+	cursor: pointer;
+	font-size: 16px;
+	color: white;
+	border-radius: .4rem;
+	border: none;
+	background-color: #005e93;
+	padding: 6px 14px;
+}

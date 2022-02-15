@@ -1,0 +1,32 @@
+.board-header {
+	display: grid;
+	grid-template-columns: 2fr 6fr 2fr;
+	border-bottom: 1px solid #b3b3b3;
+	padding: 8px 3px;
+	font-weight: 600;
+}
+
+.item-title {
+	text-align: left;
+}
+
+.ask-content {
+	min-height: 200px;
+	text-align: left;
+	padding: 20px;
+	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 15%);
+	margin-bottom: 10px;
+}
+
+.item-footer {
+	text-align: right;
+}
+
+button {
+	color: white;
+	background-color: #005e93;
+	padding: 8px;
+	border: none;
+	border-radius: .4rem;
+	cursor: pointer;
+}

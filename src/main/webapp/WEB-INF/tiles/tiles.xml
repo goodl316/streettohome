@@ -26,7 +26,7 @@
 			value="/WEB-INF/jsp/member/{1}.jsp" />
 	</definition>
 
-	<definition name="ask/*" extends="base">
+	<definition name="/ask/*" extends="base">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/ask/{1}.jsp" />
 	</definition>
