@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Street To Home</title>
 <link rel="stylesheet" href="/css/admin/header.css">
 </head>
 <body>

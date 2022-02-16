@@ -76,6 +76,7 @@ function previewImage(targetObj, View_area) {
 		const orginNm = fileNm.substr(0,search)
 		
 		span.id = "img_id_" + orginNm;
+		span.className = "preview-item";
 		span.style.width = '100px';
 		span.style.height = '100px';
 		preview.appendChild(span);
@@ -135,6 +136,7 @@ function updimg() {
 		contentType: false,
 		cache: false,
 		success: function(){
+			getImgList();
 		}
 	}
 	)
@@ -182,10 +184,10 @@ function createRecode(item,i){
 	const name1 = item.ba_img.substr(0,search)
 	var span = document.createElement('span')
 	span.id='img_id_'+name1
+	span.className = 'img-item';
 	span.innerHTML=
 	`
 	<div class="small_item">
-		<div>${i+1}번째 배너</div>
 		<img src="/img/banner/banner/${item.ba_img}" onclick="fileRemove2('${name1}','${item.ba_img}','${item.ba_no}')" width="250px" height="250px">
 	<div>
 	`

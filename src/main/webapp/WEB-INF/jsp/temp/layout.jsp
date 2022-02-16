@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/temp/layout.css">
 <head>
-
+<title>Street To Home</title>
 </head>
 <body>
 	<div class="page-header">

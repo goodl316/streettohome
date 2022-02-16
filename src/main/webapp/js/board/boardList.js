@@ -79,7 +79,7 @@ $("select[name^=sido]").change(function() {
   }
  });
 
-if(type1 =='강아지' || get_query().type3 == '강아지'){
+if(type1 =='강아지' || get_query().type3 == '강아wl'){
 $("select[name^=an_type2]").each(function() {
   $selsido = $(this);
   $.each(eval(an_type1), function() {
