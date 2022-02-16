@@ -10,7 +10,8 @@ import egovframework.sth.domain.main.domain.MainVO;
 @Mapper
 public interface MainMapper {
 
-	List<MainVO> selMainList(MainVO vo);
+	List<MainVO> selDogList(MainVO vo);
+	List<MainVO> selCatList(MainVO vo);
 	List<MainVO> bannerList(MainVO vo);
 	
 }

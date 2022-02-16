@@ -5,7 +5,7 @@
 	<resultMap type="egovframework.sth.domain.main.domain.MainVO" id="MainVO" />
 	<resultMap type="egovframework.sth.domain.admin.domain.BannerDTO" id="BannerDTO" />
 
-	<select id="selMainList" resultMap="MainVO">
+	<select id="selDogList" resultMap="MainVO">
 		SELECT
 		a.b_title,a.b_no,a.b_dt,a.b_tt,a.b_loc_sido,
 		a.b_loc_gugun,a.b_price,
@@ -15,8 +15,24 @@
 		JOIN
 		animal_info b
 		ON a.b_no = b.b_no
-		WHERE a.b_del =0
-		order by a.b_no
+		WHERE a.b_del = 0 AND an_type1 = '강아지'
+		order by a.b_no DESC
+		LIMIT 8
+	</select>
+	
+	<select id="selCatList" resultMap="MainVO">
+		SELECT
+		a.b_title,a.b_no,a.b_dt,a.b_tt,a.b_loc_sido,
+		a.b_loc_gugun,a.b_price,
+		b.an_type1,b.an_type2,b.an_img,b.an_no
+		FROM board a
+		LEFT
+		JOIN
+		animal_info b
+		ON a.b_no = b.b_no
+		WHERE a.b_del = 0 and an_type1 = '고양이'
+		order by a.b_no DESC
+		LIMIT 8
 	</select>
 	
 	<select id="bannerList" resultMap="MainVO">

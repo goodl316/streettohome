@@ -15,8 +15,11 @@ public class MainService {
 	@Autowired
 	private MainMapper mapper;
 	
-	public List<MainVO> selMainList(MainVO vo){
-		return mapper.selMainList(vo);
+	public List<MainVO> selDogList(MainVO vo){
+		return mapper.selDogList(vo);
+	}
+	public List<MainVO> selCatList(MainVO vo){
+		return mapper.selCatList(vo);
 	}
 	
 	public List<MainVO> bannerList(MainVO vo){

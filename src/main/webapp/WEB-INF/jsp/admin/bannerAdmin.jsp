@@ -15,20 +15,20 @@
 		<h1>배너 관리</h1>
 	</div>
 	<div class="viewcontainer">
-		<div >
-			<div style="width: 200px; height: 200px;">
-				<label for="input_img"> <img class="img_upload"
-					src="/images/up_load_img.png" style="width: 100%; height: 100%;">
+		<div class="view-list">
+			<div class="add-item">
+				<label for="input_img"> 
+					<img class="img_upload"	src="/images/add-image.jpg">
 				</label>
 				<input id="input_img" name="input_img" type="file" multiple
 					accept="image/*" onchange="previewImage(this,'View_area');"
 					onclick="deleteImg(); fileRemove2();">
 			</div>
-			<div>
-			<span id='View_area'
+			<div id='View_area'
 				style='position: relative; color: black; border: 0px solid black;'>
-			</span>
 			</div>
+		</div>
+		<div>
 			<button class="img_btn"onclick="updimg()">등록</button>
 		</div>
 	</div>

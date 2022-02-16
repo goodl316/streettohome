@@ -34,46 +34,42 @@
 		</div>
 
 
-		<div class="minaList">
+		<div class="mainList">
 			<h2>강아지를 집으로</h2>
 			<div class="dogList">
-				<c:forEach var="list" items="${list}" end="8">
-					<c:if test="${list.an_type1 eq '강아지' }">
-						<a href="/board/view?b_no=${list.b_no}">
+				<c:forEach var="dogList" items="${dogList}">
+						<a href="/board/view?b_no=${dogList.b_no}">
 							<div class="list_item">
 								<div class="item_img">
-									<img src="/img/board/an_${list.an_no}/${list.an_img}"
+									<img src="/img/board/an_${dogList.an_no}/${dogList.an_img}"
 										onerror="this.src='/images/noimage.png'">
 								</div>
 								<div class="item_txt">
 									<p>
-										<span>[${list.an_type2}]</span> ${list.b_title}
+										<span>[${dogList.an_type2}]</span> ${dogList.b_title}
 									</p>
-									<p><c:set var="TextValue" value="${list.b_dt}"/>${fn:substring(TextValue,0,10) }</p>
+									<p><c:set var="TextValue" value="${dogList.b_dt}"/>${fn:substring(TextValue,0,10) }</p>
 								</div>
 							</div>
 						</a>
-					</c:if>
 				</c:forEach>
 			</div>
 			<h2>고양이를 집으로</h2>
 			<div class="catList">
-				<c:forEach var="list" items="${list}" end="8">
-					<c:if test="${list.an_type1 eq '고양이' }">
-						<a href="/board/view?b_no=${list.b_no}">
+				<c:forEach var="catList" items="${catList}">
+						<a href="/board/view?b_no=${catList.b_no}">
 							<div class="list_item">
 								<div class="item_img">
-									<img src="/img/board/an_${list.an_no}/${list.an_img}">
+									<img src="/img/board/an_${catList.an_no}/${catList.an_img}">
 								</div>
 								<div class="item_txt">
 									<p>
-										<span>[${list.an_type2 }] </span>${list.b_title}
+										<span>[${catList.an_type2 }] </span>${catList.b_title}
 									</p>
-									<p><c:set var="TextValue" value="${list.b_dt}"/>${fn:substring(TextValue,0,10) }</p>
+									<p><c:set var="TextValue" value="${catList.b_dt}"/>${fn:substring(TextValue,0,10) }</p>
 								</div>
 							</div>
 						</a>
-					</c:if>
 				</c:forEach>
 			</div>
 		</div>

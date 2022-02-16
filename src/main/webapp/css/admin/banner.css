@@ -13,8 +13,40 @@ h1{
 	width : 10%;
 	height : 35px;
 	background-color: #005E93;
+	font-size: 18px;
 	color: white;
-	border-radius: 0.25rem;
+	border-radius: 0.4rem;
+	border: none;
 	box-shadow: 1px 1px 1px 1px;
 }
 
+.view-list {
+	margin-bottom: 20px;
+}
+
+.img_upload {
+	width: 130px;
+	height: 130px;
+	cursor: pointer;
+}
+
+.add-item {
+	width: 130px;
+}
+
+.preview-list {
+	display: flex;
+}
+
+.small_item, .add-item, .preview-item {
+	border-radius: 4rem;
+	margin-right: 10px;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
+.small_item img, .preview-item img {
+	border-radius: 4rem;
+	border: none;
+	box-sizing: border-box;
+}
