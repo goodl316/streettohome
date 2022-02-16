@@ -24,7 +24,7 @@
 					accept="image/*" onchange="previewImage(this,'View_area');"
 					onclick="deleteImg(); fileRemove2();">
 			</div>
-			<div style="display: flex;">
+			<div>
 			<span id='View_area'
 				style='position: relative; color: black; border: 0px solid black;'>
 			</span>

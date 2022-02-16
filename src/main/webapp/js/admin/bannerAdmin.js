@@ -160,11 +160,13 @@ function proc(list){
 	if(list.length ==0){
 		return
 	}
-	
+	var div = document.createElement('div')
 	for( var i=0; i<list.length; i++){
 		var recode = createRecode(list[i],i)
 		if(recode != null){
-				View_area.append(recode)	
+			div.append(recode)
+			div.style.display = 'flex';
+			View_area.append(div)	
 		}
 			
 		
