@@ -35,7 +35,7 @@ public class BoardController {
 		PaginationInfo pagination = new PaginationInfo();
 		pagination.setCurrentPageNo(Integer.parseInt(req.getParameter("page")));
 		pagination.setPageSize(8);
-		pagination.setRecordCountPerPage(10);
+		pagination.setRecordCountPerPage(8);
 		pagination.setTotalRecordCount(service.countBoard(vo));
 		vo.setRecordCountPerPage(pagination.getRecordCountPerPage());
 		vo.setFirstIndex(pagination.getFirstRecordIndex());

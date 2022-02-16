@@ -21,7 +21,8 @@ public class MainController {
 
 	@GetMapping("/")
 	public String main(Model model,MainVO vo ) {
-		model.addAttribute("list", service.selMainList(vo));
+		model.addAttribute("dogList", service.selDogList(vo));
+		model.addAttribute("catList", service.selCatList(vo));
 		model.addAttribute("banner", service.bannerList(vo));
 		return "/main";
 	}

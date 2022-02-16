@@ -81,6 +81,8 @@ function boardReg() {
 		return;
 	}	
 	
+	
+	
 	var title = document.querySelector(".input_title").value
 	var ctnt = document.querySelector('.input_ctnt').value
 	var price = document.querySelector('.input_price')
@@ -89,6 +91,35 @@ function boardReg() {
 	var sido = document.querySelector('#sido1').value
 	var gun = document.querySelector('#gugun1').value
 	
+	if(formData.getAll("imgs").length == 0) {
+		alert("이미지를 등록해주세요.");
+		return;
+	} else if(title == "") {
+		alert("제목을 입력해주세요.");
+		return;
+	} else if($('#an_type1').val() == "품종 선택" || $('#an_type2') == "품종 선택") {
+		alert('품종을 선택해주세요.');
+		return;
+	} else if($('#sido1').val() == "시/도 선택" || $('#gugun1').val() == "구/군 선택") {
+		alert('지역을 선택해주세요.');
+		return;
+	} else if($('.input_age').val() == "") {
+		alert('나이를 입력해주세요.');
+		return;
+	} else if($('.input_age').val() > 20) {
+		alert('나이가 너무 많습니다.');
+		return;
+	} else if($('.input_price').val() == "") {
+		alert('가격을 입력해주세요.');
+		return;
+	} else if($('.input_price').val() > 10000000) {
+		alert('분양가는 최대 천만원을 넘을 수 없습니다.')
+		return;
+	} else if(ctnt == "") {
+		alert('내용을 입력해주세요.');
+		return;
+	}
+ 	
 	if(enddtelem){
 		enddt = enddtelem.value
 	}
@@ -97,7 +128,8 @@ function boardReg() {
 	
 	
 	if (price) {
-		price = document.querySelector('.input_price').value
+		
+		price = document.querySelector('.input_price').value;
 	} else {
 		price = 0;
 	}

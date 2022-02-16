@@ -54,7 +54,7 @@
 				ON a.b_no = b.b_no
 				WHERE b.an_type1=#{an_type1}
 				and a.b_del =0
-				order by a.b_no
+				order by a.b_no DESC
 				LIMIT #{firstIndex}, #{recordCountPerPage}
 			</when>
 			<when test="an_type1 == null">
@@ -83,14 +83,31 @@
 				<if test='an_gender != null and an_gender != "" '>
 				and b.an_gender =#{an_gender}
 				</if>
-				<if test='b_price != 0'>
-				and a.b_price <![CDATA[<]]>#{b_price}
+				<if test='b_price == 1'>
+			 	<![CDATA[
+					and a.b_price <= 50000
+				]]>
+				</if>
+				<if test='b_price == 2'>
+				<![CDATA[
+					and a.b_price >= 50000 and a.b_price <= 200000
+				]]>
+				</if>
+				<if test='b_price == 3'>
+				<![CDATA[
+					and a.b_price >= 200000 and a.b_price <= 500000
+				]]>
+				</if>
+				<if test='b_price == 4'>
+				<![CDATA[
+					and a.b_price >= 500000
+				]]>
 				</if>
 				<if test= 'b_price == 0 and b_tt == "무료" '>
 				and a.b_price = 0		
 				</if>
 				and a.b_del = 0
-				order by a.b_no
+				order by a.b_no DESC
 				LIMIT #{firstIndex}, #{recordCountPerPage}
 			</when>
 		</choose>

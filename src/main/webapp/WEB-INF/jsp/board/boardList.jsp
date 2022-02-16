@@ -17,8 +17,8 @@
 <input type="hidden" value="${param.an_type1}" class="get_an_type1">
 	<div class="container">
 		<div class="type_title">
-		<c:if test="${param.an_type1 eq null }">${param.type3 }를집으로</c:if>
-		<c:if test="${param.an_type1 != null }">${param.an_type1 }를집으로</c:if>
+		<c:if test="${param.an_type1 eq null }">${param.type3 }를 집으로</c:if>
+		<c:if test="${param.an_type1 != null }">${param.an_type1 }를 집으로</c:if>
 		</div>
 		<div class="select-list">
 			<div class="div1st">
@@ -54,11 +54,11 @@
 			<div class="div5st">
 				<div class="pri">가격  </div>
 				<select name="b_price" id="b_price">
-					<option value="">선택</option>
-					<option value=50000>0~50000</option>
-					<option value=200000>50000~200000</option>
-					<option value=500000>200000~500000</option>
-					<option value=500000>500000~</option>
+					<option value="0">선택</option>
+					<option value="1">0~50000</option>
+					<option value="2">50000~200000</option>
+					<option value="3">200000~500000</option>
+					<option value="4">500000~</option>
 				</select>
 			</div>
 			<button class="schBtn" onclick="clkvalue(); moveList()">검색</button>

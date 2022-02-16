@@ -81,6 +81,7 @@
             <mvc:exclude-mapping path="/ask/view" />
             <mvc:exclude-mapping path="/board/boardList"/>
             <mvc:exclude-mapping path="/board/view"/>
+            <mvc:exclude-mapping path="/echo/**"/>
             <bean id="commonInterceptor" class="egovframework.sth.global.common.CommonInterceptor"/>
         </mvc:interceptor>
         <mvc:interceptor>
