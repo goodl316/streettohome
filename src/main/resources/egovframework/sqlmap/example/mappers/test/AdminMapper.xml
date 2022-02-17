@@ -454,7 +454,7 @@
 	<update id="delReport">
 		update report
 		set rp_del = 1
-		where rp_no;
+		where rp_no=#{rp_no};
 	</update>
 	
 	<update id="okBoard">

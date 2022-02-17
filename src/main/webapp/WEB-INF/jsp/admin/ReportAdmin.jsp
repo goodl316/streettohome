@@ -22,6 +22,7 @@
 					<th>신고사유</th>
 					<th>신고자</th>
 					<th>작성날짜</th>
+					<th>삭제</th>
 				</tr>
 				<c:forEach var="list" items="${list}">
 					<tr>
@@ -30,6 +31,7 @@
 						<td>${list.rp_ctnt}</td>
 						<td>${list.wr_no }</td>
 						<td><c:set var="TextValue" value="${list.rp_dt}"/>${fn:substring(TextValue,0,10) }</td>
+						<td><button onclick="delReport(${list.rp_no})">삭제</button></td>
 					</tr>
 				</c:forEach>
 			</table>

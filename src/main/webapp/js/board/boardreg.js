@@ -10,7 +10,23 @@ var fileArr;
 var fileInfoArr = [];
 var enddt = null
 
-
+function chkage(age){
+	
+	var input_age = document.querySelector('.input_age')
+	
+	console.log(input_age.value)
+	if(input_age.value > 20) {
+		var div = document.createElement('div')
+		console.log("")
+		div.innerHTML=`
+		나이를 다시 확인해 주세요.
+		`
+		console.log(div)
+		div.style.color="red";
+		div.style.fontSize = "13px";
+			
+	}
+}
 function product_img_upload(an_no) {
 	
 	console.log(formData.getAll("imgs"))
@@ -72,7 +88,7 @@ function animalReg(b_no){
 }
 
 function boardReg() {
-	
+	document.querySelector('.regBtn').setAttribute('disabled', 'true')
 	var m_no = $('.member_no').val()
 	
 	if(m_no == null || m_no == 0){
@@ -109,7 +125,7 @@ function boardReg() {
 	} else if($('.input_age').val() > 20) {
 		alert('나이가 너무 많습니다.');
 		return;
-	} else if($('.input_price').val() == "") {
+	} else if($('.input_price').val() == "" && $('.b_tt').val() != "무료") {
 		alert('가격을 입력해주세요.');
 		return;
 	} else if($('.input_price').val() > 10000000) {
@@ -167,7 +183,9 @@ function boardReg() {
 		m_no : m_no,
 		b_enddt : b_enddt
 	}
-
+	
+	
+	
 	boardregAjax(params)
 
 }
@@ -267,7 +285,7 @@ $(document).ready(function() {
 			price_contain.style.display = "block"
 			enddt_contain.style.display = "none"
 			price_contain.innerHTML = `
-		<div class="price_text">가격</div> <input type="text" class="input_price" placeholder="격을 입력해 주세요"><br>
+		<div class="price_text">가격</div> <input type="text" class="input_price" placeholder="가격을 입력해 주세요"><br>
 		`
 		} else if (val == "경매") {
 			price_contain.style.display = "block"

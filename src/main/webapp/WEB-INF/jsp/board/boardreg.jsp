@@ -46,7 +46,7 @@
 	</div>
 	<div class="up-age">
 		<div class="age_title">나이 </div>
-		<input type="text" class="input_age" placeholder="반려동물 나이를 입력해 주세요">
+		<input type="number" class="input_age" placeholder="반려동물 나이를 입력해 주세요" onchange="chkage(this)">
 	</div>
 	</div>
 	<div class="down">	

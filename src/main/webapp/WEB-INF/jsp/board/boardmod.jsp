@@ -15,8 +15,7 @@
 <input type="hidden" value="${param.b_no }" class="hidden_b_no">
 <input type="hidden" value="${loginMember.m_no}" class="member_no">
 	<h1 class="reg_title">게시글 작성</h1>
-	<di
-	v style="display: flex">
+	<div style="display: flex">
 		<div style="width: 200px; height: 200px;">
 		<label for="input_img">
 		<img class="img_upload" src="/images/up_load_img.png" style="width: 100%; height: 100%;">
@@ -63,7 +62,7 @@
 	</div>
 	<div class="up-age">
 		<div class="age_title">나이 </div>
-		<input type="text" class="input_age" placeholder="반려동물 나이를 입력해 주세요" value="${data.an_age }">
+		<input type="number" class="input_age" placeholder="반려동물 나이를 입력해 주세요" value="${data.an_age }">
 	</div>
 	</div>
 	<div class="down">	

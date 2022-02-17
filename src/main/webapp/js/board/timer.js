@@ -1,8 +1,6 @@
-// ----------------------- 마감일 계산기 ------------------------------------
-
 const enddt = document.querySelector("#enddate");
-const dday = new Date();
-const enddata = null;
+let dday = new Date();
+let enddata = null;
 if(enddt){
 		dday = enddt.dataset.enddt;
 		enddata = enddt.dataset.enddt;
