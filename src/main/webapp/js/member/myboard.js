@@ -11,7 +11,7 @@ function get_query() {
 }
 
 function linkPage(pageNo) {
-		location.href = "/member/mybaord?m_no="+get_query().m_no+"&page="+pageNo
+		location.href = "/member/myboard?m_no="+get_query().m_no+"&page="+pageNo
 		
 }
 

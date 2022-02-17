@@ -66,7 +66,6 @@
 			<li onclick="location.href='/board/boardList?an_type1=강아지&page=1'">강아지를	집으로</li>
 			<li onclick="location.href='/board/boardList?an_type1=고양이&page=1'">고양이를	집으로</li>
 			<li onclick="location.href='/member/spon'">후원</li>
-			<li onclick="location.href='/'">입양후기</li>
 			<li onclick="location.href='/ask/list?page=1'">문의하기</li>
 		</ul>
 	</nav>

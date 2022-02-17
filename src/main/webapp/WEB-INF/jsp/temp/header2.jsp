@@ -33,7 +33,6 @@
 				<li><a href="/admin/BoardAdmin?an_type1=강아지&page=1">강아지 게시글</a></li>
 				<li><a href="/admin/BoardAdmin?an_type1=고양이&page=1">고양이 게시글</a></li>
 				<li><a href="/admin/ReportAdmin?page=1">신고받은 게시글</a>
-				<li><a href="/admin/delBoardAdmin?page=1">삭제된 게시글</a></li>
 			</ul>
 			</div>
 			</div>

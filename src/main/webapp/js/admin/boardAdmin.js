@@ -20,6 +20,31 @@ function linkPage(pageNo) {
 	}
 }
 
+function delReport(rp_no){
+	var authstate = document.querySelector('.authstate')
+	if(authstate.value != 999) {
+		alert('실행권한이 없습니다.')
+		return
+	}
+	
+	var param = {
+		rp_no : rp_no
+	}
+	
+	fetch(`/admin/delReport`,{
+		method:'post',
+		headers :{
+			'Content-Type':'application/json'
+		},
+		body:JSON.stringify(param)
+	}).then(function(res){
+		return res.json()
+	}).then(function(data){
+		location.reload();
+	})
+}
+
+
 function delBoard(b_no){
 	var authstate = document.querySelector('.authstate')
 	if(authstate.value != 999) {

@@ -56,11 +56,17 @@ $('#submit').on('click', ()=> {
 
 function allChk() {
 	if($('#allChk').is(':checked')) {
+		$('#receiver').attr('readOnly', true);
 		return 1;
 	} else {
+		$('#receiver').removeAttr('readOnly');
 		return 0;
 	}
 }
+
+$('#allChk').on('click', ()=> {
+	allChk();	
+})
 
 const nickData = new Array();
 

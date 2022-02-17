@@ -178,7 +178,7 @@ function product_img_upload(an_no) {
 		contentType: false,
 		cache: false,
 		success: function() {
-			location.href = "/board/view?b_no"+an_no
+			location.href = "/board/view?b_no="+an_no
 		}
 	})
 }
@@ -292,8 +292,8 @@ function previewImage(targetObj, View_area) {
 		img.className = "addImg";
 		img.classList.add("obj");
 		img.file = file;
-		img.style.width = 'inherit';
-		img.style.height = 'inherit';
+		img.style.width = '250px';
+		img.style.height = '250px';
 		img.style.cursor = 'pointer';
 		const idx = i;
 		img.onclick = ()=>fileRemove(orginNm);   //이미지를 클릭했을 때.
