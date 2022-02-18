@@ -160,7 +160,7 @@ function createRecode(b_no,item){
 // -------------목록보기-------------------
 
 function returnPage() {
-	history.back();
+	location.href = '/board/boardList?an_type1=강아지&page=1';
 }
 
 // ---------------쪽지보내기 -----------------

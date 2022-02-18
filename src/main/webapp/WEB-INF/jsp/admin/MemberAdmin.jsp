@@ -102,7 +102,7 @@
 						<td>0</td>
 						<td><c:set var="TextValue" value="${list.m_dt}"/>${fn:substring(TextValue,0,10) }</td>
 						<td>
-							<button onclick="liftban(${list.m_no})">헤제</button>
+							<button onclick="liftban(${list.m_no})">해제</button>
 						</td>
 					</tr>
 				</c:forEach>

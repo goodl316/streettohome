@@ -88,7 +88,7 @@ function animalReg(b_no){
 }
 
 function boardReg() {
-	document.querySelector('.regBtn').setAttribute('disabled', 'true')
+	
 	var m_no = $('.member_no').val()
 	
 	if(m_no == null || m_no == 0){
@@ -125,7 +125,7 @@ function boardReg() {
 	} else if($('.input_age').val() > 20) {
 		alert('나이가 너무 많습니다.');
 		return;
-	} else if($('.input_price').val() == "" && $('.b_tt').val() != "무료") {
+	} else if($('.input_price').val() == "" && $('input:radio[name="tradetype"]:checked').val() != "무료") {
 		alert('가격을 입력해주세요.');
 		return;
 	} else if($('.input_price').val() > 10000000) {
@@ -135,6 +135,8 @@ function boardReg() {
 		alert('내용을 입력해주세요.');
 		return;
 	}
+	
+	document.querySelector('.regBtn').setAttribute('disabled', 'true');
  	
 	if(enddtelem){
 		enddt = enddtelem.value
@@ -325,7 +327,7 @@ $(document).ready(function() {
 	
 	var an_type0 =["품종 선택","강아지","고양이"]
 	var an_type1 = ["리트리버","말티즈","비숑프리제","삽살개","시바견","시츄","요크셔테리어","웰시코기","이탈리안그레이하운드","진돗개","치와와","퍼그","포메라니안","푸들","프렌치불독"];
-	var an_type2 = ['러시안블루',"페르시안","벵골","브리티시쇼트헤어","시암고양이","스핑크스","래그돌","먼치킨","엑조틱쇼트헤어","노르웨이숲고양이","사바나","시베리안 고양이"]
+	var an_type2 = ['러시안블루',"페르시안","벵골","브리티시쇼트헤어","샴","스핑크스","래그돌","먼치킨","엑조틱쇼트헤어","노르웨이숲고양이","사바나","시베리안 고양이"]
  
 
  // 시/도 선택 박스 초기화
